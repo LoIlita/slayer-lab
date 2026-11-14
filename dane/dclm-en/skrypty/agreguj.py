@@ -36,9 +36,11 @@ ids = [u for m in meta for u in m["ids"]]
 tok = X["ntok"]
 
 # ---- dedup wewnątrz próbki: (a) identyczny tekst, (b) MinHash LSH 32x4, J >= 0,8 do wcześniejszego dokumentu
-_, pierwsze = np.unique(X["hx"], return_index=True)
+_, pierwsze, odwr = np.unique(X["hx"], return_index=True, return_inverse=True)
 dup_dokl = np.ones(N, bool)
 dup_dokl[pierwsze] = False
+para_w = np.full(N, -1, np.int64)  # para dopasowania dedup_wewnatrz: wcześniejszy dokument (identyczny tekst albo najbliższy MinHash)
+para_w[dup_dokl] = pierwsze[odwr[dup_dokl]]
 dup_mh = np.zeros(N, bool)
 S, ms = X["sig"], X["ma_sig"]
 z_sig = np.flatnonzero(ms)
@@ -55,8 +57,11 @@ for b in range(32):
         for j in range(1, len(g)):
             if dup_mh[g[j]]:
                 continue
-            if np.max((S[g[:j]] == S[g[j]]).mean(axis=1)) >= 0.8:
+            pod = (S[g[:j]] == S[g[j]]).mean(axis=1)
+            if np.max(pod) >= 0.8:
                 dup_mh[g[j]] = True
+                if para_w[g[j]] < 0:
+                    para_w[g[j]] = g[int(np.argmax(pod))]
 dedup_w = dup_dokl | dup_mh
 
 
@@ -78,10 +83,15 @@ def dodatkowa(nz):
 
 
 wyn_dod = {}
+# aneks 15.11.2026: ewal_13gram po wykluczeniu 13-gramów powszechnych i trywialnych (ewal_czeste.py, ew13_po_wykl.npy)
+ew = X["ew"]
+if "ew13" in DODATKOWE:
+    ew = np.load(DODATKOWE.pop("ew13"))
+    assert len(ew) == N and not (ew & ~X["ew"]).any()
 powody = {
     "walidacja_fabryki": dodatkowa("walidacja"),
     "domena_testow": X["dom"] > 0,
-    "ewal_13gram": X["ew"],
+    "ewal_13gram": ew,
     "pii": X["pii"] > 0,
     "mojibake": X["moj"] >= 3,
     "dedup_wewnatrz": dedup_w,
@@ -108,6 +118,12 @@ for p in kolej:
 wyn["uzysk"] = {"dok": int(zostaje.sum()), "tok": int(tok[zostaje].sum()), "dok_proc": round(100 * zostaje.sum() / N, 3), "tok_proc": round(100 * tok[zostaje].sum() / T, 3)}
 
 # ---- szczegóły powodów
+wyn["ewal_13gram_aneks"] = {"przed_wykluczeniem_dok": int(X["ew"].sum()), "przed_wykluczeniem_tok": int(tok[X["ew"]].sum()),
+                            "po_wykluczeniu_dok": int(ew.sum()), "po_wykluczeniu_tok": int(tok[ew].sum())}
+# macierz powodów (widok niezależny) i para dedup_wewnatrz dla doboru ręcznej próbki per powód (probka_przegladu.py)
+np.savez(os.path.join(os.path.dirname(OUT), "powody.npz"), nazwy=np.array(kolej),
+         m=np.stack([powody[p] if powody.get(p) is not None else np.zeros(N, bool) for p in kolej], axis=1),
+         zostaje=zostaje, para_wewnatrz=para_w, ntok=tok)
 wyn["indeksy_dodatkowe"] = wyn_dod
 wyn["dedup_wewnatrz_szczegoly"] ={"identyczny_tekst": int(dup_dokl.sum()), "minhash_bez_identycznych": int((dup_mh & ~dup_dokl).sum())}
 wyn["domeny"] = {d: int((X["dom"] == i + 1).sum()) for i, d in enumerate(w.DOMENY_TESTOW)}

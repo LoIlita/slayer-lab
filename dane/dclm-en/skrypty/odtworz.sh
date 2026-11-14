@@ -2,7 +2,7 @@
 # Odtworzenie przebiegu DCLM-EN od zera, krok po kroku. Opis kroków, wejść i kontroli: dane/dclm-en/METODOLOGIA.md.
 # Użycie (z dowolnego katalogu):  bash dane/dclm-en/skrypty/odtworz.sh <krok>
 # Kroki: venv | tokenizer | probka | testy | ewal | baza107 | idx107 | walidacja_pobierz | idx_wal | idx_ivme | kontrola | przebieg
-#        po przebiegu: fwe_url | edu | agreguj
+#        po przebiegu: fwe_url | edu | ewal_czeste | agreguj | probka_przegladu
 # Każdy krok jest wznawialny: pobrania pomijają gotowe pliki, przebieg pomija gotowe u_NNNN.npz.
 set -euo pipefail
 
@@ -86,9 +86,23 @@ edu)  # klasyfikator FineWeb-Edu na 50 000 dokumentów; cpu = float32 (mps liczy
   mkdir -p "$R/wyniki/edu"
   $NICE $PY -I "$S/edu.py" "$R/wyniki/przebieg/jednostki.json" "$R/wyniki/edu/edu.npz" 50000 "${EDU_DEV:-cpu}"
   ;;
+ewal_czeste)  # aneks 15.11.2026: trafiające 13-gramy testów, df w próbce; z listą wykluczeń także ew13_po_wykl.npy (próbka i kontrola)
+  L=$S/ewal_13gram_wykluczone.json
+  $NICE $PY -I "$S/ewal_czeste.py" "$R/wyniki/przebieg" "$R/wyniki/ewal" "$R/wyniki/ew13" "$L"
+  if [ -f "$L" ]; then
+    $PY -I "$S/ewal_czeste.py" "$R/wyniki/kontrola/przebieg" "$R/wyniki/ewal" "$R/wyniki/kontrola/ew13" "$L"
+    $PY -I -c "
+import json, sys, numpy as np
+m = json.load(open(sys.argv[1] + '/przebieg/u_0000.json')); po = np.load(sys.argv[1] + '/ew13/ew13_po_wykl.npy')
+for i, d in enumerate(m['ids']):
+    print('kontrola_ew13', d, 'ew_przed', m['ew_testy'].get(str(i)) is not None, 'ew_po', bool(po[i]))
+" "$R/wyniki/kontrola"
+  fi
+  ;;
 agreguj)  # kaskada powodów, uzysk v6, szacunek shardów, ręczna próbka 100/100 (probki_reczne.jsonl zostaje w robocze/: ma PII)
   $NICE $PY -I "$S/agreguj.py" "$R/wyniki/przebieg" "$R/probka_pliki.json" "$R/wyniki/fwe/fwe_url_h.npy" "$R/wyniki/edu/edu.npz" \
-    "$R/wyniki/agreguj.json" "$R/wyniki/probki_reczne.jsonl" walidacja="$R/wyniki/idx_wal" ivme="$R/wyniki/idx_ivme"
+    "$R/wyniki/agreguj.json" "$R/wyniki/probki_reczne.jsonl" walidacja="$R/wyniki/idx_wal" ivme="$R/wyniki/idx_ivme" \
+    $( [ -f "$R/wyniki/ew13/ew13_po_wykl.npy" ] && echo ew13="$R/wyniki/ew13/ew13_po_wykl.npy" )
   cp "$R/wyniki/agreguj.json" "$D/wyniki/agreguj.json"
   cp "$R/wyniki/fwe/fwe_url.json" "$D/wyniki/fwe_url.json"
   ;;

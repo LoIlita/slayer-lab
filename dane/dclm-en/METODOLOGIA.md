@@ -192,6 +192,43 @@ Treści testów, boilerplate'u bez treści ani dokumentów w całości nie-EN w�
    decyzji (np. lista dozwolonych ciągów albo próg liczby trafień) przed eksportem. `pii` usuwa 29/53 dobrych
    tekstów z kontaktem firmowym; w kroku 9 repo zgłoszeń i tak maskuje PII, więc to decyzja o zakresie usuwania.
 
+### Aneks do preregistracji, 15.11.2026 (przed drugą próbką)
+
+Zapisany w [`skrypty/preregistracja.json`](skrypty/preregistracja.json), pole `aneks_2026_11_15`, PO pierwszym
+przeglądzie i PRZED doborem drugiej próbki. Powód: trzy punkty werdyktu wyżej.
+
+**Progi.** Notatka `komplet-kontroli-zbioru` i `zasady-raportowania-benchmarkow` progów stóp ręcznej próbki nie
+podają (sprawdzone 15.11.2026), więc obowiązują proponowane przez główną sesję:
+
+| Miara | Próg |
+|---|---|
+| fałszywe odrzucenia, KAŻDY powód osobno (dokument nie ma cechy, którą opisuje powód) | ≤10% i górna granica Wilsona 95% ≤20% |
+| przeoczenia PII w 100 zachowanych (e-mail, telefon, IP) | ≤1% |
+| śmieci bez filtra w 100 zachowanych (ocena „nie”; wątpliwe obok) | ≤10% |
+| przeoczenia `mojibake` i `domena_testow` w 100 zachowanych | ≤10% każdy |
+| przeoczenia `ewal_13gram`, dedupów, walidacji | z tekstu nieocenialne: mierzy kontrola dodatnia |
+
+NOT RUN albo BLOCKED przy którymkolwiek powodzie to brak PASS.
+
+**PII: reguła bez zmian, świadomy koszt.** Dokument z e-mailem, telefonem albo IP odpada w całości, także z
+kontaktem firmy lub instytucji, jak w wersjach 1.08 i 1.09. W pierwszym przeglądzie 29 z 53 odrzuceń `pii`
+(54,7% [41,5; 67,3]) to dobre teksty z kontaktem firmowym: ten koszt jest przyjęty, nie liczy się jako fałszywe
+odrzucenie i jest raportowany osobno.
+
+**`ewal_13gram`: wykluczenie 13-gramów powszechnych.** Krok `ewal_czeste` ([`skrypty/ewal_czeste.py`](skrypty/ewal_czeste.py))
+odtwarza trafiające 13-gramy 2821 dokumentów z trafieniem i liczy, w ilu dokumentach próbki występuje każdy z
+33 823 n-gramów. Najczęstsze: ciągi `1 2 3 … 13` i alfabet (df do 312), II poprawka USA (80), I poprawka (67),
+Deklaracja Niepodległości (56), formułka trynitarna (44), szablon spisu ludności z Wikipedii (55), notka copyright
+(38), wiersz Emmy Lazarus (33). Reguła: z indeksu wypada 13-gram o **df ≥ 5** dokumentów próbki albo **trywialny**
+(każde słowo to liczba lub pojedynczy znak); dokument odpada, gdy ma choć jedno trafienie spoza listy. Lista
+budowana raz z próbki głównej: [`skrypty/ewal_13gram_wykluczone.json`](skrypty/ewal_13gram_wykluczone.json).
+Próg 5: wszystkie n-gramy HellaSwag z df ≥ 5 to cytaty liturgiczne i biblijne, PIQA, ARC-C i WinoGrande nie mają
+n-gramu z df ≥ 2; 339 nietrywialnych n-gramów z df ≥ 5 przejrzanych ręcznie, same cytaty i formułki. Ryzyko:
+treść testu skopiowana w ≥5 dokumentach próbki przestaje być łapana 13-gramem.
+
+**Druga próbka.** `default_rng(20261115)`, 100 dokumentów na KAŻDY powód w widoku niezależnym (wszystkie, gdy
+powód ma <100) plus 100 zachowanych wspólnych dla wszystkich powodów; dedupy i walidacja z parą dopasowania.
+
 ## 9. Eksport do formatu zgłoszeń
 
 Robisz w klonie `SlayerLab/dataset-team-submissions`, nie w `slayer-lab`.

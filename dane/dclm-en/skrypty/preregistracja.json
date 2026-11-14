@@ -70,5 +70,28 @@
   "dedup_ivme_regula": "indeks z indeksy.py (tryb ivme): 28 batchy train-dclm zdekodowane tokenizerem zbioru (metadata/tokenizer.json); ta sama reguła co walidacja; przy wykluczonych plikach mierzy kopie DCLM między plikami",
   "ivme_poziom_plikow": "raport: ile plików próbki leży w dclm.train_files[:556] locka Ivme (szacunek plików potrzebnych do pełnych 20B Ivme)"
  },
- "szacunek_shardow":"shardy = ceil(5e9 / (tokeny v6 po filtrach na shard próbki)), z przedziałem z rozrzutu między plikami próbki (średnia +- 2 SE); dedup między shardami rośnie z liczbą shardów, więc wynik to dolna granica"
+ "szacunek_shardow":"shardy = ceil(5e9 / (tokeny v6 po filtrach na shard próbki)), z przedziałem z rozrzutu między plikami próbki (średnia +- 2 SE); dedup między shardami rośnie z liczbą shardów, więc wynik to dolna granica",
+ "aneks_2026_11_15": {
+  "zapisano": "2026-11-15, PO pierwszym przeglądzie ręcznej próbki (commit c14d015, NIE PRZESZŁO) i PRZED doborem drugiej próbki; reguła ewal_13gram ustalona po pomiarze częstości 13-gramów (krok ewal_czeste), przed przeliczeniem agregacji i przed nową próbką",
+  "powod": "przegląd c14d015: (1) brak progów stóp, więc PASS nie do ogłoszenia; (2) próbka 100/100 łącznie zamiast 100 odrzuconych na każdy powód; (3) ewal_13gram odrzuca dobre teksty na powszechnych cytatach i ciągach liczb (4/5 fałszywych)",
+  "progi": {
+   "zrodlo": "propozycja głównej sesji z 15.11.2026; notatka budowa-modeli/komplet-kontroli-zbioru (§6) i zasady-raportowania-benchmarkow nie podają progów stóp dla ręcznej próbki (sprawdzone 15.11.2026), więc zostają proponowane",
+   "falszywe_odrzucenia": "dla KAŻDEGO powodu osobno: stopa <= 10% ORAZ górna granica przedziału Wilsona 95% <= 20%. Fałszywe odrzucenie = dokument nie ma cechy, którą opisuje powód (pii: trafienie nie jest e-mailem, telefonem ani adresem IP; ewal_13gram: wspólny fragment nie jest treścią testu, tylko cytatem, formułką albo ciągiem; domena_testow: host nie pasuje do reguły; mojibake: zepsute kodowanie nie występuje; dedupy i walidacja: para dopasowania nie jest kopią ani bliską kopią). Dobry tekst usunięty zgodnie z regułą (np. firmowy kontakt przy pii) to koszt reguły, raportowany osobno, nie fałszywe odrzucenie",
+   "przeoczenia_pii": "wśród 100 zachowanych: stopa dokumentów z e-mailem, telefonem albo IP (zakres detektora) <= 1%",
+   "smieci_bez_filtra": "wśród 100 zachowanych: stopa dokumentów nienadających się do treningu (ocena 'nie'; wątpliwe raportowane obok, nie wliczane) <= 10%",
+   "przeoczenia_innych_powodow": "mojibake i domena_testow oceniane z tekstu w 100 zachowanych: stopa <= 10% każdy; przeoczeń ewal_13gram, dedupów i walidacji nie da się ocenić z tekstu: mierzy je kontrola dodatnia (krok kontrola, każdy wstawiony dokument musi dostać swój powód)",
+   "werdykt": "PASS tylko, gdy wszystkie progi spełnione; powód z oceną NOT RUN albo BLOCKED to brak PASS"
+  },
+  "pii_decyzja": "bez zmiany reguły: dokument z e-mailem albo telefonem (albo IP) odpada w całości, także kontakt firmy lub instytucji, jak w wersjach 1.08 i 1.09. Świadomy koszt: w przeglądzie c14d015 29 z 53 odrzuceń pii (54,7%, Wilson 95% 41,5-67,3%) to dobre teksty z kontaktem firmowym",
+  "ewal_13gram": {
+   "zmiana": "z indeksu testów wykluczone 13-gramy powszechne w sieci: (a) df >= 5 dokumentów próbki (1 051 235 dok.) albo (b) każde z 13 słów to liczba albo pojedynczy znak (ciągi liczb, alfabet; interpunkcję usuwa już norm_slowa). Dokument odpada, gdy ma co najmniej jedno trafienie spoza listy. Lista budowana RAZ z próbki głównej (skrypty/ewal_13gram_wykluczone.json) i stosowana bez zmian do dalszych shardów",
+   "pomiar_przed_regula": "krok ewal_czeste 15.11.2026: 2821 dokumentów z trafieniem, 33 823 różne trafiające 13-gramy; df >= 5: 394 n-gramy (339 nietrywialnych: II poprawka, Deklaracja Niepodległości, formułka trynitarna, wiersz Emmy Lazarus, notki copyright, szablon spisu ludności z Wikipedii); trywialnych 946. Próg 5 wybrany, bo wszystkie n-gramy HellaSwag z df >= 5 to cytaty liturgiczne i biblijne, a PIQA, ARC-C i WinoGrande nie mają n-gramów z df >= 2",
+   "kontrola_dodatnia": "po zmianie: (1) krok kontrola: wstawione dokumenty z HellaSwag, PIQA, ARC-C i WinoGrande nadal mają ewal_13gram; (2) prawdziwe dokumenty próbki z trafieniem PIQA, ARC-C, WinoGrande nadal odpadają; dokumenty HellaSwag odpadają, jeśli trafiają poza listą",
+   "ryzyko": "treść testu skopiowana w >= 5 dokumentach próbki przestaje być łapana 13-gramem; ograniczenie: dedup wewnątrz próbki i wobec baz usuwa część takich kopii; lista n-gramów z df >= 5 przejrzana ręcznie 15.11.2026: same cytaty i formułki"
+  },
+  "reczna_probka_2": {
+   "metoda": "rng numpy default_rng(20261115); dla KAŻDEGO z 8 powodów 100 losowych dokumentów z tym powodem w widoku niezależnym (dokument ma ten powód, niezależnie od innych; jeśli powód ma < 100 dokumentów w całej próbce, wszystkie) + 100 losowych zachowanych wspólnych dla wszystkich powodów; po aneksie ewal_13gram. Dla dedup_wewnatrz, dedup_slayer107, dedup_ivme i walidacja_fabryki obok dokumentu para dopasowania (tekst z próbki, z bazy 1.07, z batchy Ivme albo z indeksu walidacji) z miarą podobieństwa; bez pary ocena NOT RUN",
+   "ocena": "niezależny recenzent (nie budował zbioru, nie zna tego aneksu poza progami w nim zapisanymi): każdy dokument tak/nie/wątpliwe dla treningu i trafność powodu; stopy z przedziałem Wilsona 95%; werdykt wobec progów aneksu"
+  }
+ }
 }
