@@ -1,0 +1,346 @@
+{
+ "dokumenty": 1051235,
+ "tokeny_v6": 1470704495,
+ "tokeny_na_dok": 1399.0254272355849,
+ "dok_z_id0": 0,
+ "kaskada": [
+  {
+   "powod": "walidacja_fabryki",
+   "odrzucone_dok": 376,
+   "odrzucone_tok": 286472,
+   "zostaje_dok": 1050859,
+   "zostaje_tok": 1470418023,
+   "zostaje_dok_proc": 99.964,
+   "zostaje_tok_proc": 99.981
+  },
+  {
+   "powod": "domena_testow",
+   "odrzucone_dok": 6738,
+   "odrzucone_tok": 15849177,
+   "zostaje_dok": 1044121,
+   "zostaje_tok": 1454568846,
+   "zostaje_dok_proc": 99.323,
+   "zostaje_tok_proc": 98.903
+  },
+  {
+   "powod": "ewal_13gram",
+   "odrzucone_dok": 2611,
+   "odrzucone_tok": 13902493,
+   "zostaje_dok": 1041510,
+   "zostaje_tok": 1440666353,
+   "zostaje_dok_proc": 99.075,
+   "zostaje_tok_proc": 97.958
+  },
+  {
+   "powod": "pii",
+   "odrzucone_dok": 29333,
+   "odrzucone_tok": 65307146,
+   "zostaje_dok": 1012177,
+   "zostaje_tok": 1375359207,
+   "zostaje_dok_proc": 96.285,
+   "zostaje_tok_proc": 93.517
+  },
+  {
+   "powod": "mojibake",
+   "odrzucone_dok": 2279,
+   "odrzucone_tok": 7297283,
+   "zostaje_dok": 1009898,
+   "zostaje_tok": 1368061924,
+   "zostaje_dok_proc": 96.068,
+   "zostaje_tok_proc": 93.021
+  },
+  {
+   "powod": "dedup_wewnatrz",
+   "odrzucone_dok": 3679,
+   "odrzucone_tok": 4675788,
+   "zostaje_dok": 1006219,
+   "zostaje_tok": 1363386136,
+   "zostaje_dok_proc": 95.718,
+   "zostaje_tok_proc": 92.703
+  },
+  {
+   "powod": "dedup_slayer107",
+   "odrzucone_dok": 11741,
+   "odrzucone_tok": 14938996,
+   "zostaje_dok": 994478,
+   "zostaje_tok": 1348447140,
+   "zostaje_dok_proc": 94.601,
+   "zostaje_tok_proc": 91.687
+  },
+  {
+   "powod": "dedup_ivme",
+   "odrzucone_dok": 1895,
+   "odrzucone_tok": 2545498,
+   "zostaje_dok": 992583,
+   "zostaje_tok": 1345901642,
+   "zostaje_dok_proc": 94.421,
+   "zostaje_tok_proc": 91.514
+  }
+ ],
+ "niezaleznie": {
+  "walidacja_fabryki": {
+   "dok": 376,
+   "tok": 286472,
+   "dok_proc": 0.036,
+   "tok_proc": 0.019
+  },
+  "domena_testow": {
+   "dok": 6746,
+   "tok": 15897664,
+   "dok_proc": 0.642,
+   "tok_proc": 1.081
+  },
+  "ewal_13gram": {
+   "dok": 2821,
+   "tok": 15098522,
+   "dok_proc": 0.268,
+   "tok_proc": 1.027
+  },
+  "pii": {
+   "dok": 29482,
+   "tok": 66771365,
+   "dok_proc": 2.805,
+   "tok_proc": 4.54
+  },
+  "mojibake": {
+   "dok": 2424,
+   "tok": 8398131,
+   "dok_proc": 0.231,
+   "tok_proc": 0.571
+  },
+  "dedup_wewnatrz": {
+   "dok": 3819,
+   "tok": 5023408,
+   "dok_proc": 0.363,
+   "tok_proc": 0.342
+  },
+  "dedup_slayer107": {
+   "dok": 12931,
+   "tok": 17398470,
+   "dok_proc": 1.23,
+   "tok_proc": 1.183
+  },
+  "dedup_ivme": {
+   "dok": 3509,
+   "tok": 3141241,
+   "dok_proc": 0.334,
+   "tok_proc": 0.214
+  }
+ },
+ "niedostepne": [],
+ "uzysk": {
+  "dok": 992583,
+  "tok": 1345901642,
+  "dok_proc": 94.421,
+  "tok_proc": 91.514
+ },
+ "indeksy_dodatkowe": {
+  "walidacja": {
+   "minhash_lub_szkic": 375,
+   "identyczny_tekst": 26,
+   "identyczny_url": 10
+  },
+  "ivme": {
+   "minhash_lub_szkic": 3509,
+   "identyczny_tekst": 994,
+   "identyczny_url": 0
+  }
+ },
+ "dedup_wewnatrz_szczegoly": {
+  "identyczny_tekst": 1914,
+  "minhash_bez_identycznych": 1905
+ },
+ "domeny": {
+  "wikihow.com": 568,
+  "instructables.com": 928,
+  "wikipedia.org": 4743,
+  "wikinews.org": 32,
+  "wikivoyage.org": 13,
+  "wikibooks.org": 462
+ },
+ "pii_klasy": {
+  "email": 12910,
+  "telefon": 18234,
+  "ip": 160
+ },
+ "ewal_per_test": {
+  "T10_boolq": 571,
+  "X03_mbpp": 497,
+  "T50_record": 468,
+  "T34_math": 417,
+  "T37_llmzszl": 353,
+  "X02_humaneval": 353,
+  "X04_synlogic": 344,
+  "T19_mathqa": 261,
+  "T32_mmlu": 227,
+  "T43_triviaqa": 225,
+  "T38_squad2": 133,
+  "T05_hellaswag": 129,
+  "T16_anli": 93,
+  "T03_wikitext2": 91,
+  "T39_drop": 80,
+  "T40_race": 49,
+  "T41_coqa": 38,
+  "T13_wic": 35,
+  "T35_truthfulqa": 31,
+  "T09_sciq": 31,
+  "T15_rte": 28,
+  "T47_bbh": 25,
+  "T30_polqa": 20,
+  "T48_paws": 15,
+  "T45_medmcqa": 12,
+  "T17_lambada": 9,
+  "T24_belebele": 8,
+  "T21_sst2": 7,
+  "X01_arc_easy": 5,
+  "T06_piqa": 4,
+  "T02_arc_challenge": 2,
+  "T04_multiblimp_pl": 2
+ },
+ "krotkie_napisy_dok_per_n": {
+  "1": 1051234,
+  "2": 1043144,
+  "3": 807506,
+  "4": 398122,
+  "5": 77479,
+  "6": 29626,
+  "7": 5525,
+  "8": 1909,
+  "9": 775,
+  "10": 290,
+  "11": 509,
+  "12": 103
+ },
+ "nakladanie_slayer_107_en": {
+  "szkic13_ge_0_5": 12843,
+  "minhash_ge_0_8": 6437,
+  "ktorekolwiek": 12931,
+  "ktorekolwiek_tok": 17398470
+ },
+ "nakladanie_ivme": {
+  "szkic13_ge_0_5": 2954,
+  "minhash_ge_0_8": 1956,
+  "ktorekolwiek": 3509,
+  "ktorekolwiek_tok": 3141241
+ },
+ "nakladanie_walidacja": {
+  "szkic13_ge_0_5": 375,
+  "minhash_ge_0_8": 68,
+  "ktorekolwiek": 375,
+  "ktorekolwiek_tok": 284650
+ },
+ "fineweb_edu_url": {
+  "trafienia_dok": 7826,
+  "trafienia_proc": 0.7445,
+  "trafienia_wsrod_zachowanych": 6636,
+  "udzial_probki_fwe": 0.003166684362001934,
+  "ekstrapolacja_liniowa_gorna_proc": 100.0,
+  "url_unikalne_w_probce_dclm": 1049093
+ },
+ "edu": {
+  "n": 50000,
+  "rozklad_int_score": {
+   "0": 2608,
+   "1": 24007,
+   "2": 15931,
+   "3": 6270,
+   "4": 1180,
+   "5": 4
+  },
+  "rozklad_proc": {
+   "0": 5.22,
+   "1": 48.01,
+   "2": 31.86,
+   "3": 12.54,
+   "4": 2.36,
+   "5": 0.01
+  },
+  "srednia_score": 1.5857744216918945,
+  "prog_ge_2": {
+   "dok_proc": 46.77,
+   "tok_proc": 49.52,
+   "tok_proc_wsrod_zachowanych": 48.46
+  },
+  "prog_ge_3": {
+   "dok_proc": 14.91,
+   "tok_proc": 15.79,
+   "tok_proc_wsrod_zachowanych": 14.69
+  },
+  "int_score_zachowane_vs_odrzucone": {
+   "zachowane_srednia": 1.5669342279434204,
+   "odrzucone_srednia": 1.904451847076416
+  }
+ },
+ "per_plik": [
+  {
+   "plik": "global-shard_01_of_10/local-shard_0_of_10/shard_00000036_processed.parquet",
+   "dok": 94801,
+   "tok": 123296348,
+   "tok_zostaje": 114674749
+  },
+  {
+   "plik": "global-shard_01_of_10/local-shard_8_of_10/shard_00000139_processed.parquet",
+   "dok": 105226,
+   "tok": 150693102,
+   "tok_zostaje": 134697444
+  },
+  {
+   "plik": "global-shard_01_of_10/local-shard_8_of_10/shard_00000184_processed.parquet",
+   "dok": 130121,
+   "tok": 197888760,
+   "tok_zostaje": 178866810
+  },
+  {
+   "plik": "global-shard_02_of_10/local-shard_6_of_10/shard_00000117_processed.parquet",
+   "dok": 91563,
+   "tok": 121621090,
+   "tok_zostaje": 114185967
+  },
+  {
+   "plik": "global-shard_03_of_10/local-shard_2_of_10/shard_00000219_processed.parquet",
+   "dok": 84526,
+   "tok": 112991600,
+   "tok_zostaje": 105952195
+  },
+  {
+   "plik": "global-shard_03_of_10/local-shard_9_of_10/shard_00000262_processed.parquet",
+   "dok": 99486,
+   "tok": 133529065,
+   "tok_zostaje": 123410825
+  },
+  {
+   "plik": "global-shard_04_of_10/local-shard_6_of_10/shard_00000194_processed.parquet",
+   "dok": 135385,
+   "tok": 205005829,
+   "tok_zostaje": 183673303
+  },
+  {
+   "plik": "global-shard_08_of_10/local-shard_3_of_10/shard_00000257_processed.parquet",
+   "dok": 101139,
+   "tok": 131482641,
+   "tok_zostaje": 122301820
+  },
+  {
+   "plik": "global-shard_09_of_10/local-shard_9_of_10/shard_00000057_processed.parquet",
+   "dok": 106637,
+   "tok": 159425767,
+   "tok_zostaje": 141748820
+  },
+  {
+   "plik": "global-shard_10_of_10/local-shard_6_of_10/shard_00000069_processed.parquet",
+   "dok": 102351,
+   "tok": 134770293,
+   "tok_zostaje": 126389709
+  }
+ ],
+ "szacunek_shardow_5mld": {
+  "tok_zostaje_na_shard_srednia": 134590164.2,
+  "se": 8430862.97089163,
+  "shardy": 38,
+  "shardy_przedzial": [
+   34,
+   43
+  ],
+  "uwaga": "dolna granica: dedup między shardami i wobec baz rośnie z liczbą shardów"
+ }
+}

@@ -13,11 +13,18 @@ wiedzy `budowa-modeli/komplet-kontroli-zbioru` (workspace fabryka-ai). Wymagania
 - Każdy krok jest przypadkiem w `dane/<zbiór>/skrypty/odtworz.sh <krok>`; log do `robocze/logi/<krok>.log`.
 - Długie kroki: `nohup nice -n 10 bash …/odtworz.sh <krok> > robocze/logi/<krok>.log 2>&1 &`.
 - Przed każdym długim krokiem: `pgrep -lx 'Discord|LeagueClient|VTEncoderXPCService'` i
-  `memory_pressure | tail -1`. Działa Discord albo Liga: nie liczysz.
+  `memory_pressure | tail -1`. Działa Liga: nie liczysz. Discord wolno (Ania, 14.11.2026), ale wtedy krok
+  idzie pod strażnikiem pamięci `bash skrypty/straznik.sh <krok>` (sam startuje krok przez nohup nice): co 30 s wolna pamięć, load, swap i RSS kroku;
+  wolna < 25% albo swap > 4 GB: `kill -STOP` pythona kroku do wolnej > 40%; pauza > 15 min albo wolna < 15%:
+  `kill -TERM` i zgłoszenie, bez ponawiania. Pauzy w `robocze/logi/straznik.log`.
+- Nie edytujesz `odtworz.sh`, gdy jakikolwiek krok go wykonuje: bash czyta skrypt w trakcie i zmiana długości
+  pliku przesuwa mu odczyt.
 - Wynik sprawdzasz kodem wyjścia i liczbami kontrolnymi, nie wrażeniem. BLOCKED i NOT RUN to nie PASS i
   blokują publikację.
 - Wadliwy dokument wyrzucasz w całości, nie łatasz wzorcami.
-- Tokeny raportujesz tokenizerem modelu docelowego (v6, słownik 32 768); cl100k tylko obok.
+- Tokeny w naszych wynikach i statystykach (kroki 7-8, karta, raporty) liczysz tokenizerem modelu docelowego
+  (v6, słownik 32 768). Kolumna `token_count` w eksporcie (krok 9) to cl100k, bo tego wymaga `check.py` repo
+  zgłoszeń (decyzja Ani 14.11.2026).
 - Commit ochronny po każdym dniu pracy: wszystko z `dane/<zbiór>/` poza `robocze/`.
 
 ## Dwie bramki praw, rozstrzygane osobno
@@ -87,7 +94,7 @@ Karta mapuje się na datasheet `data/<key>/<key>.md` (krok 9). Jedna karta daje 
 
 | | Ogólnie | Przykład: DCLM-EN |
 |---|---|---|
-| Co | venv w `robocze/venv`, wersje przypięte w `requirements.txt` (wynik `pip freeze`) | Python 3.12.2; od 14.11 także `torch==2.15.0`, `transformers==5.23.0` (krok `edu`) |
+| Co | venv w `robocze/venv`, wersje przypięte w `requirements.txt` (wynik `pip freeze`) | Python 3.12.2; od 14.11 także `torch==2.15.0`, `transformers==5.23.0` (krok `edu`, 4 wątki CPU) |
 | Komenda | `bash dane/<zbiór>/skrypty/odtworz.sh venv` | jw. |
 | Sprawdzenie | `robocze/venv/bin/pip freeze` = `requirements.txt` | — |
 | Pułapki | wersje niezapisane (stary venv DCLM przepadł w `/tmp` bez listy wersji); doinstalowanie pakietu bez dopisania do `requirements.txt` | — |
@@ -123,7 +130,7 @@ Karta mapuje się na datasheet `data/<key>/<key>.md` (krok 9). Jedna karta daje 
 | | Ogólnie | Przykład: DCLM-EN |
 |---|---|---|
 | Co | pomiary spoza filtrów (nakładanie z innymi zbiorami, klasyfikator jakości), potem agregacja: dedup wewnątrz, kaskada powodów, uzysk v6 po każdym powodzie, szacunek skali, ręczna próbka | `odtworz.sh fwe_url` (8 plików FWE), `edu` (50 000 dok., cpu float32), `agreguj` |
-| Sprawdzenie | kod wyjścia 0; suma kaskady = dokumenty próbki; `niedostepne` w wyniku puste albo opisane; ręczna próbka oceniona przez niezależnego czytelnika | **NIE URUCHOMIONE** (14.11.2026: działał Discord) |
+| Sprawdzenie | kod wyjścia 0; suma kaskady = dokumenty próbki; `niedostepne` w wyniku puste albo opisane; ręczna próbka oceniona przez niezależnego czytelnika | 14-15.11.2026, pod strażnikiem, 0 pauz, swap 0, wolna pamięć ≥91%: **`fwe_url`** kod 0, 2765 s, szczyt RSS 837 MB; 8/8 plików, 4 829 900 wierszy (0,317% z 1 525 223 056 wierszy FWE), 4 748 572 unikalnych url ([`wyniki/fwe_url.json`](wyniki/fwe_url.json)). **`edu`** kod 0, 5414 s, szczyt RSS 7318 MB, cpu float32, **4 wątki** (`EDU_WATKI`, `OMP_NUM_THREADS`, `torch.set_num_threads`; ostrożny start po panice Maca 14.11), `KONIEC 50000`; int_score 0-5: 2608 / 24 007 / 15 931 / 6270 / 1180 / 4; próg ≥2 = 49,52% tokenów, ≥3 = 15,79%. **`agreguj`** kod 0, 30 s (RSS niezmierzony: krótszy niż okres próbki 30 s); 1 051 235 dok., 1 470 704 495 tokenów v6; kaskada 376 + 6738 + 2611 + 29 333 + 2279 + 3679 + 11 741 + 1895 = 58 652 odrzuconych, suma z zachowanymi = dokumenty próbki; **zostaje 992 583 dok. (94,42%), 1 345 901 642 tokenów v6 (91,51%)**; `niedostepne` puste; FWE url: 7826 trafień (0,74%); szacunek do 5 mld v6: 38 shardów (34-43) z 27 838, dolna granica ([`wyniki/agreguj.json`](wyniki/agreguj.json)); ręczna próbka 200 wierszy w `robocze/wyniki/probki_reczne.jsonl`, **NIE OCENIONA** |
 | Pułapki | uzysk przeniesiony z innej porcji (mierzysz od nowa, notatka §5); plik ręcznej próbki ma PII odrzuconych, zostaje w `robocze/`; szacunek shardów to dolna granica | — |
 
 ## 9. Eksport do formatu zgłoszeń
@@ -170,7 +177,7 @@ Robisz w klonie `SlayerLab/dataset-team-submissions`, nie w `slayer-lab`.
 
 | Temat | Notatka / nasz przebieg | Repo zgłoszeń |
 |---|---|---|
-| `token_count` | tokeny v6, cl100k tylko obok | `check.py` wymaga `token_count` = cl100k (`shard.count_tokens`, tiktoken); v6 w kolumnie da czerwony `check.py` |
+| `token_count` | ROZSTRZYGNIĘTE 14.11.2026 (Ania): `token_count` w eksporcie = cl100k; v6 zostaje w naszych wynikach i statystykach | `check.py` wymaga `token_count` = cl100k (`shard.count_tokens`, tiktoken); v6 w kolumnie da czerwony `check.py` |
 | PII | dokument z trafieniem usuwany w całości (regex e-mail, telefon, IP) | maskowanie Presidio/NERGAL, `check.py` wymaga rekordu `presidio` |
 | Prawa | wyjątek TDM wystarcza do treningu | licencja per dokument; sam TDM nie wystarcza |
 | Ręczna próbka | 100 zachowanych + 100 odrzuconych przy KAŻDYM powodzie | ≥40 na warstwę + przedział Wilsona |
@@ -183,3 +190,5 @@ Robisz w klonie `SlayerLab/dataset-team-submissions`, nie w `slayer-lab`.
 - 14.11.2026: wejścia w `/private/tmp` przepadły po restarcie; odbudowa z tego przepisu zgodna z
   przebiegiem sprzed awarii (próbka, `idx_wal`, `idx_ivme` bajt w bajt, `ewal` po sumie i rewizjach).
 - 14.11.2026: przebieg 216/216 zakończony (`KONIEC 1570s`); kroki 8-12 nie uruchomione.
+- 14-15.11.2026: krok 8 (`fwe_url`, `edu`, `agreguj`) zakończony kodem 0 pod strażnikiem pamięci, bez pauz;
+  ręczna próbka czeka na niezależnego czytelnika; kroki 9-12 nie uruchomione.

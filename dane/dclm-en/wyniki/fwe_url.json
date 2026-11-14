@@ -1,0 +1,45 @@
+{
+ "repo": "HuggingFaceFW/fineweb-edu",
+ "rewizja": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+ "plikow_data": 2410,
+ "wiersze_fwe_data": 1525223056,
+ "pliki_bez_metadanych": [],
+ "probka": [
+  {
+   "plik": "data/CC-MAIN-2014-10/train-00002-of-00014.parquet",
+   "wiersze": 784810
+  },
+  {
+   "plik": "data/CC-MAIN-2017-04/train-00001-of-00018.parquet",
+   "wiersze": 819862
+  },
+  {
+   "plik": "data/CC-MAIN-2017-17/train-00014-of-00022.parquet",
+   "wiersze": 796828
+  },
+  {
+   "plik": "data/CC-MAIN-2018-13/train-00005-of-00016.parquet",
+   "wiersze": 841505
+  },
+  {
+   "plik": "data/CC-MAIN-2019-39/train-00012-of-00015.parquet",
+   "wiersze": 802089
+  },
+  {
+   "plik": "data/CC-MAIN-2024-26/000_00042.parquet",
+   "wiersze": 256600
+  },
+  {
+   "plik": "data/CC-MAIN-2025-13/000_00043.parquet",
+   "wiersze": 252169
+  },
+  {
+   "plik": "data/CC-MAIN-2025-18/000_00023.parquet",
+   "wiersze": 276037
+  }
+ ],
+ "wiersze_probki": 4829900,
+ "url_unikalne_probki": 4748572,
+ "url_w_wielu_plikach_probki": 79952,
+ "udzial_probki_w_fwe": 0.003166684362001934
+}

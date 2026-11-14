@@ -2,6 +2,7 @@
 Kolejność dokumentów globalnych = kolejność jednostek przebiegu (jednostki.json). Python z torch i transformers.
 Argumenty: jednostki.json wyjscie.npz liczba urzadzenie [limit_czasu_s]"""
 import json
+import os
 import sys
 import time
 
@@ -14,6 +15,7 @@ JED, OUT, ILE, DEV = sys.argv[1], sys.argv[2], int(sys.argv[3]), sys.argv[4]
 LIMIT = float(sys.argv[5]) if len(sys.argv) > 5 else 1e9
 MODEL, REW = "HuggingFaceFW/fineweb-edu-classifier", "284663cbb2dabf9bda30d8f8cc49601251ee1631"
 SEED = 20261114
+torch.set_num_threads(int(os.environ.get("EDU_WATKI", "4")))
 jed = json.load(open(JED))
 rozm = [pq.ParquetFile(p).metadata.row_group(g).num_rows for p, g in jed]
 pocz = np.concatenate([[0], np.cumsum(rozm)])

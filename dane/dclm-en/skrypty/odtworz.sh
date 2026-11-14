@@ -81,7 +81,8 @@ przebieg)  # 216 jednostek; PROC=6 (pamięć: patrz METODOLOGIA.md, sekcja Przeb
 fwe_url)  # pomiar nakładania url z FineWeb-Edu: 8 plików data/ (preregistracja -> fineweb_edu_url)
   $NICE $PY -I "$S/fwe_url.py" "$R/wyniki/fwe" 8
   ;;
-edu)  # klasyfikator FineWeb-Edu na 50 000 dokumentów; cpu = float32 (mps liczy w float16)
+edu)  # klasyfikator FineWeb-Edu na 50 000 dokumentów; cpu = float32 (mps liczy w float16); wątki EDU_WATKI, domyślnie 4
+  export OMP_NUM_THREADS=${EDU_WATKI:-4} MKL_NUM_THREADS=${EDU_WATKI:-4}
   mkdir -p "$R/wyniki/edu"
   $NICE $PY -I "$S/edu.py" "$R/wyniki/przebieg/jednostki.json" "$R/wyniki/edu/edu.npz" 50000 "${EDU_DEV:-cpu}"
   ;;
