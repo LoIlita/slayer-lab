@@ -130,8 +130,67 @@ Karta mapuje się na datasheet `data/<key>/<key>.md` (krok 9). Jedna karta daje 
 | | Ogólnie | Przykład: DCLM-EN |
 |---|---|---|
 | Co | pomiary spoza filtrów (nakładanie z innymi zbiorami, klasyfikator jakości), potem agregacja: dedup wewnątrz, kaskada powodów, uzysk v6 po każdym powodzie, szacunek skali, ręczna próbka | `odtworz.sh fwe_url` (8 plików FWE), `edu` (50 000 dok., cpu float32), `agreguj` |
-| Sprawdzenie | kod wyjścia 0; suma kaskady = dokumenty próbki; `niedostepne` w wyniku puste albo opisane; ręczna próbka oceniona przez niezależnego czytelnika | 14-15.11.2026, pod strażnikiem, 0 pauz, swap 0, wolna pamięć ≥91%: **`fwe_url`** kod 0, 2765 s, szczyt RSS 837 MB; 8/8 plików, 4 829 900 wierszy (0,317% z 1 525 223 056 wierszy FWE), 4 748 572 unikalnych url ([`wyniki/fwe_url.json`](wyniki/fwe_url.json)). **`edu`** kod 0, 5414 s, szczyt RSS 7318 MB, cpu float32, **4 wątki** (`EDU_WATKI`, `OMP_NUM_THREADS`, `torch.set_num_threads`; ostrożny start po panice Maca 14.11), `KONIEC 50000`; int_score 0-5: 2608 / 24 007 / 15 931 / 6270 / 1180 / 4; próg ≥2 = 49,52% tokenów, ≥3 = 15,79%. **`agreguj`** kod 0, 30 s (RSS niezmierzony: krótszy niż okres próbki 30 s); 1 051 235 dok., 1 470 704 495 tokenów v6; kaskada 376 + 6738 + 2611 + 29 333 + 2279 + 3679 + 11 741 + 1895 = 58 652 odrzuconych, suma z zachowanymi = dokumenty próbki; **zostaje 992 583 dok. (94,42%), 1 345 901 642 tokenów v6 (91,51%)**; `niedostepne` puste; FWE url: 7826 trafień (0,74%); szacunek do 5 mld v6: 38 shardów (34-43) z 27 838, dolna granica ([`wyniki/agreguj.json`](wyniki/agreguj.json)); ręczna próbka 200 wierszy w `robocze/wyniki/probki_reczne.jsonl`, **NIE OCENIONA** |
+| Sprawdzenie | kod wyjścia 0; suma kaskady = dokumenty próbki; `niedostepne` w wyniku puste albo opisane; ręczna próbka oceniona przez niezależnego czytelnika | 14-15.11.2026, pod strażnikiem, 0 pauz, swap 0, wolna pamięć ≥91%: **`fwe_url`** kod 0, 2765 s, szczyt RSS 837 MB; 8/8 plików, 4 829 900 wierszy (0,317% z 1 525 223 056 wierszy FWE), 4 748 572 unikalnych url ([`wyniki/fwe_url.json`](wyniki/fwe_url.json)). **`edu`** kod 0, 5414 s, szczyt RSS 7318 MB, cpu float32, **4 wątki** (`EDU_WATKI`, `OMP_NUM_THREADS`, `torch.set_num_threads`; ostrożny start po panice Maca 14.11), `KONIEC 50000`; int_score 0-5: 2608 / 24 007 / 15 931 / 6270 / 1180 / 4; próg ≥2 = 49,52% tokenów, ≥3 = 15,79%. **`agreguj`** kod 0, 30 s (RSS niezmierzony: krótszy niż okres próbki 30 s); 1 051 235 dok., 1 470 704 495 tokenów v6; kaskada 376 + 6738 + 2611 + 29 333 + 2279 + 3679 + 11 741 + 1895 = 58 652 odrzuconych, suma z zachowanymi = dokumenty próbki; **zostaje 992 583 dok. (94,42%), 1 345 901 642 tokenów v6 (91,51%)**; `niedostepne` puste; FWE url: 7826 trafień (0,74%); szacunek do 5 mld v6: 38 shardów (34-43) z 27 838, dolna granica ([`wyniki/agreguj.json`](wyniki/agreguj.json)); ręczna próbka 200 wierszy w `robocze/wyniki/probki_reczne.jsonl`, oceniona 15.11.2026: **NIE PRZESZŁO** (sekcja „Ręczny przegląd próbki” niżej) |
 | Pułapki | uzysk przeniesiony z innej porcji (mierzysz od nowa, notatka §5); plik ręcznej próbki ma PII odrzuconych, zostaje w `robocze/`; szacunek shardów to dolna granica | — |
+
+## Ręczny przegląd próbki
+
+Data 15.11.2026, recenzent: agent niezależny (nie budował zbioru). Próbka: `robocze/wyniki/probki_reczne.jsonl`
+(100 zachowanych + 100 odrzuconych, rng 20261114, powód = pierwszy w kaskadzie). Ocena per dokument:
+`robocze/przeglad_probki.json` (zostaje w `robocze/`, bo opisuje dokumenty z PII; wartości PII nie są w nim zapisane).
+
+Metoda: odczyt 1500 znaków każdego dokumentu. Dla `pii` i `mojibake` pełny tekst z `robocze/pobrania/dclm`
+(dopasowanie po `url` i zgodności 1500 znaków, 200/200 znalezione), klasa i kontekst trafienia z zamaskowaną
+wartością. Dla `ewal_13gram` odtworzone trafiające 13-gramy z `robocze/wyniki/ewal/*__13.npy` funkcjami `rdzen.py`.
+Zachowane przeskanowane w pełnym tekście także poszerzonymi wzorcami PII (e-mail zaciemniony, adres ulicy,
+telefon bez myślników): 0 trafień. Przedziały: Wilson 95%.
+
+**Fałszywe odrzucenia** (dobry tekst odrzucony), osobno dla każdego powodu:
+
+| Powód | n w próbce | Wynik | Stopa [Wilson 95%] | Brakuje do 100 odrzuconych |
+|---|---|---|---|---|
+| `pii`: trafienie nie jest e-mailem/telefonem/IP | 53 | 0 | 0,0% [0,0; 6,8] | 47 |
+| `pii`: dobry tekst, trafienie to kontakt firmy lub instytucji, bez osoby prywatnej | 53 | 29 | **54,7% [41,5; 67,3]** | 47 |
+| `ewal_13gram` | 5 | 4 (+1 wątpliwy) | **80,0% [37,6; 96,4]** | 95 |
+| `domena_testow` (wg reguły) | 9 | 0 | 0,0% [0,0; 29,9] | 91 |
+| `mojibake` | 2 | 0 | 0,0% [0,0; 65,8] | 98 |
+| `dedup_wewnatrz` | 10 | 2 sprawdzone słuszne (identyczny szablon w próbce), 8 NOT RUN | — | 90 |
+| `dedup_slayer107` | 15 | NOT RUN (wymaga indeksu i pary dopasowania) | — | 85 |
+| `dedup_ivme` | 4 | NOT RUN | — | 96 |
+| `walidacja_fabryki` | 2 | NOT RUN | — | 98 |
+
+Trafienia `ewal_13gram` to powszechne cytaty i ciągi, nie przeciek pytań: tytuł „Wealth of Nations” (TriviaQA),
+ciąg „1 2 3 … 13” (MATH, HumanEval, MBPP, LLMzSzŁ), tekst II poprawki USA (BoolQ, ReCoRD), wers Emmy Lazarus
+(TriviaQA); piąty to zdanie prasowe z ReCoRD cytowane w blogu (wątpliwy). Żadne nie dotyczy HellaSwag, PIQA,
+ARC-C ani WinoGrande. `pii`: 21 z 53 to kontakt przypisany osobie (słusznie), 3 to spam/SEO (odrzucenie słuszne
+z innego powodu), 29 to dobry tekst z telefonem lub adresem e-mail firmy, urzędu, policji, uczelni.
+
+**Przeoczenia** (100 zachowanych; jedna próbka zachowanych dla wszystkich powodów):
+
+| Kategoria | Wynik | Stopa [Wilson 95%] |
+|---|---|---|
+| PII w zakresie detektora (e-mail, telefon, IP) i poszerzone wzorce | 0 | 0,0% [0,0; 3,7] |
+| `mojibake` (2 dopasowania, poniżej progu 3) | 1 | 1,0% [0,2; 5,4] |
+| `domena_testow` wg reguły | 0 | 0,0% [0,0; 3,7] |
+| `domena_testow` wg uzasadnienia (wikisource.org, projekt Wikimedia spoza listy) | 1 | 1,0% [0,2; 5,4] |
+| `ewal_13gram`, dedupy, walidacja | NOT RUN: z tekstu nie da się ocenić, wymaga indeksu | — |
+| śmieci poza zakresem filtrów: spam/SEO, tekst maszynowy (spinning), zepsute tłumaczenie z wtrętami nie-EN | 5 (+3 wątpliwe) | 5,0% [2,2; 11,2]; z wątpliwymi 8,0% [4,1; 15,0] |
+
+Treści testów, boilerplate'u bez treści ani dokumentów w całości nie-EN wśród zachowanych nie znaleziono.
+
+**Werdykt wobec preregistracji: NIE PRZESZŁO.**
+
+1. Preregistracja (`reczna_probka`) i notatka `komplet-kontroli-zbioru` §6 wymagają 100 zachowanych i 100
+   odrzuconych przy KAŻDYM powodzie; jest 100/100 łącznie. Do dobrania: **700 odrzuconych** (walidacja_fabryki 98,
+   domena_testow 91, ewal_13gram 95, pii 47, mojibake 98, dedup_wewnatrz 90, dedup_slayer107 85, dedup_ivme 96),
+   losowanych w widoku niezależnym (dokument z danym powodem, nie tylko pierwszym w kaskadzie); zachowanych 0,
+   jeśli jedna próbka 100 zachowanych liczy się dla wszystkich powodów, inaczej 700. Dla dedupów i walidacji
+   próbka musi pokazywać parę dopasowania, bez niej ocena zostaje NOT RUN.
+2. Ani preregistracja, ani notatka nie podają progu stopy przeoczeń i fałszywych odrzuceń, więc PASS nie da się
+   ogłosić nawet przy pełnej próbce. Próg trzeba dopisać do preregistracji PRZED doborem próbki.
+3. `ewal_13gram` odrzuca dobre teksty na powszechnych cytatach (4/5); reguła „każde trafienie usuwa” wymaga
+   decyzji (np. lista dozwolonych ciągów albo próg liczby trafień) przed eksportem. `pii` usuwa 29/53 dobrych
+   tekstów z kontaktem firmowym; w kroku 9 repo zgłoszeń i tak maskuje PII, więc to decyzja o zakresie usuwania.
 
 ## 9. Eksport do formatu zgłoszeń
 
@@ -192,3 +251,5 @@ Robisz w klonie `SlayerLab/dataset-team-submissions`, nie w `slayer-lab`.
 - 14.11.2026: przebieg 216/216 zakończony (`KONIEC 1570s`); kroki 8-12 nie uruchomione.
 - 14-15.11.2026: krok 8 (`fwe_url`, `edu`, `agreguj`) zakończony kodem 0 pod strażnikiem pamięci, bez pauz;
   ręczna próbka czeka na niezależnego czytelnika; kroki 9-12 nie uruchomione.
+- 15.11.2026: ręczna próbka oceniona przez niezależnego agenta: NIE PRZESZŁO (brak 100/100 per powód, brak progu
+  w preregistracji, `ewal_13gram` 4/5 fałszywych odrzuceń); sekcja „Ręczny przegląd próbki”.
