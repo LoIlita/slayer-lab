@@ -1,0 +1,90 @@
+{
+ "repo": "mlfoundations/dclm-baseline-1.0-parquet",
+ "rewizja": "817d6752765f6a41261085171dd546b104f60626",
+ "plikow_w_repo": 27938,
+ "wykluczonych": 31,
+ "seed": 20261114,
+ "wiersze": 1051235,
+ "pliki": [
+  {
+   "plik": "filtered/OH_eli5_vs_rw_v2_bigram_200k_train/fasttext_openhermes_reddit_eli5_vs_rw_v2_bigram_200k_train/processed_data/global-shard_01_of_10/local-shard_8_of_10/shard_00000184_processed.parquet",
+   "shard": "global-shard_01_of_10/local-shard_8_of_10/shard_00000184_processed",
+   "rozmiar": 348975579,
+   "sha256": "25f6c14b0fab5a220ac6bd73056d6e3b1f2fb84d3e3e638c75bd4c53ee6cf8e1",
+   "wiersze": 130121,
+   "lokalnie": "/private/tmp/claude-501/-Users-lolita-Documents-GitHub-labaj-agency/8574dd2b-17d3-446b-8d89-f669328d0da6/scratchpad/dclm/pobrania/filtered/OH_eli5_vs_rw_v2_bigram_200k_train/fasttext_openhermes_reddit_eli5_vs_rw_v2_bigram_200k_train/processed_data/global-shard_01_of_10/local-shard_8_of_10/shard_00000184_processed.rg5000.parquet"
+  },
+  {
+   "plik": "filtered/OH_eli5_vs_rw_v2_bigram_200k_train/fasttext_openhermes_reddit_eli5_vs_rw_v2_bigram_200k_train/processed_data/global-shard_03_of_10/local-shard_2_of_10/shard_00000219_processed.parquet",
+   "shard": "global-shard_03_of_10/local-shard_2_of_10/shard_00000219_processed",
+   "rozmiar": 203169309,
+   "sha256": "17f9afea665a2fdf4c71353e76731bb6c4cb93b3ef73da86cfbb23d9b4a9df82",
+   "wiersze": 84526,
+   "lokalnie": "/private/tmp/claude-501/-Users-lolita-Documents-GitHub-labaj-agency/8574dd2b-17d3-446b-8d89-f669328d0da6/scratchpad/dclm/pobrania/filtered/OH_eli5_vs_rw_v2_bigram_200k_train/fasttext_openhermes_reddit_eli5_vs_rw_v2_bigram_200k_train/processed_data/global-shard_03_of_10/local-shard_2_of_10/shard_00000219_processed.rg5000.parquet"
+  },
+  {
+   "plik": "filtered/OH_eli5_vs_rw_v2_bigram_200k_train/fasttext_openhermes_reddit_eli5_vs_rw_v2_bigram_200k_train/processed_data/global-shard_09_of_10/local-shard_9_of_10/shard_00000057_processed.parquet",
+   "shard": "global-shard_09_of_10/local-shard_9_of_10/shard_00000057_processed",
+   "rozmiar": 280343848,
+   "sha256": "64a202310962ebaced87c939455e94490e35925a22491819c11b3babe3feb207",
+   "wiersze": 106637,
+   "lokalnie": "/private/tmp/claude-501/-Users-lolita-Documents-GitHub-labaj-agency/8574dd2b-17d3-446b-8d89-f669328d0da6/scratchpad/dclm/pobrania/filtered/OH_eli5_vs_rw_v2_bigram_200k_train/fasttext_openhermes_reddit_eli5_vs_rw_v2_bigram_200k_train/processed_data/global-shard_09_of_10/local-shard_9_of_10/shard_00000057_processed.rg5000.parquet"
+  },
+  {
+   "plik": "filtered/OH_eli5_vs_rw_v2_bigram_200k_train/fasttext_openhermes_reddit_eli5_vs_rw_v2_bigram_200k_train/processed_data/global-shard_10_of_10/local-shard_6_of_10/shard_00000069_processed.parquet",
+   "shard": "global-shard_10_of_10/local-shard_6_of_10/shard_00000069_processed",
+   "rozmiar": 242575468,
+   "sha256": "1692ddaaa0310abe66b24a4edb61df6d5dfe43fad40355f6c276600757e74a29",
+   "wiersze": 102351,
+   "lokalnie": "/private/tmp/claude-501/-Users-lolita-Documents-GitHub-labaj-agency/8574dd2b-17d3-446b-8d89-f669328d0da6/scratchpad/dclm/pobrania/filtered/OH_eli5_vs_rw_v2_bigram_200k_train/fasttext_openhermes_reddit_eli5_vs_rw_v2_bigram_200k_train/processed_data/global-shard_10_of_10/local-shard_6_of_10/shard_00000069_processed.rg5000.parquet"
+  },
+  {
+   "plik": "filtered/OH_eli5_vs_rw_v2_bigram_200k_train/fasttext_openhermes_reddit_eli5_vs_rw_v2_bigram_200k_train/processed_data/global-shard_04_of_10/local-shard_6_of_10/shard_00000194_processed.parquet",
+   "shard": "global-shard_04_of_10/local-shard_6_of_10/shard_00000194_processed",
+   "rozmiar": 361954745,
+   "sha256": "aa1638ae521b2afa1d609e9b92446a948dcd6e0f4a668f03487c1018f6e168fb",
+   "wiersze": 135385,
+   "lokalnie": "/private/tmp/claude-501/-Users-lolita-Documents-GitHub-labaj-agency/8574dd2b-17d3-446b-8d89-f669328d0da6/scratchpad/dclm/pobrania/filtered/OH_eli5_vs_rw_v2_bigram_200k_train/fasttext_openhermes_reddit_eli5_vs_rw_v2_bigram_200k_train/processed_data/global-shard_04_of_10/local-shard_6_of_10/shard_00000194_processed.rg5000.parquet"
+  },
+  {
+   "plik": "filtered/OH_eli5_vs_rw_v2_bigram_200k_train/fasttext_openhermes_reddit_eli5_vs_rw_v2_bigram_200k_train/processed_data/global-shard_01_of_10/local-shard_0_of_10/shard_00000036_processed.parquet",
+   "shard": "global-shard_01_of_10/local-shard_0_of_10/shard_00000036_processed",
+   "rozmiar": 221531739,
+   "sha256": "df8c30fa5cee73a9634e6cbbbca3f1687b2056c4123a8ff154a781940ac0fb6e",
+   "wiersze": 94801,
+   "lokalnie": "/private/tmp/claude-501/-Users-lolita-Documents-GitHub-labaj-agency/8574dd2b-17d3-446b-8d89-f669328d0da6/scratchpad/dclm/pobrania/filtered/OH_eli5_vs_rw_v2_bigram_200k_train/fasttext_openhermes_reddit_eli5_vs_rw_v2_bigram_200k_train/processed_data/global-shard_01_of_10/local-shard_0_of_10/shard_00000036_processed.rg5000.parquet"
+  },
+  {
+   "plik": "filtered/OH_eli5_vs_rw_v2_bigram_200k_train/fasttext_openhermes_reddit_eli5_vs_rw_v2_bigram_200k_train/processed_data/global-shard_02_of_10/local-shard_6_of_10/shard_00000117_processed.parquet",
+   "shard": "global-shard_02_of_10/local-shard_6_of_10/shard_00000117_processed",
+   "rozmiar": 218391889,
+   "sha256": "7e89e80d87080d0b792ab785deed5aa60e8da40d9e58e1000d6d7b7a7bf79aac",
+   "wiersze": 91563,
+   "lokalnie": "/private/tmp/claude-501/-Users-lolita-Documents-GitHub-labaj-agency/8574dd2b-17d3-446b-8d89-f669328d0da6/scratchpad/dclm/pobrania/filtered/OH_eli5_vs_rw_v2_bigram_200k_train/fasttext_openhermes_reddit_eli5_vs_rw_v2_bigram_200k_train/processed_data/global-shard_02_of_10/local-shard_6_of_10/shard_00000117_processed.rg5000.parquet"
+  },
+  {
+   "plik": "filtered/OH_eli5_vs_rw_v2_bigram_200k_train/fasttext_openhermes_reddit_eli5_vs_rw_v2_bigram_200k_train/processed_data/global-shard_03_of_10/local-shard_9_of_10/shard_00000262_processed.parquet",
+   "shard": "global-shard_03_of_10/local-shard_9_of_10/shard_00000262_processed",
+   "rozmiar": 240352498,
+   "sha256": "8a4cf94c5edf788261bbf936993eeb9aca960ec2ba109114a931e8609b3e6bd6",
+   "wiersze": 99486,
+   "lokalnie": "/private/tmp/claude-501/-Users-lolita-Documents-GitHub-labaj-agency/8574dd2b-17d3-446b-8d89-f669328d0da6/scratchpad/dclm/pobrania/filtered/OH_eli5_vs_rw_v2_bigram_200k_train/fasttext_openhermes_reddit_eli5_vs_rw_v2_bigram_200k_train/processed_data/global-shard_03_of_10/local-shard_9_of_10/shard_00000262_processed.rg5000.parquet"
+  },
+  {
+   "plik": "filtered/OH_eli5_vs_rw_v2_bigram_200k_train/fasttext_openhermes_reddit_eli5_vs_rw_v2_bigram_200k_train/processed_data/global-shard_01_of_10/local-shard_8_of_10/shard_00000139_processed.parquet",
+   "shard": "global-shard_01_of_10/local-shard_8_of_10/shard_00000139_processed",
+   "rozmiar": 265751939,
+   "sha256": "f0e12e6fc865ab1c74bfb2ae7014bec8b385af7a7dcaa8a1348f12227c7a3cca",
+   "wiersze": 105226,
+   "lokalnie": "/private/tmp/claude-501/-Users-lolita-Documents-GitHub-labaj-agency/8574dd2b-17d3-446b-8d89-f669328d0da6/scratchpad/dclm/pobrania/filtered/OH_eli5_vs_rw_v2_bigram_200k_train/fasttext_openhermes_reddit_eli5_vs_rw_v2_bigram_200k_train/processed_data/global-shard_01_of_10/local-shard_8_of_10/shard_00000139_processed.rg5000.parquet"
+  },
+  {
+   "plik": "filtered/OH_eli5_vs_rw_v2_bigram_200k_train/fasttext_openhermes_reddit_eli5_vs_rw_v2_bigram_200k_train/processed_data/global-shard_08_of_10/local-shard_3_of_10/shard_00000257_processed.parquet",
+   "shard": "global-shard_08_of_10/local-shard_3_of_10/shard_00000257_processed",
+   "rozmiar": 236805260,
+   "sha256": "c08583a7c24d309854b5d49e0f4e3c29a4cb1f48ff6f8b56474c6e97949ffb46",
+   "wiersze": 101139,
+   "lokalnie": "/private/tmp/claude-501/-Users-lolita-Documents-GitHub-labaj-agency/8574dd2b-17d3-446b-8d89-f669328d0da6/scratchpad/dclm/pobrania/filtered/OH_eli5_vs_rw_v2_bigram_200k_train/fasttext_openhermes_reddit_eli5_vs_rw_v2_bigram_200k_train/processed_data/global-shard_08_of_10/local-shard_3_of_10/shard_00000257_processed.rg5000.parquet"
+  }
+ ]
+}

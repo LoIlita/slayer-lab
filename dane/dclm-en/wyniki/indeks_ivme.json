@@ -1,0 +1,265 @@
+{
+ "repo": "SlayerLab/sub150run-ivme-20b-v3",
+ "rewizja": "c9fa17d73a5134b34daa58b668ce7a400681c99d",
+ "tokenizer_sha256": "a847369bb0361ae4562e87d53357f47ddfb6b52fa9e1b8d00fc68d6207022e81",
+ "lock_sha256": "1e6e3888c23d513fa94db9381292962129920d5618a67aedbbb9ee89f43325f5",
+ "batche": [
+  {
+   "batch": "train-batches/train-dclm-000000",
+   "dokumentow": 7352,
+   "tokeny": 10000000,
+   "sha256_bin": "e50bcd0287343cc55ee02d83ce3c650ad7592472274452c16ff4ea3a71cd9607",
+   "zrodlo": [
+    "global-shard_05_of_10/local-shard_9_of_10/shard_00000062_processed.jsonl.zst"
+   ]
+  },
+  {
+   "batch": "train-batches/train-dclm-000001",
+   "dokumentow": 7559,
+   "tokeny": 10000000,
+   "sha256_bin": "e4a9ec4dd28b3b24617c97ccbd1f7166f071de915db16a37deb3023b0f8c5be3",
+   "zrodlo": [
+    "global-shard_08_of_10/local-shard_6_of_10/shard_00000014_processed.jsonl.zst"
+   ]
+  },
+  {
+   "batch": "train-batches/train-dclm-000002",
+   "dokumentow": 6922,
+   "tokeny": 10000000,
+   "sha256_bin": "66513bbc927a6b6bffc1913f85e418137563002682900c5bfdcff326f1204d0c",
+   "zrodlo": [
+    "global-shard_01_of_10/local-shard_0_of_10/shard_00000030_processed.jsonl.zst"
+   ]
+  },
+  {
+   "batch": "train-batches/train-dclm-000003",
+   "dokumentow": 6455,
+   "tokeny": 10000000,
+   "sha256_bin": "c4c3fb911b747f46388a687fd3a4d744b580ec9c23739cc6925a1bb77bce7585",
+   "zrodlo": [
+    "global-shard_05_of_10/local-shard_5_of_10/shard_00000220_processed.jsonl.zst"
+   ]
+  },
+  {
+   "batch": "train-batches/train-dclm-000004",
+   "dokumentow": 7195,
+   "tokeny": 10000000,
+   "sha256_bin": "53b8579e3477a18b8d597f13d99c1fed8f5397c107139b85df959e1b9487dfc6",
+   "zrodlo": [
+    "global-shard_03_of_10/local-shard_7_of_10/shard_00000186_processed.jsonl.zst"
+   ]
+  },
+  {
+   "batch": "train-batches/train-dclm-000005",
+   "dokumentow": 6516,
+   "tokeny": 10000000,
+   "sha256_bin": "a54a8aeae6db62415840a3275a966d927cf50e0682a3dcca276494fa361278fb",
+   "zrodlo": [
+    "global-shard_03_of_10/local-shard_4_of_10/shard_00000181_processed.jsonl.zst"
+   ]
+  },
+  {
+   "batch": "train-batches/train-dclm-000006",
+   "dokumentow": 7359,
+   "tokeny": 10000000,
+   "sha256_bin": "c2ec5660472e72ed9f6f36af6ea644f29529267c178ab519599f2dd395cd7a3c",
+   "zrodlo": [
+    "global-shard_02_of_10/local-shard_3_of_10/shard_00000102_processed.jsonl.zst"
+   ]
+  },
+  {
+   "batch": "train-batches/train-dclm-000007",
+   "dokumentow": 6763,
+   "tokeny": 10000000,
+   "sha256_bin": "6566dae9e158ecb64e84be1e0f6db3dfccfc9e8628738d975881bd37d5939fa5",
+   "zrodlo": [
+    "global-shard_10_of_10/local-shard_0_of_10/shard_00000066_processed.jsonl.zst"
+   ]
+  },
+  {
+   "batch": "train-batches/train-dclm-000008",
+   "dokumentow": 7552,
+   "tokeny": 10000000,
+   "sha256_bin": "748320e73f29f6d4d689457a0919593189f0f33dcf65c3467ffb540c01a4564f",
+   "zrodlo": [
+    "global-shard_06_of_10/local-shard_6_of_10/shard_00000178_processed.jsonl.zst"
+   ]
+  },
+  {
+   "batch": "train-batches/train-dclm-000009",
+   "dokumentow": 7316,
+   "tokeny": 10000000,
+   "sha256_bin": "1cb69f9cdd10586a21b4e1f9f322b7cf73df4a85977e483279ef94cfa1fa4083",
+   "zrodlo": [
+    "global-shard_04_of_10/local-shard_7_of_10/shard_00000081_processed.jsonl.zst"
+   ]
+  },
+  {
+   "batch": "train-batches/train-dclm-000010",
+   "dokumentow": 6986,
+   "tokeny": 10000000,
+   "sha256_bin": "cad90acc51541c4cad0ae819adb1fa817c6e1efe03da304e7d430f52d2b55341",
+   "zrodlo": [
+    "global-shard_10_of_10/local-shard_5_of_10/shard_00000145_processed.jsonl.zst"
+   ]
+  },
+  {
+   "batch": "train-batches/train-dclm-000011",
+   "dokumentow": 6567,
+   "tokeny": 10000000,
+   "sha256_bin": "36c47be558583b88fa47767d3d67158c055679b0262ab73ef5a0e27b4f854a8a",
+   "zrodlo": [
+    "global-shard_10_of_10/local-shard_9_of_10/shard_00000106_processed.jsonl.zst"
+   ]
+  },
+  {
+   "batch": "train-batches/train-dclm-000012",
+   "dokumentow": 7739,
+   "tokeny": 10000000,
+   "sha256_bin": "5efc72ec2b527ab3c03ab758a93e866e6598af6e9bc6dc7ba8246029e7a36e51",
+   "zrodlo": [
+    "global-shard_06_of_10/local-shard_7_of_10/shard_00000120_processed.jsonl.zst"
+   ]
+  },
+  {
+   "batch": "train-batches/train-dclm-000013",
+   "dokumentow": 6701,
+   "tokeny": 10000000,
+   "sha256_bin": "39987b4247d91e66443d2a8d6a58ea0a8bd1dbb8227aa4cb9261c32ff4249c08",
+   "zrodlo": [
+    "global-shard_08_of_10/local-shard_9_of_10/shard_00000173_processed.jsonl.zst"
+   ]
+  },
+  {
+   "batch": "train-batches/train-dclm-000014",
+   "dokumentow": 7492,
+   "tokeny": 10000000,
+   "sha256_bin": "e02c79954c0aa5b5ec4fb26978c9d3c1c6398937a0ed38fbd9445d672f8249cb",
+   "zrodlo": [
+    "global-shard_08_of_10/local-shard_1_of_10/shard_00000156_processed.jsonl.zst"
+   ]
+  },
+  {
+   "batch": "train-batches/train-dclm-000015",
+   "dokumentow": 7582,
+   "tokeny": 10000000,
+   "sha256_bin": "fcdaff96888995d0f9e94feee74dcc95f176661a7d85ffe84025b635057f6086",
+   "zrodlo": [
+    "global-shard_01_of_10/local-shard_2_of_10/shard_00000110_processed.jsonl.zst"
+   ]
+  },
+  {
+   "batch": "train-batches/train-dclm-000016",
+   "dokumentow": 6508,
+   "tokeny": 10000000,
+   "sha256_bin": "3f3ac0c7f14ff89d0b163466505fe355180b65852caf49fa750503b8e910c375",
+   "zrodlo": [
+    "global-shard_08_of_10/local-shard_6_of_10/shard_00000249_processed.jsonl.zst"
+   ]
+  },
+  {
+   "batch": "train-batches/train-dclm-000017",
+   "dokumentow": 7210,
+   "tokeny": 10000000,
+   "sha256_bin": "655c8563790fa75517e40f4a77bf4bec66fb140488d43f0fd4ba21c03fd1e776",
+   "zrodlo": [
+    "global-shard_03_of_10/local-shard_2_of_10/shard_00000205_processed.jsonl.zst"
+   ]
+  },
+  {
+   "batch": "train-batches/train-dclm-000018",
+   "dokumentow": 7258,
+   "tokeny": 10000000,
+   "sha256_bin": "645189f701cb29650049230cbcad4b61a1dd1a58727b59b70f596870fa79fcf4",
+   "zrodlo": [
+    "global-shard_08_of_10/local-shard_9_of_10/shard_00000046_processed.jsonl.zst"
+   ]
+  },
+  {
+   "batch": "train-batches/train-dclm-000019",
+   "dokumentow": 7263,
+   "tokeny": 10000000,
+   "sha256_bin": "9350c15422da4cc70a909b6eef1cfb67d0b8ee475f39cefe4a173a14b08e1c0a",
+   "zrodlo": [
+    "global-shard_07_of_10/local-shard_6_of_10/shard_00000120_processed.jsonl.zst"
+   ]
+  },
+  {
+   "batch": "train-batches/train-dclm-000020",
+   "dokumentow": 7215,
+   "tokeny": 10000000,
+   "sha256_bin": "3ddfecf8ed9138b93276c75a09a15f9033490d9816ce9bfbfa54228674c80146",
+   "zrodlo": [
+    "global-shard_09_of_10/local-shard_7_of_10/shard_00000125_processed.jsonl.zst"
+   ]
+  },
+  {
+   "batch": "train-batches/train-dclm-000021",
+   "dokumentow": 7469,
+   "tokeny": 10000000,
+   "sha256_bin": "4fa5f2a8741b62c5c0668de8e701588d0cb508a38a54d9e3365177b102fc7838",
+   "zrodlo": [
+    "global-shard_05_of_10/local-shard_1_of_10/shard_00000156_processed.jsonl.zst"
+   ]
+  },
+  {
+   "batch": "train-batches/train-dclm-000022",
+   "dokumentow": 7408,
+   "tokeny": 10000000,
+   "sha256_bin": "3fcb7a7d14a52bae51278d9fb4bac3d6359c83a5d6efa30e7763a6a38e6f04ee",
+   "zrodlo": [
+    "global-shard_06_of_10/local-shard_8_of_10/shard_00000162_processed.jsonl.zst"
+   ]
+  },
+  {
+   "batch": "train-batches/train-dclm-000023",
+   "dokumentow": 7707,
+   "tokeny": 10000000,
+   "sha256_bin": "acb895d02242492f97d18ad8a0dcdd949f17b7bf857886d87046460fccc937d9",
+   "zrodlo": [
+    "global-shard_06_of_10/local-shard_3_of_10/shard_00000029_processed.jsonl.zst"
+   ]
+  },
+  {
+   "batch": "train-batches/train-dclm-000024",
+   "dokumentow": 7284,
+   "tokeny": 10000000,
+   "sha256_bin": "e3891a3bb4cb412b8960e854f98133528dbdd8a2903f9171a4604ca65e0becff",
+   "zrodlo": [
+    "global-shard_02_of_10/local-shard_2_of_10/shard_00000081_processed.jsonl.zst"
+   ]
+  },
+  {
+   "batch": "train-batches/train-dclm-000025",
+   "dokumentow": 7688,
+   "tokeny": 10000000,
+   "sha256_bin": "4792c3522afb83f012bd97b4cc07f5ef792e0b2a274446a702f241ddc071277e",
+   "zrodlo": [
+    "global-shard_01_of_10/local-shard_7_of_10/shard_00000247_processed.jsonl.zst"
+   ]
+  },
+  {
+   "batch": "train-batches/train-dclm-000026",
+   "dokumentow": 6667,
+   "tokeny": 10000000,
+   "sha256_bin": "380f61cb98e259ad535813fa66c7e01a720b79fca65d4f85c1d112d3a6b7a60b",
+   "zrodlo": [
+    "global-shard_03_of_10/local-shard_5_of_10/shard_00000162_processed.jsonl.zst"
+   ]
+  },
+  {
+   "batch": "train-batches/train-dclm-000027",
+   "dokumentow": 5550,
+   "tokeny": 7800000,
+   "sha256_bin": "ffd93f7bf3ba2310eef63b0f8e2487a7fe09d7df439fe052026d5abd7529d718",
+   "zrodlo": [
+    "global-shard_04_of_10/local-shard_1_of_10/shard_00000121_processed.jsonl.zst"
+   ]
+  }
+ ],
+ "indeks": {
+  "dokumentow": 199283,
+  "probek_szkicu": 11391284,
+  "url": 0
+ }
+}

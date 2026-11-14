@@ -1,0 +1,20 @@
+{
+ "opis": "kontrola_dodatnia.py + przebieg.py na 14 dokumentach wstawionych (14.11.2026), przed przebiegiem próbki; indeksy jak w przebiegu próbki (ewal RPG v2, slayer_107_en, walidacja, ivme)",
+ "wynik": "14/14 dokumentów dostało właściwy powód; dokument czysty bez powodu",
+ "przypadki": {
+  "K_email": "pii=email",
+  "K_telefon": "pii=telefon",
+  "K_ip": "pii=ip",
+  "K_domena (www.wikihow.com)": "domena_testow=wikihow.com",
+  "K_hellaswag": "ewal_13gram=T05_hellaswag",
+  "K_piqa": "ewal_13gram=T06_piqa",
+  "K_arc_c": "ewal_13gram=T02_arc_challenge",
+  "K_winogrande": "ewal_13gram=T07_winogrande",
+  "K_kopia_107 (dokument 1000 en_fineweb_edu 1.07)": "slayer_107_en: szkic 1,0, MinHash 1,0",
+  "K_dup_a / K_dup_b (ten sam dokument DCLM dwa razy)": "identyczny hasz tekstu -> dedup_wewnatrz usuwa drugi",
+  "K_walidacja (wiersz 100 walidacji minimal-en-corpus-5b)": "walidacja: szkic 1,0, MinHash 1,0, identyczny tekst",
+  "K_ivme (dokument 50 batcha train-dclm-000000, zdekodowany tokenizerem Ivme)": "ivme: szkic 1,0, MinHash 1,0, identyczny tekst",
+  "K_czysty": "brak powodu"
+ },
+ "ograniczenie": "kontrola dodatnia sprawdza wykrycie znanych kopii i wzorców; nie mierzy stopy przeoczeń na parafrazach ani PII bez wzorca (imiona, adresy)"
+}

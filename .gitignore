@@ -15,6 +15,8 @@ paczka_testerzy/dane/
 # wyniki per pytanie (kopia w wygaszanie/wyniki/pelne_wyniki.tgz)
 wygaszanie/wyniki/*/*.jsonl
 wygaszanie/wyniki/*/trace/
+# katalog roboczy budowy DCLM-EN (venv, pobrania, indeksy, przebieg) - odtwarzalny z METODOLOGIA.md
+dane/dclm-en/robocze/
 # klucze
 *.pem
 vastkey*

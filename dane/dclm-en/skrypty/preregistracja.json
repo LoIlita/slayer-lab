@@ -1,0 +1,74 @@
+{
+ "zapisano": "2026-11-14, przed pobraniem próbki i przed pierwszym liczeniem; progi przejęte z korpusu RPG v2 albo ustalone bez danych DCLM",
+ "zrodlo": {
+  "repo_kanoniczne": "mlfoundations/dclm-baseline-1.0@a3b142c183aebe5af344955ae20836eb34dcf69b (jsonl.zst)",
+  "repo_czytane": "mlfoundations/dclm-baseline-1.0-parquet@817d6752765f6a41261085171dd546b104f60626 (karta: identyczna kopia w parquet; ta sama ścieżka shardu global-shard_XX/local-shard_Y/shard_NNNNNNNN); powód: brak dekodera zstd w środowisku",
+  "pole_tekstu": "text; obok url, id, language_score, fasttext_score"
+ },
+ "probka": {
+  "wybor": "losowanie bez zwracania plików z listy 27 838 shardów repo parquet, numpy default_rng(20261114), po wykluczeniu plików użytych w walidacji/ewaluacji Fabryki i w miksie Ivme (lista w polu 'wykluczone_pliki', uzupełniana PRZED losowaniem); losuję, aż suma wierszy przekroczy 1 000 000",
+  "zapis": "rewizja repo, ścieżka, rozmiar i sha256 każdego pliku w wyniki/probka_pliki.json",
+  "wykluczone_pliki": "uzupełnione w polu 'walidacja_i_ivme' przed losowaniem"
+ },
+ "tokeny": {
+  "tokenizer": "v6 z SlayerLab/slayer-1.07-pretrain tokenizer.json, sha256 0640d3bd3674d7a6e59c540d945a2ad275a12e1bcaeb6007c37a90751f9815dd, słownik 32 768",
+  "regula": "n = tokeny tekstu bez znaków specjalnych + 1 (EOT po dokumencie), jak tokeny_v6.py z RPG v2; dokumenty, w których tekst sam koduje się na id 0, liczone osobno"
+ },
+ "kolejnosc_powodow": ["walidacja_fabryki", "domena_testow", "ewal_13gram", "pii", "mojibake", "dedup_wewnatrz", "dedup_slayer107", "dedup_ivme"],
+ "raport_uzysku": "dwa widoki: (1) kaskada: dokument liczony przy PIERWSZYM powodzie z listy 'kolejnosc_powodow'; (2) każdy powód niezależnie (ile dokumentów i tokenów v6 ma ten powód, niezależnie od innych). Uzysk = dokumenty i tokeny v6 bez żadnego powodu / całość próbki.",
+ "walidacja_fabryki": {
+  "regula": "dokument z pliku albo o identyfikatorze/url/haszu tekstu wskazanym jako walidacja lub ewaluacja Fabryki (bpb Slayer150 itd.) jest usuwany; zakres i metoda dopisane w 'walidacja_i_ivme' przed liczeniem"
+ },
+ "domena_testow": {
+  "regula": "host z url (małe litery, bez 'www.') równy albo kończący się na '.'+domena dla: wikihow.com, instructables.com, wikipedia.org, wikinews.org, wikivoyage.org, wikibooks.org -> dokument usuwany",
+  "uzasadnienie": "źródła tekstów HellaSwag (WikiHow), PIQA (Instructables) i testów opartych na Wikipedii i projektach Wikimedia"
+ },
+ "ewal_13gram": {
+  "indeks": "indeks 13-gramów 56 zbiorów ewaluacyjnych z RPG v2 (ewal_indeks.py, testy.json, status_indeks.json; 4 zbiory BLOCKED: X07 proofwriter, X08 held-out Slayera, X09 EWoK-PL, X10 ARC-Easy-PL EU20)",
+  "regula": "jak RPG v2: każde trafienie 13-gramem (norm_slowa z rdzenia, hasz wielomianowy) usuwa dokument; trafienia raportowane per test, osobno dla HellaSwag, PIQA, ARC-C, WinoGrande; napisy krótsze niż 13 słów tylko policzone, bez usuwania"
+ },
+ "pii": {
+  "klasy": {
+   "email": "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}; nie liczą się domeny przykładowe: example.com/.org/.net, domain.com, email.com, yourdomain.com, test.com",
+   "telefon": "kształty: (NNN) NNN-NNNN, NNN-NNN-NNNN, NNN.NNN.NNNN, +N.. z co najmniej 9 cyframi w grupach rozdzielonych spacją, kropką albo myślnikiem; nie liczą się ciągi bez separatorów (numery katalogowe, ISBN)",
+   "ip": "adres IPv4 a.b.c.d z oktetami 0-255, poza 0.0.0.0, 127.x, 255.255.255.255, 192.168.x, 10.x (adresy lokalne i przykładowe)"
+  },
+  "regula": "dokument z co najmniej jednym trafieniem dowolnej klasy jest usuwany w całości (bez maskowania); trafienia per klasa raportowane osobno",
+  "kontrola_dodatnia": "syntetyczne dokumenty ze znanym e-mailem, telefonem i IP muszą zostać oznaczone (100%)",
+  "ograniczenie": "regex nie łapie imion i nazwisk ani adresów pocztowych; bez modelu NER (w RPG zablokowany), zakres zapisany w raporcie"
+ },
+ "mojibake": {
+  "regula": "jak RPG v2: liczba dopasowań ścisłego regexu (Ã[\\x80-\\xbf]|â€|Â[\\x80-\\xbf]|ï»¿|\\ufffd|Ä[\\x80-\\xbf]|Å[\\x80-\\xbf]|Ã[¡-¿]) >= 3 -> dokument usuwany"
+ },
+ "dedup_wewnatrz": {
+  "metoda": "(a) identyczny tekst po norm_tekst (blake2b 8 B) -> zostaje pierwszy w kolejności (plik, wiersz); (b) MinHash 5-gramów słów, 128 funkcji (perm_param seed 20261110), LSH 32x4, szacowany Jaccard >= 0,8 do wcześniejszego dokumentu -> dokument usuwany (zostaje pierwszy)",
+  "uwaga": "DCLM był już deduplikowany filtrem Bloom; wynik mierzy resztę"
+ },
+ "dedup_slayer107": {
+  "indeks": "idx_slayer_107_en z RPG v2 (en_mix + en_fineweb_edu SlayerLab/slayer-1.07-pretrain@6a337bbf, 3 278 603 dokumentów, dekodowane tokenizerem v6)",
+  "regula": "jak RPG v2: udział próbek szkicu 13-gramów (hash%16==0, min. 4 próbki) >= 0,5 ALBO szacowany Jaccard MinHash >= 0,8 -> dokument usuwany"
+ },
+ "dedup_ivme": "metoda dopisana w 'walidacja_i_ivme' przed liczeniem, zależnie od tego, co publikuje zbiór Ivme",
+ "fineweb_edu_url": {
+  "status": "POMIAR, nie filtr (próbka nie pozwala usunąć wszystkich kopii)",
+  "metoda": "kolumna url z losowych plików HuggingFaceFW/fineweb-edu@87f09149 (katalog data/, rng 20261114, 8 plików; zmiana z 15 przed jakimkolwiek wynikiem FWE, powód: czas odczytu kolumny przy łączu ok. 1 MB/s); url znormalizowany: małe litery hosta, bez schematu, bez 'www.', bez końcowego '/', bez fragmentu '#'. Raport: liczba trafień, udział próbki FWE w całym FWE (wiersze), ekstrapolacja liniowa jako górne oszacowanie (te same url w wielu zrzutach ją zawyżają)"
+ },
+ "fineweb_edu_klasyfikator": {
+  "status": "POMIAR, nie filtr",
+  "metoda": "HuggingFaceFW/fineweb-edu-classifier@284663cb, tekst ucięty do 512 tokenów jak w FineWeb-Edu, int_score = round(clamp(score, 0, 5)); na losowej podpróbce 50 000 dokumentów próbki (rng 20261114); rozkład int_score i scenariusz uzysku przy progach >= 2 i >= 3 (udział tokenów v6 w podpróbce)"
+ },
+ "reczna_probka": {
+  "metoda": "100 losowych dokumentów zachowanych i 100 losowych odrzuconych (rng 20261114), pierwsze 1500 znaków + url + powód; ocenia niezależny czytelnik: czy tekst nadaje się do treningu (tak/nie/wątpliwe) i czy powód odrzucenia jest trafny",
+  "ograniczenie": "notatka wymaga 100/100 przy KAŻDYM powodzie; dzień 1 robi 100/100 łącznie, braki zapisane jako NIE ZROBIONE"
+ },
+ "kontrole_dodatnie": "dokumenty wstawione do przebiegu: e-mail, telefon, IP, url wikihow, 13-gram z HellaSwag/PIQA/ARC-C/WinoGrande, kopia dokumentu z 1.07 EN, duplikat dokumentu próbki; każdy musi dostać właściwy powód",
+ "walidacja_i_ivme": {
+  "dopisano": "2026-11-14, przed losowaniem próbki i przed liczeniem, po ustaleniu użyć DCLM w slayerlabs/SlayerLab",
+  "wykluczone_pliki": "skrypty/wykluczone.json: 28 plików DCLM treningu Ivme v3 (sources.lock.json dclm.train_files[:28] = katalogi train-dclm-000000..27 SlayerLab/sub150run-ivme-20b-v3@c9fa17d7), final holdout Ivme (global-shard_06/local-shard_8/shard_00000213), stary holdout deweloperski Ivme (global-shard_10/local-shard_9/shard_00000278), plik Ivme 250m (global-shard_01/local-shard_0/shard_00000000)",
+  "walidacja_fabryki_dokumenty": "indeks z indeksy.py (tryb walidacja): walidacje SlayerLab/minimal-en-corpus-5b@bb3aec23 i SlayerLab/minimal-en-corpus-2b-v2@ef0ab069 (validation/shard-00000.parquet, wszystkie źródła), oś FineWeb-Edu Slayer150 (pierwsze 5000 wierszy fineweb-edu sample/100BT/000_00009, nadzbiór 3507 użytych) i oś DCLM Slayer150 (pierwsze 5000 dokumentów allenai/DataDecide-data-recipes@3baf34ba v0_fw_top3p part-00-00000, nadzbiór 3457 użytych; lista użytych nieopublikowana)",
+  "walidacja_fabryki_regula": "dokument usuwany przy: szkic 13-gramów >= 0,5 ALBO MinHash >= 0,8 wobec indeksu, ALBO identyczny znormalizowany tekst, ALBO identyczny znormalizowany url",
+  "dedup_ivme_regula": "indeks z indeksy.py (tryb ivme): 28 batchy train-dclm zdekodowane tokenizerem zbioru (metadata/tokenizer.json); ta sama reguła co walidacja; przy wykluczonych plikach mierzy kopie DCLM między plikami",
+  "ivme_poziom_plikow": "raport: ile plików próbki leży w dclm.train_files[:556] locka Ivme (szacunek plików potrzebnych do pełnych 20B Ivme)"
+ },
+ "szacunek_shardow":"shardy = ceil(5e9 / (tokeny v6 po filtrach na shard próbki)), z przedziałem z rozrzutu między plikami próbki (średnia +- 2 SE); dedup między shardami rośnie z liczbą shardów, więc wynik to dolna granica"
+}
