@@ -2,6 +2,7 @@
 # Odtworzenie przebiegu DCLM-EN od zera, krok po kroku. Opis kroków, wejść i kontroli: dane/dclm-en/METODOLOGIA.md.
 # Użycie (z dowolnego katalogu):  bash dane/dclm-en/skrypty/odtworz.sh <krok>
 # Kroki: venv | tokenizer | probka | testy | ewal | baza107 | idx107 | walidacja_pobierz | idx_wal | idx_ivme | kontrola | przebieg
+#        po przebiegu: fwe_url | edu | agreguj
 # Każdy krok jest wznawialny: pobrania pomijają gotowe pliki, przebieg pomija gotowe u_NNNN.npz.
 set -euo pipefail
 
@@ -76,6 +77,19 @@ for i, d in enumerate(m['ids']):
 przebieg)  # 216 jednostek; PROC=6 (pamięć: patrz METODOLOGIA.md, sekcja Przebieg)
   $NICE $PY -I -W ignore "$S/przebieg.py" "$R/probka_pliki.json" "$R/wyniki/ewal" "$R/wyniki/idx" \
     "$R/pobrania/tokenizer_v6/tokenizer.json" "$R/wyniki/przebieg" 6 walidacja="$R/wyniki/idx_wal" ivme="$R/wyniki/idx_ivme"
+  ;;
+fwe_url)  # pomiar nakładania url z FineWeb-Edu: 8 plików data/ (preregistracja -> fineweb_edu_url)
+  $NICE $PY -I "$S/fwe_url.py" "$R/wyniki/fwe" 8
+  ;;
+edu)  # klasyfikator FineWeb-Edu na 50 000 dokumentów; cpu = float32 (mps liczy w float16)
+  mkdir -p "$R/wyniki/edu"
+  $NICE $PY -I "$S/edu.py" "$R/wyniki/przebieg/jednostki.json" "$R/wyniki/edu/edu.npz" 50000 "${EDU_DEV:-cpu}"
+  ;;
+agreguj)  # kaskada powodów, uzysk v6, szacunek shardów, ręczna próbka 100/100 (probki_reczne.jsonl zostaje w robocze/: ma PII)
+  $NICE $PY -I "$S/agreguj.py" "$R/wyniki/przebieg" "$R/probka_pliki.json" "$R/wyniki/fwe/fwe_url_h.npy" "$R/wyniki/edu/edu.npz" \
+    "$R/wyniki/agreguj.json" "$R/wyniki/probki_reczne.jsonl" walidacja="$R/wyniki/idx_wal" ivme="$R/wyniki/idx_ivme"
+  cp "$R/wyniki/agreguj.json" "$D/wyniki/agreguj.json"
+  cp "$R/wyniki/fwe/fwe_url.json" "$D/wyniki/fwe_url.json"
   ;;
 *)
   sed -n 2,6p "$0"; exit 2

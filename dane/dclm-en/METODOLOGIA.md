@@ -1,118 +1,185 @@
-# DCLM-baseline EN dla Slayera 1B: metodologia odtworzenia od zera
+# Przepis: budowa zbioru danych do treningu Slayera 1B (przykład: DCLM-baseline EN)
 
-Jedno miejsce, z którego da się odbudować przebieg dnia 1 bez transkryptów sesji. Co to za źródło, prawa i
-ryzyka: [`KARTA_ZRODLA.md`](KARTA_ZRODLA.md). Metoda, progi i kolejność powodów odrzucenia, zapisane przed
-wynikiem: [`skrypty/preregistracja.json`](skrypty/preregistracja.json). Ten plik ich nie powtarza, mówi
-tylko, JAK je wykonać. Reguły kontroli każdego zbioru: notatka wiedzy `budowa-modeli/komplet-kontroli-zbioru`
-(workspace fabryka-ai).
+Przepis dla KAŻDEGO zbioru, od rezerwacji do wpisu w karcie danych. Każdy krok: co robisz, komenda,
+jak sprawdzić, pułapki, a w ostatniej kolumnie wypełniony przykład DCLM-EN. Reguły kontroli: notatka
+wiedzy `budowa-modeli/komplet-kontroli-zbioru` (workspace fabryka-ai). Wymagania wysyłki: repo
+[`SlayerLab/dataset-team-submissions`](https://huggingface.co/datasets/SlayerLab/dataset-team-submissions)
+(`README.md`, `AGENTS.md`, `LESSONS.md`, skill `.agents/skills/source-rights-review`).
 
-Wszystkie ścieżki są względne do katalogu głównego repo `slayer-lab`. Każdy krok uruchamia
-[`skrypty/odtworz.sh`](skrypty/odtworz.sh) `<krok>`; ten plik mówi, co krok robi i jak sprawdzić wynik.
+## Zasady stałe
 
-## 0. Wymagania
+- Ścieżki względne do katalogu głównego repo `slayer-lab`. Zbiór = katalog `dane/<zbiór>/`.
+- Katalog roboczy `dane/<zbiór>/robocze/` (w `.gitignore`). **Nigdy `/tmp` ani scratchpad sesji.**
+- Każdy krok jest przypadkiem w `dane/<zbiór>/skrypty/odtworz.sh <krok>`; log do `robocze/logi/<krok>.log`.
+- Długie kroki: `nohup nice -n 10 bash …/odtworz.sh <krok> > robocze/logi/<krok>.log 2>&1 &`.
+- Przed każdym długim krokiem: `pgrep -lx 'Discord|LeagueClient|VTEncoderXPCService'` i
+  `memory_pressure | tail -1`. Działa Discord albo Liga: nie liczysz.
+- Wynik sprawdzasz kodem wyjścia i liczbami kontrolnymi, nie wrażeniem. BLOCKED i NOT RUN to nie PASS i
+  blokują publikację.
+- Wadliwy dokument wyrzucasz w całości, nie łatasz wzorcami.
+- Tokeny raportujesz tokenizerem modelu docelowego (v6, słownik 32 768); cl100k tylko obok.
+- Commit ochronny po każdym dniu pracy: wszystko z `dane/<zbiór>/` poza `robocze/`.
 
-- macOS albo Linux, Python 3.12 (sprawdzone na 3.12.2), ok. 15 GB wolnego dysku, 18 rdzeni CPU w
-  przebiegu z 2026-11-14. Pamięć: patrz sekcja 4.
-- Dostęp do Hugging Face z tokenem, który widzi repo `SlayerLab/*` (prywatne). Token czyta sama biblioteka
-  `huggingface_hub` z jej zwykłego miejsca; skrypty go nie przyjmują jako argumentu.
-- Pakiety: [`requirements.txt`](requirements.txt) (wynik `pip freeze` venv z 2026-11-14, wszystkie wersje
-  przypięte). Bezpośrednio używane: `huggingface_hub`, `tokenizers`, `pyarrow`, `numpy`, `requests`, `ftfy`.
-  Krok `edu.py` (po przebiegu) potrzebuje dodatkowo `torch` i `transformers`, których ten venv nie ma.
-- Kod: skrypty DCLM w `dane/dclm-en/skrypty/` oraz rdzeń i skrypty RPG v2 w `dane/korpus-rpg-v2/skrypty/`
-  (commit `c46a7d7`; `wspolne.py` importuje stamtąd `rdzen.py` i `rdzen2.py`).
+## Dwie bramki praw, rozstrzygane osobno
 
-Katalog roboczy: `dane/dclm-en/robocze/` (w `.gitignore`, nic z niego nie trafia do gita). Nigdy `/tmp`
-ani scratchpad sesji: 14.11.2026 restart po awarii skasował `/private/tmp` razem ze wszystkimi wejściami.
-
-```
-robocze/
-  venv/                       krok venv
-  pobrania/tokenizer_v6/      krok tokenizer
-  pobrania/dclm/              krok probka (oryginalne parquety + kopie *.rg5000.parquet)
-  probka_pliki.json           krok probka (lista plików, sha256, ścieżki lokalne tej maszyny)
-  pobrania/ewal/              krok testy
-  pobrania/slayer107/, pobrania/technika/   krok baza107
-  pobrania/mincorp/           krok walidacja_pobierz
-  pobrania/idx/               pobrania kroków idx_wal i idx_ivme (gpt-neox tokenizer, batche ivme)
-  wyniki/status_pobran.json   krok testy
-  wyniki/ewal/                krok ewal       (EW)
-  wyniki/idx/                 krok idx107     (IDX)
-  wyniki/idx_wal/, wyniki/idx_ivme/          kroki idx_wal, idx_ivme
-  wyniki/kontrola/            krok kontrola
-  wyniki/przebieg/            krok przebieg   (u_NNNN.npz + u_NNNN.json, jednostki.json)
-  logi/                       log każdego kroku
-```
-
-## 1. Kolejność i zależności
-
-```
-venv ─┬─ tokenizer ─┬─────────────────────────── idx107 ─┐
-      ├─ probka ────┼──────────────────────────────────── ├─ kontrola ─ przebieg
-      ├─ testy ─ ewal ─────────────────────────────────── │
-      ├─ baza107 ───┘                                     │
-      └─ walidacja_pobierz ─ idx_wal ─ idx_ivme ──────────┘
-```
-
-Gałęzie są niezależne i mogą iść równolegle (pobrania są ograniczone siecią, nie pamięcią). Kroki liczące
-(`ewal`, `idx107`, `idx_wal`, `idx_ivme`) nie powinny iść wszystkie naraz z przebiegiem; patrz sekcja 4.
-
-## 2. Kroki
-
-Uruchomienie: `bash dane/dclm-en/skrypty/odtworz.sh <krok> > dane/dclm-en/robocze/logi/<krok>.log 2>&1`.
-Długie kroki puszczaj odłączone (`nohup … &`). Kroki liczące idą przez `nice -n 10`.
-
-| Krok | Skrypt i wejście | Wyjście | Jak sprawdzić, że się udał |
+| Bramka | Kryterium | Źródło reguły | DCLM-EN |
 |---|---|---|---|
-| `venv` | `python3.12 -m venv`, `pip install -r requirements.txt` | `robocze/venv` | `robocze/venv/bin/pip freeze` = `requirements.txt` |
-| `tokenizer` | `korpus-rpg-v2/skrypty/pobierz_tokenizer.py`; `SlayerLab/slayer-1.07-pretrain` (gałąź main, sprawdzane 14.11 na `6a337bbf`), plik `tokenizer.json` | `pobrania/tokenizer_v6/tokenizer.json` | skrypt sam przerywa, jeśli sha256 ≠ `0640d3bd3674d7a6e59c540d945a2ad275a12e1bcaeb6007c37a90751f9815dd`, słownik ≠ 32 768 albo token 0 ≠ `<\|endoftext\|>` |
-| `probka` | `dclm-en/skrypty/pobierz.py`; `mlfoundations/dclm-baseline-1.0-parquet@817d6752765f6a41261085171dd546b104f60626`, seed 20261114, cel 1 000 000 wierszy, bez plików z `wykluczone.json` | `pobrania/dclm/…`, `probka_pliki.json` | ostatnia linia logu `KONIEC 1051235`; 10 plików; `sha256` i `wiersze` każdego pliku równe [`wyniki/probka_pliki.json`](wyniki/probka_pliki.json) (różnią się tylko ścieżki `lokalnie`) |
-| `testy` | `korpus-rpg-v2/skrypty/pobierz_testy.py` z `korpus-rpg-v2/skrypty/testy.json` | `pobrania/ewal/<test>/…`, `wyniki/status_pobran.json` | log kończy `KONIEC`; w `status_pobran.json` każdy test ze `status` OK albo BLOCKED z powodem. Rewizje: skrypt bierze bieżącą gałąź main i ZAPISUJE rewizję każdego testu w `status_pobran.json` |
-| `ewal` | `korpus-rpg-v2/skrypty/ewal_indeks.py` | `wyniki/ewal/` (EW: `wszystkie_13.npy`, `wszystkie_krotkie.npz`, `<test>__13.npy`, `status_indeks.json`) | log kończy `KONIEC`, linia przed nim: `ogolem 32411348 {'n1': 67858, 'n2': 232281, …, 'n12': 89563}`; 56 testów OK, 4 BLOCKED (X07_proofwriter: repo 404, X08, X09, X10: brak adresu zbioru). Różna suma = inne rewizje testów: porównaj `rewizja` w `status_indeks.json` |
-| `baza107` | `korpus-rpg-v2/skrypty/pobierz_107.py`; `SlayerLab/slayer-1.07-pretrain` (main, `6a337bbf` 14.11): `en_mix` i `en_fineweb_edu` (`train.bin`, `docs.idx`, razem ok. 7,8 GB) oraz `SlayerLab/technika-i-nauka` (main, `66cb02d7`) | `pobrania/slayer107/`, `pobrania/technika/` | log kończy `KONIEC`; rozmiary: en_mix/train.bin 3 301 237 628 B, en_fineweb_edu/train.bin 4 471 320 050 B |
-| `idx107` | `korpus-rpg-v2/skrypty/bazy_indeks.py`, tokenizer v6 z kroku `tokenizer` (ten sam plik co karta 1.07, sha `0640d3bd`), 2 procesy | `wyniki/idx/` (IDX: `idx_slayer_107_en_{szkic,sig,kl,dok}.npy`, `idx_technika_i_nauka_*`, `liczby_indeks.json`) | `liczby_indeks.json`: slayer_107_en 3 278 603 dokumentów, 158 680 048 próbek szkicu; technika_i_nauka 19 048 / 783 495 |
-| `walidacja_pobierz` | `hf download` walidacji `SlayerLab/minimal-en-corpus-5b@bb3aec23e3cff66707cecc577650763893834857` i `SlayerLab/minimal-en-corpus-2b-v2@ef0ab06943e40ed4f882b0798b1756e99bbb1410`, plik `validation/shard-00000.parquet` | `pobrania/mincorp/` | krok sam sprawdza sha256 (`5abe9d60…`, `dbdab0a4…`) |
-| `idx_wal` | `dclm-en/skrypty/indeksy.py walidacja`, 4 procesy; poza walidacjami pobiera oś FineWeb-Edu (`HuggingFaceFW/fineweb-edu@87f09149…`, 5000 wierszy) i oś DCLM (`allenai/DataDecide-data-recipes@3baf34ba`, 5000 dokumentów) | `wyniki/idx_wal/` (`idx_walidacja_*.npy`, `walidacja.json`) | `walidacja.json` bajt w bajt równy [`wyniki/indeks_walidacja.json`](wyniki/indeks_walidacja.json) (18 363 dokumentów, 938 948 próbek, 8 089 url). Log nie ma linii `KONIEC`: koniec = istnieje `walidacja.json` |
-| `idx_ivme` | `dclm-en/skrypty/indeksy.py ivme`, 4 procesy; `SlayerLab/sub150run-ivme-20b-v3@c9fa17d73a5134b34daa58b668ce7a400681c99d`, 28 batchy `train-dclm` | `wyniki/idx_ivme/` (`idx_ivme_*.npy`, `ivme.json`) | `ivme.json` równy [`wyniki/indeks_ivme.json`](wyniki/indeks_ivme.json) (199 283 dokumentów, 11 391 284 próbek, tokenizer sha `a847369b…`) |
-| `kontrola` | `dclm-en/skrypty/kontrola_dodatnia.py` + `przebieg.py` na 1 procesie, te same indeksy co przebieg | `wyniki/kontrola/` i tabela na wyjściu | każdy z 14 wstawionych dokumentów dostaje powód z [`wyniki/kontrole_dodatnie.json`](wyniki/kontrole_dodatnie.json), dokument czysty bez powodu. Przebieg próbki rusza dopiero po tym kroku |
-| `przebieg` | `dclm-en/skrypty/przebieg.py`, 6 procesów | `wyniki/przebieg/u_0000…u_0215.{npz,json}`, `jednostki.json` | log zaczyna `jednostek 216 do zrobienia N`, kończy `KONIEC <s>`; 216 plików `u_*.npz` |
+| Można TRENOWAĆ | podstawa treningu: licencja tekstów albo wyjątek TDM (art. 4 dyr. 2019/790) z opisaną ścieżką takedown; opt-out TDM to UWAGA w karcie, nie weto | notatka §3, decyzja Ani 10.11.2026 | TAK (wyjątek TDM, takedown po `url`/`id`) |
+| Można ZGŁOSIĆ do `dataset-team-submissions` | licencja per dokument, bez NC/ND, bez opt-outu TDM; sam wyjątek TDM nie wystarcza; licencja kompilacji ≠ licencja tekstów; „unverified = not admitted” | `AGENTS.md`, `LESSONS.md` reguła 5, skill `source-rights-review` | **NIEROZSTRZYGNIĘTY**: CC-BY-4.0 dotyczy kompilacji, teksty z Common Crawl bez licencji per dokument; decyduje Ania |
 
-## 3. Wznowienie po przerwaniu
+## Mapa kroków
 
-- Pobrania (`probka`, `testy`, `baza107`, `walidacja_pobierz`) pomijają pliki już pobrane w całości, więc
-  wystarczy uruchomić krok ponownie. `pobierz.py` przelicza jednak sha256 i kopię `rg5000` każdego pliku.
-- `przebieg.py` zapisuje jednostkę atomowo (`.u_NNNN.npz` → `u_NNNN.npz`) i przy starcie pomija gotowe
-  `u_*.npz`. Po przerwaniu uruchom krok ponownie; pliki `.u_*.npz` (z kropką) to niedokończone zapisy do
-  skasowania.
-- Indeksy (`ewal`, `idx107`, `idx_wal`, `idx_ivme`) liczą od nowa; przerwany krok uruchom ponownie w całości.
-- `probka_pliki.json` trzyma ścieżki absolutne tej maszyny (`lokalnie`). Kopia w `wyniki/` jest rejestrem
-  (sha256, wiersze); do przebiegu idzie zawsze `robocze/probka_pliki.json` z kroku `probka` na tej maszynie.
+| Nr | Krok | Produkt | Bramka przejścia |
+|---|---|---|---|
+| 1 | Rezerwacja | issue w `slayerlabs/benchmarks-fabryka-ai` | issue otwarte, wiersz „w budowie” w `DANE_TRENINGOWE.md` |
+| 2 | Karta źródła i bramka praw | `KARTA_ZRODLA.md` | 6 pól wypełnionych, wynik obu bramek praw |
+| 3 | Preregistracja | `skrypty/preregistracja.json` | zapisana PRZED pobraniem próbki i liczeniem |
+| 4 | Środowisko | `robocze/venv`, `requirements.txt` | `pip freeze` = `requirements.txt` |
+| 5 | Pobranie z rewizją i sumą | `robocze/pobrania/`, `wyniki/probka_pliki.json` | sha256 i liczba wierszy każdego pliku zapisane |
+| 6 | Indeksy i kontrole | indeksy testów i baz, kontrola dodatnia | każdy wstawiony dokument dostaje właściwy powód |
+| 7 | Przebieg | `robocze/wyniki/przebieg/` | wszystkie jednostki, log kończy `KONIEC` |
+| 8 | Po przebiegu | `wyniki/agreguj.json`, `wyniki/fwe_url.json` | kaskada, uzysk v6, ręczna próbka |
+| 9 | Eksport | `data/<key>/<key>.parquet`, `.stats.json`, `.md` | PII zamaskowane, bramka języka, 12 kolumn |
+| 10 | Kontrola końcowa | wynik `pytest` i `src/check.py` | oba kod 0, niezależny agent na tym samym sha256 |
+| 11 | Wysyłka | PR na HF do `dataset-team-submissions` | przegląd praw z osobą zatwierdzającą |
+| 12 | Aktualizacja karty | PR do `DANE_TRENINGOWE.md` | wiersz z linkiem do zbioru i statusem |
 
-## 4. Pamięć i obciążenie
+## 1. Rezerwacja
 
-Mac z 51 GB padł 14.11.2026 o 19:09 (kernel panic przy presji pamięci) w trakcie przebiegu na 6 procesach
-przy równoległych innych zadaniach. Przed przebiegiem:
+| | Ogólnie | Przykład: DCLM-EN |
+|---|---|---|
+| Co | issue z celem (testy, liczba tokenów v6), źródłem i osobą; wiersz „w budowie” w sekcji „Dopisane później” `DANE_TRENINGOWE.md` | issue [#197](https://github.com/slayerlabs/benchmarks-fabryka-ai/issues/197); cel ≥5 mld tokenów v6 pod HellaSwag, PIQA, ARC-C, WinoGrande |
+| Komenda | `gh issue create -R slayerlabs/benchmarks-fabryka-ai` | — |
+| Sprawdzenie | `gh api repos/slayerlabs/benchmarks-fabryka-ai/issues/<nr> --jq .state` = `open` | `open`; wiersz 2026-11-14 „w budowie” istnieje |
+| Pułapki | dwie osoby na tym samym źródle; brak celu w tokenach v6 | — |
 
-- `pgrep -lx 'Discord|LeagueClient|VTEncoderXPCService'` i `memory_pressure | tail -1`; jeśli działają ciężkie
-  aplikacje, zapisz to w logu.
-- Przebieg zostaje na 6 procesach i `nice -n 10` (każdy proces mapuje te same indeksy przez `mmap`); nie
-  zwiększaj liczby procesów bez pomiaru RSS jednej jednostki.
-- Nie puszczaj przebiegu równolegle z `idx107`, `ewal` ani drugim przebiegiem.
+## 2. Karta źródła i bramka praw
 
-## 5. Po przebiegu (dzień 1, jeszcze nie uruchamiane)
+| | Ogólnie | Przykład: DCLM-EN |
+|---|---|---|
+| Co | `KARTA_ZRODLA.md` z 6 polami notatki §2 przed pobraniem; wynik obu bramek praw; każde twierdzenie z etykietą V (sprawdzone, data, URL, hash) albo I (wywnioskowane); lista „nie sprawdzone” | [`KARTA_ZRODLA.md`](KARTA_ZRODLA.md), 14.11.2026 |
+| Prawa | trening i redystrybucja osobno; licencja zbioru ≠ licencja tekstów; opt-out TDM na próbce domen (`robots.txt`, TDMRep); pełny regulamin, nie odznaka | CC-BY-4.0 kompilacji; teksty Common Crawl; karta: „research use only”; opt-out TDM: NIE SPRAWDZONE |
+| Sprawdzenie | 6 nagłówków obecnych; bramka „trenować” i „zgłosić” mają wynik albo NIEROZSTRZYGNIĘTY | trenować: TAK; zgłosić: NIEROZSTRZYGNIĘTY |
+| Pułapki | kopiowanie statusu praw z innego źródła (reguła 8 skilla); „0 znalezionych w 40” to wynik, nie czyste konto | DCLM jest już w EN 1.07 (`minimal-en-corpus-5b`, 577 998 dok.) |
 
-Argumenty z docstringów skryptów; wynik i progi interpretuje `preregistracja.json`.
+Karta mapuje się na datasheet `data/<key>/<key>.md` (krok 9). Jedna karta daje datasheet:
 
-1. `fwe_url.py <wyjście> <liczba_plików>`: próbka url FineWeb-Edu (hasze url do nakładania).
-2. `edu.py robocze/wyniki/przebieg/jednostki.json <wyjście.npz> <liczba> <urządzenie> [limit_s]`: klasyfikator
-   FineWeb-Edu na podpróbce; wymaga Pythona z `torch` i `transformers`.
-3. `agreguj.py robocze/wyniki/przebieg robocze/probka_pliki.json <fwe_url_h.npy> <edu.npz> <wyjście.json>
-   <probki_reczne.jsonl> walidacja=robocze/wyniki/idx_wal ivme=robocze/wyniki/idx_ivme`: dedup wewnątrz,
-   kaskada powodów, uzysk w tokenach v6, ręczna próbka 100/100.
+| Pole karty (notatka §2) | Sekcja datasheetu | Uwaga |
+|---|---|---|
+| 1. Identyfikacja | `## Source` | URL, wydawca, rewizja |
+| 3. Zawartość | `## Source` | język, dziedzina, plik i pole tekstu |
+| 4. Skala i dostęp | `## Source` | dokumenty, format, dostęp |
+| 2. Prawa | `## Rights review` | łańcuch praw V/I, decyzja, osoba zatwierdzająca, „not checked” |
+| 5. Ryzyka: kopie, testy, OCR, syntetyki | `## Cleaning` | kaskada powodów i uzysk z kroku 8 |
+| 6. Nowość | `## Cleaning` | zakresy dedupu i czego nie objęły |
+| 5. Ryzyka: PII | `## Personal data` | nasze usunięcie + maskowanie repo (wersja PII) |
+| ręczna próbka (krok 8) | `## Sample` | seed, liczności, stopa błędów |
 
-## 6. Historia odtworzeń
+## 3. Preregistracja
 
-- 14.11.2026 wieczorem: pierwsze wejścia (venv, pobrania, EW, IDX, tokenizer) leżały w scratchpadach sesji
-  w `/private/tmp` i przepadły po restarcie. Odbudowa tym dokumentem tego samego wieczoru: `probka` (10 plików,
-  sha256 i wiersze), `idx_wal` i `idx_ivme` (JSON bajt w bajt) oraz `ewal` (suma 13-gramów i krótkich napisów,
-  rewizje testów) zgodne z przebiegiem sprzed awarii. Wersje pakietów starego venv nie były zapisane; od tej
-  odbudowy są w `requirements.txt`.
+| | Ogólnie | Przykład: DCLM-EN |
+|---|---|---|
+| Co | `skrypty/preregistracja.json` PRZED pobraniem próbki: źródło z rewizją, wybór próbki (seed), tokenizer, kolejność powodów odrzucenia, progi, pomiary (nie filtry), ręczna próbka, kontrole dodatnie | [`skrypty/preregistracja.json`](skrypty/preregistracja.json): seed 20261114, 8 powodów w kaskadzie |
+| Sprawdzenie | `git log` pliku starszy niż pierwszy wynik; każda zmiana po wyniku dopisana z powodem i datą | zmiana 15→8 plików FWE dopisana przed wynikiem FWE |
+| Pułapki | próg dobrany po zobaczeniu wyniku; brak kolejności powodów (kaskada niejednoznaczna) | — |
+
+## 4. Środowisko
+
+| | Ogólnie | Przykład: DCLM-EN |
+|---|---|---|
+| Co | venv w `robocze/venv`, wersje przypięte w `requirements.txt` (wynik `pip freeze`) | Python 3.12.2; od 14.11 także `torch==2.15.0`, `transformers==5.23.0` (krok `edu`) |
+| Komenda | `bash dane/<zbiór>/skrypty/odtworz.sh venv` | jw. |
+| Sprawdzenie | `robocze/venv/bin/pip freeze` = `requirements.txt` | — |
+| Pułapki | wersje niezapisane (stary venv DCLM przepadł w `/tmp` bez listy wersji); doinstalowanie pakietu bez dopisania do `requirements.txt` | — |
+
+## 5. Pobranie z rewizją i sumą
+
+| | Ogólnie | Przykład: DCLM-EN |
+|---|---|---|
+| Co | tokenizer docelowy, próbka źródła, zbiory testowe, bazy do dedupu; każde z przypiętą rewizją i sha256 | `odtworz.sh tokenizer`, `probka`, `testy`, `baza107`, `walidacja_pobierz` |
+| Źródła | — | DCLM `mlfoundations/dclm-baseline-1.0-parquet@817d6752…`; tokenizer v6 sha `0640d3bd…`; EN 1.07 `SlayerLab/slayer-1.07-pretrain@6a337bbf`; walidacje `minimal-en-corpus-5b@bb3aec23`, `minimal-en-corpus-2b-v2@ef0ab069` |
+| Sprawdzenie | sha256 i wiersze równe rejestrowi; skrypt przerywa przy złej sumie | `probka`: log `KONIEC 1051235`, 10 plików równe [`wyniki/probka_pliki.json`](wyniki/probka_pliki.json); `tokenizer`: sha, słownik 32 768, token 0 `<\|endoftext\|>`; `baza107`: en_mix/train.bin 3 301 237 628 B, en_fineweb_edu/train.bin 4 471 320 050 B; `testy`: 56 OK, 4 BLOCKED z powodem |
+| Pułapki | gałąź `main` zamiast rewizji; kopia „identyczna” nieidentyczna (kopia parquet DCLM ma 100 plików więcej niż `jsonl.zst`); pliki walidacji i miksów zespołu nie wykluczone przed losowaniem | wykluczone 31 plików ([`skrypty/wykluczone.json`](skrypty/wykluczone.json)) |
+
+## 6. Indeksy i kontrole
+
+| | Ogólnie | Przykład: DCLM-EN |
+|---|---|---|
+| Co | indeksy: 13-gramy testów, historia modeli, walidacja Fabryki, inne miksy zespołu; kontrola dodatnia: znane PII, kawałki testów, kopie baz wstawione do przebiegu | `odtworz.sh ewal`, `idx107`, `idx_wal`, `idx_ivme`, `kontrola` |
+| Sprawdzenie | liczby indeksów równe rejestrowi; KAŻDY wstawiony dokument dostaje swój powód, czysty bez powodu | `ewal`: `ogolem 32411348`; `idx107`: 3 278 603 dok., 158 680 048 próbek; `idx_wal` = [`wyniki/indeks_walidacja.json`](wyniki/indeks_walidacja.json) bajt w bajt; `idx_ivme` = [`wyniki/indeks_ivme.json`](wyniki/indeks_ivme.json); kontrola: 14/14 wg [`wyniki/kontrole_dodatnie.json`](wyniki/kontrole_dodatnie.json) |
+| Pułapki | **kontrola dodatnia po KAŻDEJ odbudowie indeksów**, nie tylko raz; indeks bez `KONIEC` w logu (koniec = plik wynikowy); kilka kroków liczących naraz z przebiegiem | brak w zakresie: segmenty c01–c10 i gold (niedostępne) |
+
+## 7. Przebieg
+
+| | Ogólnie | Przykład: DCLM-EN |
+|---|---|---|
+| Co | detektory na każdym dokumencie próbki, wynik per jednostka, zapis atomowy, wznawialny | `odtworz.sh przebieg`, 6 procesów, `nice -n 10` |
+| Sprawdzenie | log zaczyna `jednostek N do zrobienia M`, kończy `KONIEC <s>`; N plików wyniku, zero niedokończonych (`.u_*`) | 216/216 `u_*.npz`, `KONIEC 1570s`, 14.11.2026 |
+| Wznowienie | uruchom krok ponownie; gotowe jednostki są pomijane, `.u_*.npz` kasujesz | — |
+| Pułapki | presja pamięci (Mac 51 GB padł przy 6 procesach i równoległych zadaniach); więcej procesów bez pomiaru RSS jednej jednostki | — |
+
+## 8. Po przebiegu
+
+| | Ogólnie | Przykład: DCLM-EN |
+|---|---|---|
+| Co | pomiary spoza filtrów (nakładanie z innymi zbiorami, klasyfikator jakości), potem agregacja: dedup wewnątrz, kaskada powodów, uzysk v6 po każdym powodzie, szacunek skali, ręczna próbka | `odtworz.sh fwe_url` (8 plików FWE), `edu` (50 000 dok., cpu float32), `agreguj` |
+| Sprawdzenie | kod wyjścia 0; suma kaskady = dokumenty próbki; `niedostepne` w wyniku puste albo opisane; ręczna próbka oceniona przez niezależnego czytelnika | **NIE URUCHOMIONE** (14.11.2026: działał Discord) |
+| Pułapki | uzysk przeniesiony z innej porcji (mierzysz od nowa, notatka §5); plik ręcznej próbki ma PII odrzuconych, zostaje w `robocze/`; szacunek shardów to dolna granica | — |
+
+## 9. Eksport do formatu zgłoszeń
+
+Robisz w klonie `SlayerLab/dataset-team-submissions`, nie w `slayer-lab`.
+
+| | Ogólnie | Przykład: DCLM-EN |
+|---|---|---|
+| Co | (1) bierzesz dokumenty bez powodu odrzucenia; (2) skrypt `src/clean_<key>.py` woła `shard.write(key, rows)`, który maskuje PII (`src/pii.py`: Presidio dla EN, NERGAL dla PL, `[PHONE]`, `[PII]`, `[PERSON]` przy `names=True`), stosuje bramkę języka (`src/language_gate.py`, teksty ≥200 znaków), odrzuca teksty Dynaword i blocklisty, liczy `token_count` i pisze `data/<key>/<key>.parquet` oraz `<key>.stats.json`; (3) datasheet `data/<key>/<key>.md` z karty (tabela w kroku 2) | NIE ZROBIONE; `key` np. `dclm_baseline_en` |
+| Kolumny | `id`, `text`, `source`, `added`, `created`, `token_count`, `license`, `author`, `language` (`pl`/`en`/`pl+en`), `text_origin` (`human`/`translated`/`synthetic`), `generator`, `derived_from`; `source`, `added`, `token_count` dopisuje `shard.write` | `id`←`id` DCLM; `text`←`text` po maskowaniu; `language`=`en`; `text_origin`=`human`; `generator`=null; `derived_from`=null; `license`, `author`, `created`: **do decyzji** (brak licencji i daty per dokument w kopii parquet) |
+| Dedup wobec Dynaword | identyczny klucz tekstu z `dynaword/pin.json` odrzuca `shard.write`; przy nakładaniu hostów near-dup `src/shingle_containment.py`, próg ≥0,9 (LESSONS reguła 13) | wynik w `stats.json` → `dropped` |
+| Sprawdzenie | `stats.json`: `dropped`, `lang_gate`, rekord `pii` (`presidio` dla EN) | — |
+| Pułapki | `text_origin=synthetic` bez `generator` w formacie `model@rewizja prompt:ścieżka`; tekst złożony tylko z placeholderów PII | DCLM premiuje styl czatowy: web pisany przez modele możliwy przy `human` |
+
+## 10. Kontrola końcowa
+
+| | Ogólnie | Przykład: DCLM-EN |
+|---|---|---|
+| Co | wpis w `src/sources.py` (pola: `pretty`, `upstream`, `license`, `license_spdx`, `domain`, `added`, `created`, `provenance`, `traceable`, `is_ocr`, `language`, `text_origin`, `legal_note`; opcjonalnie `min_chars`, `dynaword_overlap_reviewed`), wpis `configs` w `README.md`, test kontraktowy `src/test_<key>_contract.py`; komplet kontroli z notatki §1 przez niezależnego agenta na pliku o tym samym sha256 | NIE ZROBIONE |
+| Komenda | `.venv/bin/python -m pytest src/test_<key>_contract.py` i `.venv/bin/python src/check.py --source <key>` | — |
+| Sprawdzenie | oba kod wyjścia 0; `check.py` sprawdza schemat, unikalność `id`, Dynaword, blocklistę, bramkę języka, `token_count`, ponowny skan PII (200 tekstów), `stats.json` i 5 sekcji datasheetu | — |
+| Pułapki | `check.py` nie sprawdza podstawy licencji (tylko niepuste `license`), to robi krok 11; plik LFS-pointer zamiast parquetu | — |
+
+## 11. Wysyłka (PR na Hugging Face)
+
+| | Ogólnie | Przykład: DCLM-EN |
+|---|---|---|
+| Warunek | bramka „można ZGŁOSIĆ” = TAK; kroki 9-10 zielone | NIEROZSTRZYGNIĘTY, czeka na Anię |
+| Co | przegląd praw wg skilla `source-rights-review`: łańcuch praw (każde ogniwo: zapis, URL, data, hash), V/I przy każdym twierdzeniu, decyzja `admitted`/`excluded`/`held_for_review`, co wstrzymane, lista „not checked”, **osoba zatwierdzająca**; próbka treści stron trzecich: seed, ≥40 dok. na warstwę, przedział Wilsona, udział tokenów | — |
+| Komenda | `python src/render_sample.py …` (próbka do opisu PR); PR na https://huggingface.co/datasets/SlayerLab/dataset-team-submissions z katalogiem `data/<key>/` | — |
+| Opis PR | próbka inline, przegląd praw, wersja PII, stan before/after (`dropped` ze `stats.json`, uzysk v6 z kroku 8) | — |
+| Pułapki | kontakt z właścicielami praw, akceptacja regulaminów, zakładanie kont: tylko ludzie; po merge maintainer porównuje stronę licencji z hashem dowodu | — |
+
+## 12. Aktualizacja karty danych
+
+| | Ogólnie | Przykład: DCLM-EN |
+|---|---|---|
+| Co | PO wysyłce: PR do [`DANE_TRENINGOWE.md`](https://github.com/slayerlabs/benchmarks-fabryka-ai/blob/main/research/slayer-1b/dane/DANE_TRENINGOWE.md), sekcja „Dopisane później”: data, zbiór z linkiem do PR/zbioru na HF, osoba, zgłoszenie, status | wiersz 2026-11-14 już istnieje („w budowie”): zmień link i status |
+| Komenda | gałąź w `benchmarks-fabryka-ai`, edycja wiersza, `gh pr create` | — |
+| Sprawdzenie | każdy link w wierszu odpowiada 200 (`gh api` / `curl -sIL`) | — |
+| Pułapki | wiersz dopisany przed wysyłką (status bez dowodu); nowy wiersz zamiast zmiany istniejącego z rezerwacji | — |
+
+## Rozjazdy: notatka `komplet-kontroli-zbioru` a repo zgłoszeń (do decyzji, nie rozstrzygnięte)
+
+| Temat | Notatka / nasz przebieg | Repo zgłoszeń |
+|---|---|---|
+| `token_count` | tokeny v6, cl100k tylko obok | `check.py` wymaga `token_count` = cl100k (`shard.count_tokens`, tiktoken); v6 w kolumnie da czerwony `check.py` |
+| PII | dokument z trafieniem usuwany w całości (regex e-mail, telefon, IP) | maskowanie Presidio/NERGAL, `check.py` wymaga rekordu `presidio` |
+| Prawa | wyjątek TDM wystarcza do treningu | licencja per dokument; sam TDM nie wystarcza |
+| Ręczna próbka | 100 zachowanych + 100 odrzuconych przy KAŻDYM powodzie | ≥40 na warstwę + przedział Wilsona |
+| Dedup | historia 1.00–1.08, segmenty, walidacja, gold; MinHash ≥0,8, szkic 13-gramów ≥0,5 | Dynaword: identyczny klucz + containment ≥0,9; reszty nie wymaga |
+| Bramka języka | brak w notatce | wymagana, w `stats.json` |
+| Kontrola | niezależny agent na całym pliku o tym samym sha256 | `check.py` + lista recenzenta (ludzie) |
+
+## Historia odtworzeń DCLM-EN
+
+- 14.11.2026: wejścia w `/private/tmp` przepadły po restarcie; odbudowa z tego przepisu zgodna z
+  przebiegiem sprzed awarii (próbka, `idx_wal`, `idx_ivme` bajt w bajt, `ewal` po sumie i rewizjach).
+- 14.11.2026: przebieg 216/216 zakończony (`KONIEC 1570s`); kroki 8-12 nie uruchomione.
