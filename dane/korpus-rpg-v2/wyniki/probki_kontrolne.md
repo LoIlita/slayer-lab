@@ -1,0 +1,128 @@
+
+## JEZYK usunięte: 186
+- gutenberg 13124/cz37 {'en': 0.0006724949562878278, 'obcy': 0.06007621609504595, 'obcy_jezyk': 'pt', 'nielat': 0.0, 'slow': 8922}
+- gutenberg 70092/cz03 {'en': 0.019538937306719146, 'obcy': 0.17219567050885579, 'obcy_jezyk': 'la', 'nielat': 0.001149971250718732, 'slow': 7114}
+- gutenberg 41521/cz24 {'en': 0.01552967276760954, 'obcy': 0.07376594564614532, 'obcy_jezyk': 'pt', 'nielat': 0.0, 'slow': 3606}
+- gutenberg 73159/cz20 {'en': 0.0, 'obcy': 0.0707807386629266, 'obcy_jezyk': 'pt', 'nielat': 0.0, 'slow': 10695}
+- gutenberg 52998/cz02 {'en': 0.03998840915676616, 'obcy': 0.12199362503622138, 'obcy_jezyk': 'la', 'nielat': 0.0, 'slow': 3451}
+- gutenberg 1323/cz40 {'en': 0.016454997239094424, 'obcy': 0.33064605190502483, 'obcy_jezyk': 'es', 'nielat': 0.0, 'slow': 9055}
+- gutenberg 71625/cz06 {'en': 0.023643767240246947, 'obcy': 0.22238276632076712, 'obcy_jezyk': 'es', 'nielat': 0.00028364770954474543, 'slow': 7613}
+- gutenberg 46509/cz29 {'en': 0.0028416429863084474, 'obcy': 0.38672177731852236, 'obcy_jezyk': 'es', 'nielat': 0.0, 'slow': 3871}
+- gutenberg 39580/cz31 {'en': 0.029633350075339026, 'obcy': 0.1705173279758915, 'obcy_jezyk': 'la', 'nielat': 0.0, 'slow': 3982}
+- gutenberg 49087/cz13 {'en': 0.0, 'obcy': 0.0, 'obcy_jezyk': 'fr', 'nielat': 0.0, 'slow': 10}
+- gutenberg 31731/cz02 {'en': 0.013712897066481513, 'obcy': 0.25169241451136953, 'obcy_jezyk': 'de', 'nielat': 0.0, 'slow': 5761}
+- gutenberg 11665/cz21 {'en': 0.043700921816319564, 'obcy': 0.14544213041993856, 'obcy_jezyk': 'fr', 'nielat': 0.0, 'slow': 2929}
+- gutenberg 38876/cz20 {'en': 0.01462352209085252, 'obcy': 0.1568139390168015, 'obcy_jezyk': 'la', 'nielat': 0.0, 'slow': 3214}
+- gutenberg 39675/cz18 {'en': 0.005140859551717047, 'obcy': 0.00658030022619782, 'obcy_jezyk': 'fr', 'nielat': 0.0, 'slow': 4863}
+- gutenberg 67691/cz52 {'en': 0.007422751596754704, 'obcy': 0.01070257206973934, 'obcy_jezyk': 'la', 'nielat': 0.0, 'slow': 5793}
+- gutenberg 44028/cz48 {'en': 0.012554585152838428, 'obcy': 0.013782751091703056, 'obcy_jezyk': 'pt', 'nielat': 0.0, 'slow': 7328}
+- gutenberg 43792/cz22 {'en': 0.02831741850510372, 'obcy': 0.0724399078037537, 'obcy_jezyk': 'fr', 'nielat': 0.0, 'slow': 3037}
+- gutenberg 68744/cz26 {'en': 0.00622245268343272, 'obcy': 0.36582836401348195, 'obcy_jezyk': 'es', 'nielat': 5.584408331937231e-05, 'slow': 3857}
+- gutenberg 69814/cz03 {'en': 0.005702066999287242, 'obcy': 0.03492516037063435, 'obcy_jezyk': 'pt', 'nielat': 0.0, 'slow': 1403}
+- gutenberg 39451/cz29 {'en': 0.038387096774193545, 'obcy': 0.17451612903225808, 'obcy_jezyk': 'la', 'nielat': 0.0, 'slow': 3100}
+- gutenberg 41047/cz49 {'en': 0.004611482591653216, 'obcy': 0.2988240719391284, 'obcy_jezyk': 'fr', 'nielat': 0.0, 'slow': 8674}
+- gutenberg 43296/cz29 {'en': 0.0016623129897886488, 'obcy': 0.30681548325813346, 'obcy_jezyk': 'es', 'nielat': 0.0, 'slow': 4211}
+- gutenberg 57771/cz21 {'en': 0.03405088062622309, 'obcy': 0.15420743639921722, 'obcy_jezyk': 'pt', 'nielat': 0.0, 'slow': 2555}
+- gutenberg 37520/cz09 {'en': 0.0004245383145828911, 'obcy': 0.0004245383145828911, 'obcy_jezyk': 'pt', 'nielat': 0.0, 'slow': 4711}
+- gutenberg 44028/cz47 {'en': 0.008660892738174551, 'obcy': 0.02664890073284477, 'obcy_jezyk': 'pt', 'nielat': 0.0, 'slow': 7505}
+- gutenberg 12287/cz11 {'en': 0.028368794326241134, 'obcy': 0.03368794326241135, 'obcy_jezyk': 'pt', 'nielat': 0.0, 'slow': 564}
+- gutenberg 14478/cz10 {'en': 0.0015579790785666592, 'obcy': 0.05341642555085689, 'obcy_jezyk': 'pt', 'nielat': 0.0, 'slow': 4493}
+- gutenberg 39458/cz28 {'en': 0.028939918213274615, 'obcy': 0.19219880465555206, 'obcy_jezyk': 'la', 'nielat': 0.0, 'slow': 3179}
+- gutenberg 57580/cz18 {'en': 0.00574300071787509, 'obcy': 0.014357501794687724, 'obcy_jezyk': 'es', 'nielat': 0.0, 'slow': 1393}
+- gutenberg 48191/cz32 {'en': 0.012285641156897875, 'obcy': 0.19964166879959047, 'obcy_jezyk': 'fr', 'nielat': 0.0, 'slow': 3907}
+
+## JEZYK zostają: 891
+- gutenberg 48768/cz117 {'en': 0.07973194748358862, 'obcy': 0.0030087527352297594, 'obcy_jezyk': 'nl', 'nielat': 0.0, 'slow': 7312}
+- gutenberg 39502/cz34 {'en': 0.022503345091837976, 'obcy': 0.016421359931881766, 'obcy_jezyk': 'it', 'nielat': 0.0, 'slow': 8221}
+- gutenberg 43990/cz35 {'en': 0.049415451367964325, 'obcy': 0.0862962516572255, 'obcy_jezyk': 'es', 'nielat': 0.0, 'slow': 8297}
+- gutenberg 61769/cz21 {'en': 0.04300941993058999, 'obcy': 0.047967278135845316, 'obcy_jezyk': 'it', 'nielat': 0.0, 'slow': 8068}
+- gutenberg 38593/cz17 {'en': 0.0458984375, 'obcy': 0.085693359375, 'obcy_jezyk': 'la', 'nielat': 0.0, 'slow': 8192}
+- gutenberg 40634/cz18 {'en': 0.1357711003093239, 'obcy': 0.023530711444984535, 'obcy_jezyk': 'nl', 'nielat': 0.0, 'slow': 9052}
+- gutenberg 29294/cz20 {'en': 0.1284518828451883, 'obcy': 0.01882845188284519, 'obcy_jezyk': 'nl', 'nielat': 0.0, 'slow': 7170}
+- gutenberg 62909/cz15 {'en': 0.021739130434782608, 'obcy': 0.007246376811594203, 'obcy_jezyk': 'it', 'nielat': 0.0, 'slow': 138}
+- gutenberg 60359/cz11 {'en': 0.04728132387706856, 'obcy': 0.01182033096926714, 'obcy_jezyk': 'it', 'nielat': 0.0, 'slow': 423}
+- gutenberg 67788/cz06 {'en': 0.015961138098542677, 'obcy': 0.012491325468424705, 'obcy_jezyk': 'nl', 'nielat': 0.0, 'slow': 1441}
+- gutenberg 37404/cz29 {'en': 0.036019925916464426, 'obcy': 0.003193255843658194, 'obcy_jezyk': 'pt', 'nielat': 0.004065519679472072, 'slow': 7829}
+- gutenberg 65909/cz45 {'en': 0.04123112659698026, 'obcy': 0.06358885017421603, 'obcy_jezyk': 'pt', 'nielat': 0.008418925745074928, 'slow': 3444}
+- gutenberg 58529/cz98 {'en': 0.1359396959243644, 'obcy': 0.02951322345726332, 'obcy_jezyk': 'pt', 'nielat': 0.004625696214481261, 'slow': 7827}
+- gutenberg 58658/cz03 {'en': 0.06321215409658167, 'obcy': 0.11394465545306566, 'obcy_jezyk': 'es', 'nielat': 0.0, 'slow': 7372}
+- gutenberg 48768/cz96 {'en': 0.07382820358076846, 'obcy': 0.0018105009052504525, 'obcy_jezyk': 'pt', 'nielat': 0.0, 'slow': 4971}
+- gutenberg 69533/cz09 {'en': 0.03612167300380228, 'obcy': 0.022813688212927757, 'obcy_jezyk': 'fr', 'nielat': 0.0, 'slow': 526}
+- gutenberg 62798/cz13 {'en': 0.05384615384615385, 'obcy': 0.015384615384615385, 'obcy_jezyk': 'pt', 'nielat': 0.0, 'slow': 130}
+- gutenberg 44066/cz15 {'en': 0.06602373887240356, 'obcy': 0.016320474777448073, 'obcy_jezyk': 'pt', 'nielat': 0.0, 'slow': 1348}
+- gutenberg 43776/cz02 {'en': 0.06550665301944729, 'obcy': 0.016945297395655635, 'obcy_jezyk': 'nl', 'nielat': 0.0, 'slow': 8793}
+- gutenberg 48768/cz106 {'en': 0.05967194570135747, 'obcy': 0.0, 'obcy_jezyk': 'fr', 'nielat': 0.0, 'slow': 7072}
+- gutenberg 39280/cz18 {'en': 0.05718270571827057, 'obcy': 0.013389121338912133, 'obcy_jezyk': 'pt', 'nielat': 0.0, 'slow': 3585}
+- gutenberg 48768/cz04 {'en': 0.07520325203252033, 'obcy': 0.0032520325203252032, 'obcy_jezyk': 'nl', 'nielat': 0.0, 'slow': 7380}
+- gutenberg 50336/cz13 {'en': 0.08620498614958448, 'obcy': 0.020498614958448753, 'obcy_jezyk': 'nl', 'nielat': 0.0049607752653437935, 'slow': 9025}
+- gutenberg 57119/cz16 {'en': 0.053974706413730804, 'obcy': 0.03297199638663053, 'obcy_jezyk': 'la', 'nielat': 0.0, 'slow': 4428}
+- gutenberg 20467/cz09 {'en': 0.0072992700729927005, 'obcy': 0.0036496350364963502, 'obcy_jezyk': 'fr', 'nielat': 0.0, 'slow': 274}
+- gutenberg 26151/cz15 {'en': 0.06917363045496751, 'obcy': 0.017177344475394613, 'obcy_jezyk': 'fr', 'nielat': 0.0, 'slow': 2154}
+- gutenberg 46692/cz06 {'en': 0.09738351755981531, 'obcy': 0.02042815167203022, 'obcy_jezyk': 'nl', 'nielat': 0.0, 'slow': 7147}
+- gutenberg 43097/cz24 {'en': 0.043008641005498824, 'obcy': 0.060487038491751764, 'obcy_jezyk': 'pt', 'nielat': 0.0, 'slow': 10184}
+- gutenberg 47746/cz52 {'en': 0.034547976295549114, 'obcy': 0.009204387845164544, 'obcy_jezyk': 'pt', 'nielat': 0.0, 'slow': 7931}
+- gutenberg 48768/cz76 {'en': 0.07144801306477953, 'obcy': 0.0029940119760479044, 'obcy_jezyk': 'pt', 'nielat': 0.0, 'slow': 7348}
+
+## MOJIBAKE usunięte: 45
+- gutenberg 52704/cz05 3
+- gutenberg 11584/cz06 14
+- gutenberg 16761/cz05 3
+- gutenberg 61572/cz11 3
+- gutenberg 11584/cz03 7
+- gutenberg 11584/cz14 7
+- gutenberg 16350/cz16 5
+- gutenberg 41893/cz17 3
+- gutenberg 11584/cz01 8
+- gutenberg 41893/cz12 6
+- gutenberg 11584/cz13 8
+- gutenberg 49538/cz08 5
+- gutenberg 46479/cz02 4
+- gutenberg 11584/cz08 11
+- gutenberg 61572/cz16 3
+- gutenberg 48342/cz06 10
+- gutenberg 44202/cz27 3
+- gutenberg 46479/cz06 3
+- gutenberg 46479/cz09 7
+- gutenberg 41893/cz03 8
+- gutenberg 11584/cz15 9
+- gutenberg 41893/cz11 3
+- gutenberg 46479/cz13 4
+- gutenberg 16350/cz09 5
+- gutenberg 41893/cz06 3
+- gutenberg 15700/cz01 5
+- gutenberg 41893/cz15 12
+- gutenberg 11584/cz12 11
+- gutenberg 48342/cz08 5
+- gutenberg 46479/cz12 5
+
+## MOJIBAKE zostają: 1168
+- gutenberg 38890/cz01 0
+- gutenberg 64535/cz07 0
+- gutenberg 24686/cz02 0
+- gutenberg 58529/cz84 0
+- gutenberg 54652/cz25 0
+- gutenberg 70427/cz387 0
+- gutenberg 18774/cz01 0
+- gutenberg 36209/cz06 0
+- gutenberg 6145/cz09 0
+- gutenberg 38843/cz10 0
+- gutenberg 48967/cz16 0
+- gutenberg 69891/cz01 0
+- gutenberg 54652/cz01 0
+- gutenberg 69533/cz01 0
+- gutenberg 72471/cz05 0
+- gutenberg 43682/cz06 0
+- gutenberg 38687/cz15 0
+- gutenberg 57606/cz12 0
+- gutenberg 39097/cz10 0
+- gutenberg 49372/cz20 0
+- gutenberg 72386/cz11 0
+- gutenberg 42992/cz15 0
+- gutenberg 58529/cz25 0
+- gutenberg 57489/cz05 0
+- gutenberg 7075/cz01 0
+- gutenberg 72128/cz29 0
+- gutenberg 34653/cz11 0
+- gutenberg 30098/cz05 0
+- gutenberg 17322/cz03 0
+- gutenberg 43681/cz01 0

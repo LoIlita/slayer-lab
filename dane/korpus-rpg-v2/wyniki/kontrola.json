@@ -1,0 +1,35 @@
+{
+ "duplikaty": {
+  "typy_wstawione_wykryte": {
+   "dokladny_po_normalizacji": [
+    40,
+    40
+   ],
+   "bliski_3pc_slow": [
+    40,
+    40
+   ],
+   "zawarty_w_wiekszym": [
+    20,
+    20
+   ]
+  },
+  "detektor": {
+   "exact": 39,
+   "minhash": 26,
+   "szkic13": 35
+  },
+  "falszywe_pary_z_tlem_jaccard_0_8": 0
+ },
+ "ewaluacja_wstawione": {
+  "wstawione": 100,
+  "wykryte_13gram": 100
+ },
+ "wiersze_bazy": {
+  "baza": "technika_i_nauka",
+  "wstawione": 100,
+  "wykryte_minhash": 100,
+  "wykryte_szkic13": 100
+ },
+ "seed": 20261111
+}

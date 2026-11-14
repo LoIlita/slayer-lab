@@ -1,0 +1,59 @@
+{
+ "zapisano": "2026-11-10, przed pierwszym liczeniem na korpusie; progi nie były liczone ani strojone na danych",
+ "zasada": "po ostatniej zmianie tekstu tylko usuwanie całych wierszy; tekst wejściowy niezmieniany (PII: wiersz, nie maskowanie), więc sekwencja usunięć jest przemienna",
+ "wejscie_sha256": "968a249fa69c6c5cb35b05ae6bede50c36963a80d60d5513f8a724760e018933",
+ "znak_pg": {
+  "regex": "(?i)project\\s+gutenberg|gutenberg[\\s-]*tm\\b|gutenberg\\.(org|net)|gutenberg[\\s-]+e-?books?\\b|gutenberg\\s+literary\\s+archive",
+  "regula": "każde dopasowanie w tekście wiersza (cały tekst, nie okno) = wiersz usunięty; metadane provenance/atrybucji nie liczą się jako tekst wiersza"
+ },
+ "jezyk": {
+  "dotyczy": "tylko wiersze z etykietą 'inny' funkcji jezyk() z rdzenia (udział EN < 0,08 w pierwszych 20 000 znaków; manifest: 1077)",
+  "metryka": "udział na CAŁYM tekście: en = 18 słów funkcyjnych EN z rdzenia; obcy = max po językach fr, de, es, it, la, pt, nl (po 20 słów funkcyjnych każdy); litery_niełacińskie = udział liter spoza Latin",
+  "regula": "wiersz jest w języku innym niż angielski, gdy: (en < 0,05 ORAZ obcy >= en + 0,05) ALBO (en < 0,03 ORAZ obcy >= en) ALBO litery_niełacińskie >= 0,30; wyjątek bez usuwania: en >= 0,05 przy wszystkich innych warunkach",
+  "uzasadnienie": "wiersze angielskie o niskim udziale słów funkcyjnych (poezja, Szkoci, dialekt, archaizm, listy imion) mają en < 0,08, ale nie mają przewagi obcych słów funkcyjnych; język obcy ma obcy >> en",
+  "kontrola_po": "próba 30 usuniętych i 30 zostawionych tylko do raportu; progu po niej nie zmieniam, ewentualną pomyłkę zgłaszam"
+ },
+ "mojibake": {
+  "dotyczy": "wiersze z trafieniem regexu MOJIBAKE rdzenia (manifest: 1213); ten regex łapie też legalne znaki, np. Â przed literą ASCII",
+  "metryka_scisla": "liczba dopasowań: Ã[\\x80-\\xbf]|â€|Â[\\x80-\\xbf]|ï»¿|\\ufffd|Ä[\\x80-\\xbf]|Å[\\x80-\\xbf]|Ã[¡-¿] ; oraz U+FFFD osobno",
+  "regula": "wiersz jest zepsuty, gdy scisle >= 3; wiersze ze scisle 0-2 zostają i są wyliczone w manifeście",
+  "uzasadnienie": "progi z poprzedniej budowy (prywatne_lub_fffd >= 3, przekodowane_slowa >= 3) mają tę samą skalę; pojedynczy znak w 30-50 tys. znaków to nie uszkodzone dzieło"
+ },
+ "pii": {
+  "okna": "pierwsze 2000 i ostatnie 1000 znaków wierszy Gutenberga; cały tekst SCP i RPG",
+  "klasy_kandydatow": {
+   "email": "adres e-mail regexem w oknach",
+   "telefon": "numer telefonu regexem w oknach (kształty +NN, (NNN) NNN-NNNN, NNN-NNN-NNNN); tylko z dopasowaniem do ramki z PERSON w oknie",
+   "adres": "FAC + RX_HOUSE/RX_ZIP (wzór pass3_ner)",
+   "osoba_data": "PERSON + kontekst urodzenia i rok >= 1920 (wzór pass3_ner: RX_BIRTH + rok)"
+  },
+  "regula": "kandydaci przeglądani ręcznie (czytam kontekst): usuwam wiersz, gdy to dane współczesnej osoby prywatnej. Autorzy i postacie historyczne, osoby z życiorysów publicznych, postacie fikcyjne, redaktorzy nazwiskiem bez danych kontaktowych zostają. E-maile w SCP i RPG w domenach fikcyjnych zostają.",
+  "status_bez_modelu": "odmowa hooka lub brak modelu spaCy = BLOCKED, bez omijania"
+ },
+ "katalog_i_listy": {
+  "dotyczy": "wiersze Gutenberga; zlecenie uzupełniające: katalogi wydawców, reklamy książek, spisy treści, indeksy i tabele w całych częściach",
+  "metryka": "okna 1000 znaków krok 500. Wynik okna: ceny (Ns. Nd., $N.NN, £N, cents, Price) + formaty (8vo, 12mo, crown 8vo, octavo) + 0,5 znaczników słabych (cloth, New Edition, Now ready, By the same author, post free, publisher, sold by) + linie ditto (----). Okno katalogowe: wynik >= 4 ORAZ format + słabe >= 2 (same kwoty pieniędzy nie wystarczą). kat2_frac = udział okien katalogowych. idx_frac = udział okien z >= 5 ciągami numerów stron. lnum_zn = udział znaków w liniach krótszych niż 90 znaków kończących się numerem. tab_frac = udział okien, w których liczby stanowią >= 35% słów.",
+  "progi": {"katalog": "kat2_frac >= 0,20", "indeks": "idx_frac >= 0,70", "spis": "lnum_zn >= 0,40 ORAZ linii >= 10", "tabela": "tab_frac >= 0,50"},
+  "ustalone_na": "próbka 42 000 wierszy (co 8. grupa wierszy plus grupa z 51718/cz10), ręczny przegląd 100 najgorszych wg kat_k4 oraz po 30 najgorszych wg idx_frac, lnum_udz, tab_frac, wiersze graniczne kat2 0,20-0,35, 25 z powodu spisu; zmiany po przeglądzie: dodano wymóg dowodu formatu (kwoty w prozie ekonomicznej dawały fałszywe trafienia), idx_frac podniesiony z 0,5 do 0,7 (mieszane rozdziały z przypisami), miara spisu zmieniona na pokrycie znakowe (udział linii zawyżał proza z indeksem na końcu)",
+  "test_negatywny_na_probce": "300 losowych wierszy fikcji z próbki: 0 oznaczonych; pozytyw 51718/cz10: kat2_frac 1,0",
+  "regula": "wiersz spełniający choć jeden próg jest usuwany w całości, przed dedupem wobec baz; progu po pełnym przebiegu nie zmieniam"
+ },
+ "zmiana_po_pierwszej_budowie": {
+  "status": "NIE jest preregistracją: decyzja koordynatora po pierwszej budowie i po obejrzeniu liczb",
+  "mojibake_resztki": "usuwany każdy wiersz z trafieniem regexu MOJIBAKE rdzenia, także ze ścisłą liczbą 0-2 (cała klasa); kontrola końcowa: 0 wierszy z trafieniem",
+  "jezyk_resztki": "usuwany każdy wiersz z etykietą 'inny', któremu reguła 'jezyk' nie zabrała, gdy obcy > en",
+  "tokenizer": "n_tokens i paczka treningowa liczone tokenizerem v6 z karty slayer-1.07-pretrain (32 768, sha256 0640d3bd...), po jednym EOT na dokument"
+ },
+ "dekontaminacja": {
+  "n": 13,
+  "normalizacja": "norm_slowa z rdzenia (NFKC, lower, n't sklejone, słowa \\w+); hasz wielomianowy z rdzenia",
+  "regula": "każde trafienie 13-gramem usuwa wiersz; teksty pytań, odpowiedzi, kontekstów; napisy krótsze niż 13 słów tylko policzone (dokładne dopasowanie ciągu słów w całym tekście wiersza), bez usuwania",
+  "splity": "wszystkie splity nietreningowe; w BLiMP i IFEval split treningowy, bo to on jest splitem benchmarku"
+ },
+ "dedup_bazy": {
+  "bazy": {"slayer_107_en": "SlayerLab/slayer-1.07-pretrain: en_mix + en_fineweb_edu, zdekodowane tokenizerem z karty (sha 0640d3bd)", "technika_i_nauka": "SlayerLab/technika-i-nauka: train + validation + test"},
+  "czesci_polskie_107": "NOT RUN (pl_web, pl_replay_*: polskie teksty wobec angielskiego korpusu, koszt ok. 11,6 GB pobrania bez realnej szansy trafienia; ograniczenie zapisane w manifeście)",
+  "metoda": "manifest.json poprzedniej budowy → dedup_bazy: MinHash (5-gramy, 128 funkcji, LSH 32x4, szacowany Jaccard >= 0,8) oraz szkic 13-gramów (hash%16==0, udział >= 0,5, min. 4 próbki); wiersz usuwany przy którymkolwiek"
+ },
+ "podzial": "int(sha1(work_family), 16) % 200 == 0 -> validation; po rodzinie, nigdy po oknie; wspólne dla obu configów"
+}

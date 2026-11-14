@@ -1,0 +1,19 @@
+{
+ "lokalny_do_licznikow": {
+  "sha256": "29ed85a6817d61c6b1c4275bc18554d977a94142723c7dfb0a070f6574e64a24",
+  "rozmiar_slownika": 16384,
+  "plik": "slayer-lab/tokenizer/tokenizer.json"
+ },
+ "karta_107_v6": {
+  "sha256": "0640d3bd3674d7a6e59c540d945a2ad275a12e1bcaeb6007c37a90751f9815dd",
+  "rozmiar_slownika": 32768,
+  "zrodlo": "SlayerLab/slayer-1.07-pretrain (tokenizer.json)"
+ },
+ "zgodne": false,
+ "proba_300_wierszy": {
+  "tokeny_lokalny_+1eot": 3512009,
+  "tokeny_v6_+1eot": 2575026,
+  "stosunek_v6_do_lokalny": 0.7332,
+  "licznik_n_tokens_wejscia": 3512009
+ }
+}

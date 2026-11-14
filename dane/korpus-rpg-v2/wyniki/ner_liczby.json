@@ -1,0 +1,198 @@
+{
+ "sumy": {
+  "okna": 613109,
+  "znaki": 992227753,
+  "person": 3039593,
+  "grupy": 156,
+  "email": 1613,
+  "telefon": 40,
+  "adres": 1347,
+  "osoba_data": 326
+ },
+ "per_zrodlo_dopasowan": {
+  "email": {
+   "scp": 1074,
+   "gutenberg": 539
+  },
+  "telefon": {
+   "scp": 19,
+   "gutenberg": 21
+  },
+  "adres": {
+   "gutenberg": 1319,
+   "scp": 28
+  },
+  "osoba_data": {
+   "scp": 228,
+   "gutenberg": 98
+  }
+ },
+ "wierszy_z_kandydatem": {
+  "email": 671,
+  "telefon": 23,
+  "adres": 1021,
+  "osoba_data": 170
+ },
+ "email_domeny": [
+  [
+   "pglaf.org",
+   375
+  ],
+  [
+   "scp.int",
+   152
+  ],
+  [
+   "scip.net",
+   104
+  ],
+  [
+   "foundation.scp",
+   87
+  ],
+  [
+   "coventry.ac.uk",
+   87
+  ],
+  [
+   "eur.scp",
+   33
+  ],
+  [
+   "ethicscommittee.scp",
+   31
+  ],
+  [
+   "found.scp",
+   29
+  ],
+  [
+   "gmail.com",
+   28
+  ],
+  [
+   "220.scp.int",
+   28
+  ],
+  [
+   "aol.com",
+   26
+  ],
+  [
+   "torchmail.drk",
+   25
+  ],
+  [
+   "engineers.scp",
+   25
+  ],
+  [
+   "secure.scipnet",
+   24
+  ],
+  [
+   "scp.foundation",
+   23
+  ],
+  [
+   "scp112.iu",
+   23
+  ],
+  [
+   "yahoo.com",
+   22
+  ],
+  [
+   "scp.net",
+   22
+  ],
+  [
+   "hotmail.com",
+   15
+  ],
+  [
+   "adms03.scp.org",
+   15
+  ],
+  [
+   "precog-div.scip.net",
+   14
+  ],
+  [
+   "42.scp",
+   14
+  ],
+  [
+   "mtf.mu4.scp",
+   13
+  ],
+  [
+   "att.net",
+   13
+  ],
+  [
+   "prometheus.org",
+   12
+  ],
+  [
+   "scipnet.net",
+   12
+  ],
+  [
+   "raisa.net",
+   12
+  ],
+  [
+   "foundation.net",
+   11
+  ],
+  [
+   "dadolaundryandtan.net",
+   9
+  ],
+  [
+   "scpfn.int",
+   9
+  ],
+  [
+   "clog.foundation.internal",
+   9
+  ],
+  [
+   "analytics.scp",
+   8
+  ],
+  [
+   "scip.wls",
+   8
+  ],
+  [
+   "e107.scp",
+   8
+  ],
+  [
+   "a25.scp",
+   8
+  ],
+  [
+   "raisa.foundation.internal",
+   7
+  ],
+  [
+   "pobox.com",
+   6
+  ],
+  [
+   "scipnet.int",
+   6
+  ],
+  [
+   "scp.site171.net",
+   6
+  ],
+  [
+   "dadomail.com",
+   6
+  ]
+ ]
+}

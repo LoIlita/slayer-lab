@@ -1,0 +1,42 @@
+{
+ "splity": {
+  "default/train": {
+   "wiersze": 295448,
+   "tokeny": 2590851518,
+   "sa": 0,
+   "pg": 0,
+   "mojibake": 0,
+   "rodziny": 23912
+  },
+  "cc-by-sa/train": {
+   "wiersze": 6897,
+   "tokeny": 21517316,
+   "sa": 6897,
+   "pg": 0,
+   "mojibake": 0,
+   "rodziny": 6897
+  },
+  "default/validation": {
+   "wiersze": 1392,
+   "tokeny": 12091869,
+   "sa": 0,
+   "pg": 0,
+   "mojibake": 0,
+   "rodziny": 117
+  },
+  "cc-by-sa/validation": {
+   "wiersze": 43,
+   "tokeny": 117978,
+   "sa": 43,
+   "pg": 0,
+   "mojibake": 0,
+   "rodziny": 43
+  }
+ },
+ "razem_wierszy": 303780,
+ "razem_tokeny": 2624578681,
+ "wejscie": 310474,
+ "usuniete": 6694,
+ "bledy": [],
+ "status": "PASS"
+}

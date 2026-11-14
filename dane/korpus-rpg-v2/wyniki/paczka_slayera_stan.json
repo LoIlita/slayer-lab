@@ -1,0 +1,18 @@
+{
+ "status": "PASS",
+ "bledy": [],
+ "dokumentow": 295448,
+ "tokenow_z_eot": 2590851518,
+ "zer_w_bin": 295448,
+ "max_id": 32766,
+ "rozmiar_slownika": 32768,
+ "tokenizer_sha256": "0640d3bd3674d7a6e59c540d945a2ad275a12e1bcaeb6007c37a90751f9815dd",
+ "train_bin_sha256": "a2bdabd711a31962ec6544e5c97c46c31440ba4c255a1bfc9e16523c89413287",
+ "format": "train.bin uint16 LE, docs.idx uint64 LE (końcowe offsety), EOT=0 po każdym dokumencie",
+ "pliki": [
+  "paczka-slayera/train.bin",
+  "paczka-slayera/docs.idx",
+  "paczka-slayera/tokenizer.json",
+  "paczka-slayera/train.meta.json"
+ ]
+}

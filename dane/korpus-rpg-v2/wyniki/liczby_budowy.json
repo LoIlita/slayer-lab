@@ -1,0 +1,39 @@
+{
+ "default/train": {
+  "pliki": [
+   "data/default/train-00000-of-00008.parquet",
+   "data/default/train-00001-of-00008.parquet",
+   "data/default/train-00002-of-00008.parquet",
+   "data/default/train-00003-of-00008.parquet",
+   "data/default/train-00004-of-00008.parquet",
+   "data/default/train-00005-of-00008.parquet",
+   "data/default/train-00006-of-00008.parquet",
+   "data/default/train-00007-of-00008.parquet"
+  ],
+  "wierszy": 295448,
+  "tokeny": 2590851518
+ },
+ "default/validation": {
+  "pliki": [
+   "data/default/validation-00000-of-00001.parquet"
+  ],
+  "wierszy": 1392,
+  "tokeny": 12091869
+ },
+ "cc-by-sa/train": {
+  "pliki": [
+   "data/cc-by-sa/train-00000-of-00001.parquet"
+  ],
+  "wierszy": 6897,
+  "tokeny": 21517316
+ },
+ "cc-by-sa/validation": {
+  "pliki": [
+   "data/cc-by-sa/validation-00000-of-00001.parquet"
+  ],
+  "wierszy": 43,
+  "tokeny": 117978
+ },
+ "wejscie_wierszy": 310474,
+ "usunieto_wierszy": 6694
+}
