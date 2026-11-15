@@ -106,6 +106,10 @@ agreguj)  # kaskada powodów, uzysk v6, szacunek shardów, ręczna próbka 100/1
   cp "$R/wyniki/agreguj.json" "$D/wyniki/agreguj.json"
   cp "$R/wyniki/fwe/fwe_url.json" "$D/wyniki/fwe_url.json"
   ;;
+probka_przegladu)  # aneks 15.11.2026: 100 odrzuconych na powód + 100 zachowanych, pary dedupów (plik ma PII: zostaje w robocze/)
+  $NICE $PY -I -W ignore "$S/probka_przegladu.py" "$R/wyniki/przebieg" "$R/wyniki/powody.npz" "$R/pobrania" \
+    "$R/pobrania/tokenizer_v6/tokenizer.json" "$R/probka_przegladu_2.jsonl"
+  ;;
 *)
   sed -n 2,6p "$0"; exit 2
   ;;

@@ -24,57 +24,57 @@
   },
   {
    "powod": "ewal_13gram",
-   "odrzucone_dok": 2611,
-   "odrzucone_tok": 13902493,
-   "zostaje_dok": 1041510,
-   "zostaje_tok": 1440666353,
-   "zostaje_dok_proc": 99.075,
-   "zostaje_tok_proc": 97.958
+   "odrzucone_dok": 1224,
+   "odrzucone_tok": 6620968,
+   "zostaje_dok": 1042897,
+   "zostaje_tok": 1447947878,
+   "zostaje_dok_proc": 99.207,
+   "zostaje_tok_proc": 98.453
   },
   {
    "powod": "pii",
-   "odrzucone_dok": 29333,
-   "odrzucone_tok": 65307146,
-   "zostaje_dok": 1012177,
-   "zostaje_tok": 1375359207,
-   "zostaje_dok_proc": 96.285,
-   "zostaje_tok_proc": 93.517
+   "odrzucone_dok": 29391,
+   "odrzucone_tok": 66035614,
+   "zostaje_dok": 1013506,
+   "zostaje_tok": 1381912264,
+   "zostaje_dok_proc": 96.411,
+   "zostaje_tok_proc": 93.963
   },
   {
    "powod": "mojibake",
-   "odrzucone_dok": 2279,
-   "odrzucone_tok": 7297283,
-   "zostaje_dok": 1009898,
-   "zostaje_tok": 1368061924,
-   "zostaje_dok_proc": 96.068,
-   "zostaje_tok_proc": 93.021
+   "odrzucone_dok": 2292,
+   "odrzucone_tok": 7382623,
+   "zostaje_dok": 1011214,
+   "zostaje_tok": 1374529641,
+   "zostaje_dok_proc": 96.193,
+   "zostaje_tok_proc": 93.461
   },
   {
    "powod": "dedup_wewnatrz",
-   "odrzucone_dok": 3679,
-   "odrzucone_tok": 4675788,
-   "zostaje_dok": 1006219,
-   "zostaje_tok": 1363386136,
-   "zostaje_dok_proc": 95.718,
-   "zostaje_tok_proc": 92.703
+   "odrzucone_dok": 3682,
+   "odrzucone_tok": 4684672,
+   "zostaje_dok": 1007532,
+   "zostaje_tok": 1369844969,
+   "zostaje_dok_proc": 95.843,
+   "zostaje_tok_proc": 93.142
   },
   {
    "powod": "dedup_slayer107",
-   "odrzucone_dok": 11741,
-   "odrzucone_tok": 14938996,
-   "zostaje_dok": 994478,
-   "zostaje_tok": 1348447140,
-   "zostaje_dok_proc": 94.601,
-   "zostaje_tok_proc": 91.687
+   "odrzucone_dok": 11759,
+   "odrzucone_tok": 15032226,
+   "zostaje_dok": 995773,
+   "zostaje_tok": 1354812743,
+   "zostaje_dok_proc": 94.724,
+   "zostaje_tok_proc": 92.12
   },
   {
    "powod": "dedup_ivme",
    "odrzucone_dok": 1895,
    "odrzucone_tok": 2545498,
-   "zostaje_dok": 992583,
-   "zostaje_tok": 1345901642,
-   "zostaje_dok_proc": 94.421,
-   "zostaje_tok_proc": 91.514
+   "zostaje_dok": 993878,
+   "zostaje_tok": 1352267245,
+   "zostaje_dok_proc": 94.544,
+   "zostaje_tok_proc": 91.947
   }
  ],
  "niezaleznie": {
@@ -91,10 +91,10 @@
    "tok_proc": 1.081
   },
   "ewal_13gram": {
-   "dok": 2821,
-   "tok": 15098522,
-   "dok_proc": 0.268,
-   "tok_proc": 1.027
+   "dok": 1344,
+   "tok": 7071298,
+   "dok_proc": 0.128,
+   "tok_proc": 0.481
   },
   "pii": {
    "dok": 29482,
@@ -129,10 +129,16 @@
  },
  "niedostepne": [],
  "uzysk": {
-  "dok": 992583,
-  "tok": 1345901642,
-  "dok_proc": 94.421,
-  "tok_proc": 91.514
+  "dok": 993878,
+  "tok": 1352267245,
+  "dok_proc": 94.544,
+  "tok_proc": 91.947
+ },
+ "ewal_13gram_aneks": {
+  "przed_wykluczeniem_dok": 2821,
+  "przed_wykluczeniem_tok": 15098522,
+  "po_wykluczeniu_dok": 1344,
+  "po_wykluczeniu_tok": 7071298
  },
  "indeksy_dodatkowe": {
   "walidacja": {
@@ -232,7 +238,7 @@
  "fineweb_edu_url": {
   "trafienia_dok": 7826,
   "trafienia_proc": 0.7445,
-  "trafienia_wsrod_zachowanych": 6636,
+  "trafienia_wsrod_zachowanych": 6648,
   "udzial_probki_fwe": 0.003166684362001934,
   "ekstrapolacja_liniowa_gorna_proc": 100.0,
   "url_unikalne_w_probce_dclm": 1049093
@@ -259,16 +265,16 @@
   "prog_ge_2": {
    "dok_proc": 46.77,
    "tok_proc": 49.52,
-   "tok_proc_wsrod_zachowanych": 48.46
+   "tok_proc_wsrod_zachowanych": 48.67
   },
   "prog_ge_3": {
    "dok_proc": 14.91,
    "tok_proc": 15.79,
-   "tok_proc_wsrod_zachowanych": 14.69
+   "tok_proc_wsrod_zachowanych": 14.62
   },
   "int_score_zachowane_vs_odrzucone": {
-   "zachowane_srednia": 1.5669342279434204,
-   "odrzucone_srednia": 1.904451847076416
+   "zachowane_srednia": 1.567531704902649,
+   "odrzucone_srednia": 1.904361605644226
   }
  },
  "per_plik": [
@@ -276,69 +282,69 @@
    "plik": "global-shard_01_of_10/local-shard_0_of_10/shard_00000036_processed.parquet",
    "dok": 94801,
    "tok": 123296348,
-   "tok_zostaje": 114674749
+   "tok_zostaje": 114996086
   },
   {
    "plik": "global-shard_01_of_10/local-shard_8_of_10/shard_00000139_processed.parquet",
    "dok": 105226,
    "tok": 150693102,
-   "tok_zostaje": 134697444
+   "tok_zostaje": 135532994
   },
   {
    "plik": "global-shard_01_of_10/local-shard_8_of_10/shard_00000184_processed.parquet",
    "dok": 130121,
    "tok": 197888760,
-   "tok_zostaje": 178866810
+   "tok_zostaje": 179846894
   },
   {
    "plik": "global-shard_02_of_10/local-shard_6_of_10/shard_00000117_processed.parquet",
    "dok": 91563,
    "tok": 121621090,
-   "tok_zostaje": 114185967
+   "tok_zostaje": 114723579
   },
   {
    "plik": "global-shard_03_of_10/local-shard_2_of_10/shard_00000219_processed.parquet",
    "dok": 84526,
    "tok": 112991600,
-   "tok_zostaje": 105952195
+   "tok_zostaje": 106358817
   },
   {
    "plik": "global-shard_03_of_10/local-shard_9_of_10/shard_00000262_processed.parquet",
    "dok": 99486,
    "tok": 133529065,
-   "tok_zostaje": 123410825
+   "tok_zostaje": 123906125
   },
   {
    "plik": "global-shard_04_of_10/local-shard_6_of_10/shard_00000194_processed.parquet",
    "dok": 135385,
    "tok": 205005829,
-   "tok_zostaje": 183673303
+   "tok_zostaje": 184870547
   },
   {
    "plik": "global-shard_08_of_10/local-shard_3_of_10/shard_00000257_processed.parquet",
    "dok": 101139,
    "tok": 131482641,
-   "tok_zostaje": 122301820
+   "tok_zostaje": 122810572
   },
   {
    "plik": "global-shard_09_of_10/local-shard_9_of_10/shard_00000057_processed.parquet",
    "dok": 106637,
    "tok": 159425767,
-   "tok_zostaje": 141748820
+   "tok_zostaje": 142381480
   },
   {
    "plik": "global-shard_10_of_10/local-shard_6_of_10/shard_00000069_processed.parquet",
    "dok": 102351,
    "tok": 134770293,
-   "tok_zostaje": 126389709
+   "tok_zostaje": 126840151
   }
  ],
  "szacunek_shardow_5mld": {
-  "tok_zostaje_na_shard_srednia": 134590164.2,
-  "se": 8430862.97089163,
-  "shardy": 38,
+  "tok_zostaje_na_shard_srednia": 135226724.5,
+  "se": 8513008.470599968,
+  "shardy": 37,
   "shardy_przedzial": [
-   34,
+   33,
    43
   ],
   "uwaga": "dolna granica: dedup między shardami i wobec baz rośnie z liczbą shardów"
