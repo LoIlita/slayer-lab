@@ -239,6 +239,41 @@ powód ma <100) plus 100 zachowanych wspólnych dla wszystkich powodów; dedupy 
 | `agreguj` (kod 0, 30 s) | kaskada `ewal_13gram` 2611 → 1224 dok.; **zostaje 993 878 dok. (94,544%), 1 352 267 245 tokenów v6 (91,947%)**, czyli +1295 dok. i **+6 365 603 tokeny v6** wobec 992 583 / 1 345 901 642; szacunek do 5 mld v6: 37 shardów (33-43) ([`wyniki/agreguj.json`](wyniki/agreguj.json), pole `ewal_13gram_aneks`) |
 | `probka_przegladu` (kod 0, ok. 3 min, szczyt RSS ok. 11 GB) | 900 dokumentów w `robocze/probka_przegladu_2.jsonl`: po 100 na każdy z 8 powodów (każdy ma ≥100 w całej próbce: walidacja 376, domena 6746, ewal 1344, pii 29 482, mojibake 2424, dedup_wewnatrz 3819, dedup_slayer107 12 931, dedup_ivme 3509) + 100 zachowanych; pary znalezione 400/400 ([`skrypty/probka_przegladu.py`](skrypty/probka_przegladu.py): walidacja z tekstów indeksu, 1.07 i Ivme skanem okien 12 tokenów) |
 
+### Drugi przegląd, 15.11.2026: wynik
+
+Recenzenci: trzech niezależnych agentów (nie budowali zbioru), każdy na 300 dokumentach z `robocze/probka_przegladu_2.jsonl`
+według jednej instrukcji (`robocze/instrukcja_przegladu_2.md`). Progi aneksu czytali dopiero po policzeniu stóp. Ocena
+per dokument: `robocze/przeglad_probki_2_{a,b,c}.json` (bez wartości PII). Przedziały: Wilson 95%.
+
+| Powód | n | Fałszywe odrzucenia | Stopa [Wilson 95%] | Wątpliwe | Dobry tekst usunięty | Werdykt |
+|---|---|---|---|---|---|---|
+| `walidacja_fabryki` | 100 | 3 | 3,0% [1,0; 8,5] | 22 (strony z szablonu z innymi danymi; z nimi 25,0% [17,6; 34,3]) | 34 | PASS |
+| `domena_testow` | 100 | 0 | 0,0% [0,0; 3,7] | 0 | 97 | PASS |
+| `ewal_13gram` | 100 | **51** | **51,0% [41,4; 60,6]** | 15 | 87 (45 dobrych z nietrafnym powodem) | **FAIL** |
+| `pii` | 100 | 4 | 4,0% [1,6; 9,8] | 3 | 85 (kontakt: osoba 42, firma/instytucja 50, inne 8) | PASS |
+| `mojibake` | 100 | 0 | 0,0% [0,0; 3,7] | 1 | 49 | PASS |
+| `dedup_wewnatrz` | 100 | 0 | 0,0% [0,0; 3,7] | 0 | 74 | PASS |
+| `dedup_slayer107` | 100 | 4 | 4,0% [1,6; 9,8] | 9 (z nimi 13,0% [7,8; 21,0]) | 73 | PASS |
+| `dedup_ivme` | 100 | 4 | 4,0% [1,6; 9,8] | 12 (z nimi 16,0% [10,1; 24,4]) | 46 | PASS |
+
+| Zachowane (100) | Wynik | Stopa [Wilson 95%] | Próg | Werdykt |
+|---|---|---|---|---|
+| przeoczenia PII | 0 | 0,0% [0,0; 3,7] | ≤1% | PASS |
+| przeoczenia `mojibake` | 1 | 1,0% [0,2; 5,5] | ≤10% | PASS |
+| przeoczenia `domena_testow` | 0 | 0,0% [0,0; 3,7] | ≤10% | PASS |
+| śmieci (ocena „nie”) | 5 | 5,0% [2,2; 11,2]; z 14 wątpliwymi 19,0% [12,5; 27,8] | ≤10% | PASS |
+
+**Werdykt wobec aneksu: NIE PRZESZŁO** — `ewal_13gram` ma 51% fałszywych odrzuceń przy progu 10%. Po wykluczeniu
+n-gramów z df ≥ 5 filtr nadal odrzuca na cytatach i formułkach z df 1-4: Patrick Henry, Churchill, M. L. King,
+„Wielki Gatsby”, Manifest komunistyczny, preambuła i klauzule Konstytucji USA, art. 5 NATO, tytuły („Harry Potter
+and the…”), frazy typu „leading cause of death for both men and women”. Trafień prawdziwych ok. 34 na 100 (wklejona
+Wikipedia/OpenStax, artykuły CNN z ReCoRD, RACE, wikiHow pod HellaSwag, quiz TriviaQA). Progu df nie zmieniam po
+tym wyniku: dobór progu pod wynik przeglądu to próg dobrany po zobaczeniu danych. Następna zmiana reguły
+`ewal_13gram` wymaga nowego aneksu i trzeciej, świeżej próbki tego powodu. Pozostałe 7 powodów i zachowane
+przechodzą. Uwagi recenzentów: `walidacja_fabryki` ma 22 wątpliwe pary (strony z jednego szablonu, np. Ancestry, grouply,
+z innymi danymi); śmieci z wątpliwymi w zachowanych to 19%; recenzent `pii` widział e-maile zamaskowane przez hook sesji
+(`[REDACTED:email]`) i oceniał je po kontekście.
+
 ## 9. Eksport do formatu zgłoszeń
 
 Robisz w klonie `SlayerLab/dataset-team-submissions`, nie w `slayer-lab`.
@@ -300,3 +335,6 @@ Robisz w klonie `SlayerLab/dataset-team-submissions`, nie w `slayer-lab`.
   ręczna próbka czeka na niezależnego czytelnika; kroki 9-12 nie uruchomione.
 - 15.11.2026: ręczna próbka oceniona przez niezależnego agenta: NIE PRZESZŁO (brak 100/100 per powód, brak progu
   w preregistracji, `ewal_13gram` 4/5 fałszywych odrzuceń); sekcja „Ręczny przegląd próbki”.
+- 15.11.2026: aneks preregistracji (progi, PII bez zmian, wykluczenie 13-gramów z df ≥ 5 i trywialnych), przeliczenie
+  `ewal_czeste` i `agreguj`, druga próbka 900 dok. oceniona przez trzech niezależnych agentów: NIE PRZESZŁO
+  (`ewal_13gram` 51% fałszywych odrzuceń); pozostałe 7 powodów i zachowane PASS.
