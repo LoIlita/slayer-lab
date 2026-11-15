@@ -23,7 +23,6 @@ Karty danych: [![1.08](https://img.shields.io/badge/DATA__CARD-1.08-ffcc00?logo=
 | data | zbiór | kto | zgłoszenie | status |
 |---|---|---|---|---|
 | 2026-11-14 | [DCLM-baseline 1.0 EN](https://huggingface.co/datasets/mlfoundations/dclm-baseline-1.0/tree/a3b142c183aebe5af344955ae20836eb34dcf69b) → [`dane/dclm-en/`](dclm-en/KARTA_ZRODLA.md) | Ania | [![#197](https://img.shields.io/badge/GitHub-%23197-181717?logo=github)](https://github.com/slayerlabs/benchmarks-fabryka-ai/issues/197) | w budowie |
-| 2026-11-14 | Korpus RPG v2 → [`dane/korpus-rpg-v2/`](korpus-rpg-v2/) | Ania | bez zgłoszenia | w budowie |
 | 2026-11-14 | [SlayerLab/hutnictwo-gornictwo-spawalnictwo-preview](https://huggingface.co/datasets/SlayerLab/hutnictwo-gornictwo-spawalnictwo-preview) | SlayerLab | bez zgłoszenia | opublikowany |
 | 2026-11-09 | [SlayerLab/polish-dynaword-pretraining-mix](https://huggingface.co/datasets/SlayerLab/polish-dynaword-pretraining-mix) | SlayerLab | bez zgłoszenia | opublikowany |
 | 2026-11-08 | [SlayerLab/technika-i-nauka](https://huggingface.co/datasets/SlayerLab/technika-i-nauka) | SlayerLab | bez zgłoszenia | opublikowany |
