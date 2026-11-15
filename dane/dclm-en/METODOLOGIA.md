@@ -1,6 +1,7 @@
 # Przepis: budowa zbioru danych do treningu Slayera 1B (przykład: DCLM-baseline EN)
 
-Przepis dla KAŻDEGO zbioru, od rezerwacji do wpisu w karcie danych. Każdy krok: co robisz, komenda,
+Przepis ogólny, krótki: [`../METODOLOGIA.md`](../METODOLOGIA.md). Ten plik to jego wypełniony przykład z
+pełnym dziennikiem DCLM-EN. Każdy krok: co robisz, komenda,
 jak sprawdzić, pułapki, a w ostatniej kolumnie wypełniony przykład DCLM-EN. Reguły kontroli: notatka
 wiedzy `budowa-modeli/komplet-kontroli-zbioru` (workspace fabryka-ai). Wymagania wysyłki: repo
 [`SlayerLab/dataset-team-submissions`](https://huggingface.co/datasets/SlayerLab/dataset-team-submissions)
@@ -433,29 +434,8 @@ Robisz w klonie `SlayerLab/dataset-team-submissions`, nie w `slayer-lab`.
 
 ### Chwilowo: własne repo do wglądu Arka (decyzja Ani, 15.11.2026)
 
-Zamiast PR do `SlayerLab/dataset-team-submissions` każdy wgrywa zbiór do repo datasetu na SWOIM koncie Hugging Face.
-Pliki widzi tylko właściciel i Arek (`Maggio33`); publicznie widać nazwę repo i README. Krok 10 robisz przed wgraniem,
-bez zmian.
-
-**Wgrywający** (po kroku 10; `<login>` to Twój login HF, `<key>` z kroku 9):
-
-0. Raz na maszynie: `pip install -U huggingface_hub` i `hf auth login` (token z prawem zapisu).
-1. Załóż repo, zamknij je bramką PRZED wgraniem plików i daj dostęp Arkowi:
-   `python -c "from huggingface_hub import HfApi as A; a=A(); r='<login>/<key>-robocze'; a.create_repo(r, repo_type='dataset'); a.update_repo_settings(r, gated='manual', repo_type='dataset'); a.grant_access(r, 'Maggio33', repo_type='dataset')"`
-2. Sprawdź bramkę: w oknie incognito strona repo nie pokazuje listy plików.
-3. Wgraj: `hf upload <login>/<key>-robocze data/<key> data/<key> --repo-type dataset`
-4. README repo: jedno zdanie „Zbiór roboczy do recenzji, nie do użytku.” Opis z „Opis PR” niżej idzie do
-   `data/<key>/OPIS.md`, za bramką.
-5. Wyślij Arkowi link `https://huggingface.co/datasets/<login>/<key>-robocze`.
-
-**Arek:** nic nie zatwierdza. Po `hf auth login`: `hf download <login>/<key>-robocze --repo-type dataset`.
-
-Kolejna osoba do wglądu: `grant_access` z jej loginem. Odebranie: `reject_access_request`.
-
-DCLM-EN: `<login>` = `Lolita67`, `<key>` = `dclm_baseline_en`.
-
-Krok 12 czeka: wiersz w `DANE_TRENINGOWE.md` zostaje „w budowie”. Po uwagach Arka wracamy do zwykłej ścieżki (PR do
-zgłoszeń).
+Instrukcja: [`../METODOLOGIA.md`](../METODOLOGIA.md), sekcja 4. DCLM-EN: `<login>` = `Lolita67`,
+`<key>` = `dclm_baseline_en`, repo `Lolita67/dclm_baseline_en-robocze`. Krok 12 czeka.
 
 | | Ogólnie | Przykład: DCLM-EN |
 |---|---|---|
