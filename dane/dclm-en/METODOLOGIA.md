@@ -285,6 +285,30 @@ Zastrzeżenia, które mogą zmienić werdykt (do rozstrzygnięcia w aneksie prze
 - Zachowane długie dokumenty (28 ponad 5000 znaków) recenzent przeczytał na początku i końcu, PII w środku sprawdził
   wzorcami.
 
+### Aneks 2 do preregistracji, 15.11.2026 (przed trzecią próbką)
+
+Zapisany w [`skrypty/preregistracja.json`](skrypty/preregistracja.json), pole `aneks_2026_11_15b`, PO drugim
+przeglądzie (1e5a152, 430703d) i PRZED budową indeksu wspólnego z FWE, przeliczeniem i trzecią próbką. Powód:
+`ewal_13gram` nie przeszedł, a trzy zastrzeżenia wyżej mogły zmienić werdykt. Rozstrzygnięcia techniczne głównej sesji:
+
+1. **Kopia w dedupach.** Strona różniąca się od pary tylko podmienioną nazwą, liczbą albo inną wartością w tym samym
+   szablonie (regulamin phpBB, ogłoszenie z inną dzielnicą) to KOPIA. Taką definicję realizuje MinHash ≥ 0,8, a
+   FineWeb traktuje szablony jako duplikaty. Werdykty `dedup_*` i `walidacja_fabryki` z drugiego przeglądu zostają
+   (fałszywe odrzucenia 0-4%).
+2. **Przeoczenia PII.** Próg ≤1% wymaga wykazania górnej granicy. Reguła trzech: 0 trafień na n = 300 daje górną
+   granicę ok. 1% (Clopper-Pearson, jednostronnie 95%: 0,994%). Dobór 200 nowych zachowanych (do 100 z drugiego
+   przeglądu), tylko do kontroli PII, ocenia niezależny recenzent. PASS tylko przy 0/300.
+3. **`ewal_13gram`: wspólne z niezależnym korpusem sieciowym.** Zamiast progu df (który dostroiłby się do wyniku
+   przeglądu) z indeksu wypada 13-gram testu obecny choć raz w próbce FineWeb-Edu z kroku `fwe_url` (8 plików,
+   4 829 900 wierszy, rewizja `87f09149…`): fragment obecny w sieci niezależnie od testu nie świadczy o
+   zanieczyszczeniu. Reguła z aneksu 1 (df ≥ 5 i ciągi) zostaje jako dodatkowa; dokument odpada przy trafieniu spoza
+   sumy obu list. Ryzyko: kopia testu z Common Crawl obecna i w DCLM, i w FWE przestaje być łapana; mierzy to kontrola
+   dodatnia (4 wstawione dokumenty i prawdziwe trafienia PIQA, ARC-C, WinoGrande, HellaSwag).
+
+**Trzecia próbka.** `default_rng(2026111502)`: 100 dokumentów `ewal_13gram` po zmianie (wszystkie, gdy jest ich mniej)
+plus 200 nowych zachowanych do PII. Progi bez zmian (fałszywe odrzucenia ≤10%, górna granica Wilsona ≤20%). Jeśli
+`ewal_13gram` znów nie przejdzie, reguły nie stroi się dalej w tym przebiegu: wynik zostaje otwarty.
+
 ## 9. Eksport do formatu zgłoszeń
 
 Robisz w klonie `SlayerLab/dataset-team-submissions`, nie w `slayer-lab`.

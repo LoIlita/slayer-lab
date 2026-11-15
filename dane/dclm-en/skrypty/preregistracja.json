@@ -93,5 +93,34 @@
    "metoda": "rng numpy default_rng(20261115); dla KAŻDEGO z 8 powodów 100 losowych dokumentów z tym powodem w widoku niezależnym (dokument ma ten powód, niezależnie od innych; jeśli powód ma < 100 dokumentów w całej próbce, wszystkie) + 100 losowych zachowanych wspólnych dla wszystkich powodów; po aneksie ewal_13gram. Dla dedup_wewnatrz, dedup_slayer107, dedup_ivme i walidacja_fabryki obok dokumentu para dopasowania (tekst z próbki, z bazy 1.07, z batchy Ivme albo z indeksu walidacji) z miarą podobieństwa; bez pary ocena NOT RUN",
    "ocena": "niezależny recenzent (nie budował zbioru, nie zna tego aneksu poza progami w nim zapisanymi): każdy dokument tak/nie/wątpliwe dla treningu i trafność powodu; stopy z przedziałem Wilsona 95%; werdykt wobec progów aneksu"
   }
+ },
+ "aneks_2026_11_15b": {
+  "zapisano": "2026-11-15, PO drugim przeglądzie (commity 1e5a152 i 430703d: NIE PRZESZŁO, ewal_13gram 51% [41,4; 60,6] fałszywych odrzuceń) i PRZED budową indeksu wspólnego z FWE, przed przeliczeniem i przed trzecią próbką",
+  "powod": "drugi przegląd: (1) ewal_13gram odrzuca dobre teksty na cytatach o df 1-4 w próbce (Konstytucja USA, Churchill, M. L. King, tytuły), a zejście z progiem df byłoby progiem dostrojonym do wyniku przeglądu; (2) zastrzeżenie o definicji kopii przy dedupach (ostrzejsze czytanie daje FAIL dedup_slayer107 12% i dedup_ivme 22%); (3) przeoczenia PII 0/100 spełniają próg ≤1% tylko punktowo, górna granica Wilsona 3,7%",
+  "zrodlo_decyzji": "trzy rozstrzygnięcia techniczne głównej sesji z 15.11.2026",
+  "kopia_w_dedupach": {
+   "definicja": "strona różniąca się od pary tylko podmienioną nazwą, liczbą albo inną wartością wstawioną w ten sam szablon (regulamin phpBB z inną nazwą forum, ogłoszenie z inną dzielnicą, strona katalogowa z innymi danymi) to KOPIA, nie fałszywe odrzucenie; dotyczy dedup_wewnatrz, dedup_slayer107, dedup_ivme i walidacja_fabryki",
+   "uzasadnienie": "taką definicję realizuje reguła MinHash >= 0,8 (bliska kopia po 5-gramach słów, szablon z kilkoma podmienionymi wartościami przechodzi próg), a FineWeb traktuje strony z szablonu jako duplikaty",
+   "skutek": "werdykty dedup_* i walidacja_fabryki z drugiego przeglądu zostają (fałszywe odrzucenia 4%, 4%, 0% i 3%); ostrzejsze czytanie recenzenta nie jest kryterium"
+  },
+  "przeoczenia_pii": {
+   "kryterium": "próg ≤1% wymaga wykazania górnej granicy: reguła trzech, 0 trafień na n = 300 zachowanych daje jednostronną górną granicę 95% ok. 1% (Clopper-Pearson 0,994%). PASS tylko przy 0 trafień na 300; przy >= 1 trafieniu górna granica > 1,5%, czyli FAIL. Obok raportowany przedział Wilsona 95% (0/300: [0,0; 1,26])",
+   "probka": "100 zachowanych ocenionych w drugim przeglądzie (0 trafień) + 200 nowych zachowanych, losowanych z zachowanych PO zmianie ewal_13gram z wyłączeniem tamtych 100, rng numpy default_rng(2026111502); ocenia niezależny recenzent tylko pod kątem PII w zakresie detektora (e-mail, telefon, adres IP), pełny tekst, wspomagany wzorcami",
+   "zakres": "nowe 200 zachowanych służy tylko kontroli PII; śmieci, mojibake i domena_testow w zachowanych zostają z drugiego przeglądu"
+  },
+  "ewal_13gram": {
+   "zmiana": "z indeksu testów wykluczony 13-gram testu, który występuje w niezależnym korpusie sieciowym: próbce FineWeb-Edu z kroku fwe_url (HuggingFaceFW/fineweb-edu@87f09149ef4734204d70ed1d046ddc9ca3f2b8f9, 8 plików data/ z wyniki/fwe_url.json, 4 829 900 wierszy, kolumna text). Wystarczy jedno wystąpienie w FWE (df_fwe >= 1). Normalizacja i hasze jak w przebiegu (rdzen.norm_slowa, hasze_slow, ngramy, N_EVAL = 13)",
+   "regula_aneksu_1": "zostaje jako dodatkowa: wykluczone także 13-gramy z skrypty/ewal_13gram_wykluczone.json (df >= 5 w próbce albo trywialne). Dokument odpada, gdy ma co najmniej jedno trafienie spoza SUMY obu list",
+   "uzasadnienie": "fragment obecny w sieci niezależnie od testu (cytat, formułka, tytuł) nie świadczy o zanieczyszczeniu; kryterium nie zależy od progu dobranego do wyniku przeglądu",
+   "wykonanie": "skrypty/ewal_wspolne_z_fwe.py: przecięcie indeksu 13-gramów testów (wyniki/ewal/wszystkie_13.npy) z 13-gramami 8 plików FWE, strumieniowo po grupach wierszy; teksty FWE pobrane do robocze/pobrania/fwe; pod strażnikiem (skrypty/straznik.sh, nohup nice -n 10). Lista budowana RAZ i stosowana bez zmian do dalszych shardów",
+   "ryzyko": "strona, która skopiowała treść testu i trafiła do Common Crawl, może być i w DCLM, i w FWE (oba z CC): taka kopia przestaje być łapana 13-gramem. Mierzy to kontrola dodatnia",
+   "kontrola_dodatnia": "(1) krok kontrola: 4 wstawione dokumenty K_hellaswag, K_piqa, K_arc_c, K_winogrande nadal mają ewal_13gram; (2) prawdziwe dokumenty próbki z trafieniem PIQA, ARC-C, WinoGrande i HellaSwag: ile nadal odpada po zmianie (zmierzone i zapisane, bez progu: wynik raportowany obok werdyktu)"
+  },
+  "reczna_probka_3": {
+   "metoda": "tylko ewal_13gram: rng numpy default_rng(2026111502); 100 losowych dokumentów z ewal_13gram po zmianie (widok niezależny; wszystkie, gdy jest ich < 100), z trafiającymi 13-gramami spoza obu list; plus 200 nowych zachowanych do kontroli PII (pole przeoczenia_pii)",
+   "ocena": "niezależny recenzent (agent general-purpose, nie budował zbioru): ewal_13gram: czy wspólny fragment jest treścią testu (prawdziwe trafienie) czy cytatem, formułką, tytułem albo ciągiem (fałszywe odrzucenie); zachowane: czy dokument zawiera e-mail, telefon albo adres IP; progi czyta dopiero po policzeniu stóp; stopy z przedziałem Wilsona 95%",
+   "progi": "ewal_13gram: fałszywe odrzucenia <= 10% i górna granica Wilsona 95% <= 20% (aneks 1); PII: kryterium z pola przeoczenia_pii",
+   "gdy_nie_przejdzie": "w tym przebiegu reguły ewal_13gram nie stroi się dalej: wynik zapisany jako otwarty, z opisem kategorii błędnych odrzuceń"
+  }
  }
 }
