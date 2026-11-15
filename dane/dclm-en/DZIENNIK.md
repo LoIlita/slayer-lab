@@ -1,6 +1,6 @@
 # Dziennik zbioru: DCLM-baseline 1.0 EN
 
-Przepis: [`../METODOLOGIA.md`](../METODOLOGIA.md). Tu wynik każdego kroku tego zbioru: data, komenda, kod
+Przepis: [`METODOLOGIA.md` w repo zespołu](https://github.com/slayerlabs/benchmarks-fabryka-ai/blob/main/research/slayer-1b/dane/METODOLOGIA.md). Tu wynik każdego kroku tego zbioru: data, komenda, kod
 wyjścia, liczby, link. Karta źródła: [`KARTA_ZRODLA.md`](KARTA_ZRODLA.md). Do 15.11.2026 plik nazywał się
 `METODOLOGIA.md` (tak odsyłają do niego `skrypty/preregistracja.json` i starsze commity).
 
@@ -364,7 +364,7 @@ wynosi 51% [41,4; 60,6], próg ≤10% nie jest spełniony, a zmianę kryterium p
 
 ### Chwilowo: własne repo do wglądu Arka (decyzja Ani, 15.11.2026)
 
-Instrukcja: [`../METODOLOGIA.md`](../METODOLOGIA.md), sekcja 4. DCLM-EN: `<login>` = `Lolita67`,
+Instrukcja: [`METODOLOGIA.md` zespołu](https://github.com/slayerlabs/benchmarks-fabryka-ai/blob/main/research/slayer-1b/dane/METODOLOGIA.md), sekcja 4. DCLM-EN: `<login>` = `Lolita67`,
 `<key>` = `dclm_baseline_en`, repo `Lolita67/dclm_baseline_en-robocze`. Krok 12 czeka.
 
 | | DCLM-EN |
