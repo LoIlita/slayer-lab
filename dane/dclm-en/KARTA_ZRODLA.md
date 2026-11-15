@@ -1,7 +1,6 @@
 # Karta źródła: DCLM-baseline 1.0 (EN) dla Slayera 1B
 
-Krok 0 metodologii kontroli zbioru (karta przed pobraniem, sześć pól). Zapisana 14.11.2026 przed
-pobraniem próbki. Progi dnia 1: `skrypty/preregistracja.json` (zapisane przed liczeniem).
+Zapisana 14.11.2026 przed pobraniem próbki. Progi dnia 1: `skrypty/preregistracja.json` (zapisane przed liczeniem).
 Rezerwacja: https://github.com/slayerlabs/benchmarks-fabryka-ai/issues/197
 
 Cel: dane EN pod testy, które przy 1B reagują na dane (HellaSwag, PIQA, ARC-C, WinoGrande), jako

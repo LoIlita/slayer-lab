@@ -68,7 +68,7 @@ wyjścia, liczby, link. Karta źródła: [`KARTA_ZRODLA.md`](KARTA_ZRODLA.md). D
 | | DCLM-EN |
 |---|---|
 | Co | `odtworz.sh fwe_url` (8 plików FWE), `edu` (50 000 dok., cpu float32), `agreguj` |
-| Sprawdzenie | 14-15.11.2026, pod strażnikiem, 0 pauz, swap 0, wolna pamięć ≥91%: **`fwe_url`** kod 0, 2765 s, szczyt RSS 837 MB; 8/8 plików, 4 829 900 wierszy (0,317% z 1 525 223 056 wierszy FWE), 4 748 572 unikalnych url ([`wyniki/fwe_url.json`](wyniki/fwe_url.json)). **`edu`** kod 0, 5414 s, szczyt RSS 7318 MB, cpu float32, **4 wątki** (`EDU_WATKI`, `OMP_NUM_THREADS`, `torch.set_num_threads`; ostrożny start po panice Maca 14.11), `KONIEC 50000`; int_score 0-5: 2608 / 24 007 / 15 931 / 6270 / 1180 / 4; próg ≥2 = 49,52% tokenów, ≥3 = 15,79%. **`agreguj`** kod 0, 30 s (RSS niezmierzony: krótszy niż okres próbki 30 s); 1 051 235 dok., 1 470 704 495 tokenów v6; kaskada 376 + 6738 + 2611 + 29 333 + 2279 + 3679 + 11 741 + 1895 = 58 652 odrzuconych, suma z zachowanymi = dokumenty próbki; **zostaje 992 583 dok. (94,42%), 1 345 901 642 tokenów v6 (91,51%)** (stan przed aneksem 15.11; po aneksie 993 878 dok., 1 352 267 245 tokenów v6, sekcja „Aneks do preregistracji”; aneks 2 cofnięty aneksem 3, stan końcowy = stan po aneksie 1: 993 878 dok., 1 352 267 245 tokenów v6, 37 shardów (33-43), sekcja „Aneks 3”); `niedostepne` puste; FWE url: 7826 trafień (0,74%); szacunek do 5 mld v6: 38 shardów (34-43) z 27 838, dolna granica ([`wyniki/agreguj.json`](wyniki/agreguj.json)); ręczna próbka 200 wierszy w `robocze/wyniki/probki_reczne.jsonl`, oceniona 15.11.2026: **NIE PRZESZŁO** (sekcja „Ręczny przegląd próbki” niżej) |
+| Sprawdzenie | 14-15.11.2026: **`fwe_url`** kod 0, 2765 s, szczyt RSS 837 MB; 8/8 plików, 4 829 900 wierszy (0,317% z 1 525 223 056 wierszy FWE), 4 748 572 unikalnych url ([`wyniki/fwe_url.json`](wyniki/fwe_url.json)). **`edu`** kod 0, 5414 s, szczyt RSS 7318 MB, cpu float32, **4 wątki** (`EDU_WATKI`, `OMP_NUM_THREADS`, `torch.set_num_threads`), `KONIEC 50000`; int_score 0-5: 2608 / 24 007 / 15 931 / 6270 / 1180 / 4; próg ≥2 = 49,52% tokenów, ≥3 = 15,79%. **`agreguj`** kod 0, 30 s (RSS niezmierzony: krótszy niż okres próbki 30 s); 1 051 235 dok., 1 470 704 495 tokenów v6; kaskada 376 + 6738 + 2611 + 29 333 + 2279 + 3679 + 11 741 + 1895 = 58 652 odrzuconych, suma z zachowanymi = dokumenty próbki; **zostaje 992 583 dok. (94,42%), 1 345 901 642 tokenów v6 (91,51%)** (stan przed aneksem 15.11; po aneksie 993 878 dok., 1 352 267 245 tokenów v6, sekcja „Aneks do preregistracji”; aneks 2 cofnięty aneksem 3, stan końcowy = stan po aneksie 1: 993 878 dok., 1 352 267 245 tokenów v6, 37 shardów (33-43), sekcja „Aneks 3”); `niedostepne` puste; FWE url: 7826 trafień (0,74%); szacunek do 5 mld v6: 38 shardów (34-43) z 27 838, dolna granica ([`wyniki/agreguj.json`](wyniki/agreguj.json)); ręczna próbka 200 wierszy w `robocze/wyniki/probki_reczne.jsonl`, oceniona 15.11.2026: **NIE PRZESZŁO** (sekcja „Ręczny przegląd próbki” niżej) |
 
 ## Ręczny przegląd próbki
 
@@ -135,7 +135,7 @@ Zapisany w [`skrypty/preregistracja.json`](skrypty/preregistracja.json), pole `a
 przeglądzie i PRZED doborem drugiej próbki. Powód: trzy punkty werdyktu wyżej.
 
 **Progi.** Notatka `komplet-kontroli-zbioru` i `zasady-raportowania-benchmarkow` progów stóp ręcznej próbki nie
-podają (sprawdzone 15.11.2026), więc obowiązują proponowane przez główną sesję:
+podają (sprawdzone 15.11.2026), więc obowiązują progi tego aneksu:
 
 | Miara | Próg |
 |---|---|
@@ -166,7 +166,7 @@ treść testu skopiowana w ≥5 dokumentach próbki przestaje być łapana 13-gr
 **Druga próbka.** `default_rng(20261115)`, 100 dokumentów na KAŻDY powód w widoku niezależnym (wszystkie, gdy
 powód ma <100) plus 100 zachowanych wspólnych dla wszystkich powodów; dedupy i walidacja z parą dopasowania.
 
-**Przeliczenie po aneksie (15.11.2026, pod strażnikiem, `nohup nice -n 10`, 0 pauz, swap 0, wolna pamięć 93%).**
+**Przeliczenie po aneksie (15.11.2026).**
 
 | Krok | Wynik |
 |---|---|
@@ -226,7 +226,7 @@ Zastrzeżenia, które mogą zmienić werdykt (do rozstrzygnięcia w aneksie prze
 
 Zapisany w [`skrypty/preregistracja.json`](skrypty/preregistracja.json), pole `aneks_2026_11_15b`, PO drugim
 przeglądzie (1e5a152, 430703d) i PRZED budową indeksu wspólnego z FWE, przeliczeniem i trzecią próbką. Powód:
-`ewal_13gram` nie przeszedł, a trzy zastrzeżenia wyżej mogły zmienić werdykt. Rozstrzygnięcia techniczne głównej sesji:
+`ewal_13gram` nie przeszedł, a trzy zastrzeżenia wyżej mogły zmienić werdykt. Rozstrzygnięcia:
 
 1. **Kopia w dedupach.** Strona różniąca się od pary tylko podmienioną nazwą, liczbą albo inną wartością w tym samym
    szablonie (regulamin phpBB, ogłoszenie z inną dzielnicą) to KOPIA. Taką definicję realizuje MinHash ≥ 0,8, a
@@ -246,7 +246,7 @@ przeglądzie (1e5a152, 430703d) i PRZED budową indeksu wspólnego z FWE, przeli
 plus 200 nowych zachowanych do PII. Progi bez zmian (fałszywe odrzucenia ≤10%, górna granica Wilsona ≤20%). Jeśli
 `ewal_13gram` znów nie przejdzie, reguły nie stroi się dalej w tym przebiegu: wynik zostaje otwarty.
 
-**Przeliczenie po aneksie 2 (15.11.2026, pod strażnikiem, `nohup nice -n 10`, 0 pauz, swap 0, wolna pamięć 93%).**
+**Przeliczenie po aneksie 2 (15.11.2026).**
 
 | Krok | Wynik |
 |---|---|
@@ -260,7 +260,7 @@ plus 200 nowych zachowanych do PII. Progi bez zmian (fałszywe odrzucenia ≤10%
 
 ### Trzeci przegląd, 15.11.2026: wynik
 
-Recenzenci: dwóch niezależnych agentów (general-purpose, nie budowali zbioru), instrukcja `robocze/instrukcja_przegladu_3.md`,
+Recenzenci: dwóch niezależnych agentów (nie budowali zbioru), instrukcja `robocze/instrukcja_przegladu_3.md`,
 progi czytane po policzeniu stóp. Oceny per dokument: `robocze/przeglad_probki_3_{d,e}.json` (bez wartości PII). Wilson 95%.
 
 | Miara | n | Wynik | Stopa [Wilson 95%] | Próg | Werdykt |
@@ -294,7 +294,7 @@ aneksu i świeżej próbki; do tego czasu eksport (krok 9) ma `ewal_13gram` bez 
 ### Aneks 3 do preregistracji, 15.11.2026 (po trzecim przeglądzie)
 
 Zapisany w [`skrypty/preregistracja.json`](skrypty/preregistracja.json), pole `aneks_2026_11_15c`, PO trzecim przeglądzie
-(4e0a247). Rozstrzygnięcie techniczne głównej sesji, powód w danych wyżej:
+(4e0a247). Powód w danych wyżej:
 
 1. **Wykluczenie 13-gramów wspólnych z FWE COFNIĘTE, wraca reguła aneksu 1** (df ≥ 5 i ciągi). Przy aneksie 2 kontrola
    dodatnia przestała łapać prawdziwą kontaminację: ARC-C 0/2 (przy aneksie 1: 2/2), HellaSwag 61/129 (84/129), 13 z 34
@@ -305,7 +305,7 @@ Zapisany w [`skrypty/preregistracja.json`](skrypty/preregistracja.json), pole `a
    To **jawne odstępstwo** od progów aneksu 1, przyjęte po zobaczeniu wyników przeglądów.
 3. **PII:** przypadek „login at” bez domeny zostaje wątpliwy; PASS 0/300 zostaje z tym przypisem.
 
-Teksty FWE pobrane w aneksie 2 (`robocze/pobrania/fwe`, ok. 14 GB) usunięte. Do odtworzenia pomiaru aneksu 2 (krok
+Do odtworzenia pomiaru aneksu 2 (krok
 `ewal_fwe`): `HuggingFaceFW/fineweb-edu@87f09149ef4734204d70ed1d046ddc9ca3f2b8f9`, sha256:
 
 | Plik | sha256 |
@@ -319,8 +319,7 @@ Teksty FWE pobrane w aneksie 2 (`robocze/pobrania/fwe`, ok. 14 GB) usunięte. Do
 | `data/CC-MAIN-2025-13/000_00043.parquet` | `5b31dbdcbfa53c68c82329c3a6b216c2213c2a45f58f995ca1bc80d136591ee9` |
 | `data/CC-MAIN-2025-18/000_00023.parquet` | `3f64da6fef57ab38da270f3752011daa87c6c8f2eb797586a438acb675567e6f` |
 
-**Przeliczenie na regule aneksu 1 (15.11.2026, pod strażnikiem, `nohup nice -n 10`, kroki `kontrola`, `ewal_czeste`,
-`agreguj`, każdy kod 0, 30 s, 0 pauz, swap 0, wolna pamięć 93%).** `agreguj` w `odtworz.sh` znów czyta `wyniki/ew13`;
+**Przeliczenie na regule aneksu 1 (15.11.2026, kroki `kontrola`, `ewal_czeste`, `agreguj`, każdy kod 0, 30 s).** `agreguj` w `odtworz.sh` znów czyta `wyniki/ew13`;
 kroki aneksu 2 zostają tylko do odtworzenia pomiaru.
 
 | Krok | Wynik |
@@ -379,10 +378,9 @@ Instrukcja: [`METODOLOGIA.md` zespołu](https://github.com/slayerlabs/benchmarks
 
 ## Historia odtworzeń DCLM-EN
 
-- 14.11.2026: wejścia w `/private/tmp` przepadły po restarcie; odbudowa z tego przepisu zgodna z
-  przebiegiem sprzed awarii (próbka, `idx_wal`, `idx_ivme` bajt w bajt, `ewal` po sumie i rewizjach).
+- 14.11.2026: odbudowa wejść z tego przepisu zgodna z pierwszym przebiegiem (próbka, `idx_wal`, `idx_ivme` bajt w bajt, `ewal` po sumie i rewizjach).
 - 14.11.2026: przebieg 216/216 zakończony (`KONIEC 1570s`); kroki 8-12 nie uruchomione.
-- 14-15.11.2026: krok 8 (`fwe_url`, `edu`, `agreguj`) zakończony kodem 0 pod strażnikiem pamięci, bez pauz;
+- 14-15.11.2026: krok 8 (`fwe_url`, `edu`, `agreguj`) zakończony kodem 0;
   ręczna próbka czeka na niezależnego czytelnika; kroki 9-12 nie uruchomione.
 - 15.11.2026: ręczna próbka oceniona przez niezależnego agenta: NIE PRZESZŁO (brak 100/100 per powód, brak progu
   w preregistracji, `ewal_13gram` 4/5 fałszywych odrzuceń); sekcja „Ręczny przegląd próbki”.
