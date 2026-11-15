@@ -437,17 +437,17 @@ Zamiast PR do `SlayerLab/dataset-team-submissions` zbiór trafia do repo dataset
 dostępem na prośbę (gated, ręczne zatwierdzanie). Pliki widzi tylko zatwierdzona osoba; publicznie widać nazwę repo i
 README. Krok 10 robisz przed wgraniem, bez zmian.
 
-**Wgranie (kto ma token zapisu Ani, po kroku 10):**
+**Wgranie (z maszyny zalogowanej na konto Ani `Lolita67`, po kroku 10; Arek to `Maggio33`):**
 
 1. Załóż repo, włącz bramkę PRZED wgraniem plików i od razu daj dostęp Arkowi:
-   `python -c "from huggingface_hub import HfApi as A; a=A(); r='<konto>/dclm-baseline-en-robocze'; a.create_repo(r, repo_type='dataset'); a.update_repo_settings(r, gated='manual', repo_type='dataset'); a.grant_access(r, '<login-Arka>', repo_type='dataset')"`
+   `python -c "from huggingface_hub import HfApi as A; a=A(); r='Lolita67/dclm-baseline-en-robocze'; a.create_repo(r, repo_type='dataset'); a.update_repo_settings(r, gated='manual', repo_type='dataset'); a.grant_access(r, 'Maggio33', repo_type='dataset')"`
 2. Sprawdź bramkę: w oknie incognito strona repo pokazuje przycisk dostępu, a lista plików jest ukryta.
-3. Wgraj: `hf upload <konto>/dclm-baseline-en-robocze data/dclm_baseline_en data/dclm_baseline_en --repo-type dataset`
+3. Wgraj: `hf upload Lolita67/dclm-baseline-en-robocze data/dclm_baseline_en data/dclm_baseline_en --repo-type dataset`
 4. README repo: jedno zdanie „Zbiór roboczy do recenzji, nie do użytku.” Opis z „Opis PR” niżej idzie do pliku
    `data/dclm_baseline_en/OPIS.md`, za bramką.
 
 **Arek:** nic nie zatwierdza ani o nic nie prosi. Po `hf auth login`:
-`hf download <konto>/dclm-baseline-en-robocze --repo-type dataset`.
+`hf download Lolita67/dclm-baseline-en-robocze --repo-type dataset`.
 
 Kolejna osoba do wglądu: ta sama komenda `grant_access` z jej loginem. Odebranie: `reject_access_request`.
 
