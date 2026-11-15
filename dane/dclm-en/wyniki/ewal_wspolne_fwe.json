@@ -1,0 +1,246 @@
+{
+ "repo": "HuggingFaceFW/fineweb-edu",
+ "rewizja": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+ "pliki": [
+  "data/CC-MAIN-2014-10/train-00002-of-00014.parquet",
+  "data/CC-MAIN-2017-04/train-00001-of-00018.parquet",
+  "data/CC-MAIN-2017-17/train-00014-of-00022.parquet",
+  "data/CC-MAIN-2018-13/train-00005-of-00016.parquet",
+  "data/CC-MAIN-2019-39/train-00012-of-00015.parquet",
+  "data/CC-MAIN-2024-26/000_00042.parquet",
+  "data/CC-MAIN-2025-13/000_00043.parquet",
+  "data/CC-MAIN-2025-18/000_00023.parquet"
+ ],
+ "wiersze_fwe": 4829900,
+ "wiersze_fwe_oczekiwane": 4829900,
+ "dokumenty_fwe_z_trafieniem": 21714,
+ "ngramow_indeksu_testow": 32411348,
+ "ngramow_testow_w_fwe": 243317,
+ "testy": {
+  "T01_blimp": {
+   "ngramow_testu": 300502,
+   "w_fwe": 0
+  },
+  "T02_arc_challenge": {
+   "ngramow_testu": 40190,
+   "w_fwe": 109
+  },
+  "T03_wikitext2": {
+   "ngramow_testu": 388160,
+   "w_fwe": 20880
+  },
+  "T04_multiblimp_pl": {
+   "ngramow_testu": 301677,
+   "w_fwe": 110
+  },
+  "T05_hellaswag": {
+   "ngramow_testu": 3208403,
+   "w_fwe": 5954
+  },
+  "T06_piqa": {
+   "ngramow_testu": 134393,
+   "w_fwe": 409
+  },
+  "T07_winogrande": {
+   "ngramow_testu": 50713,
+   "w_fwe": 0
+  },
+  "T08_openbookqa": {
+   "ngramow_testu": 6778,
+   "w_fwe": 2
+  },
+  "T09_sciq": {
+   "ngramow_testu": 148832,
+   "w_fwe": 17563
+  },
+  "T10_boolq": {
+   "ngramow_testu": 516466,
+   "w_fwe": 62477
+  },
+  "T11_copa": {
+   "ngramow_testu": 3245,
+   "w_fwe": 0
+  },
+  "T12_cb": {
+   "ngramow_testu": 17193,
+   "w_fwe": 32
+  },
+  "T13_wic": {
+   "ngramow_testu": 9088,
+   "w_fwe": 573
+  },
+  "T14_wsc273": {
+   "ngramow_testu": 2793,
+   "w_fwe": 426
+  },
+  "T15_rte": {
+   "ngramow_testu": 123595,
+   "w_fwe": 1878
+  },
+  "T16_anli": {
+   "ngramow_testu": 424227,
+   "w_fwe": 3589
+  },
+  "T17_lambada": {
+   "ngramow_testu": 1267163,
+   "w_fwe": 12
+  },
+  "T18_logiqa": {
+   "ngramow_testu": 200476,
+   "w_fwe": 2
+  },
+  "T19_mathqa": {
+   "ngramow_testu": 674281,
+   "w_fwe": 2956
+  },
+  "T20_prost": {
+   "ngramow_testu": 115701,
+   "w_fwe": 0
+  },
+  "T21_sst2": {
+   "ngramow_testu": 17966,
+   "w_fwe": 0
+  },
+  "T22_polemo2": {
+   "ngramow_testu": 150324,
+   "w_fwe": 0
+  },
+  "T23_8tags": {
+   "ngramow_testu": 19508,
+   "w_fwe": 10
+  },
+  "T24_belebele": {
+   "ngramow_testu": 126009,
+   "w_fwe": 4438
+  },
+  "T25_dyk": {
+   "ngramow_testu": 29573,
+   "w_fwe": 0
+  },
+  "T26_ppc": {
+   "ngramow_testu": 5706,
+   "w_fwe": 0
+  },
+  "T27_psc": {
+   "ngramow_testu": 66940,
+   "w_fwe": 0
+  },
+  "T28_cbd": {
+   "ngramow_testu": 1404,
+   "w_fwe": 0
+  },
+  "T29_klej_ner": {
+   "ngramow_testu": 14942,
+   "w_fwe": 0
+  },
+  "T30_polqa": {
+   "ngramow_testu": 1440227,
+   "w_fwe": 132
+  },
+  "T31_poquad": {
+   "ngramow_testu": 271335,
+   "w_fwe": 1
+  },
+  "T32_mmlu": {
+   "ngramow_testu": 791522,
+   "w_fwe": 10055
+  },
+  "T33_gsm8k": {
+   "ngramow_testu": 127459,
+   "w_fwe": 45
+  },
+  "T34_math": {
+   "ngramow_testu": 640927,
+   "w_fwe": 370
+  },
+  "T35_truthfulqa": {
+   "ngramow_testu": 49528,
+   "w_fwe": 46
+  },
+  "T36_ifeval": {
+   "ngramow_testu": 17323,
+   "w_fwe": 31
+  },
+  "T37_llmzszl": {
+   "ngramow_testu": 246606,
+   "w_fwe": 2
+  },
+  "T38_squad2": {
+   "ngramow_testu": 292820,
+   "w_fwe": 64751
+  },
+  "T39_drop": {
+   "ngramow_testu": 263774,
+   "w_fwe": 10208
+  },
+  "T40_race": {
+   "ngramow_testu": 450389,
+   "w_fwe": 9098
+  },
+  "T41_coqa": {
+   "ngramow_testu": 291812,
+   "w_fwe": 10219
+  },
+  "T42_nq_open": {
+   "ngramow_testu": 2931,
+   "w_fwe": 16
+  },
+  "T43_triviaqa": {
+   "ngramow_testu": 412948,
+   "w_fwe": 1026
+  },
+  "T44_pubmedqa": {
+   "ngramow_testu": 189095,
+   "w_fwe": 75
+  },
+  "T45_medmcqa": {
+   "ngramow_testu": 295163,
+   "w_fwe": 1109
+  },
+  "T46_social_iqa": {
+   "ngramow_testu": 38192,
+   "w_fwe": 0
+  },
+  "T47_bbh": {
+   "ngramow_testu": 190694,
+   "w_fwe": 30
+  },
+  "T48_paws": {
+   "ngramow_testu": 68741,
+   "w_fwe": 290
+  },
+  "T49_cola": {
+   "ngramow_testu": 1001,
+   "w_fwe": 0
+  },
+  "T50_record": {
+   "ngramow_testu": 3308331,
+   "w_fwe": 13595
+  },
+  "X01_arc_easy": {
+   "ngramow_testu": 57771,
+   "w_fwe": 51
+  },
+  "X02_humaneval": {
+   "ngramow_testu": 26216,
+   "w_fwe": 36
+  },
+  "X03_mbpp": {
+   "ngramow_testu": 55707,
+   "w_fwe": 66
+  },
+  "X04_synlogic": {
+   "ngramow_testu": 14457284,
+   "w_fwe": 1272
+  },
+  "X05_ewok_en": {
+   "ngramow_testu": 61547,
+   "w_fwe": 0
+  },
+  "X06_wsc_superglue": {
+   "ngramow_testu": 1668,
+   "w_fwe": 31
+  }
+ },
+ "czas_s": 248
+}

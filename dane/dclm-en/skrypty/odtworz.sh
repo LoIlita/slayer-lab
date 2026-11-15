@@ -3,6 +3,7 @@
 # Użycie (z dowolnego katalogu):  bash dane/dclm-en/skrypty/odtworz.sh <krok>
 # Kroki: venv | tokenizer | probka | testy | ewal | baza107 | idx107 | walidacja_pobierz | idx_wal | idx_ivme | kontrola | przebieg
 #        po przebiegu: fwe_url | edu | ewal_czeste | agreguj | probka_przegladu
+#        aneks 2: ewal_fwe | ewal_czeste_fwe | agreguj | probka_przegladu_3
 # Każdy krok jest wznawialny: pobrania pomijają gotowe pliki, przebieg pomija gotowe u_NNNN.npz.
 set -euo pipefail
 
@@ -99,10 +100,31 @@ for i, d in enumerate(m['ids']):
 " "$R/wyniki/kontrola"
   fi
   ;;
+ewal_fwe)  # aneks 2 15.11.2026: 13-gramy testów obecne w próbce FineWeb-Edu z fwe_url (teksty 8 plików do pobrania/fwe, ok. 14 GB)
+  $NICE $PY -I "$S/ewal_wspolne_z_fwe.py" "$R/wyniki/ewal" "$D/wyniki/fwe_url.json" "$R/pobrania/fwe" "$R/wyniki/ew13_fwe" "${FWE_PROC:-6}"
+  cp "$R/wyniki/ew13_fwe/wspolne_fwe.json" "$D/wyniki/ewal_wspolne_fwe.json"
+  ;;
+ewal_czeste_fwe)  # aneks 2: ewal_13gram po wykluczeniu sumy list (aneks 1 + wspólne z FWE): próbka i kontrola -> ew13b
+  L=$S/ewal_13gram_wykluczone.json,$S/ewal_13gram_wspolne_fwe.npz  # druga lista = kopia wyniki/ew13_fwe/wspolne_fwe.npz, zamrożona
+  $NICE $PY -I "$S/ewal_czeste.py" "$R/wyniki/przebieg" "$R/wyniki/ewal" "$R/wyniki/ew13b" "$L"
+  $PY -I "$S/ewal_czeste.py" "$R/wyniki/kontrola/przebieg" "$R/wyniki/ewal" "$R/wyniki/kontrola/ew13b" "$L"
+  $PY -I -c "
+import json, sys, numpy as np
+m = json.load(open(sys.argv[1] + '/przebieg/u_0000.json')); po = np.load(sys.argv[1] + '/ew13b/ew13_po_wykl.npy')
+for i, d in enumerate(m['ids']):
+    print('kontrola_ew13b', d, 'ew_przed', m['ew_testy'].get(str(i)) is not None, 'ew_po', bool(po[i]))
+" "$R/wyniki/kontrola"
+  cp "$R/wyniki/ew13b/ew13_po_wykl.json" "$D/wyniki/ewal_13gram_aneks2.json"
+  ;;
+probka_przegladu_3)  # aneks 2: 100 ewal_13gram po zmianie + 200 nowych zachowanych do PII (plik ma PII: zostaje w robocze/)
+  $NICE $PY -I "$S/probka_przegladu_3.py" "$R/wyniki/przebieg" "$R/wyniki/powody.npz" "$R/wyniki/ew13b" "$R/probka_przegladu_2.jsonl" \
+    "$S/ewal_13gram_wykluczone.json,$S/ewal_13gram_wspolne_fwe.npz" "$R/probka_przegladu_3.jsonl"
+  ;;
 agreguj)  # kaskada powodów, uzysk v6, szacunek shardów, ręczna próbka 100/100 (probki_reczne.jsonl zostaje w robocze/: ma PII)
   $NICE $PY -I "$S/agreguj.py" "$R/wyniki/przebieg" "$R/probka_pliki.json" "$R/wyniki/fwe/fwe_url_h.npy" "$R/wyniki/edu/edu.npz" \
     "$R/wyniki/agreguj.json" "$R/wyniki/probki_reczne.jsonl" walidacja="$R/wyniki/idx_wal" ivme="$R/wyniki/idx_ivme" \
-    $( [ -f "$R/wyniki/ew13/ew13_po_wykl.npy" ] && echo ew13="$R/wyniki/ew13/ew13_po_wykl.npy" )
+    $( if [ -f "$R/wyniki/ew13b/ew13_po_wykl.npy" ]; then echo ew13="$R/wyniki/ew13b/ew13_po_wykl.npy";
+       elif [ -f "$R/wyniki/ew13/ew13_po_wykl.npy" ]; then echo ew13="$R/wyniki/ew13/ew13_po_wykl.npy"; fi )
   cp "$R/wyniki/agreguj.json" "$D/wyniki/agreguj.json"
   cp "$R/wyniki/fwe/fwe_url.json" "$D/wyniki/fwe_url.json"
   ;;
@@ -111,6 +133,6 @@ probka_przegladu)  # aneks 15.11.2026: 100 odrzuconych na powód + 100 zachowany
     "$R/pobrania/tokenizer_v6/tokenizer.json" "$R/probka_przegladu_2.jsonl"
   ;;
 *)
-  sed -n 2,6p "$0"; exit 2
+  sed -n 2,7p "$0"; exit 2
   ;;
 esac

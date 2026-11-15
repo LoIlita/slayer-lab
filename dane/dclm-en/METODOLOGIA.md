@@ -130,7 +130,7 @@ Karta mapuje się na datasheet `data/<key>/<key>.md` (krok 9). Jedna karta daje 
 | | Ogólnie | Przykład: DCLM-EN |
 |---|---|---|
 | Co | pomiary spoza filtrów (nakładanie z innymi zbiorami, klasyfikator jakości), potem agregacja: dedup wewnątrz, kaskada powodów, uzysk v6 po każdym powodzie, szacunek skali, ręczna próbka | `odtworz.sh fwe_url` (8 plików FWE), `edu` (50 000 dok., cpu float32), `agreguj` |
-| Sprawdzenie | kod wyjścia 0; suma kaskady = dokumenty próbki; `niedostepne` w wyniku puste albo opisane; ręczna próbka oceniona przez niezależnego czytelnika | 14-15.11.2026, pod strażnikiem, 0 pauz, swap 0, wolna pamięć ≥91%: **`fwe_url`** kod 0, 2765 s, szczyt RSS 837 MB; 8/8 plików, 4 829 900 wierszy (0,317% z 1 525 223 056 wierszy FWE), 4 748 572 unikalnych url ([`wyniki/fwe_url.json`](wyniki/fwe_url.json)). **`edu`** kod 0, 5414 s, szczyt RSS 7318 MB, cpu float32, **4 wątki** (`EDU_WATKI`, `OMP_NUM_THREADS`, `torch.set_num_threads`; ostrożny start po panice Maca 14.11), `KONIEC 50000`; int_score 0-5: 2608 / 24 007 / 15 931 / 6270 / 1180 / 4; próg ≥2 = 49,52% tokenów, ≥3 = 15,79%. **`agreguj`** kod 0, 30 s (RSS niezmierzony: krótszy niż okres próbki 30 s); 1 051 235 dok., 1 470 704 495 tokenów v6; kaskada 376 + 6738 + 2611 + 29 333 + 2279 + 3679 + 11 741 + 1895 = 58 652 odrzuconych, suma z zachowanymi = dokumenty próbki; **zostaje 992 583 dok. (94,42%), 1 345 901 642 tokenów v6 (91,51%)** (stan przed aneksem 15.11; po aneksie 993 878 dok., 1 352 267 245 tokenów v6, sekcja „Aneks do preregistracji”); `niedostepne` puste; FWE url: 7826 trafień (0,74%); szacunek do 5 mld v6: 38 shardów (34-43) z 27 838, dolna granica ([`wyniki/agreguj.json`](wyniki/agreguj.json)); ręczna próbka 200 wierszy w `robocze/wyniki/probki_reczne.jsonl`, oceniona 15.11.2026: **NIE PRZESZŁO** (sekcja „Ręczny przegląd próbki” niżej) |
+| Sprawdzenie | kod wyjścia 0; suma kaskady = dokumenty próbki; `niedostepne` w wyniku puste albo opisane; ręczna próbka oceniona przez niezależnego czytelnika | 14-15.11.2026, pod strażnikiem, 0 pauz, swap 0, wolna pamięć ≥91%: **`fwe_url`** kod 0, 2765 s, szczyt RSS 837 MB; 8/8 plików, 4 829 900 wierszy (0,317% z 1 525 223 056 wierszy FWE), 4 748 572 unikalnych url ([`wyniki/fwe_url.json`](wyniki/fwe_url.json)). **`edu`** kod 0, 5414 s, szczyt RSS 7318 MB, cpu float32, **4 wątki** (`EDU_WATKI`, `OMP_NUM_THREADS`, `torch.set_num_threads`; ostrożny start po panice Maca 14.11), `KONIEC 50000`; int_score 0-5: 2608 / 24 007 / 15 931 / 6270 / 1180 / 4; próg ≥2 = 49,52% tokenów, ≥3 = 15,79%. **`agreguj`** kod 0, 30 s (RSS niezmierzony: krótszy niż okres próbki 30 s); 1 051 235 dok., 1 470 704 495 tokenów v6; kaskada 376 + 6738 + 2611 + 29 333 + 2279 + 3679 + 11 741 + 1895 = 58 652 odrzuconych, suma z zachowanymi = dokumenty próbki; **zostaje 992 583 dok. (94,42%), 1 345 901 642 tokenów v6 (91,51%)** (stan przed aneksem 15.11; po aneksie 993 878 dok., 1 352 267 245 tokenów v6, sekcja „Aneks do preregistracji”; po aneksie 2 994 398 dok., 1 355 128 923 tokenów v6, 37 shardów, sekcja „Aneks 2”); `niedostepne` puste; FWE url: 7826 trafień (0,74%); szacunek do 5 mld v6: 38 shardów (34-43) z 27 838, dolna granica ([`wyniki/agreguj.json`](wyniki/agreguj.json)); ręczna próbka 200 wierszy w `robocze/wyniki/probki_reczne.jsonl`, oceniona 15.11.2026: **NIE PRZESZŁO** (sekcja „Ręczny przegląd próbki” niżej) |
 | Pułapki | uzysk przeniesiony z innej porcji (mierzysz od nowa, notatka §5); plik ręcznej próbki ma PII odrzuconych, zostaje w `robocze/`; szacunek shardów to dolna granica | — |
 
 ## Ręczny przegląd próbki
@@ -308,6 +308,51 @@ przeglądzie (1e5a152, 430703d) i PRZED budową indeksu wspólnego z FWE, przeli
 **Trzecia próbka.** `default_rng(2026111502)`: 100 dokumentów `ewal_13gram` po zmianie (wszystkie, gdy jest ich mniej)
 plus 200 nowych zachowanych do PII. Progi bez zmian (fałszywe odrzucenia ≤10%, górna granica Wilsona ≤20%). Jeśli
 `ewal_13gram` znów nie przejdzie, reguły nie stroi się dalej w tym przebiegu: wynik zostaje otwarty.
+
+**Przeliczenie po aneksie 2 (15.11.2026, pod strażnikiem, `nohup nice -n 10`, 0 pauz, swap 0, wolna pamięć 93%).**
+
+| Krok | Wynik |
+|---|---|
+| `ewal_fwe` ([`skrypty/ewal_wspolne_z_fwe.py`](skrypty/ewal_wspolne_z_fwe.py); kod 0, 1835 s, w tym pobranie 8 plików FWE ok. 14 GB do `robocze/pobrania/fwe`, liczenie 248 s na 6 procesach, szczyt RSS 6598 MB) | 4 829 900/4 829 900 wierszy FWE, strumieniowo po 4834 grupach wierszy; 21 714 dokumentów FWE z trafieniem; **243 317 z 32 411 348 13-gramów testów występuje w FWE** (HellaSwag 5954 z 3 208 403, PIQA 409 z 134 393, ARC-C 109 z 40 190, WinoGrande 0 z 50 713) ([`wyniki/ewal_wspolne_fwe.json`](wyniki/ewal_wspolne_fwe.json)); lista zamrożona w [`skrypty/ewal_13gram_wspolne_fwe.npz`](skrypty/ewal_13gram_wspolne_fwe.npz) |
+| `ewal_czeste_fwe` (kod 0, 90 s) | suma list 243 881 13-gramów, z tego 13 377 trafiających w próbkę; z 2821 dokumentów z trafieniem odpada nadal **750** (aneks 1: 1344), 3 579 936 tokenów v6 ([`wyniki/ewal_13gram_aneks2.json`](wyniki/ewal_13gram_aneks2.json): per test dokumenty z trafieniem i ile nadal odpada) |
+| kontrola dodatnia, wstawione | K_hellaswag, K_piqa, K_arc_c, K_winogrande: `ewal_13gram` przed i po zmianie; pozostałe 10 bez zmian (4/4 + 10/10) |
+| kontrola dodatnia, prawdziwe dokumenty próbki | PIQA 4/4 nadal odpada (aneks 1: 4/4); **ARC-C 0/2** (aneks 1: 2/2; oba trafienia ARC-C są w FWE); WinoGrande 0/0; HellaSwag 61/129 (aneks 1: 84/129) |
+| 100 dokumentów `ewal_13gram` z drugiego przeglądu (oceny recenzenta b) | z 34 trafnych nadal odpada 21, **13 trafnych przestaje odpadać**; z 51 fałszywych nadal odpada 20; z 15 wątpliwych 11 |
+| `agreguj` (kod 0, 30 s) | kaskada `ewal_13gram` 1224 → 665 dok.; **zostaje 994 398 dok. (94,593%), 1 355 128 923 tokenów v6 (92,141%)**, czyli +520 dok. i **+2 861 678 tokenów v6** wobec aneksu 1 (993 878 / 1 352 267 245); szacunek do 5 mld v6 bez zmian: 37 shardów (33-43) ([`wyniki/agreguj.json`](wyniki/agreguj.json)) |
+| `probka_przegladu_3` ([`skrypty/probka_przegladu_3.py`](skrypty/probka_przegladu_3.py), kod 0, 30 s), wylosowana po commicie aneksu 93ca7ff | `robocze/probka_przegladu_3.jsonl`: 100 z 750 dokumentów `ewal_13gram` + 200 z 994 298 zachowanych (bez 100 z drugiego przeglądu) |
+
+### Trzeci przegląd, 15.11.2026: wynik
+
+Recenzenci: dwóch niezależnych agentów (general-purpose, nie budowali zbioru), instrukcja `robocze/instrukcja_przegladu_3.md`,
+progi czytane po policzeniu stóp. Oceny per dokument: `robocze/przeglad_probki_3_{d,e}.json` (bez wartości PII). Wilson 95%.
+
+| Miara | n | Wynik | Stopa [Wilson 95%] | Próg | Werdykt |
+|---|---|---|---|---|---|
+| `ewal_13gram`: fałszywe odrzucenia | 100 | 28 (+17 wątpliwych) | **28,0% [20,1; 37,5]**; z wątpliwymi 45,0% [35,6; 54,8] | ≤10%, górna ≤20% | **FAIL** |
+| przeoczenia PII w zachowanych (200 nowych + 100 z drugiego przeglądu) | 300 | 0 (+1 wątpliwy) | 0,0% [0,0; 1,26]; Clopper-Pearson jednostronnie 0,994% | 0/300 | **PASS** |
+
+`ewal_13gram`: `do_treningu` tak 80, wątpliwe 16, nie 4. Spadek z 51% do 28% nie wystarcza; nawet dolna granica (20,1%) jest
+powyżej progu. PII: wątpliwy to archiwum listy mailingowej (winehq.org) z samymi loginami „login at” bez domeny, czyli bez
+adresu w zakresie detektora; uznany za trafienie dałby 1/300 i górną granicę 1,57% (FAIL). 147 z 200 dokumentów
+przeczytanych w całości, 53 dłuższe sprawdzone wzorcami na całym tekście plus początek i koniec ręcznie.
+
+**Werdykt: `ewal_13gram` NIE PRZESZEDŁ — OTWARTE.** Zgodnie z aneksem 2 reguły nie stroi się dalej w tym przebiegu.
+Kategorie błędnych odrzuceń (cytaty i frazy rzadkie w FWE, bo próbka FWE to 0,32% korpusu):
+
+1. **Teksty prawne, historyczne i literackie oraz cytaty** (12 z 28): preambuła Konstytucji USA, definicja z CFR, sekcja
+   kodeksu karnego Indii, słowa Armstronga, Reagan, Kanye West, wiersz Brooke'a, tekst piosenki.
+2. **Formułki, szablony i frazy ogólne** (11): szablon Wikipedii o postaciach Marvela, „originally aired on the Fox
+   network”, numer Crime Stoppers, „the best way to lose weight…”, definicja słownikowa, wzory matematyczne, ciąg zer w kodzie.
+3. **Tytuły, listy nazw i formuły obrzędowe** (5): pełny tytuł Księgi Mormona, tytuły piosenek, lista krajów UE z 2004 r.,
+   przysięga małżeńska.
+
+Wątpliwe (17): pojedyncze zdanie z początku artykułu Wikipedii w dokumencie, który nie jest kopią Wikipedii (6), cytaty
+prasowe z 1-2 trafieniami (5), tekst literacki użyty jako materiał testu (3), definicje podręcznikowe i ogólne zadanie (3).
+W 6 dokumentach trafienie leży poza 20 000 znaków próbki: ocenione po samych 13-gramach.
+
+Koszt reguły z aneksu 2 po stronie przeoczeń: 13 z 34 trafnych odrzuceń drugiego przeglądu i oba trafienia ARC-C w
+prawdziwych dokumentach przestają odpadać (kopie testów obecne w sieci są też w FWE). Kolejna zmiana wymaga nowego
+aneksu i świeżej próbki; do tego czasu eksport (krok 9) ma `ewal_13gram` bez PASS.
 
 ## 9. Eksport do formatu zgłoszeń
 

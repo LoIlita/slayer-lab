@@ -65,7 +65,7 @@ json.dump({"dokumentow_przebiegu": N, "dokumentow_z_trafieniem": len(docs), "ngr
           open(f"{OUT}/ew13_ngramy.json", "w", encoding="utf-8"), indent=0, ensure_ascii=False)
 print("dokumentow", N, "z_trafieniem", len(docs), "ngramow", len(ng), flush=True)
 
-if LISTA and not os.path.exists(LISTA):
+if LISTA and "," not in LISTA and not os.path.exists(LISTA):
     # reguła aneksu 15.11.2026: wykluczony n-gram powszechny (df >= DF_MIN w tej próbce) albo trywialny (każde słowo to liczba
     # albo pojedynczy znak: ciągi liczb, alfabet; interpunkcję usuwa już norm_slowa). Listę budujesz RAZ z próbki głównej.
     DF_MIN = 5
@@ -76,11 +76,34 @@ if LISTA and not os.path.exists(LISTA):
               open(LISTA, "w", encoding="utf-8"), indent=0, ensure_ascii=False)
     print("lista_wykluczen zbudowana", len(wyb), flush=True)
 if LISTA:
-    wykl = np.array(sorted(int(h) for h in json.load(open(LISTA, encoding="utf-8"))["hasze"]), np.uint64)
+    # aneks 2 (15.11.2026): kilka list po przecinku, suma wykluczeń; .json z polem 'hasze' albo .npz z tablicą 'hasze'
+    # (wspolne_fwe.npz z ewal_wspolne_z_fwe.py: 13-gramy testów obecne w próbce FineWeb-Edu)
+    czesci = []
+    for sc in LISTA.split(","):
+        if sc.endswith(".npz"):
+            czesci.append(np.load(sc)["hasze"].astype(np.uint64))
+        else:
+            czesci.append(np.array([int(h) for h in json.load(open(sc, encoding="utf-8"))["hasze"]], np.uint64))
+    wykl = np.unique(np.concatenate(czesci))
     po = np.zeros(N, bool)
+    po_test = collections.defaultdict(lambda: [0, 0, 0])  # test -> [dok z trafieniem, nadal odpada, odpada trafieniem tego testu]
+    ng_testy = {int(x["hasz"]): x["testy"] for x in ng}
     for d, a, b in zip(docs, poczatki[:-1], poczatki[1:]):
         x = H[a:b]
-        po[d] = bool(len(x)) and not bool(np.isin(x, wykl).all())
+        zost = x[~np.isin(x, wykl)]
+        po[d] = bool(len(zost))
+        t_przed = {t for h in x.tolist() for t in ng_testy[h]}
+        t_po = {t for h in zost.tolist() for t in ng_testy[h]}
+        for t in t_przed:
+            po_test[t][0] += 1
+            po_test[t][1] += int(po[d])
+            po_test[t][2] += int(t in t_po)
     np.save(f"{OUT}/ew13_po_wykl.npy", po)
+    json.dump({"listy": LISTA.split(","), "wykluczonych_ngramow": int(len(wykl)),
+               "trafiajacych_wykluczonych": int(np.isin(np.array(list(ng_testy), np.uint64), wykl).sum()),
+               "dokumentow_z_trafieniem": len(docs), "po_wykluczeniu": int(po.sum()),
+               "testy": {t: {"dok_z_trafieniem": v[0], "nadal_odpada": v[1], "odpada_trafieniem_tego_testu": v[2]}
+                         for t, v in sorted(po_test.items())}},
+              open(f"{OUT}/ew13_po_wykl.json", "w", encoding="utf-8"), indent=1, ensure_ascii=False)
     print("po_wykluczeniu", int(po.sum()), "z", len(docs), flush=True)
 print("KONIEC", flush=True)

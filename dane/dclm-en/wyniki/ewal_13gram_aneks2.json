@@ -1,0 +1,172 @@
+{
+ "listy": [
+  "/Users/lolita/Documents/GitHub/slayer-lab/dane/dclm-en/skrypty/ewal_13gram_wykluczone.json",
+  "/Users/lolita/Documents/GitHub/slayer-lab/dane/dclm-en/skrypty/ewal_13gram_wspolne_fwe.npz"
+ ],
+ "wykluczonych_ngramow": 243881,
+ "trafiajacych_wykluczonych": 13377,
+ "dokumentow_z_trafieniem": 2821,
+ "po_wykluczeniu": 750,
+ "testy": {
+  "T02_arc_challenge": {
+   "dok_z_trafieniem": 2,
+   "nadal_odpada": 0,
+   "odpada_trafieniem_tego_testu": 0
+  },
+  "T03_wikitext2": {
+   "dok_z_trafieniem": 91,
+   "nadal_odpada": 16,
+   "odpada_trafieniem_tego_testu": 12
+  },
+  "T04_multiblimp_pl": {
+   "dok_z_trafieniem": 2,
+   "nadal_odpada": 1,
+   "odpada_trafieniem_tego_testu": 1
+  },
+  "T05_hellaswag": {
+   "dok_z_trafieniem": 129,
+   "nadal_odpada": 61,
+   "odpada_trafieniem_tego_testu": 61
+  },
+  "T06_piqa": {
+   "dok_z_trafieniem": 4,
+   "nadal_odpada": 4,
+   "odpada_trafieniem_tego_testu": 4
+  },
+  "T09_sciq": {
+   "dok_z_trafieniem": 31,
+   "nadal_odpada": 20,
+   "odpada_trafieniem_tego_testu": 20
+  },
+  "T10_boolq": {
+   "dok_z_trafieniem": 571,
+   "nadal_odpada": 191,
+   "odpada_trafieniem_tego_testu": 190
+  },
+  "T13_wic": {
+   "dok_z_trafieniem": 35,
+   "nadal_odpada": 10,
+   "odpada_trafieniem_tego_testu": 10
+  },
+  "T15_rte": {
+   "dok_z_trafieniem": 28,
+   "nadal_odpada": 14,
+   "odpada_trafieniem_tego_testu": 14
+  },
+  "T16_anli": {
+   "dok_z_trafieniem": 93,
+   "nadal_odpada": 42,
+   "odpada_trafieniem_tego_testu": 42
+  },
+  "T17_lambada": {
+   "dok_z_trafieniem": 9,
+   "nadal_odpada": 7,
+   "odpada_trafieniem_tego_testu": 7
+  },
+  "T19_mathqa": {
+   "dok_z_trafieniem": 261,
+   "nadal_odpada": 16,
+   "odpada_trafieniem_tego_testu": 12
+  },
+  "T21_sst2": {
+   "dok_z_trafieniem": 7,
+   "nadal_odpada": 7,
+   "odpada_trafieniem_tego_testu": 7
+  },
+  "T24_belebele": {
+   "dok_z_trafieniem": 8,
+   "nadal_odpada": 6,
+   "odpada_trafieniem_tego_testu": 6
+  },
+  "T30_polqa": {
+   "dok_z_trafieniem": 20,
+   "nadal_odpada": 3,
+   "odpada_trafieniem_tego_testu": 2
+  },
+  "T32_mmlu": {
+   "dok_z_trafieniem": 227,
+   "nadal_odpada": 32,
+   "odpada_trafieniem_tego_testu": 30
+  },
+  "T34_math": {
+   "dok_z_trafieniem": 417,
+   "nadal_odpada": 16,
+   "odpada_trafieniem_tego_testu": 15
+  },
+  "T35_truthfulqa": {
+   "dok_z_trafieniem": 31,
+   "nadal_odpada": 4,
+   "odpada_trafieniem_tego_testu": 3
+  },
+  "T37_llmzszl": {
+   "dok_z_trafieniem": 353,
+   "nadal_odpada": 1,
+   "odpada_trafieniem_tego_testu": 0
+  },
+  "T38_squad2": {
+   "dok_z_trafieniem": 133,
+   "nadal_odpada": 27,
+   "odpada_trafieniem_tego_testu": 24
+  },
+  "T39_drop": {
+   "dok_z_trafieniem": 80,
+   "nadal_odpada": 14,
+   "odpada_trafieniem_tego_testu": 13
+  },
+  "T40_race": {
+   "dok_z_trafieniem": 49,
+   "nadal_odpada": 23,
+   "odpada_trafieniem_tego_testu": 23
+  },
+  "T41_coqa": {
+   "dok_z_trafieniem": 38,
+   "nadal_odpada": 17,
+   "odpada_trafieniem_tego_testu": 16
+  },
+  "T43_triviaqa": {
+   "dok_z_trafieniem": 225,
+   "nadal_odpada": 43,
+   "odpada_trafieniem_tego_testu": 42
+  },
+  "T45_medmcqa": {
+   "dok_z_trafieniem": 12,
+   "nadal_odpada": 6,
+   "odpada_trafieniem_tego_testu": 6
+  },
+  "T47_bbh": {
+   "dok_z_trafieniem": 25,
+   "nadal_odpada": 0,
+   "odpada_trafieniem_tego_testu": 0
+  },
+  "T48_paws": {
+   "dok_z_trafieniem": 15,
+   "nadal_odpada": 1,
+   "odpada_trafieniem_tego_testu": 1
+  },
+  "T50_record": {
+   "dok_z_trafieniem": 468,
+   "nadal_odpada": 197,
+   "odpada_trafieniem_tego_testu": 194
+  },
+  "X01_arc_easy": {
+   "dok_z_trafieniem": 5,
+   "nadal_odpada": 0,
+   "odpada_trafieniem_tego_testu": 0
+  },
+  "X02_humaneval": {
+   "dok_z_trafieniem": 353,
+   "nadal_odpada": 4,
+   "odpada_trafieniem_tego_testu": 0
+  },
+  "X03_mbpp": {
+   "dok_z_trafieniem": 497,
+   "nadal_odpada": 6,
+   "odpada_trafieniem_tego_testu": 1
+  },
+  "X04_synlogic": {
+   "dok_z_trafieniem": 344,
+   "nadal_odpada": 5,
+   "odpada_trafieniem_tego_testu": 4
+  }
+ }
+}
