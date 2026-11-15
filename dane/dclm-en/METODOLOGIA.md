@@ -48,7 +48,7 @@ wiedzy `budowa-modeli/komplet-kontroli-zbioru` (workspace fabryka-ai). Wymagania
 | 8 | Po przebiegu | `wyniki/agreguj.json`, `wyniki/fwe_url.json` | kaskada, uzysk v6, ręczna próbka |
 | 9 | Eksport | `data/<key>/<key>.parquet`, `.stats.json`, `.md` | PII zamaskowane, bramka języka, 12 kolumn |
 | 10 | Kontrola końcowa | wynik `pytest` i `src/check.py` | oba kod 0, niezależny agent na tym samym sha256 |
-| 11 | Wysyłka | PR na HF do `dataset-team-submissions` (DCLM-EN chwilowo: repo gated Ani do wglądu Arka) | przegląd praw z osobą zatwierdzającą |
+| 11 | Wysyłka | PR na HF do `dataset-team-submissions` (chwilowo: własne repo do wglądu Arka) | przegląd praw z osobą zatwierdzającą |
 | 12 | Aktualizacja karty | PR do `DANE_TRENINGOWE.md` | wiersz z linkiem do zbioru i statusem |
 
 ## 1. Rezerwacja
@@ -431,25 +431,28 @@ Robisz w klonie `SlayerLab/dataset-team-submissions`, nie w `slayer-lab`.
 
 ## 11. Wysyłka (PR na Hugging Face)
 
-### Chwilowo dla DCLM-EN: repo Ani do wglądu Arka (decyzja Ani, 15.11.2026)
+### Chwilowo: własne repo do wglądu Arka (decyzja Ani, 15.11.2026)
 
-Zamiast PR do `SlayerLab/dataset-team-submissions` zbiór trafia do repo datasetu na koncie Ani na Hugging Face, z
-dostępem na prośbę (gated, ręczne zatwierdzanie). Pliki widzi tylko zatwierdzona osoba; publicznie widać nazwę repo i
-README. Krok 10 robisz przed wgraniem, bez zmian.
+Zamiast PR do `SlayerLab/dataset-team-submissions` każdy wgrywa zbiór do repo datasetu na SWOIM koncie Hugging Face.
+Pliki widzi tylko właściciel i Arek (`Maggio33`); publicznie widać nazwę repo i README. Krok 10 robisz przed wgraniem,
+bez zmian.
 
-**Wgranie (z maszyny zalogowanej na konto Ani `Lolita67`, po kroku 10; Arek to `Maggio33`):**
+**Wgrywający** (po kroku 10; `<login>` to Twój login HF, `<key>` z kroku 9):
 
-1. Załóż repo, włącz bramkę PRZED wgraniem plików i od razu daj dostęp Arkowi:
-   `python -c "from huggingface_hub import HfApi as A; a=A(); r='Lolita67/dclm-baseline-en-robocze'; a.create_repo(r, repo_type='dataset'); a.update_repo_settings(r, gated='manual', repo_type='dataset'); a.grant_access(r, 'Maggio33', repo_type='dataset')"`
-2. Sprawdź bramkę: w oknie incognito strona repo pokazuje przycisk dostępu, a lista plików jest ukryta.
-3. Wgraj: `hf upload Lolita67/dclm-baseline-en-robocze data/dclm_baseline_en data/dclm_baseline_en --repo-type dataset`
-4. README repo: jedno zdanie „Zbiór roboczy do recenzji, nie do użytku.” Opis z „Opis PR” niżej idzie do pliku
-   `data/dclm_baseline_en/OPIS.md`, za bramką.
+0. Raz na maszynie: `pip install -U huggingface_hub` i `hf auth login` (token z prawem zapisu).
+1. Załóż repo, zamknij je bramką PRZED wgraniem plików i daj dostęp Arkowi:
+   `python -c "from huggingface_hub import HfApi as A; a=A(); r='<login>/<key>-robocze'; a.create_repo(r, repo_type='dataset'); a.update_repo_settings(r, gated='manual', repo_type='dataset'); a.grant_access(r, 'Maggio33', repo_type='dataset')"`
+2. Sprawdź bramkę: w oknie incognito strona repo nie pokazuje listy plików.
+3. Wgraj: `hf upload <login>/<key>-robocze data/<key> data/<key> --repo-type dataset`
+4. README repo: jedno zdanie „Zbiór roboczy do recenzji, nie do użytku.” Opis z „Opis PR” niżej idzie do
+   `data/<key>/OPIS.md`, za bramką.
+5. Wyślij Arkowi link `https://huggingface.co/datasets/<login>/<key>-robocze`.
 
-**Arek:** nic nie zatwierdza ani o nic nie prosi. Po `hf auth login`:
-`hf download Lolita67/dclm-baseline-en-robocze --repo-type dataset`.
+**Arek:** nic nie zatwierdza. Po `hf auth login`: `hf download <login>/<key>-robocze --repo-type dataset`.
 
-Kolejna osoba do wglądu: ta sama komenda `grant_access` z jej loginem. Odebranie: `reject_access_request`.
+Kolejna osoba do wglądu: `grant_access` z jej loginem. Odebranie: `reject_access_request`.
+
+DCLM-EN: `<login>` = `Lolita67`, `<key>` = `dclm_baseline_en`.
 
 Krok 12 czeka: wiersz w `DANE_TRENINGOWE.md` zostaje „w budowie”. Po uwagach Arka wracamy do zwykłej ścieżki (PR do
 zgłoszeń).
