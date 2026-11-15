@@ -48,7 +48,7 @@ wiedzy `budowa-modeli/komplet-kontroli-zbioru` (workspace fabryka-ai). Wymagania
 | 8 | Po przebiegu | `wyniki/agreguj.json`, `wyniki/fwe_url.json` | kaskada, uzysk v6, ręczna próbka |
 | 9 | Eksport | `data/<key>/<key>.parquet`, `.stats.json`, `.md` | PII zamaskowane, bramka języka, 12 kolumn |
 | 10 | Kontrola końcowa | wynik `pytest` i `src/check.py` | oba kod 0, niezależny agent na tym samym sha256 |
-| 11 | Wysyłka | PR na HF do `dataset-team-submissions` | przegląd praw z osobą zatwierdzającą |
+| 11 | Wysyłka | PR na HF do `dataset-team-submissions` (DCLM-EN chwilowo: prywatne repo Ani do wglądu Arka) | przegląd praw z osobą zatwierdzającą |
 | 12 | Aktualizacja karty | PR do `DANE_TRENINGOWE.md` | wiersz z linkiem do zbioru i statusem |
 
 ## 1. Rezerwacja
@@ -430,6 +430,18 @@ Robisz w klonie `SlayerLab/dataset-team-submissions`, nie w `slayer-lab`.
 | Pułapki | `check.py` nie sprawdza podstawy licencji (tylko niepuste `license`), to robi krok 11; plik LFS-pointer zamiast parquetu | — |
 
 ## 11. Wysyłka (PR na Hugging Face)
+
+**Chwilowa zmiana dla DCLM-EN (decyzja Ani, 15.11.2026):** zamiast PR do `SlayerLab/dataset-team-submissions`
+zbiór idzie do PRYWATNEGO repo datasetu na Hugging Face Ani, do wglądu dla Arka.
+
+- Repo prywatne, katalog `data/<key>/` jak w kroku 9 i opis jak w „Opis PR” niżej, w `README.md` repo, żeby
+  przejście na PR do zgłoszeń było później kopią bez przeróbek.
+- HF nie daje dostępu do prywatnego repo konta osobistego wybranej osobie: dostęp przez prywatną organizację Ani
+  z Arkiem w roli `read` (repo w tej organizacji). Gated repo i link z tokenem odpadają, bo pierwsze jest publicznie
+  widoczne, a drugie przekazuje sekret.
+- Krok 10 obowiązuje bez zmian, przed wgraniem. Krok 12 czeka: wiersz w `DANE_TRENINGOWE.md` zostaje „w budowie”, bo
+  prywatne repo nie jest zgłoszeniem.
+- Koniec zmiany: decyzja po uwagach Arka, potem zwykła ścieżka (PR do zgłoszeń).
 
 | | Ogólnie | Przykład: DCLM-EN |
 |---|---|---|
