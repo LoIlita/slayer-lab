@@ -1,5 +1,5 @@
 #!/bin/bash
-# Odtworzenie przebiegu DCLM-EN od zera, krok po kroku. Opis kroków, wejść i kontroli: dane/dclm-en/METODOLOGIA.md.
+# Odtworzenie przebiegu DCLM-EN od zera, krok po kroku. Przepis: dane/METODOLOGIA.md, wyniki: dane/dclm-en/DZIENNIK.md.
 # Użycie (z dowolnego katalogu):  bash dane/dclm-en/skrypty/odtworz.sh <krok>
 # Kroki: venv | tokenizer | probka | testy | ewal | baza107 | idx107 | walidacja_pobierz | idx_wal | idx_ivme | kontrola | przebieg
 #        po przebiegu: fwe_url | edu | ewal_czeste | agreguj | probka_przegladu
@@ -76,7 +76,7 @@ for i, d in enumerate(m['ids']):
           '107', np.round(z['bz_slayer_107_en'][i], 2), 'wal', np.round(z['bz_walidacja'][i], 2), 'ivme', np.round(z['bz_ivme'][i], 2))
 " "$R/wyniki/kontrola"
   ;;
-przebieg)  # 216 jednostek; PROC=6 (pamięć: patrz METODOLOGIA.md, sekcja Przebieg)
+przebieg)  # 216 jednostek; PROC=6 (pamięć: patrz dane/METODOLOGIA.md, sekcja Pułapki)
   $NICE $PY -I -W ignore "$S/przebieg.py" "$R/probka_pliki.json" "$R/wyniki/ewal" "$R/wyniki/idx" \
     "$R/pobrania/tokenizer_v6/tokenizer.json" "$R/wyniki/przebieg" 6 walidacja="$R/wyniki/idx_wal" ivme="$R/wyniki/idx_ivme"
   ;;

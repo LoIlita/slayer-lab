@@ -1,6 +1,19 @@
 # Metodologia: zbiór danych do treningu Slayera 1B
 
-Jeden przepis dla każdego zbioru, od rezerwacji do wpisu w [`KARTA_DANYCH_TRENINGOWYCH.md`](KARTA_DANYCH_TRENINGOWYCH.md). Wypełniony przykład każdego kroku: [`dclm-en/METODOLOGIA.md`](dclm-en/METODOLOGIA.md). Wymagania wysyłki: [![HF](https://img.shields.io/badge/HF-SlayerLab%2Fdataset--team--submissions-ffcc00?logo=huggingface)](https://huggingface.co/datasets/SlayerLab/dataset-team-submissions) (`README.md`, `AGENTS.md`, `LESSONS.md`, skill `source-rights-review`).
+Jeden przepis dla każdego zbioru, od rezerwacji do wpisu w [`KARTA_DANYCH_TRENINGOWYCH.md`](KARTA_DANYCH_TRENINGOWYCH.md). Pierwszy wypełniony przykład: [`dclm-en/`](dclm-en/). Wymagania wysyłki: [![HF](https://img.shields.io/badge/HF-SlayerLab%2Fdataset--team--submissions-ffcc00?logo=huggingface)](https://huggingface.co/datasets/SlayerLab/dataset-team-submissions) (`README.md`, `AGENTS.md`, `LESSONS.md`, skill `source-rights-review`).
+
+## 0. Co zostawia każdy zbiór
+
+Własnej metodologii nie piszesz. Piszesz te pliki w `dane/<zbiór>/`:
+
+| plik | co w nim | przykład |
+|---|---|---|
+| `KARTA_ZRODLA.md` | 6 pól z kroku 2 | [`dclm-en/KARTA_ZRODLA.md`](dclm-en/KARTA_ZRODLA.md) |
+| `skrypty/preregistracja.json` | progi i kolejność powodów z kroku 3, aneksy z datą | [`dclm-en/skrypty/preregistracja.json`](dclm-en/skrypty/preregistracja.json) |
+| `skrypty/odtworz.sh` | każdy krok jako przypadek | [`dclm-en/skrypty/odtworz.sh`](dclm-en/skrypty/odtworz.sh) |
+| `requirements.txt` | wynik `pip freeze` | [`dclm-en/requirements.txt`](dclm-en/requirements.txt) |
+| `wyniki/*.json` | liczby kontrolne kroków 5-8 | [`dclm-en/wyniki/`](dclm-en/wyniki/) |
+| `DZIENNIK.md` | sekcja na każdy krok 1-12: data, komenda, kod wyjścia, liczby, link do `wyniki/`; aneksy i przeglądy próbki jako podsekcje; na końcu „Historia odtworzeń” | [`dclm-en/DZIENNIK.md`](dclm-en/DZIENNIK.md) |
 
 ## 1. Zasady stałe
 
@@ -36,6 +49,18 @@ Jeden przepis dla każdego zbioru, od rezerwacji do wpisu w [`KARTA_DANYCH_TRENI
 | 10 | Kontrola końcowa | wpis w `src/sources.py`, `configs` w `README.md`, test kontraktowy; `pytest src/test_<key>_contract.py` i `python src/check.py --source <key>` | oba kod 0; niezależny agent na pliku o tym samym sha256 |
 | 11 | Wysyłka | chwilowo: własne repo do wglądu Arka (sekcja 4); docelowo PR do `dataset-team-submissions` z przeglądem praw i osobą zatwierdzającą | Arek ma link i dostęp |
 | 12 | Karta danych | PO wysyłce: w wierszu z kroku 1 link do zbioru i status | każdy link w wierszu odpowiada 200 |
+
+### Szczegóły kroków 2, 9-11
+
+**Karta → datasheet `data/<key>/<key>.md` (krok 9):** identyfikacja, zawartość, skala → `## Source`; prawa → `## Rights review`; ryzyka (kopie, testy, OCR, syntetyki) i nowość → `## Cleaning` z kaskadą i uzyskiem z kroku 8; PII → `## Personal data`; ręczna próbka → `## Sample`.
+
+**Kolumny eksportu (krok 9):** `id`, `text`, `source`, `added`, `created`, `token_count`, `license`, `author`, `language` (`pl`/`en`/`pl+en`), `text_origin` (`human`/`translated`/`synthetic`), `generator`, `derived_from`. `source`, `added`, `token_count` dopisuje `shard.write`. `text_origin=synthetic` wymaga `generator` w formacie `model@rewizja prompt:ścieżka`. Wyniki w `stats.json`: `dropped`, `lang_gate`, rekord `pii`.
+
+**Kontrola końcowa (krok 10):** wpis w `src/sources.py` (`pretty`, `upstream`, `license`, `license_spdx`, `domain`, `added`, `created`, `provenance`, `traceable`, `is_ocr`, `language`, `text_origin`, `legal_note`), `configs` w `README.md`, test `src/test_<key>_contract.py`. `check.py` nie sprawdza podstawy licencji, to robi krok 11.
+
+**Przegląd praw (krok 11, skill `source-rights-review`):** łańcuch praw (każde ogniwo: zapis, URL, data, hash), V/I przy każdym twierdzeniu, decyzja `admitted`/`excluded`/`held_for_review`, lista „not checked”, osoba zatwierdzająca; próbka treści stron trzecich: seed, ≥40 dok. na warstwę, przedział Wilsona. Opis PR: próbka z `src/render_sample.py`, przegląd praw, wersja PII, before/after. Kontakt z właścicielami praw i regulaminy: tylko ludzie.
+
+**Rozjazdy notatki i repo zgłoszeń** (nasz przebieg / repo zgłoszeń): PII usuwane w całości / maskowane Presidio-NERGAL; prawa: TDM wystarcza / licencja per dokument; ręczna próbka 100+100 na powód / ≥40 na warstwę z Wilsonem; dedup pełna historia modelu / tylko Dynaword (containment ≥0,9). Robisz oba.
 
 ## 4. Wysyłka do wglądu Arka (chwilowo, od 15.11.2026)
 
