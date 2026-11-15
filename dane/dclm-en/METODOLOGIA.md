@@ -439,17 +439,17 @@ README. Krok 10 robisz przed wgraniem, bez zmian.
 
 **Wgranie (kto ma token zapisu Ani, po kroku 10):**
 
-1. Załóż repo i włącz bramkę PRZED wgraniem plików:
-   `python -c "from huggingface_hub import HfApi as A; a=A(); r='<konto>/dclm-baseline-en-robocze'; a.create_repo(r, repo_type='dataset'); a.update_repo_settings(r, gated='manual', repo_type='dataset')"`
+1. Załóż repo, włącz bramkę PRZED wgraniem plików i od razu daj dostęp Arkowi:
+   `python -c "from huggingface_hub import HfApi as A; a=A(); r='<konto>/dclm-baseline-en-robocze'; a.create_repo(r, repo_type='dataset'); a.update_repo_settings(r, gated='manual', repo_type='dataset'); a.grant_access(r, '<login-Arka>', repo_type='dataset')"`
 2. Sprawdź bramkę: w oknie incognito strona repo pokazuje przycisk dostępu, a lista plików jest ukryta.
 3. Wgraj: `hf upload <konto>/dclm-baseline-en-robocze data/dclm_baseline_en data/dclm_baseline_en --repo-type dataset`
 4. README repo: jedno zdanie „Zbiór roboczy do recenzji, nie do użytku.” Opis z „Opis PR” niżej idzie do pliku
    `data/dclm_baseline_en/OPIS.md`, za bramką.
 
-**Arek:** otwiera stronę repo, loguje się, klika „Request access”. Po zatwierdzeniu:
+**Arek:** nic nie zatwierdza ani o nic nie prosi. Po `hf auth login`:
 `hf download <konto>/dclm-baseline-en-robocze --repo-type dataset`.
 
-**Ania:** zatwierdza w Settings repo → „Gated user access” → Accept przy Arku.
+Kolejna osoba do wglądu: ta sama komenda `grant_access` z jej loginem. Odebranie: `reject_access_request`.
 
 Krok 12 czeka: wiersz w `DANE_TRENINGOWE.md` zostaje „w budowie”. Po uwagach Arka wracamy do zwykłej ścieżki (PR do
 zgłoszeń).
