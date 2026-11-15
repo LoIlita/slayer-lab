@@ -3,7 +3,8 @@
 # Użycie (z dowolnego katalogu):  bash dane/dclm-en/skrypty/odtworz.sh <krok>
 # Kroki: venv | tokenizer | probka | testy | ewal | baza107 | idx107 | walidacja_pobierz | idx_wal | idx_ivme | kontrola | przebieg
 #        po przebiegu: fwe_url | edu | ewal_czeste | agreguj | probka_przegladu
-#        aneks 2: ewal_fwe | ewal_czeste_fwe | agreguj | probka_przegladu_3
+#        obowiązuje (aneks 3): kontrola | ewal_czeste | agreguj
+#        aneks 2, COFNIĘTY aneksem 3 (tylko odtworzenie pomiaru): ewal_fwe | ewal_czeste_fwe | probka_przegladu_3
 # Każdy krok jest wznawialny: pobrania pomijają gotowe pliki, przebieg pomija gotowe u_NNNN.npz.
 set -euo pipefail
 
@@ -123,8 +124,7 @@ probka_przegladu_3)  # aneks 2: 100 ewal_13gram po zmianie + 200 nowych zachowan
 agreguj)  # kaskada powodów, uzysk v6, szacunek shardów, ręczna próbka 100/100 (probki_reczne.jsonl zostaje w robocze/: ma PII)
   $NICE $PY -I "$S/agreguj.py" "$R/wyniki/przebieg" "$R/probka_pliki.json" "$R/wyniki/fwe/fwe_url_h.npy" "$R/wyniki/edu/edu.npz" \
     "$R/wyniki/agreguj.json" "$R/wyniki/probki_reczne.jsonl" walidacja="$R/wyniki/idx_wal" ivme="$R/wyniki/idx_ivme" \
-    $( if [ -f "$R/wyniki/ew13b/ew13_po_wykl.npy" ]; then echo ew13="$R/wyniki/ew13b/ew13_po_wykl.npy";
-       elif [ -f "$R/wyniki/ew13/ew13_po_wykl.npy" ]; then echo ew13="$R/wyniki/ew13/ew13_po_wykl.npy"; fi )
+    $( [ -f "$R/wyniki/ew13/ew13_po_wykl.npy" ] && echo ew13="$R/wyniki/ew13/ew13_po_wykl.npy" )
   cp "$R/wyniki/agreguj.json" "$D/wyniki/agreguj.json"
   cp "$R/wyniki/fwe/fwe_url.json" "$D/wyniki/fwe_url.json"
   ;;

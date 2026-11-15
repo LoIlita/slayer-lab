@@ -122,5 +122,19 @@
    "progi": "ewal_13gram: fałszywe odrzucenia <= 10% i górna granica Wilsona 95% <= 20% (aneks 1); PII: kryterium z pola przeoczenia_pii",
    "gdy_nie_przejdzie": "w tym przebiegu reguły ewal_13gram nie stroi się dalej: wynik zapisany jako otwarty, z opisem kategorii błędnych odrzuceń"
   }
+ },
+ "aneks_2026_11_15c": {
+  "zapisano": "2026-11-15, PO trzecim przeglądzie (commit 4e0a247: ewal_13gram 28% [20,1; 37,5] FAIL, PII 0/300 PASS); rozstrzygnięcie techniczne głównej sesji",
+  "ewal_13gram_regula": {
+   "decyzja": "wykluczenie 13-gramów wspólnych z FWE (aneks_2026_11_15b.ewal_13gram) COFNIĘTE; obowiązuje reguła aneksu 1 (aneks_2026_11_15.ewal_13gram: df >= 5 w próbce albo 13-gram trywialny, lista skrypty/ewal_13gram_wykluczone.json)",
+   "powod_dane": "przy regule aneksu 2 kontrola dodatnia na prawdziwych dokumentach: ARC-C 0/2 (przy aneksie 1: 2/2), HellaSwag 61/129 (84/129); z 34 trafnych odrzuceń drugiego przeglądu 13 przestało odpadać. Przeoczona kontaminacja psuje wyniki benchmarków, a fałszywe odrzucenia kosztują ok. 0,07-0,13% dokumentów próbki (665-1224 w kaskadzie z ok. 994 tys.): koszt asymetryczny"
+  },
+  "ewal_13gram_kryterium": {
+   "decyzja": "dla ewal_13gram próg fałszywych odrzuceń (<= 10%, górna granica Wilsona <= 20%) NIE obowiązuje. Kryterium: zero przeoczeń w kontroli dodatniej (4 wstawione dokumenty HellaSwag, PIQA, ARC-C, WinoGrande odpadają; prawdziwe dokumenty próbki z trafieniem PIQA i ARC-C odpadają). Stopa fałszywych odrzuceń i udział utraconych tokenów są raportowane, z liczbami z trzech przeglądów",
+   "uzasadnienie": "dekontaminacja zachowawcza, jak w praktyce GPT-3 i Llamy: lepiej usunąć dobry tekst niż zostawić treść testu",
+   "odstepstwo": "jawne odstępstwo od progów aneksu 1 (pole progi.falszywe_odrzucenia) dla jednego powodu, przyjęte po zobaczeniu wyniku przeglądów"
+  },
+  "pii": "wątpliwy przypadek z trzeciego przeglądu (archiwum listy mailingowej, login „at” bez domeny) zostaje wątpliwy, nie trafienie; werdykt PASS 0/300 zostaje z przypisem",
+  "teksty_fwe": "teksty 8 plików FWE pobrane w aneksie 2 usunięte z robocze/ (niepotrzebne po cofnięciu); rewizja i sumy sha256 w METODOLOGIA.md"
  }
 }

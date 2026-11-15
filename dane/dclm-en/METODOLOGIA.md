@@ -130,7 +130,7 @@ Karta mapuje się na datasheet `data/<key>/<key>.md` (krok 9). Jedna karta daje 
 | | Ogólnie | Przykład: DCLM-EN |
 |---|---|---|
 | Co | pomiary spoza filtrów (nakładanie z innymi zbiorami, klasyfikator jakości), potem agregacja: dedup wewnątrz, kaskada powodów, uzysk v6 po każdym powodzie, szacunek skali, ręczna próbka | `odtworz.sh fwe_url` (8 plików FWE), `edu` (50 000 dok., cpu float32), `agreguj` |
-| Sprawdzenie | kod wyjścia 0; suma kaskady = dokumenty próbki; `niedostepne` w wyniku puste albo opisane; ręczna próbka oceniona przez niezależnego czytelnika | 14-15.11.2026, pod strażnikiem, 0 pauz, swap 0, wolna pamięć ≥91%: **`fwe_url`** kod 0, 2765 s, szczyt RSS 837 MB; 8/8 plików, 4 829 900 wierszy (0,317% z 1 525 223 056 wierszy FWE), 4 748 572 unikalnych url ([`wyniki/fwe_url.json`](wyniki/fwe_url.json)). **`edu`** kod 0, 5414 s, szczyt RSS 7318 MB, cpu float32, **4 wątki** (`EDU_WATKI`, `OMP_NUM_THREADS`, `torch.set_num_threads`; ostrożny start po panice Maca 14.11), `KONIEC 50000`; int_score 0-5: 2608 / 24 007 / 15 931 / 6270 / 1180 / 4; próg ≥2 = 49,52% tokenów, ≥3 = 15,79%. **`agreguj`** kod 0, 30 s (RSS niezmierzony: krótszy niż okres próbki 30 s); 1 051 235 dok., 1 470 704 495 tokenów v6; kaskada 376 + 6738 + 2611 + 29 333 + 2279 + 3679 + 11 741 + 1895 = 58 652 odrzuconych, suma z zachowanymi = dokumenty próbki; **zostaje 992 583 dok. (94,42%), 1 345 901 642 tokenów v6 (91,51%)** (stan przed aneksem 15.11; po aneksie 993 878 dok., 1 352 267 245 tokenów v6, sekcja „Aneks do preregistracji”; po aneksie 2 994 398 dok., 1 355 128 923 tokenów v6, 37 shardów, sekcja „Aneks 2”); `niedostepne` puste; FWE url: 7826 trafień (0,74%); szacunek do 5 mld v6: 38 shardów (34-43) z 27 838, dolna granica ([`wyniki/agreguj.json`](wyniki/agreguj.json)); ręczna próbka 200 wierszy w `robocze/wyniki/probki_reczne.jsonl`, oceniona 15.11.2026: **NIE PRZESZŁO** (sekcja „Ręczny przegląd próbki” niżej) |
+| Sprawdzenie | kod wyjścia 0; suma kaskady = dokumenty próbki; `niedostepne` w wyniku puste albo opisane; ręczna próbka oceniona przez niezależnego czytelnika | 14-15.11.2026, pod strażnikiem, 0 pauz, swap 0, wolna pamięć ≥91%: **`fwe_url`** kod 0, 2765 s, szczyt RSS 837 MB; 8/8 plików, 4 829 900 wierszy (0,317% z 1 525 223 056 wierszy FWE), 4 748 572 unikalnych url ([`wyniki/fwe_url.json`](wyniki/fwe_url.json)). **`edu`** kod 0, 5414 s, szczyt RSS 7318 MB, cpu float32, **4 wątki** (`EDU_WATKI`, `OMP_NUM_THREADS`, `torch.set_num_threads`; ostrożny start po panice Maca 14.11), `KONIEC 50000`; int_score 0-5: 2608 / 24 007 / 15 931 / 6270 / 1180 / 4; próg ≥2 = 49,52% tokenów, ≥3 = 15,79%. **`agreguj`** kod 0, 30 s (RSS niezmierzony: krótszy niż okres próbki 30 s); 1 051 235 dok., 1 470 704 495 tokenów v6; kaskada 376 + 6738 + 2611 + 29 333 + 2279 + 3679 + 11 741 + 1895 = 58 652 odrzuconych, suma z zachowanymi = dokumenty próbki; **zostaje 992 583 dok. (94,42%), 1 345 901 642 tokenów v6 (91,51%)** (stan przed aneksem 15.11; po aneksie 993 878 dok., 1 352 267 245 tokenów v6, sekcja „Aneks do preregistracji”; aneks 2 cofnięty aneksem 3, stan końcowy = stan po aneksie 1: 993 878 dok., 1 352 267 245 tokenów v6, 37 shardów (33-43), sekcja „Aneks 3”); `niedostepne` puste; FWE url: 7826 trafień (0,74%); szacunek do 5 mld v6: 38 shardów (34-43) z 27 838, dolna granica ([`wyniki/agreguj.json`](wyniki/agreguj.json)); ręczna próbka 200 wierszy w `robocze/wyniki/probki_reczne.jsonl`, oceniona 15.11.2026: **NIE PRZESZŁO** (sekcja „Ręczny przegląd próbki” niżej) |
 | Pułapki | uzysk przeniesiony z innej porcji (mierzysz od nowa, notatka §5); plik ręcznej próbki ma PII odrzuconych, zostaje w `robocze/`; szacunek shardów to dolna granica | — |
 
 ## Ręczny przegląd próbki
@@ -353,6 +353,60 @@ W 6 dokumentach trafienie leży poza 20 000 znaków próbki: ocenione po samych 
 Koszt reguły z aneksu 2 po stronie przeoczeń: 13 z 34 trafnych odrzuceń drugiego przeglądu i oba trafienia ARC-C w
 prawdziwych dokumentach przestają odpadać (kopie testów obecne w sieci są też w FWE). Kolejna zmiana wymaga nowego
 aneksu i świeżej próbki; do tego czasu eksport (krok 9) ma `ewal_13gram` bez PASS.
+
+### Aneks 3 do preregistracji, 15.11.2026 (po trzecim przeglądzie)
+
+Zapisany w [`skrypty/preregistracja.json`](skrypty/preregistracja.json), pole `aneks_2026_11_15c`, PO trzecim przeglądzie
+(4e0a247). Rozstrzygnięcie techniczne głównej sesji, powód w danych wyżej:
+
+1. **Wykluczenie 13-gramów wspólnych z FWE COFNIĘTE, wraca reguła aneksu 1** (df ≥ 5 i ciągi). Przy aneksie 2 kontrola
+   dodatnia przestała łapać prawdziwą kontaminację: ARC-C 0/2 (przy aneksie 1: 2/2), HellaSwag 61/129 (84/129), 13 z 34
+   trafnych odrzuceń drugiego przeglądu przestało odpadać. Przeoczona kontaminacja psuje wyniki benchmarków, a fałszywe
+   odrzucenia kosztują ok. 0,1% dokumentów: koszt jest asymetryczny.
+2. **Dla `ewal_13gram` próg fałszywych odrzuceń ≤10% nie obowiązuje.** Kryterium tego powodu: zero przeoczeń w kontroli
+   dodatniej. Stopa fałszywych odrzuceń i utracone tokeny są raportowane. Dekontaminacja zachowawcza, jak w GPT-3 i Llamie.
+   To **jawne odstępstwo** od progów aneksu 1, przyjęte po zobaczeniu wyników przeglądów.
+3. **PII:** przypadek „login at” bez domeny zostaje wątpliwy; PASS 0/300 zostaje z tym przypisem.
+
+Teksty FWE pobrane w aneksie 2 (`robocze/pobrania/fwe`, ok. 14 GB) usunięte. Do odtworzenia pomiaru aneksu 2 (krok
+`ewal_fwe`): `HuggingFaceFW/fineweb-edu@87f09149ef4734204d70ed1d046ddc9ca3f2b8f9`, sha256:
+
+| Plik | sha256 |
+|---|---|
+| `data/CC-MAIN-2014-10/train-00002-of-00014.parquet` | `10d45b5276fd3f0b984bcb8e8079892aa169a11bdb0cccc7b92eed2b7bf1419d` |
+| `data/CC-MAIN-2017-04/train-00001-of-00018.parquet` | `820f8562fb2891a02cbac5bf1d4d274b300e72f797a26db307f5dcd4b2321188` |
+| `data/CC-MAIN-2017-17/train-00014-of-00022.parquet` | `0f57717de087f63fe908e2e25f936b27db536ad8ddba4d6d89bb52e9bf18885d` |
+| `data/CC-MAIN-2018-13/train-00005-of-00016.parquet` | `54b648a4412effe488d90db4621d7d3aec35bd1af8d2bc419fc30800f416a48e` |
+| `data/CC-MAIN-2019-39/train-00012-of-00015.parquet` | `ef41ea937469b1b4ab588d7120eb6006f797fa324d49b677d12ab7d8ea2d7d1a` |
+| `data/CC-MAIN-2024-26/000_00042.parquet` | `95e8f2d90af289c419c577f98de7c8dc756c01956c6a199571fd8646329929d9` |
+| `data/CC-MAIN-2025-13/000_00043.parquet` | `5b31dbdcbfa53c68c82329c3a6b216c2213c2a45f58f995ca1bc80d136591ee9` |
+| `data/CC-MAIN-2025-18/000_00023.parquet` | `3f64da6fef57ab38da270f3752011daa87c6c8f2eb797586a438acb675567e6f` |
+
+**Przeliczenie na regule aneksu 1 (15.11.2026, pod strażnikiem, `nohup nice -n 10`, kroki `kontrola`, `ewal_czeste`,
+`agreguj`, każdy kod 0, 30 s, 0 pauz, swap 0, wolna pamięć 93%).** `agreguj` w `odtworz.sh` znów czyta `wyniki/ew13`;
+kroki aneksu 2 zostają tylko do odtworzenia pomiaru.
+
+| Krok | Wynik |
+|---|---|
+| `kontrola` + `ewal_czeste` na kontroli | K_hellaswag, K_piqa, K_arc_c, K_winogrande: `ewal_13gram` przed i po wykluczeniach (4/4); pozostałe 10 dostają swoje powody bez zmian |
+| `ewal_czeste` na próbce ([`wyniki/ewal_13gram_aneks3.json`](wyniki/ewal_13gram_aneks3.json)) | odpada 1344 z 2821 dokumentów z trafieniem; prawdziwe dokumenty: **PIQA 4/4, ARC-C 2/2**, WinoGrande 0/0, HellaSwag 84/129 (79 trafieniem HellaSwag) |
+| `agreguj` ([`wyniki/agreguj.json`](wyniki/agreguj.json)) | **zostaje 993 878 dok. (94,544%), 1 352 267 245 tokenów v6 (91,947%); szacunek do 5 mld v6: 37 shardów (33-43)**, dolna granica |
+
+**`ewal_13gram` w trzech przeglądach (raport, nie kryterium):**
+
+| Przegląd | Reguła | n | Fałszywe odrzucenia [Wilson 95%] | Dokumenty / tokeny v6 z powodem (niezależnie) |
+|---|---|---|---|---|
+| pierwszy (c14d015) | każde trafienie | 5 | 4 (80,0% [37,6; 96,4]) | 2821 / 15 098 522 (1,03% tokenów) |
+| drugi (1e5a152) | aneks 1, **obowiązuje** | 100 | 51 (51,0% [41,4; 60,6]) | 1344 / 7 071 298 (0,48% tokenów; kaskada 1224 dok., 6 620 968 tok.) |
+| trzeci (4e0a247) | aneks 2, cofnięty | 100 | 28 (28,0% [20,1; 37,5]) | 750 / 3 579 936 (0,24% tokenów) |
+
+Przy obowiązującej regule fałszywe odrzucenia kosztują ok. 51% z 0,48% tokenów, czyli ok. 0,25% tokenów próbki.
+
+**Werdykt całości: PRZESZŁO z aneksem 3.** 7 powodów przechodzi progi aneksu 1 (drugi przegląd; dedupy z definicją
+kopii z aneksu 2, pkt 1, który zostaje). Przeoczenia w zachowanych przechodzą, PII 0/300 (Clopper-Pearson 0,994%) z
+przypisem o jednym wątpliwym. `ewal_13gram` przechodzi kryterium kontroli dodatniej (4/4 wstawione, PIQA 4/4, ARC-C 2/2).
+**Odstępstwo:** dla `ewal_13gram` nie obowiązuje próg fałszywych odrzuceń z aneksu 1; przy obowiązującej regule stopa
+wynosi 51% [41,4; 60,6], próg ≤10% nie jest spełniony, a zmianę kryterium przyjęto po zobaczeniu wyników.
 
 ## 9. Eksport do formatu zgłoszeń
 
