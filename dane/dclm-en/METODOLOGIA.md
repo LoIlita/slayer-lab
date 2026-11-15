@@ -274,6 +274,17 @@ przechodzą. Uwagi recenzentów: `walidacja_fabryki` ma 22 wątpliwe pary (stron
 z innymi danymi); śmieci z wątpliwymi w zachowanych to 19%; recenzent `pii` widział e-maile zamaskowane przez hook sesji
 (`[REDACTED:email]`) i oceniał je po kontekście.
 
+Zastrzeżenia, które mogą zmienić werdykt (do rozstrzygnięcia w aneksie przed kolejną próbką):
+
+- **Definicja kopii przy dedupach.** Recenzent dedupów liczył stronę bez własnej treści, różniącą się od pary tylko
+  podstawioną nazwą lub numerem (regulamin phpBB z inną nazwą forum, ogłoszenie z inną dzielnicą), jako bliską kopię.
+  Przy ostrzejszym czytaniu („nie tylko wspólny szablon”) `dedup_slayer107` ma 12% [7,0; 19,8], a `dedup_ivme` 22%
+  [15,0; 31,1], czyli oba FAIL. Recenzent `walidacja_fabryki` zaliczył takie strony do wątpliwych (22).
+- **PII w zachowanych.** Próg ≤1% jest spełniony stopą punktową (0/100), ale górna granica Wilsona to 3,7%: n = 100
+  nie wykazuje stopy ≤1% statystycznie.
+- Zachowane długie dokumenty (28 ponad 5000 znaków) recenzent przeczytał na początku i końcu, PII w środku sprawdził
+  wzorcami.
+
 ## 9. Eksport do formatu zgłoszeń
 
 Robisz w klonie `SlayerLab/dataset-team-submissions`, nie w `slayer-lab`.
