@@ -1,0 +1,218 @@
+{
+ "repo": "allenai/dolma3_dolmino_mix-100B-1125",
+ "rewizja": "f23aa129fda8335ba9760057bcc1f0c02f3d068b",
+ "plikow_w_repo": 192,
+ "seed": 20261124,
+ "wiersze": 663285,
+ "tokeny_v6": 623303464,
+ "cel_tokenow_v6": 600000000,
+ "pliki": [
+  {
+   "plik": "data/ingredient1-cranemath/shard_00000163-withid.jsonl.zst",
+   "rozmiar": 51383051,
+   "sha256": "c532c2dcf3016d14fc38ab1eee3c45ff01a13c82eea8219acbed545cd7b4dce0",
+   "wiersze": 19726,
+   "tokeny_v6": 18604392,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000163-withid.rg5000.parquet",
+   "lokalnie_oryg": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000163-withid.oryg.rg5000.parquet"
+  },
+  {
+   "plik": "data/ingredient1-cranemath/shard_00000056-withid.jsonl.zst",
+   "rozmiar": 92486875,
+   "sha256": "be4460fc84640ffb7d02f47b370059e2a20350005c33d93c8739ef21c8db9db9",
+   "wiersze": 35549,
+   "tokeny_v6": 33398475,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000056-withid.rg5000.parquet",
+   "lokalnie_oryg": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000056-withid.oryg.rg5000.parquet"
+  },
+  {
+   "plik": "data/ingredient1-cranemath/shard_00000141-withid.jsonl.zst",
+   "rozmiar": 51250441,
+   "sha256": "95649d50506ba547ba9408d565a1c8b7c56aa134bcea35cbdfcac296c0895b6d",
+   "wiersze": 19750,
+   "tokeny_v6": 18506027,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000141-withid.rg5000.parquet",
+   "lokalnie_oryg": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000141-withid.oryg.rg5000.parquet"
+  },
+  {
+   "plik": "data/ingredient1-cranemath/shard_00000146-withid.jsonl.zst",
+   "rozmiar": 49952153,
+   "sha256": "bcd641567578ccdba1ba172cbb986d578ec100a34c78e052aec6f4111acb3bf9",
+   "wiersze": 19109,
+   "tokeny_v6": 17796884,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000146-withid.rg5000.parquet",
+   "lokalnie_oryg": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000146-withid.oryg.rg5000.parquet"
+  },
+  {
+   "plik": "data/ingredient1-cranemath/shard_00000021-withid.jsonl.zst",
+   "rozmiar": 94509040,
+   "sha256": "2975010863335468d3a86b3018857621d18a6fefd3bc28324ea1438ba14f8630",
+   "wiersze": 36321,
+   "tokeny_v6": 34131962,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000021-withid.rg5000.parquet",
+   "lokalnie_oryg": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000021-withid.oryg.rg5000.parquet"
+  },
+  {
+   "plik": "data/ingredient1-cranemath/shard_00000066-withid.jsonl.zst",
+   "rozmiar": 91430413,
+   "sha256": "9937a74116d8bf19dc5a7d5443e8dca777e9bc632026babbff1f9e38cf8f1d6e",
+   "wiersze": 35352,
+   "tokeny_v6": 33280229,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000066-withid.rg5000.parquet",
+   "lokalnie_oryg": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000066-withid.oryg.rg5000.parquet"
+  },
+  {
+   "plik": "data/ingredient1-cranemath/shard_00000109-withid.jsonl.zst",
+   "rozmiar": 94388757,
+   "sha256": "38be5e8224e68ee6b7569ccb5d83ecda5323e0240c0aca0e9741f73c94383742",
+   "wiersze": 36382,
+   "tokeny_v6": 34149783,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000109-withid.rg5000.parquet",
+   "lokalnie_oryg": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000109-withid.oryg.rg5000.parquet"
+  },
+  {
+   "plik": "data/ingredient1-cranemath/shard_00000131-withid.jsonl.zst",
+   "rozmiar": 50700348,
+   "sha256": "9033ee5dc347342016304bb6ffbb719a37c4a8a9e62a11ec15c7b42135db1d4f",
+   "wiersze": 19701,
+   "tokeny_v6": 18268516,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000131-withid.rg5000.parquet",
+   "lokalnie_oryg": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000131-withid.oryg.rg5000.parquet"
+  },
+  {
+   "plik": "data/ingredient1-cranemath/shard_00000111-withid.jsonl.zst",
+   "rozmiar": 94039922,
+   "sha256": "512bd66e72682aae92575dbb04c1747782a16ccd514a595674daa8fe2da1f6a4",
+   "wiersze": 36093,
+   "tokeny_v6": 33990540,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000111-withid.rg5000.parquet",
+   "lokalnie_oryg": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000111-withid.oryg.rg5000.parquet"
+  },
+  {
+   "plik": "data/ingredient1-cranemath/shard_00000095-withid.jsonl.zst",
+   "rozmiar": 92486092,
+   "sha256": "d5a71fc0c1f7fd343139c58b3b544fd8cb01530cd587c4da3c98de770e51f164",
+   "wiersze": 35599,
+   "tokeny_v6": 33399149,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000095-withid.rg5000.parquet",
+   "lokalnie_oryg": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000095-withid.oryg.rg5000.parquet"
+  },
+  {
+   "plik": "data/ingredient1-cranemath/shard_00000016-withid.jsonl.zst",
+   "rozmiar": 91777162,
+   "sha256": "4fc33b363ce17b4af918f4c43754d7927fe6252dbb623c20045474f5ec068aed",
+   "wiersze": 35504,
+   "tokeny_v6": 33055652,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000016-withid.rg5000.parquet",
+   "lokalnie_oryg": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000016-withid.oryg.rg5000.parquet"
+  },
+  {
+   "plik": "data/ingredient1-cranemath/shard_00000157-withid.jsonl.zst",
+   "rozmiar": 50532891,
+   "sha256": "9d51a4d13339c7240a12eed28176296560a03d4e2aefec3f5e3f99ef537ee6d9",
+   "wiersze": 19306,
+   "tokeny_v6": 18033227,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000157-withid.rg5000.parquet",
+   "lokalnie_oryg": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000157-withid.oryg.rg5000.parquet"
+  },
+  {
+   "plik": "data/ingredient1-cranemath/shard_00000087-withid.jsonl.zst",
+   "rozmiar": 92416691,
+   "sha256": "da8764472632459b7ee6e8641dd4e83680b697f218239681302249b2d29a52e3",
+   "wiersze": 35142,
+   "tokeny_v6": 33062461,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000087-withid.rg5000.parquet",
+   "lokalnie_oryg": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000087-withid.oryg.rg5000.parquet"
+  },
+  {
+   "plik": "data/ingredient1-cranemath/shard_00000132-withid.jsonl.zst",
+   "rozmiar": 50085514,
+   "sha256": "cfda7c6db2dff0fc39f77f150bcfa55615f6f4cea305f1c72e1fe35e16dbbbbe",
+   "wiersze": 19338,
+   "tokeny_v6": 18103566,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000132-withid.rg5000.parquet",
+   "lokalnie_oryg": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000132-withid.oryg.rg5000.parquet"
+  },
+  {
+   "plik": "data/ingredient1-cranemath/shard_00000100-withid.jsonl.zst",
+   "rozmiar": 94814944,
+   "sha256": "14d2c25578353827af775b02906df80ca9f57fa0eb6d452d6d65f06b8de6a205",
+   "wiersze": 36529,
+   "tokeny_v6": 34323223,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000100-withid.rg5000.parquet",
+   "lokalnie_oryg": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000100-withid.oryg.rg5000.parquet"
+  },
+  {
+   "plik": "data/ingredient1-cranemath/shard_00000181-withid.jsonl.zst",
+   "rozmiar": 50944719,
+   "sha256": "64bf593752f991d940467f87f9fbdfb3b43d468038c8a7c2d7cca8234ec6d485",
+   "wiersze": 19463,
+   "tokeny_v6": 18162260,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000181-withid.rg5000.parquet",
+   "lokalnie_oryg": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000181-withid.oryg.rg5000.parquet"
+  },
+  {
+   "plik": "data/ingredient1-cranemath/shard_00000186-withid.jsonl.zst",
+   "rozmiar": 53423307,
+   "sha256": "0d614b6d2a70edc0045f8922cbec0b7a4b3121f50d5185fe1e5c3eb5b8836779",
+   "wiersze": 20387,
+   "tokeny_v6": 19567395,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000186-withid.rg5000.parquet",
+   "lokalnie_oryg": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000186-withid.oryg.rg5000.parquet"
+  },
+  {
+   "plik": "data/ingredient1-cranemath/shard_00000075-withid.jsonl.zst",
+   "rozmiar": 94516071,
+   "sha256": "10f64afe153a17527052e82b4d2bcc17c55d88e167460bba3e17e4d5de267e86",
+   "wiersze": 36304,
+   "tokeny_v6": 34529450,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000075-withid.rg5000.parquet",
+   "lokalnie_oryg": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000075-withid.oryg.rg5000.parquet"
+  },
+  {
+   "plik": "data/ingredient1-cranemath/shard_00000138-withid.jsonl.zst",
+   "rozmiar": 53547762,
+   "sha256": "aac2616c8312fb094eec6bcca27327e4788c2c5c984119c051ce847e4d037daf",
+   "wiersze": 20626,
+   "tokeny_v6": 19223439,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000138-withid.rg5000.parquet",
+   "lokalnie_oryg": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000138-withid.oryg.rg5000.parquet"
+  },
+  {
+   "plik": "data/ingredient1-cranemath/shard_00000048-withid.jsonl.zst",
+   "rozmiar": 91990823,
+   "sha256": "91859354f702237db0b1dd579ea5dad048b3f54baa6854ca1c55a662a5dba7e4",
+   "wiersze": 35407,
+   "tokeny_v6": 33157651,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000048-withid.rg5000.parquet",
+   "lokalnie_oryg": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000048-withid.oryg.rg5000.parquet"
+  },
+  {
+   "plik": "data/ingredient1-cranemath/shard_00000145-withid.jsonl.zst",
+   "rozmiar": 53256202,
+   "sha256": "ba436a8d66751ceac62f943a7bdd146833f8ee6bbc03d9cae47b623b617d56f8",
+   "wiersze": 20502,
+   "tokeny_v6": 19427998,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000145-withid.rg5000.parquet",
+   "lokalnie_oryg": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000145-withid.oryg.rg5000.parquet"
+  },
+  {
+   "plik": "data/ingredient1-cranemath/shard_00000117-withid.jsonl.zst",
+   "rozmiar": 93917861,
+   "sha256": "c5e1664c27ea358991d916dd842d74a56f3a682cba9c116550867f0ca649a0ea",
+   "wiersze": 36125,
+   "tokeny_v6": 34036961,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000117-withid.rg5000.parquet",
+   "lokalnie_oryg": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000117-withid.oryg.rg5000.parquet"
+  },
+  {
+   "plik": "data/ingredient1-cranemath/shard_00000011-withid.jsonl.zst",
+   "rozmiar": 91315747,
+   "sha256": "62146849432e8189ad2fdf8f2693bd5a3b629d043230279a977a8b513c95680a",
+   "wiersze": 35070,
+   "tokeny_v6": 33094224,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000011-withid.rg5000.parquet",
+   "lokalnie_oryg": "/Users/lolita/Documents/GitHub/slayer-lab/dane/cranemath/robocze/pobrania/lok/data__ingredient1-cranemath__shard_00000011-withid.oryg.rg5000.parquet"
+  }
+ ]
+}

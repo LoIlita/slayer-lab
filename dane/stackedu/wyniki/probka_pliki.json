@@ -1,0 +1,19 @@
+{
+ "repo": "common-pile/stackv2_edu_filtered",
+ "rewizja": "c354dbe88469a1153e97c6a63ac50591849654de",
+ "plikow_w_repo": 12,
+ "seed": 20261124,
+ "wiersze": 639779,
+ "tokeny_v6": 988588081,
+ "cel_tokenow_v6": 600000000,
+ "pliki": [
+  {
+   "plik": "stack-edu-0080.json.gz",
+   "rozmiar": 971712713,
+   "sha256": "7847a264bc3abcfd02fb68bab0a2afb5ff099fa1dc670a8cb0d87f0d5d5d5608",
+   "wiersze": 639779,
+   "tokeny_v6": 988588081,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/stackedu/robocze/pobrania/lok/stack-edu-0080.rg5000.parquet"
+  }
+ ]
+}

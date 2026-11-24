@@ -1,0 +1,121 @@
+{
+ "wynik": "17/17",
+ "przypadki": {
+  "K_czysty": {
+   "powody": [],
+   "oczekiwany": null,
+   "ok": true
+  },
+  "K_dup_a": {
+   "powody": [],
+   "oczekiwany": "?",
+   "ok": true
+  },
+  "K_dup_b": {
+   "powody": [
+    "dedup_wewnatrz"
+   ],
+   "oczekiwany": "dedup_wewnatrz",
+   "ok": true
+  },
+  "K_kopia_107": {
+   "powody": [
+    "dedup_slayer107"
+   ],
+   "oczekiwany": "dedup_slayer107",
+   "ok": true
+  },
+  "K_walidacja": {
+   "powody": [
+    "walidacja_fabryki"
+   ],
+   "oczekiwany": "walidacja_fabryki",
+   "ok": true
+  },
+  "K_gsm8k": {
+   "powody": [
+    "ewal_13gram"
+   ],
+   "oczekiwany": "ewal_13gram",
+   "ok": true
+  },
+  "K_math": {
+   "powody": [
+    "ewal_13gram"
+   ],
+   "oczekiwany": "ewal_13gram",
+   "ok": true
+  },
+  "K_gsm_plus": {
+   "powody": [
+    "ewal_13gram"
+   ],
+   "oczekiwany": "ewal_13gram",
+   "ok": true
+  },
+  "K_gsm1k": {
+   "powody": [
+    "ewal_13gram"
+   ],
+   "oczekiwany": "ewal_13gram",
+   "ok": true
+  },
+  "K_mmlu": {
+   "powody": [
+    "ewal_13gram"
+   ],
+   "oczekiwany": "ewal_13gram",
+   "ok": true
+  },
+  "K_email": {
+   "powody": [],
+   "oczekiwany": null,
+   "ok": true
+  },
+  "K_humaneval": {
+   "powody": [
+    "ewal_13gram"
+   ],
+   "oczekiwany": "ewal_13gram",
+   "ok": true
+  },
+  "K_mbpp": {
+   "powody": [
+    "ewal_13gram"
+   ],
+   "oczekiwany": "ewal_13gram",
+   "ok": true
+  },
+  "K_aws": {
+   "powody": [
+    "sekrety",
+    "dedup_wewnatrz"
+   ],
+   "oczekiwany": "sekrety",
+   "ok": true
+  },
+  "K_generated": {
+   "powody": [
+    "wygenerowany"
+   ],
+   "oczekiwany": "wygenerowany",
+   "ok": true
+  },
+  "K_licencja": {
+   "powody": [
+    "licencja",
+    "dedup_wewnatrz"
+   ],
+   "oczekiwany": "licencja",
+   "ok": true
+  },
+  "K_int_score": {
+   "powody": [
+    "int_score",
+    "dedup_wewnatrz"
+   ],
+   "oczekiwany": "int_score",
+   "ok": true
+  }
+ }
+}

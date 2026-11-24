@@ -1,0 +1,101 @@
+{
+ "wynik": "14/14",
+ "przypadki": {
+  "K_czysty": {
+   "powody": [],
+   "oczekiwany": null,
+   "ok": true
+  },
+  "K_dup_a": {
+   "powody": [],
+   "oczekiwany": "?",
+   "ok": true
+  },
+  "K_dup_b": {
+   "powody": [
+    "dedup_wewnatrz"
+   ],
+   "oczekiwany": "dedup_wewnatrz",
+   "ok": true
+  },
+  "K_kopia_107": {
+   "powody": [
+    "dedup_slayer107"
+   ],
+   "oczekiwany": "dedup_slayer107",
+   "ok": true
+  },
+  "K_walidacja": {
+   "powody": [
+    "walidacja_fabryki"
+   ],
+   "oczekiwany": "walidacja_fabryki",
+   "ok": true
+  },
+  "K_gsm8k": {
+   "powody": [
+    "ewal_13gram"
+   ],
+   "oczekiwany": "ewal_13gram",
+   "ok": true
+  },
+  "K_math": {
+   "powody": [
+    "ewal_13gram"
+   ],
+   "oczekiwany": "ewal_13gram",
+   "ok": true
+  },
+  "K_gsm_plus": {
+   "powody": [
+    "ewal_13gram"
+   ],
+   "oczekiwany": "ewal_13gram",
+   "ok": true
+  },
+  "K_gsm1k": {
+   "powody": [
+    "ewal_13gram"
+   ],
+   "oczekiwany": "ewal_13gram",
+   "ok": true
+  },
+  "K_mmlu": {
+   "powody": [
+    "ewal_13gram"
+   ],
+   "oczekiwany": "ewal_13gram",
+   "ok": true
+  },
+  "K_email": {
+   "powody": [
+    "pii"
+   ],
+   "oczekiwany": "pii",
+   "ok": true
+  },
+  "K_telefon": {
+   "powody": [
+    "pii",
+    "dedup_wewnatrz"
+   ],
+   "oczekiwany": "pii",
+   "ok": true
+  },
+  "K_ip": {
+   "powody": [
+    "pii"
+   ],
+   "oczekiwany": "pii",
+   "ok": true
+  },
+  "K_domena": {
+   "powody": [
+    "domena_testow",
+    "dedup_wewnatrz"
+   ],
+   "oczekiwany": "domena_testow",
+   "ok": true
+  }
+ }
+}

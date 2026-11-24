@@ -3,7 +3,7 @@
 # w slayerlabs/benchmarks-fabryka-ai; reguły: dane/<zbior>/skrypty/preregistracja.json; wyniki: dane/<zbior>/DZIENNIK.md.
 # Użycie: bash dane/matematyka-wspolne/skrypty/odtworz.sh <krok> [zbior]
 # Kroki wspólne: venv | ewal_pobierz | ewal
-# Kroki zbioru (finemath4 | cranemath | stackedu): pula | przebieg | ew13 | agreguj
+# Kroki zbioru (finemath4 | cranemath | stackedu): pula | kontrola | przebieg | ew13 | agreguj | eksport
 # Indeksy EN 1.07 i walidacji Fabryki oraz tokenizer v6 pochodzą z katalogu roboczego DCLM-EN (dane/dclm-en/skrypty/odtworz.sh:
 # tokenizer, baza107, idx107, walidacja_pobierz, idx_wal); detektory to przebieg.py i ewal_czeste.py DCLM-EN bez zmian.
 # Każdy krok jest wznawialny: pula pomija pliki z probka_pliki.json, przebieg pomija gotowe u_NNNN.npz.
@@ -40,7 +40,7 @@ venv)
   ;;
 ewal_pobierz)  # testy RPG v2 z katalogu DCLM-EN (dowiązania) + testy_mat.json (GSM-Plus, GSM1k); status scalony
   echo "$TOK_SHA  $TOK" | shasum -a 256 -c
-  mkdir -p "$RW/pobrania/ewal"
+  mkdir -p "$RW/pobrania/ewal" "$RW/wyniki/mat"
   for t in "$DCR"/pobrania/ewal/*/; do ln -sfn "$t" "$RW/pobrania/ewal/$(basename "$t")"; done
   $NICE $PY -I "$RPG/pobierz_testy.py" "$RW/pobrania/ewal" "$RW/wyniki/mat" "$W/skrypty/testy_mat.json"
   $PY -I -c "
@@ -82,8 +82,41 @@ agreguj)  # kaskada powodów, uzysk, wybór do eksportu, ręczna próbka (probka
   ORYG=()
   [ "$ZB" = cranemath ] && ORYG=(oryg="$R/wyniki/przebieg_oryg,$R/wyniki/ew13_oryg")
   $NICE $PY -I "$W/skrypty/agreguj_mat.py" "$ZB" "$R/wyniki/przebieg" "$R/wyniki/ew13" "$PRE" "$R/wyniki/agreguj.json" \
-    "$R/probka_przegladu.jsonl" "$R/wyniki/wybor.json" walidacja="$DCR/wyniki/idx_wal" "${ORYG[@]}"
+    "$R/probka_przegladu.jsonl" "$R/wyniki/wybor.json" walidacja="$DCR/wyniki/idx_wal" ${ORYG[@]+"${ORYG[@]}"}
   cp "$R/wyniki/agreguj.json" "$D/wyniki/agreguj.json"
+  ;;
+kontrola)  # kontrola dodatnia (preregistracja -> kontrole_dodatnie): te same skrypty i indeksy co pula, wynik w wyniki/kontrola.json
+  K=$R/wyniki/kontrola
+  rm -rf "$K"
+  $PY -I "$W/skrypty/kontrola_mat.py" buduj "$ZB" "$RW/pobrania/ewal" "$DCR/pobrania/slayer107" "$TOK" \
+    "$DCR/pobrania/mincorp/minimal-en-corpus-5b/validation/shard-00000.parquet" "$K"
+  $PY -I -W ignore "$DC/skrypty/przebieg.py" "$K/probka_kontrola.json" "$RW/wyniki/ewal" "$DCR/wyniki/idx" "$TOK" "$K/przebieg" 1 \
+    walidacja="$DCR/wyniki/idx_wal" > /dev/null
+  $PY -I "$DC/skrypty/ewal_czeste.py" "$K/przebieg" "$RW/wyniki/ewal" "$K/ew13" > /dev/null
+  ORYG=()
+  if [ "$ZB" = cranemath ]; then
+    $PY -I -W ignore "$DC/skrypty/przebieg.py" "$K/probka_kontrola_oryg.json" "$RW/wyniki/ewal" "$DCR/wyniki/idx" "$TOK" "$K/przebieg_oryg" 1 > /dev/null
+    $PY -I "$DC/skrypty/ewal_czeste.py" "$K/przebieg_oryg" "$RW/wyniki/ewal" "$K/ew13_oryg" > /dev/null
+    ORYG=(oryg="$K/przebieg_oryg,$K/ew13_oryg")
+  fi
+  $PY -I "$W/skrypty/agreguj_mat.py" "$ZB" "$K/przebieg" "$K/ew13" "$PRE" "$K/agreguj.json" "$K/probka.jsonl" "$K/wybor.json" \
+    walidacja="$DCR/wyniki/idx_wal" ${ORYG[@]+"${ORYG[@]}"} > /dev/null
+  $PY -I "$W/skrypty/kontrola_mat.py" sprawdz "$ZB" "$K"
+  cp "$K/kontrola_wynik.json" "$D/wyniki/kontrola.json"
+  ;;
+eksport)  # krok 9-10 METODOLOGII: kopia robocza repo zgłoszeń + nakładka eksport/ + karta zbioru, shard.write, test kontraktowy, check.py
+  # EXPY: venv z requirements-dev.txt repo zgłoszeń (Presidio, spaCy en_core_web_lg); domyślnie venv dane/pr-zgloszenia
+  EXPY=${EXPY:-$REPO/dane/pr-zgloszenia/venv/bin/python}
+  Z=$RW/zgloszenia
+  [ -f "$Z/src/shard.py" ] || { echo "brak kopii repo zgłoszeń w $Z (hf download SlayerLab/dataset-team-submissions --exclude 'data/**/*.parquet')" >&2; exit 2; }
+  case "$ZB" in finemath4) KEY=finemath_4plus_en ;; cranemath) KEY=cranemath_en ;; stackedu) KEY=stack_edu_python ;; esac
+  cp -R "$W/eksport/." "$Z/"
+  mkdir -p "$Z/data/$KEY"
+  cp "$D/eksport/$KEY.md" "$Z/data/$KEY/$KEY.md"
+  (cd "$Z" && $NICE "$EXPY" src/clean_$KEY.py "$R/wyniki/wybor.json" "${PII_PROC:-8}")
+  (cd "$Z" && "$EXPY" -m pytest "src/test_${KEY}_contract.py" -q && "$EXPY" src/check.py --source "$KEY")
+  cp "$Z/data/$KEY/$KEY.stats.json" "$D/wyniki/eksport_stats.json"
+  shasum -a 256 "$Z/data/$KEY/$KEY.parquet" | tee "$D/wyniki/eksport_sha256.txt"
   ;;
 *)
   sed -n 2,8p "$0"; exit 2

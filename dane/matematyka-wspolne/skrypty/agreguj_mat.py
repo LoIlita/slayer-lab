@@ -78,7 +78,11 @@ def ewal(katalog_ew13, n):
         if liczace:
             flaga[d] = True
             per_test.update({t for h in liczace for t in ng[h]["testy"]})
+            TRAF[(katalog_ew13, int(d))] = [{"ngram": ng[h]["tekst"], "testy": ng[h]["testy"], "df": ng[h]["df"]} for h in liczace[:5]]
     return flaga, dict(per_test.most_common())
+
+
+TRAF = {}  # (katalog ew13, dokument) -> do 5 liczących się 13-gramów: pokazywane w ręcznej próbce
 
 
 ew, ew_per_test = ewal(EW13, N)
@@ -204,6 +208,13 @@ with open(PRZEGLAD, "w", encoding="utf-8") as f:
                  "tekst": tekst(i)[:RP["znakow"]]}
             if p == "dedup_wewnatrz" and para_w[i] >= 0:
                 o["para"] = {"nr": int(para_w[i]), "url": urls[para_w[i]], "tekst": tekst(int(para_w[i]))[:RP["znakow"]]}
+            if p == "ewal_13gram":
+                o["trafienia"] = TRAF.get((EW13, int(i)))
+            if p == "ewal_13gram_oryginal":
+                o["trafienia"] = TRAF.get((OPC["oryg"].split(",")[1], int(i)))
+            if p in ("dedup_slayer107", "walidacja_fabryki"):
+                nz = "slayer_107_en" if p == "dedup_slayer107" else "walidacja"
+                o["wynik_indeksu"] = {"szkic13": float(X[f"bz_{nz}"][i, 0]), "minhash": float(X[f"bz_{nz}"][i, 1])}
             f.write(json.dumps(o, ensure_ascii=False) + "\n")
     for i in np.sort(g.choice(wybrane, min(RP["zachowane"], len(wybrane)), replace=False)):
         o = {"nr": int(i), "grupa": "zachowany", "powod": None, "url": urls[i], "tokeny_v6": int(tok[i]), "tekst": tekst(i)[:RP["znakow"]]}
