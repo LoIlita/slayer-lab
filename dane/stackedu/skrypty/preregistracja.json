@@ -11,7 +11,7 @@
   "eksport": "jak finemath4"
  },
  "tokeny": {"tokenizer": "v6, sha256 0640d3bd3674d7a6e59c540d945a2ad275a12e1bcaeb6007c37a90751f9815dd", "regula": "tokeny tekstu bez znaków specjalnych + 1 (EOT)"},
- "kolejnosc_powodow": ["licencja", "walidacja_fabryki", "ewal_13gram", "sekrety", "wygenerowany", "int_score", "mojibake", "dedup_wewnatrz", "dedup_slayer107", "dedup_english_technical", "dedup_fineweb_edu_109"],
+ "kolejnosc_powodow": ["licencja", "walidacja_fabryki", "ewal_13gram", "sekrety", "wygenerowany", "min_tresc", "int_score", "mojibake", "dedup_wewnatrz", "dedup_slayer107", "dedup_english_technical", "dedup_fineweb_edu_109"],
  "licencja": "metadata.license puste albo metadata.license_type != 'permissive' -> wiersz usuwany (karta: 0,5% Pythona ma puste license; licencja z gha_license_id nie wystarcza do zgłoszenia)",
  "walidacja_fabryki": "jak finemath4",
  "ewal_13gram": {
@@ -45,5 +45,10 @@
  "aneks_2026_11_24": {
   "zapisano": "2026-11-24, w tym samym czasie i z tego samego powodu co aneks finemath4, przed odczytem agregacji",
   "regula": "dedup_english_technical i dedup_fineweb_edu_109 jak dane/finemath4/skrypty/preregistracja.json -> aneks_2026_11_24; english-technical-1b ma kod pytorch, tensorflow, llvm, opencv, blender i innych projektów, więc dla Pythona to główna baza; url FineWeb-Edu nie pokrywa raw.githubusercontent.com i zostaje dla jednolitości"
+ },
+ "aneks_2026_11_24b": {
+  "zapisano": "2026-11-24, z tego samego powodu i w tym samym czasie co aneks_2026_11_24b finemath4 (po przeglądzie odrzuconych, przed próbką zachowanych i eksportem)",
+  "min_tresc": "jak finemath4 -> aneks_2026_11_24b (puste __init__.py i pliki z samą licencją)",
+  "precyzja_regul_konserwatywnych": "jak finemath4 -> aneks_2026_11_24b; w stackedu walidacja_fabryki i dedup_slayer107 łapią wspólny nagłówek licencji (szkic 13-gramów), ewal_13gram łapie idiomy kodu (pętle, klasa Node, sortowanie bąbelkowe), wygenerowany łapie frazę w komentarzach, sekrety łapią przykładowe klucze z dokumentacji; łączny koszt ok. 1,7% tokenów"
  }
 }

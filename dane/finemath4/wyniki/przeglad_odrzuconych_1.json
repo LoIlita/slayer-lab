@@ -1,0 +1,177 @@
+{
+ "walidacja_fabryki": {
+  "A": {
+   "n": 100,
+   "nie": 0,
+   "watpliwy": 13,
+   "stopa": 0.0,
+   "wilson": [
+    0,
+    3.7
+   ],
+   "werdykt": "PASS"
+  },
+  "B": {
+   "n": 100,
+   "nie": 0,
+   "watpliwy": 4,
+   "stopa": 0.0,
+   "wilson": [
+    0,
+    3.7
+   ],
+   "werdykt": "PASS"
+  },
+  "koszt_tok_proc": 0.031
+ },
+ "domena_testow": {
+  "A": {
+   "n": 100,
+   "nie": 0,
+   "watpliwy": 0,
+   "stopa": 0.0,
+   "wilson": [
+    0,
+    3.7
+   ],
+   "werdykt": "PASS"
+  },
+  "B": {
+   "n": 100,
+   "nie": 0,
+   "watpliwy": 0,
+   "stopa": 0.0,
+   "wilson": [
+    0,
+    3.7
+   ],
+   "werdykt": "PASS"
+  },
+  "koszt_tok_proc": 1.183
+ },
+ "ewal_13gram": {
+  "A": {
+   "n": 100,
+   "nie": 33,
+   "watpliwy": 3,
+   "stopa": 33.0,
+   "wilson": [
+    24.6,
+    42.7
+   ],
+   "werdykt": "FAIL"
+  },
+  "B": {
+   "n": 100,
+   "nie": 44,
+   "watpliwy": 5,
+   "stopa": 44.0,
+   "wilson": [
+    34.7,
+    53.8
+   ],
+   "werdykt": "FAIL"
+  },
+  "koszt_tok_proc": 3.232
+ },
+ "pii": {
+  "A": {
+   "n": 100,
+   "nie": 9,
+   "watpliwy": 52,
+   "stopa": 9.0,
+   "wilson": [
+    4.8,
+    16.2
+   ],
+   "werdykt": "PASS"
+  },
+  "B": {
+   "n": 100,
+   "nie": 13,
+   "watpliwy": 48,
+   "stopa": 13.0,
+   "wilson": [
+    7.8,
+    21.0
+   ],
+   "werdykt": "FAIL"
+  },
+  "koszt_tok_proc": 6.347
+ },
+ "mojibake": {
+  "A": {
+   "n": 100,
+   "nie": 0,
+   "watpliwy": 10,
+   "stopa": 0.0,
+   "wilson": [
+    0,
+    3.7
+   ],
+   "werdykt": "PASS"
+  },
+  "B": {
+   "n": 100,
+   "nie": 0,
+   "watpliwy": 12,
+   "stopa": 0.0,
+   "wilson": [
+    0,
+    3.7
+   ],
+   "werdykt": "PASS"
+  },
+  "koszt_tok_proc": 1.765
+ },
+ "dedup_wewnatrz": {
+  "A": {
+   "n": 100,
+   "nie": 3,
+   "watpliwy": 1,
+   "stopa": 3.0,
+   "wilson": [
+    1.0,
+    8.5
+   ],
+   "werdykt": "PASS"
+  },
+  "B": {
+   "n": 100,
+   "nie": 1,
+   "watpliwy": 0,
+   "stopa": 1.0,
+   "wilson": [
+    0.2,
+    5.4
+   ],
+   "werdykt": "PASS"
+  },
+  "koszt_tok_proc": 1.06
+ },
+ "dedup_slayer107": {
+  "A": {
+   "n": 100,
+   "nie": 0,
+   "watpliwy": 0,
+   "stopa": 0.0,
+   "wilson": [
+    0,
+    3.7
+   ],
+   "werdykt": "PASS"
+  },
+  "B": {
+   "n": 100,
+   "nie": 3,
+   "watpliwy": 5,
+   "stopa": 3.0,
+   "wilson": [
+    1.0,
+    8.5
+   ],
+   "werdykt": "PASS"
+  },
+  "koszt_tok_proc": 8.778
+ }
+}

@@ -16,7 +16,7 @@ import pyarrow.parquet as pq
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "dclm-en", "skrypty"))
 import wspolne as w  # noqa: E402
-from wspolne import r2  # noqa: E402
+from wspolne import r, r2  # noqa: E402
 
 ZB, D, EW13, PREREG_P, OUT, PRZEGLAD, WYBOR = sys.argv[1:8]
 OPC = dict(a.split("=", 1) for a in sys.argv[8:])
@@ -143,6 +143,14 @@ if "entech" in OPC:  # aneks 24.11: english-technical-1b (1.08), MinHash LSH 32x
     powody["dedup_english_technical"] = ent
 if "fwe109" in OPC:  # aneks 24.11: identyczny znormalizowany url z plikami FineWeb-Edu 1.09
     powody["dedup_fineweb_edu_109"] = np.isin(X["hu"], np.load(f"{OPC['fwe109']}/idx_fwe109_hu.npy"))
+if "min_tresc" in P["kolejnosc_powodow"]:  # aneks 24.11b: < min_slow słów po norm_slowa; cranemath także szablon_forum
+    MIN = P["aneks_2026_11_24b"]["min_tresc"]["min_slow"] if isinstance(P["aneks_2026_11_24b"]["min_tresc"], dict) else 50
+    slow = np.array([len(r.norm_slowa(t or "")) for t in kolumna("text")])
+    powody["min_tresc"] = slow < MIN
+    if "szablon_forum" in P["kolejnosc_powodow"]:
+        SF = P["aneks_2026_11_24b"]["szablon_forum"]
+        znak = np.array([any(z in (t or "") for z in SF["znaczniki"]) for t in kolumna("text")])
+        powody["szablon_forum"] = znak & (slow < SF["max_slow"])
 if "domena_testow" in P["kolejnosc_powodow"]:
     powody["domena_testow"] = X["dom"] > 0
 if P["pii"]["tryb"] == "usun":

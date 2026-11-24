@@ -1,0 +1,252 @@
+{
+ "walidacja_fabryki": {
+  "A": {
+   "n": 100,
+   "nie": 95,
+   "watpliwy": 0,
+   "stopa": 95.0,
+   "wilson": [
+    88.8,
+    97.8
+   ],
+   "werdykt": "FAIL"
+  },
+  "B": {
+   "n": 100,
+   "nie": 93,
+   "watpliwy": 7,
+   "stopa": 93.0,
+   "wilson": [
+    86.3,
+    96.6
+   ],
+   "werdykt": "FAIL"
+  },
+  "koszt_tok_proc": 0.026
+ },
+ "domena_testow": {
+  "A": {
+   "n": 100,
+   "nie": 0,
+   "watpliwy": 0,
+   "stopa": 0.0,
+   "wilson": [
+    0,
+    3.7
+   ],
+   "werdykt": "PASS"
+  },
+  "B": {
+   "n": 100,
+   "nie": 0,
+   "watpliwy": 0,
+   "stopa": 0.0,
+   "wilson": [
+    0,
+    3.7
+   ],
+   "werdykt": "PASS"
+  },
+  "koszt_tok_proc": 0.769
+ },
+ "ewal_13gram": {
+  "A": {
+   "n": 100,
+   "nie": 76,
+   "watpliwy": 8,
+   "stopa": 76.0,
+   "wilson": [
+    66.8,
+    83.3
+   ],
+   "werdykt": "FAIL"
+  },
+  "B": {
+   "n": 100,
+   "nie": 79,
+   "watpliwy": 3,
+   "stopa": 79.0,
+   "wilson": [
+    70.0,
+    85.8
+   ],
+   "werdykt": "FAIL"
+  },
+  "koszt_tok_proc": 1.318
+ },
+ "ewal_13gram_oryginal": {
+  "A": {
+   "n": 100,
+   "nie": 36,
+   "watpliwy": 9,
+   "stopa": 36.0,
+   "wilson": [
+    27.3,
+    45.8
+   ],
+   "werdykt": "FAIL"
+  },
+  "B": {
+   "n": 100,
+   "nie": 29,
+   "watpliwy": 14,
+   "stopa": 29.0,
+   "wilson": [
+    21.0,
+    38.5
+   ],
+   "werdykt": "FAIL"
+  },
+  "koszt_tok_proc": 1.587
+ },
+ "think": {
+  "A": {
+   "n": 100,
+   "nie": 0,
+   "watpliwy": 4,
+   "stopa": 0.0,
+   "wilson": [
+    0,
+    3.7
+   ],
+   "werdykt": "PASS"
+  },
+  "B": {
+   "n": 100,
+   "nie": 0,
+   "watpliwy": 4,
+   "stopa": 0.0,
+   "wilson": [
+    0,
+    3.7
+   ],
+   "werdykt": "PASS"
+  },
+  "koszt_tok_proc": 24.403
+ },
+ "pii": {
+  "A": {
+   "n": 100,
+   "nie": 55,
+   "watpliwy": 16,
+   "stopa": 55.0,
+   "wilson": [
+    45.2,
+    64.4
+   ],
+   "werdykt": "FAIL"
+  },
+  "B": {
+   "n": 100,
+   "nie": 52,
+   "watpliwy": 19,
+   "stopa": 52.0,
+   "wilson": [
+    42.3,
+    61.5
+   ],
+   "werdykt": "FAIL"
+  },
+  "koszt_tok_proc": 0.111
+ },
+ "mojibake": {
+  "A": {
+   "n": 23,
+   "nie": 14,
+   "watpliwy": 0,
+   "stopa": 60.9,
+   "wilson": [
+    40.8,
+    77.8
+   ],
+   "werdykt": "FAIL"
+  },
+  "B": {
+   "n": 23,
+   "nie": 7,
+   "watpliwy": 7,
+   "stopa": 30.4,
+   "wilson": [
+    15.6,
+    50.9
+   ],
+   "werdykt": "FAIL"
+  },
+  "koszt_tok_proc": 0.011
+ },
+ "dedup_wewnatrz": {
+  "A": {
+   "n": 100,
+   "nie": 8,
+   "watpliwy": 1,
+   "stopa": 8.0,
+   "wilson": [
+    4.1,
+    15.0
+   ],
+   "werdykt": "PASS"
+  },
+  "B": {
+   "n": 100,
+   "nie": 9,
+   "watpliwy": 0,
+   "stopa": 9.0,
+   "wilson": [
+    4.8,
+    16.2
+   ],
+   "werdykt": "PASS"
+  },
+  "koszt_tok_proc": 0.268
+ },
+ "dedup_slayer107": {
+  "A": {
+   "n": 100,
+   "nie": 18,
+   "watpliwy": 57,
+   "stopa": 18.0,
+   "wilson": [
+    11.7,
+    26.7
+   ],
+   "werdykt": "FAIL"
+  },
+  "B": {
+   "n": 100,
+   "nie": 61,
+   "watpliwy": 5,
+   "stopa": 61.0,
+   "wilson": [
+    51.2,
+    70.0
+   ],
+   "werdykt": "FAIL"
+  },
+  "koszt_tok_proc": 0.113
+ },
+ "dedup_english_technical": {
+  "A": {
+   "n": 100,
+   "nie": 23,
+   "watpliwy": 77,
+   "stopa": 23.0,
+   "wilson": [
+    15.8,
+    32.2
+   ],
+   "werdykt": "FAIL"
+  },
+  "B": {
+   "n": 100,
+   "nie": 77,
+   "watpliwy": 23,
+   "stopa": 77.0,
+   "wilson": [
+    67.8,
+    84.2
+   ],
+   "werdykt": "FAIL"
+  },
+  "koszt_tok_proc": 0.021
+ }
+}

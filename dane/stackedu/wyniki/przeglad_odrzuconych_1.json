@@ -1,0 +1,252 @@
+{
+ "licencja": {
+  "A": {
+   "n": 100,
+   "nie": 0,
+   "watpliwy": 0,
+   "stopa": 0.0,
+   "wilson": [
+    0,
+    3.7
+   ],
+   "werdykt": "PASS"
+  },
+  "B": {
+   "n": 100,
+   "nie": 0,
+   "watpliwy": 0,
+   "stopa": 0.0,
+   "wilson": [
+    0,
+    3.7
+   ],
+   "werdykt": "PASS"
+  },
+  "koszt_tok_proc": 0.537
+ },
+ "walidacja_fabryki": {
+  "A": {
+   "n": 100,
+   "nie": 49,
+   "watpliwy": 0,
+   "stopa": 49.0,
+   "wilson": [
+    39.4,
+    58.7
+   ],
+   "werdykt": "FAIL"
+  },
+  "B": {
+   "n": 100,
+   "nie": 0,
+   "watpliwy": 98,
+   "stopa": 0.0,
+   "wilson": [
+    0,
+    3.7
+   ],
+   "werdykt": "PASS"
+  },
+  "koszt_tok_proc": 0.091
+ },
+ "ewal_13gram": {
+  "A": {
+   "n": 100,
+   "nie": 88,
+   "watpliwy": 2,
+   "stopa": 88.0,
+   "wilson": [
+    80.2,
+    93.0
+   ],
+   "werdykt": "FAIL"
+  },
+  "B": {
+   "n": 100,
+   "nie": 85,
+   "watpliwy": 6,
+   "stopa": 85.0,
+   "wilson": [
+    76.7,
+    90.7
+   ],
+   "werdykt": "FAIL"
+  },
+  "koszt_tok_proc": 0.145
+ },
+ "sekrety": {
+  "A": {
+   "n": 100,
+   "nie": 16,
+   "watpliwy": 24,
+   "stopa": 16.0,
+   "wilson": [
+    10.1,
+    24.4
+   ],
+   "werdykt": "FAIL"
+  },
+  "B": {
+   "n": 100,
+   "nie": 13,
+   "watpliwy": 28,
+   "stopa": 13.0,
+   "wilson": [
+    7.8,
+    21.0
+   ],
+   "werdykt": "FAIL"
+  },
+  "koszt_tok_proc": 0.103
+ },
+ "wygenerowany": {
+  "A": {
+   "n": 100,
+   "nie": 34,
+   "watpliwy": 1,
+   "stopa": 34.0,
+   "wilson": [
+    25.5,
+    43.7
+   ],
+   "werdykt": "FAIL"
+  },
+  "B": {
+   "n": 100,
+   "nie": 34,
+   "watpliwy": 1,
+   "stopa": 34.0,
+   "wilson": [
+    25.5,
+    43.7
+   ],
+   "werdykt": "FAIL"
+  },
+  "koszt_tok_proc": 1.376
+ },
+ "int_score": {
+  "A": {
+   "n": 100,
+   "nie": 0,
+   "watpliwy": 0,
+   "stopa": 0.0,
+   "wilson": [
+    0,
+    3.7
+   ],
+   "werdykt": "PASS"
+  },
+  "B": {
+   "n": 100,
+   "nie": 0,
+   "watpliwy": 0,
+   "stopa": 0.0,
+   "wilson": [
+    0,
+    3.7
+   ],
+   "werdykt": "PASS"
+  },
+  "koszt_tok_proc": 54.483
+ },
+ "mojibake": {
+  "A": {
+   "n": 58,
+   "nie": 1,
+   "watpliwy": 19,
+   "stopa": 1.7,
+   "wilson": [
+    0.3,
+    9.1
+   ],
+   "werdykt": "PASS"
+  },
+  "B": {
+   "n": 58,
+   "nie": 0,
+   "watpliwy": 19,
+   "stopa": 0.0,
+   "wilson": [
+    0,
+    6.2
+   ],
+   "werdykt": "PASS"
+  },
+  "koszt_tok_proc": 0.095
+ },
+ "dedup_wewnatrz": {
+  "A": {
+   "n": 77,
+   "nie": 0,
+   "watpliwy": 0,
+   "stopa": 0.0,
+   "wilson": [
+    0.0,
+    4.8
+   ],
+   "werdykt": "PASS"
+  },
+  "B": {
+   "n": 77,
+   "nie": 0,
+   "watpliwy": 4,
+   "stopa": 0.0,
+   "wilson": [
+    0.0,
+    4.8
+   ],
+   "werdykt": "PASS"
+  },
+  "koszt_tok_proc": 0.007
+ },
+ "dedup_slayer107": {
+  "A": {
+   "n": 100,
+   "nie": 0,
+   "watpliwy": 13,
+   "stopa": 0.0,
+   "wilson": [
+    0,
+    3.7
+   ],
+   "werdykt": "PASS"
+  },
+  "B": {
+   "n": 100,
+   "nie": 0,
+   "watpliwy": 0,
+   "stopa": 0.0,
+   "wilson": [
+    0,
+    3.7
+   ],
+   "werdykt": "PASS"
+  },
+  "koszt_tok_proc": 0.117
+ },
+ "dedup_english_technical": {
+  "A": {
+   "n": 21,
+   "nie": 0,
+   "watpliwy": 0,
+   "stopa": 0.0,
+   "wilson": [
+    0,
+    15.5
+   ],
+   "werdykt": "PASS"
+  },
+  "B": {
+   "n": 21,
+   "nie": 0,
+   "watpliwy": 1,
+   "stopa": 0.0,
+   "wilson": [
+    0,
+    15.5
+   ],
+   "werdykt": "PASS"
+  },
+  "koszt_tok_proc": 0.003
+ }
+}
