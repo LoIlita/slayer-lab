@@ -82,15 +82,21 @@ def _url_pliku(a):
     s.headers.update(build_hf_headers())
 
     def zakres(a0, b0):
-        for proba in range(5):
+        import time
+        for proba in range(20):
             try:
                 r = s.get(url, headers={"Range": f"bytes={a0}-{b0 - 1}"}, timeout=120)
+                if r.status_code in (400, 403, 429, 503):  # limit Hubu i CDN (400 z xet-bridge przy przeciążeniu): czekamy
+                    time.sleep(float(r.headers.get("Retry-After") or min(300, 5 * 2 ** proba)))
+                    continue
                 r.raise_for_status()
                 assert len(r.content) == b0 - a0, (len(r.content), b0 - a0)
                 return a0, r.content
             except Exception:
-                if proba == 4:
+                if proba == 19:
                     raise
+                time.sleep(min(60, 2 ** proba))
+        raise RuntimeError(f"limit bez końca: {url}")
 
     rozm = int(s.head(url, allow_redirects=True, timeout=60).headers["Content-Length"])
     _, ogon = zakres(rozm - 8, rozm)
@@ -108,7 +114,7 @@ def _url_pliku(a):
         c = md.row_group(g).column(ci)
         p0 = c.dictionary_page_offset if c.has_dictionary_page and c.dictionary_page_offset else c.data_page_offset
         zak.append((p0, p0 + c.total_compressed_size))
-    with ThreadPoolExecutor(16) as ex, open(rzadki, "r+b") as f:
+    with ThreadPoolExecutor(6) as ex, open(rzadki, "r+b") as f:
         for a0, dane in ex.map(lambda z: zakres(*z), zak):
             f.seek(a0)
             f.write(dane)
@@ -118,6 +124,13 @@ def _url_pliku(a):
     os.replace(cel + ".tmp.npy", cel)
     return plik, len(u)
 
+def _url_pliku_bezpiecznie(a):
+    try:
+        return _url_pliku(a)
+    except Exception as e:  # jeden plik nie przerywa puli; brak wykrywa fwe109()
+        return a[2], f"BLAD {type(e).__name__}"
+
+
 
 def fwe109():
     m = hf_hub_download(MANIFEST, "manifest/components.csv", repo_type="dataset", revision=MANIFEST_REW, local_dir=f"{POB}/manifest")
@@ -126,8 +139,11 @@ def fwe109():
     os.makedirs(f"{POB}/fwe109", exist_ok=True)
     zad = [(a, b, c, f"{POB}/fwe109/{c.replace('/', '__')}.npy") for a, b, c in pliki]
     with mp.get_context("spawn").Pool(PROC) as pool:
-        for j, (plik, n) in enumerate(pool.imap_unordered(_url_pliku, zad), 1):
+        for j, (plik, n) in enumerate(pool.imap_unordered(_url_pliku_bezpiecznie, zad), 1):
             print(j, "/", len(zad), plik, n, flush=True)
+    brak = [z[2] for z in zad if not os.path.exists(z[3])]
+    if brak:  # plik bez listy url: uruchom krok ponownie (gotowe pliki są pomijane)
+        raise SystemExit(f"BRAK {len(brak)} plików: {brak[:5]}")
     hu = np.unique(np.concatenate([np.load(z[3]) for z in zad]))
     np.save(f"{OUT}/idx_fwe109_hu.npy", hu)
     json.dump({"manifest": MANIFEST, "rewizja": MANIFEST_REW, "components_sha256": sha(m), "plikow": len(pliki),

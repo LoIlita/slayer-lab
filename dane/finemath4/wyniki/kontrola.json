@@ -1,5 +1,5 @@
 {
- "wynik": "14/14",
+ "wynik": "18/18",
  "przypadki": {
   "K_czysty": {
    "powody": [],
@@ -92,9 +92,40 @@
   "K_domena": {
    "powody": [
     "domena_testow",
-    "dedup_wewnatrz"
+    "dedup_wewnatrz",
+    "dedup_fineweb_edu_109"
    ],
    "oczekiwany": "domena_testow",
+   "ok": true
+  },
+  "K_entech": {
+   "powody": [
+    "dedup_english_technical"
+   ],
+   "oczekiwany": "dedup_english_technical",
+   "ok": true
+  },
+  "K_fwe109": {
+   "powody": [
+    "dedup_wewnatrz",
+    "dedup_fineweb_edu_109"
+   ],
+   "oczekiwany": "dedup_fineweb_edu_109",
+   "ok": true
+  },
+  "K_pusty": {
+   "powody": [
+    "min_tresc",
+    "dedup_english_technical"
+   ],
+   "oczekiwany": "min_tresc",
+   "ok": true
+  },
+  "K_at": {
+   "powody": [
+    "pii_zaciemniony"
+   ],
+   "oczekiwany": "pii_zaciemniony",
    "ok": true
   }
  }

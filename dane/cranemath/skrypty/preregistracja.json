@@ -57,5 +57,11 @@
   "pii_zaciemniony": "jak finemath4 -> aneks_2026_11_24c",
   "przepisanie_fail": "pozostałe błędy przepisania (ok. 9% błędów rachunkowych i zmyślone zadania do stron bez zadania) to cecha CraneMath, na którym Olmo 3 zmierzyło efekt microannealu; naprawa wymaga ponownej generacji z weryfikacją, poza częścią 1. Eksport opisany jako ramię porównawcze z odsetkiem błędnych przepisań w datasheet; zadanie przed częścią 2, jeśli C wygra",
   "probka_kontrolna": "jak finemath4 -> aneks_2026_11_24c, plus pole przepisanie na 100 pierwszych (sprawdzenie, czy suma40 zniknęła)"
+ },
+ "aneks_2026_11_25": {
+  "zapisano": "2026-11-25, PO próbce kontrolnej 200 zachowanych (oceny_{A,B}/kontr_*.json) i PRZED eksportem",
+  "wynik_probki": "PII 0/200 u obu, testy 0/200 potwierdzonych (zgłoszenie 187012 'ellipse x^2+2y^2=6' nie ma odpowiednika w teście MATH, grep 25.11); suma40 nadal w 1-2 pozycjach (301032, 359177): oryginał zawiera gdzieś liczbę 40, więc warunek aneksu 24.11c go przepuścił",
+  "suma40": {"regex_oryginal_zadanie": "(?i)(1\\s*(to|through|-|–|\\.\\.\\.?|…)\\s*40\\b|1\\s*\\+\\s*2\\s*\\+.{0,20}\\+\\s*40\\b|first\\s+40\\s+(natural|positive|counting)?\\s*(numbers|integers))",
+   "regula": "zastępuje warunek na oryginał z aneksu 24.11c: tekst pasuje do regex_tekst ORAZ oryginał NIE zawiera zadania o sumie do 40 (regex_oryginal_zadanie) -> usuwany; pomiar przed zmianą (wyniki/suma40_reszta.json): 6 136 wybranych pasuje do regex_tekst, z tego 58 ma zadanie w oryginale, 6 078 do usunięcia"}
  }
 }

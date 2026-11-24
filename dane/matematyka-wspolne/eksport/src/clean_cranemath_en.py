@@ -20,5 +20,5 @@ def build(wybor: str):
 
 
 if __name__ == "__main__":
-    mat_wybor.parallel_pii(int(sys.argv[2]) if len(sys.argv) > 2 else 8)
+    mat_wybor.no_masking()
     print(shard.write(KEY, build(sys.argv[1])))

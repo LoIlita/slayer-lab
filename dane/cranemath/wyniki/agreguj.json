@@ -61,52 +61,68 @@
    "zostaje_tok_proc": 72.803
   },
   {
+   "powod": "suma40",
+   "odrzucone_dok": 34020,
+   "odrzucone_tok": 11541195,
+   "zostaje_dok": 566447,
+   "zostaje_tok": 442243312,
+   "zostaje_tok_proc": 70.952
+  },
+  {
    "powod": "pii",
-   "odrzucone_dok": 353,
-   "odrzucone_tok": 570901,
-   "zostaje_dok": 600114,
-   "zostaje_tok": 453213606,
-   "zostaje_tok_proc": 72.712
+   "odrzucone_dok": 349,
+   "odrzucone_tok": 564581,
+   "zostaje_dok": 566098,
+   "zostaje_tok": 441678731,
+   "zostaje_tok_proc": 70.861
+  },
+  {
+   "powod": "pii_zaciemniony",
+   "odrzucone_dok": 0,
+   "odrzucone_tok": 0,
+   "zostaje_dok": 566098,
+   "zostaje_tok": 441678731,
+   "zostaje_tok_proc": 70.861
   },
   {
    "powod": "mojibake",
    "odrzucone_dok": 9,
    "odrzucone_tok": 7999,
-   "zostaje_dok": 600105,
-   "zostaje_tok": 453205607,
-   "zostaje_tok_proc": 72.71
+   "zostaje_dok": 566089,
+   "zostaje_tok": 441670732,
+   "zostaje_tok_proc": 70.86
   },
   {
    "powod": "dedup_wewnatrz",
-   "odrzucone_dok": 2240,
-   "odrzucone_tok": 1193066,
-   "zostaje_dok": 597865,
-   "zostaje_tok": 452012541,
-   "zostaje_tok_proc": 72.519
+   "odrzucone_dok": 516,
+   "odrzucone_tok": 817330,
+   "zostaje_dok": 565573,
+   "zostaje_tok": 440853402,
+   "zostaje_tok_proc": 70.729
   },
   {
    "powod": "dedup_slayer107",
    "odrzucone_dok": 322,
    "odrzucone_tok": 425560,
-   "zostaje_dok": 597543,
-   "zostaje_tok": 451586981,
-   "zostaje_tok_proc": 72.451
+   "zostaje_dok": 565251,
+   "zostaje_tok": 440427842,
+   "zostaje_tok_proc": 70.66
   },
   {
    "powod": "dedup_english_technical",
    "odrzucone_dok": 0,
    "odrzucone_tok": 0,
-   "zostaje_dok": 597543,
-   "zostaje_tok": 451586981,
-   "zostaje_tok_proc": 72.451
+   "zostaje_dok": 565251,
+   "zostaje_tok": 440427842,
+   "zostaje_tok_proc": 70.66
   },
   {
    "powod": "dedup_fineweb_edu_109",
-   "odrzucone_dok": 0,
-   "odrzucone_tok": 0,
-   "zostaje_dok": 597543,
-   "zostaje_tok": 451586981,
-   "zostaje_tok_proc": 72.451
+   "odrzucone_dok": 43270,
+   "odrzucone_tok": 32432171,
+   "zostaje_dok": 521981,
+   "zostaje_tok": 407995671,
+   "zostaje_tok_proc": 65.457
   }
  ],
  "niezaleznie": {
@@ -145,10 +161,20 @@
    "tok": 241918,
    "tok_proc": 0.039
   },
+  "suma40": {
+   "dok": 36725,
+   "tok": 16476492,
+   "tok_proc": 2.643
+  },
   "pii": {
    "dok": 392,
    "tok": 691916,
    "tok_proc": 0.111
+  },
+  "pii_zaciemniony": {
+   "dok": 1,
+   "tok": 4899,
+   "tok_proc": 0.001
   },
   "mojibake": {
    "dok": 23,
@@ -171,15 +197,15 @@
    "tok_proc": 0.021
   },
   "dedup_fineweb_edu_109": {
-   "dok": 0,
-   "tok": 0,
-   "tok_proc": 0.0
+   "dok": 50628,
+   "tok": 44435804,
+   "tok_proc": 7.129
   }
  },
  "uzysk": {
-  "dok": 597543,
-  "tok": 451586981,
-  "tok_proc": 72.451
+  "dok": 521981,
+  "tok": 407995671,
+  "tok_proc": 65.457
  },
  "ewal_per_test": {
   "T34_math": 5458,
@@ -246,8 +272,8 @@
  },
  "eksport": {
   "cel_tok_v6": 400000000,
-  "dok": 529328,
-  "tok_v6": 400000049,
+  "dok": 511710,
+  "tok_v6": 400000473,
   "wystarcza": true
  }
 }

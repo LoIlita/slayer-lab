@@ -160,8 +160,10 @@ if "pii_zaciemniony" in P["kolejnosc_powodow"]:  # aneks 24.11c: e-mail zapisany
 if "haslo_w_kodzie" in P["kolejnosc_powodow"]:  # aneks 24.11c: literał hasła w przypisaniu
     rx_h = re.compile(A3["haslo_w_kodzie"]["regex"])
     powody["haslo_w_kodzie"] = np.array([bool(rx_h.search(t or "")) for t in kolumna("text")])
-if "suma40" in P["kolejnosc_powodow"]:  # aneks 24.11c: zmyślone 'suma 1..40' przy oryginale bez liczby 40
-    rx_t, rx_o = re.compile(A3["suma40"]["regex_tekst"]), re.compile(A3["suma40"]["regex_oryginal"])
+if "suma40" in P["kolejnosc_powodow"]:  # aneks 24.11c, warunek na oryginał z aneksu 25.11: brak zadania o sumie do 40
+    rx_t = re.compile(A3["suma40"]["regex_tekst"])
+    a4 = P.get("aneks_2026_11_25", {}).get("suma40")
+    rx_o = re.compile(a4["regex_oryginal_zadanie"] if a4 else A3["suma40"]["regex_oryginal"])
     jed_s = json.load(open(f"{OPC['oryg'].split(',')[0]}/jednostki.json"))
     oryg_t = [x for p_, g_ in jed_s for x in pq.ParquetFile(p_).read_row_group(g_, columns=["text"]).column(0).to_pylist()]
     powody["suma40"] = np.array([bool(rx_t.search(t or "")) and not rx_o.search(o or "") for t, o in zip(kolumna("text"), oryg_t)])

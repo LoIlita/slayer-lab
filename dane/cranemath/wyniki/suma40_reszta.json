@@ -1,0 +1,83 @@
+{
+ "wybrane_pasujace_do_regex_tekst": 6136,
+ "z_zadaniem_w_oryginale": 58,
+ "bez_zadania": 6078,
+ "regex_zadanie": "(?i)(1\\s*(to|through|-|–|\\.\\.\\.?|…)\\s*40\\b|1\\s*\\+\\s*2\\s*\\+.{0,20}\\+\\s*40\\b|first\\s+40\\s+(natural|positive|counting)?\\s*(numbers|integers))",
+ "przyklady": [
+  {
+   "nr": 69,
+   "oryginal_ma_zadanie": false,
+   "fragment": null
+  },
+  {
+   "nr": 192,
+   "oryginal_ma_zadanie": false,
+   "fragment": null
+  },
+  {
+   "nr": 228,
+   "oryginal_ma_zadanie": false,
+   "fragment": null
+  },
+  {
+   "nr": 264,
+   "oryginal_ma_zadanie": false,
+   "fragment": null
+  },
+  {
+   "nr": 318,
+   "oryginal_ma_zadanie": false,
+   "fragment": null
+  },
+  {
+   "nr": 383,
+   "oryginal_ma_zadanie": false,
+   "fragment": null
+  },
+  {
+   "nr": 543,
+   "oryginal_ma_zadanie": false,
+   "fragment": null
+  },
+  {
+   "nr": 627,
+   "oryginal_ma_zadanie": false,
+   "fragment": null
+  },
+  {
+   "nr": 654,
+   "oryginal_ma_zadanie": false,
+   "fragment": null
+  },
+  {
+   "nr": 723,
+   "oryginal_ma_zadanie": false,
+   "fragment": null
+  },
+  {
+   "nr": 736,
+   "oryginal_ma_zadanie": false,
+   "fragment": null
+  },
+  {
+   "nr": 757,
+   "oryginal_ma_zadanie": false,
+   "fragment": null
+  },
+  {
+   "nr": 789,
+   "oryginal_ma_zadanie": false,
+   "fragment": null
+  },
+  {
+   "nr": 804,
+   "oryginal_ma_zadanie": false,
+   "fragment": null
+  },
+  {
+   "nr": 828,
+   "oryginal_ma_zadanie": false,
+   "fragment": null
+  }
+ ]
+}

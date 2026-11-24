@@ -37,68 +37,76 @@
    "zostaje_tok_proc": 99.126
   },
   {
+   "powod": "haslo_w_kodzie",
+   "odrzucone_dok": 3667,
+   "odrzucone_tok": 8129734,
+   "zostaje_dok": 630285,
+   "zostaje_tok": 971813372,
+   "zostaje_tok_proc": 98.303
+  },
+  {
    "powod": "wygenerowany",
-   "odrzucone_dok": 4094,
-   "odrzucone_tok": 13512905,
-   "zostaje_dok": 629858,
-   "zostaje_tok": 966430201,
-   "zostaje_tok_proc": 97.759
+   "odrzucone_dok": 4089,
+   "odrzucone_tok": 13286581,
+   "zostaje_dok": 626196,
+   "zostaje_tok": 958526791,
+   "zostaje_tok_proc": 96.959
   },
   {
    "powod": "min_tresc",
-   "odrzucone_dok": 40134,
-   "odrzucone_tok": 3691346,
-   "zostaje_dok": 589724,
-   "zostaje_tok": 962738855,
-   "zostaje_tok_proc": 97.385
+   "odrzucone_dok": 40051,
+   "odrzucone_tok": 3681755,
+   "zostaje_dok": 586145,
+   "zostaje_tok": 954845036,
+   "zostaje_tok_proc": 96.587
   },
   {
    "powod": "int_score",
-   "odrzucone_dok": 266200,
-   "odrzucone_tok": 520582694,
-   "zostaje_dok": 323524,
-   "zostaje_tok": 442156161,
-   "zostaje_tok_proc": 44.726
+   "odrzucone_dok": 263980,
+   "odrzucone_tok": 515436817,
+   "zostaje_dok": 322165,
+   "zostaje_tok": 439408219,
+   "zostaje_tok_proc": 44.448
   },
   {
    "powod": "mojibake",
-   "odrzucone_dok": 39,
-   "odrzucone_tok": 752389,
-   "zostaje_dok": 323485,
-   "zostaje_tok": 441403772,
-   "zostaje_tok_proc": 44.65
+   "odrzucone_dok": 38,
+   "odrzucone_tok": 97081,
+   "zostaje_dok": 322127,
+   "zostaje_tok": 439311138,
+   "zostaje_tok_proc": 44.438
   },
   {
    "powod": "dedup_wewnatrz",
    "odrzucone_dok": 27,
    "odrzucone_tok": 20472,
-   "zostaje_dok": 323458,
-   "zostaje_tok": 441383300,
-   "zostaje_tok_proc": 44.648
+   "zostaje_dok": 322100,
+   "zostaje_tok": 439290666,
+   "zostaje_tok_proc": 44.436
   },
   {
    "powod": "dedup_slayer107",
    "odrzucone_dok": 399,
    "odrzucone_tok": 170737,
-   "zostaje_dok": 323059,
-   "zostaje_tok": 441212563,
-   "zostaje_tok_proc": 44.631
+   "zostaje_dok": 321701,
+   "zostaje_tok": 439119929,
+   "zostaje_tok_proc": 44.419
   },
   {
    "powod": "dedup_english_technical",
    "odrzucone_dok": 11,
    "odrzucone_tok": 7180,
-   "zostaje_dok": 323048,
-   "zostaje_tok": 441205383,
-   "zostaje_tok_proc": 44.63
+   "zostaje_dok": 321690,
+   "zostaje_tok": 439112749,
+   "zostaje_tok_proc": 44.418
   },
   {
    "powod": "dedup_fineweb_edu_109",
    "odrzucone_dok": 0,
    "odrzucone_tok": 0,
-   "zostaje_dok": 323048,
-   "zostaje_tok": 441205383,
-   "zostaje_tok_proc": 44.63
+   "zostaje_dok": 321690,
+   "zostaje_tok": 439112749,
+   "zostaje_tok_proc": 44.418
   }
  ],
  "niezaleznie": {
@@ -121,6 +129,11 @@
    "dok": 305,
    "tok": 1018461,
    "tok_proc": 0.103
+  },
+  "haslo_w_kodzie": {
+   "dok": 3707,
+   "tok": 8226586,
+   "tok_proc": 0.832
   },
   "wygenerowany": {
    "dok": 4123,
@@ -164,9 +177,9 @@
   }
  },
  "uzysk": {
-  "dok": 323048,
-  "tok": 441205383,
-  "tok_proc": 44.63
+  "dok": 321690,
+  "tok": 439112749,
+  "tok_proc": 44.418
  },
  "ewal_per_test": {
   "X03_mbpp": 289,
@@ -180,8 +193,8 @@
   "T43_triviaqa": 5,
   "T41_coqa": 3,
   "T45_medmcqa": 2,
-  "T15_rte": 2,
   "T13_wic": 2,
+  "T15_rte": 2,
   "T04_multiblimp_pl": 2,
   "T14_wsc273": 2,
   "T21_sst2": 2,
@@ -243,8 +256,8 @@
  },
  "eksport": {
   "cel_tok_v6": 250000000,
-  "dok": 184198,
-  "tok_v6": 250004619,
+  "dok": 185805,
+  "tok_v6": 250016863,
   "wystarcza": true
  }
 }
