@@ -11,7 +11,7 @@
   "eksport": "dokumenty zachowane po wszystkich powodach, w kolejności permutacji default_rng(seed), aż suma tokenów v6 >= cel_eksportu; pula to cała budowa (nie próbka do szacunku), bo cel jest mały"
  },
  "tokeny": {"tokenizer": "v6 z SlayerLab/slayer-1.07-pretrain tokenizer.json, sha256 0640d3bd3674d7a6e59c540d945a2ad275a12e1bcaeb6007c37a90751f9815dd", "regula": "tokeny tekstu bez znaków specjalnych + 1 (EOT)"},
- "kolejnosc_powodow": ["walidacja_fabryki", "domena_testow", "ewal_13gram", "pii", "mojibake", "dedup_wewnatrz", "dedup_slayer107"],
+ "kolejnosc_powodow": ["walidacja_fabryki", "domena_testow", "ewal_13gram", "pii", "mojibake", "dedup_wewnatrz", "dedup_slayer107", "dedup_english_technical", "dedup_fineweb_edu_109"],
  "walidacja_fabryki": "jak DCLM-EN: indeks idx_wal z dane/dclm-en (walidacje minimal-en-corpus-5b@bb3aec23 i 2b-v2@ef0ab069, osie Slayer150); szkic 13-gramów >= 0,5 albo MinHash >= 0,8 albo identyczny tekst albo identyczny url",
  "domena_testow": "jak DCLM-EN (wikihow, instructables, projekty Wikimedia)",
  "ewal_13gram": {
@@ -35,5 +35,13 @@
   "ewal_13gram: testy matematyki i kodu liczone ściśle (bez progu df)",
   "brak dedup_ivme, pomiaru url FineWeb-Edu i klasyfikatora FineWeb-Edu: Ivme to DCLM, a FineMath ma własny klasyfikator",
   "pula = budowa; ręczna próbka 100 odrzuconych na powód + 300 zachowanych od pierwszego przebiegu"
- ]
+ ],
+ "aneks_2026_11_24": {
+  "zapisano": "2026-11-24, po kontroli dodatniej i w trakcie przebiegu detektorów, PRZED pierwszym odczytem agregacji (agreguj.json) któregokolwiek zbioru",
+  "powod": "wymaganie właścicielki projektu (Ania, 24.11.2026): zero duplikatów z danymi już w treningu Slayera i z pracą innych osób; indeks EN 1.07 nie obejmuje danych 1.08 i 1.09",
+  "dedup_english_technical": "SlayerLab/english-technical-1b@3b833d36 (dane 1.08), pliki data/{train,validation,test}.parquet: MinHash 5-gramów 128 funkcji, LSH 32x4, J >= 0,8 ALBO identyczny znormalizowany tekst -> dokument usuwany (bez szkicu 13-gramów: przebieg nie zapisuje szkicu dokumentu; skrypt bazy_mat.py entech)",
+  "dedup_fineweb_edu_109": "identyczny znormalizowany url (wspolne.norm_url) z kolumną url wszystkich plików FineWeb-Edu w components.csv manifestu SlayerLab/Slayer1B-Dataset@2d248a17 (źródło fineweb-edu, c01-c17) -> dokument usuwany (skrypt bazy_mat.py fwe109); dotyczy dokumentów z url strony (FineMath, CraneMath)",
+  "praca_innych": "tablica Dataset team (projekt 11) 24.11.2026: pozostałe pozycje w toku to polskie zbiory dziedzinowe (nauki o Ziemi, technika, finanse, KSSiP, arkusze CKE, generator MCQ) i nasz DCLM-EN; bez angielskiej matematyki i kodu, więc bez osobnego indeksu; manifest proposed.csv pusty",
+  "kolejne_czesci": "kolejne części zbioru (cel łączny ok. 20 mld tokenów v6) dostają dedup wobec wszystkich wcześniej wyeksportowanych części wszystkich trzech zbiorów; FineMath-4+ i CraneMath w zbiorze łącznym biorą rozłączne url (strona albo w oryginale, albo w przepisaniu)"
+ }
 }

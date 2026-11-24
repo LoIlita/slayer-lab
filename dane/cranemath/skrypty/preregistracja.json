@@ -12,7 +12,7 @@
   "eksport": "jak finemath4"
  },
  "tokeny": {"tokenizer": "v6, sha256 0640d3bd3674d7a6e59c540d945a2ad275a12e1bcaeb6007c37a90751f9815dd", "regula": "tokeny tekstu bez znaków specjalnych + 1 (EOT)"},
- "kolejnosc_powodow": ["walidacja_fabryki", "domena_testow", "ewal_13gram", "ewal_13gram_oryginal", "think", "pii", "mojibake", "dedup_wewnatrz", "dedup_slayer107"],
+ "kolejnosc_powodow": ["walidacja_fabryki", "domena_testow", "ewal_13gram", "ewal_13gram_oryginal", "think", "pii", "mojibake", "dedup_wewnatrz", "dedup_slayer107", "dedup_english_technical", "dedup_fineweb_edu_109"],
  "walidacja_fabryki": "jak finemath4",
  "domena_testow": "jak finemath4 (po url strony źródłowej)",
  "ewal_13gram": {
@@ -37,5 +37,9 @@
   "dwa powody 13-gramowe: na tekście i na tekście przed przepisaniem",
   "powód think",
   "dedup wobec 1.07 tylko po tekście przepisanym"
- ]
+ ],
+ "aneks_2026_11_24": {
+  "zapisano": "2026-11-24, w tym samym czasie i z tego samego powodu co aneks finemath4, przed odczytem agregacji",
+  "regula": "dedup_english_technical i dedup_fineweb_edu_109 jak dane/finemath4/skrypty/preregistracja.json -> aneks_2026_11_24; dedup_fineweb_edu_109 po url strony źródłowej przepisania (przepisanie strony już widzianej w FineWeb-Edu 1.09 odpada)"
+ }
 }
