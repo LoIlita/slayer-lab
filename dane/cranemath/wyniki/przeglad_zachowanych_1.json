@@ -1,0 +1,80 @@
+{
+ "A": {
+  "n": 300,
+  "jakosc": {
+   "tak": 269,
+   "watpliwy": 25,
+   "nie": 6
+  },
+  "pii_przeoczone": {
+   "nie": 300
+  },
+  "test_przeoczony": {
+   "nie": 300
+  },
+  "przepisanie": {
+   "poprawne": 200,
+   "blad_matematyczny": 28,
+   "watpliwe": 38,
+   "sprzeczne": 34
+  },
+  "smieci": {
+   "k": 6,
+   "stopa": 2.0,
+   "wilson": [
+    0.9,
+    4.3
+   ],
+   "werdykt": "PASS"
+  },
+  "przepisanie_bledne": {
+   "k": 62,
+   "stopa": 20.7,
+   "wilson": [
+    16.5,
+    25.6
+   ],
+   "werdykt": "FAIL"
+  }
+ },
+ "B": {
+  "n": 300,
+  "jakosc": {
+   "tak": 258,
+   "watpliwy": 34,
+   "nie": 8
+  },
+  "pii_przeoczone": {
+   "nie": 300
+  },
+  "test_przeoczony": {
+   "nie": 299,
+   "tak": 1
+  },
+  "przepisanie": {
+   "poprawne": 214,
+   "watpliwe": 26,
+   "blad_matematyczny": 23,
+   "sprzeczne": 37
+  },
+  "smieci": {
+   "k": 8,
+   "stopa": 2.7,
+   "wilson": [
+    1.4,
+    5.2
+   ],
+   "werdykt": "PASS"
+  },
+  "przepisanie_bledne": {
+   "k": 60,
+   "stopa": 20.0,
+   "wilson": [
+    15.9,
+    24.9
+   ],
+   "werdykt": "FAIL"
+  }
+ },
+ "uwaga": "przeglad 300 zachowanych z agregacji wstępnej (bez dedup_fineweb_edu_109), oceny w robocze/przeglad/oceny_{A,B}/zach_*.json"
+}

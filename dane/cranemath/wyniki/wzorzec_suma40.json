@@ -1,0 +1,50 @@
+{
+ "regex": "(?i)(sum of (all )?(the )?(numbers|integers|natural numbers)( from)? 1 (to|through) 40|\\\\frac\\{40\\}\\{2\\}\\s*\\\\times\\s*\\(1 \\+ 40\\)|20 \\\\times 41 = 820)",
+ "pula": 663285,
+ "trafienia_pula": 36801,
+ "wybrane": 529328,
+ "trafienia_wybrane": 28618,
+ "proc_wybranych": 5.406,
+ "przyklady": [
+  {
+   "nr": 3,
+   "fragment": "\n\nTo find the sum of numbers from 1 to 40, we use the formula for the sum of the first $ n $ natural numbers:\n\n$$\n\\text{S"
+  },
+  {
+   "nr": 34,
+   "fragment": "\n\nTo find the sum of numbers from 1 to 40, we use the formula for the sum of an arithmetic series:  \n**Sum = n(n + 1)/2**"
+  },
+  {
+   "nr": 69,
+   "fragment": "\n\n**What is the sum of 1-40?**  \n\nTo find the sum of all integers from 1 to 40, use the formula for the sum of an arithmetic series:  \n$$\n\\text{Sum} = \\frac{n"
+  },
+  {
+   "nr": 85,
+   "fragment": "\n\n**What is the sum of all integers from 1 to 40?**\n\n**Answer:**  \nThe sum of the first $ n $ positive integers is calculated us"
+  },
+  {
+   "nr": 107,
+   "fragment": "\n\nWhat is the sum of the numbers from 1 to 40?\n\n**Answer:**  \nThe sum of the first $ n $ natural numbers is calculated using "
+  },
+  {
+   "nr": 128,
+   "fragment": "\n\nTo find the sum of numbers from 1 to 40, we can use the formula for the sum of an arithmetic series:  \n$$\n\\text{Sum} = "
+  },
+  {
+   "nr": 140,
+   "fragment": "\n\nThe sum of the numbers from 1 to 40 can be calculated using the formula for the sum of an arithmetic series:\n\n$$\n\\t"
+  },
+  {
+   "nr": 150,
+   "fragment": "to $20 + 21 = 41$.  \n- There are **20 pairs**, each summing to **41**:  \n  $$\n  20 \\times 41 = 820\n  $$\n\n**Answer:**  \n$$\n\\boxed{820}\n$$"
+  },
+  {
+   "nr": 178,
+   "fragment": "\n\n**Question:**  \nWhat is the sum of all integers from 1 to 40?\n\n**Answer:**  \nTo calculate the sum of the first $ N $ natural numbers, we use"
+  },
+  {
+   "nr": 192,
+   "fragment": "\n\nTo find the sum of the numbers from 1 to 40, we can use the **arithmetic series formula**:\n\n$$\n\\text{Sum} = \\frac{n(n + 1)}"
+  }
+ ]
+}

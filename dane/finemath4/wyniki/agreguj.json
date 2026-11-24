@@ -1,0 +1,192 @@
+{
+ "zbior": "finemath4",
+ "dokumenty": 418718,
+ "tokeny_v6": 660554470,
+ "dok_z_id0": 2,
+ "kaskada": [
+  {
+   "powod": "walidacja_fabryki",
+   "odrzucone_dok": 231,
+   "odrzucone_tok": 207149,
+   "zostaje_dok": 418487,
+   "zostaje_tok": 660347321,
+   "zostaje_tok_proc": 99.969
+  },
+  {
+   "powod": "domena_testow",
+   "odrzucone_dok": 3011,
+   "odrzucone_tok": 7812679,
+   "zostaje_dok": 415476,
+   "zostaje_tok": 652534642,
+   "zostaje_tok_proc": 98.786
+  },
+  {
+   "powod": "ewal_13gram",
+   "odrzucone_dok": 5671,
+   "odrzucone_tok": 20942995,
+   "zostaje_dok": 409805,
+   "zostaje_tok": 631591647,
+   "zostaje_tok_proc": 95.615
+  },
+  {
+   "powod": "pii",
+   "odrzucone_dok": 8672,
+   "odrzucone_tok": 39810781,
+   "zostaje_dok": 401133,
+   "zostaje_tok": 591780866,
+   "zostaje_tok_proc": 89.589
+  },
+  {
+   "powod": "min_tresc",
+   "odrzucone_dok": 2686,
+   "odrzucone_tok": 236058,
+   "zostaje_dok": 398447,
+   "zostaje_tok": 591544808,
+   "zostaje_tok_proc": 89.553
+  },
+  {
+   "powod": "mojibake",
+   "odrzucone_dok": 3545,
+   "odrzucone_tok": 10131432,
+   "zostaje_dok": 394902,
+   "zostaje_tok": 581413376,
+   "zostaje_tok_proc": 88.019
+  },
+  {
+   "powod": "dedup_wewnatrz",
+   "odrzucone_dok": 3660,
+   "odrzucone_tok": 6185642,
+   "zostaje_dok": 391242,
+   "zostaje_tok": 575227734,
+   "zostaje_tok_proc": 87.083
+  },
+  {
+   "powod": "dedup_slayer107",
+   "odrzucone_dok": 35988,
+   "odrzucone_tok": 51646012,
+   "zostaje_dok": 355254,
+   "zostaje_tok": 523581722,
+   "zostaje_tok_proc": 79.264
+  },
+  {
+   "powod": "dedup_english_technical",
+   "odrzucone_dok": 0,
+   "odrzucone_tok": 0,
+   "zostaje_dok": 355254,
+   "zostaje_tok": 523581722,
+   "zostaje_tok_proc": 79.264
+  },
+  {
+   "powod": "dedup_fineweb_edu_109",
+   "odrzucone_dok": 0,
+   "odrzucone_tok": 0,
+   "zostaje_dok": 355254,
+   "zostaje_tok": 523581722,
+   "zostaje_tok_proc": 79.264
+  }
+ ],
+ "niezaleznie": {
+  "walidacja_fabryki": {
+   "dok": 231,
+   "tok": 207149,
+   "tok_proc": 0.031
+  },
+  "domena_testow": {
+   "dok": 3011,
+   "tok": 7812679,
+   "tok_proc": 1.183
+  },
+  "ewal_13gram": {
+   "dok": 5741,
+   "tok": 21352008,
+   "tok_proc": 3.232
+  },
+  "pii": {
+   "dok": 8948,
+   "tok": 41927984,
+   "tok_proc": 6.347
+  },
+  "min_tresc": {
+   "dok": 2692,
+   "tok": 236727,
+   "tok_proc": 0.036
+  },
+  "mojibake": {
+   "dok": 3741,
+   "tok": 11659789,
+   "tok_proc": 1.765
+  },
+  "dedup_wewnatrz": {
+   "dok": 3931,
+   "tok": 7000096,
+   "tok_proc": 1.06
+  },
+  "dedup_slayer107": {
+   "dok": 38514,
+   "tok": 57982072,
+   "tok_proc": 8.778
+  },
+  "dedup_english_technical": {
+   "dok": 0,
+   "tok": 0,
+   "tok_proc": 0.0
+  },
+  "dedup_fineweb_edu_109": {
+   "dok": 0,
+   "tok": 0,
+   "tok_proc": 0.0
+  }
+ },
+ "uzysk": {
+  "dok": 355254,
+  "tok": 523581722,
+  "tok_proc": 79.264
+ },
+ "ewal_per_test": {
+  "T19_mathqa": 2506,
+  "T34_math": 1964,
+  "T10_boolq": 406,
+  "T32_mmlu": 224,
+  "T09_sciq": 217,
+  "X03_mbpp": 165,
+  "X02_humaneval": 136,
+  "T38_squad2": 54,
+  "X04_synlogic": 36,
+  "T05_hellaswag": 29,
+  "T45_medmcqa": 27,
+  "T43_triviaqa": 24,
+  "T51_gsm_plus": 19,
+  "T06_piqa": 16,
+  "T33_gsm8k": 12,
+  "T02_arc_challenge": 10,
+  "T16_anli": 9,
+  "T50_record": 6,
+  "X01_arc_easy": 5,
+  "T41_coqa": 4,
+  "T48_paws": 4,
+  "T40_race": 3,
+  "T35_truthfulqa": 3,
+  "T13_wic": 3,
+  "T30_polqa": 2,
+  "T52_gsm1k": 2,
+  "T03_wikitext2": 1,
+  "T17_lambada": 1,
+  "T47_bbh": 1
+ },
+ "pii_klasy_detektor_dclm": {
+  "email": 7227,
+  "telefon": 1250,
+  "ip": 1106
+ },
+ "pii_tryb": "usun",
+ "dedup_wewnatrz_szczegoly": {
+  "identyczny_tekst": 0,
+  "minhash_bez_identycznych": 3931
+ },
+ "eksport": {
+  "cel_tok_v6": 400000000,
+  "dok": 271467,
+  "tok_v6": 400000379,
+  "wystarcza": true
+ }
+}

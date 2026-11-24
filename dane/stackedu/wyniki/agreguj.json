@@ -1,0 +1,250 @@
+{
+ "zbior": "stackedu",
+ "dokumenty": 639779,
+ "tokeny_v6": 988588081,
+ "dok_z_id0": 44,
+ "kaskada": [
+  {
+   "powod": "licencja",
+   "odrzucone_dok": 3278,
+   "odrzucone_tok": 5306732,
+   "zostaje_dok": 636501,
+   "zostaje_tok": 983281349,
+   "zostaje_tok_proc": 99.463
+  },
+  {
+   "powod": "walidacja_fabryki",
+   "odrzucone_dok": 1725,
+   "odrzucone_tok": 902542,
+   "zostaje_dok": 634776,
+   "zostaje_tok": 982378807,
+   "zostaje_tok_proc": 99.372
+  },
+  {
+   "powod": "ewal_13gram",
+   "odrzucone_dok": 524,
+   "odrzucone_tok": 1426367,
+   "zostaje_dok": 634252,
+   "zostaje_tok": 980952440,
+   "zostaje_tok_proc": 99.228
+  },
+  {
+   "powod": "sekrety",
+   "odrzucone_dok": 300,
+   "odrzucone_tok": 1009334,
+   "zostaje_dok": 633952,
+   "zostaje_tok": 979943106,
+   "zostaje_tok_proc": 99.126
+  },
+  {
+   "powod": "wygenerowany",
+   "odrzucone_dok": 4094,
+   "odrzucone_tok": 13512905,
+   "zostaje_dok": 629858,
+   "zostaje_tok": 966430201,
+   "zostaje_tok_proc": 97.759
+  },
+  {
+   "powod": "min_tresc",
+   "odrzucone_dok": 40134,
+   "odrzucone_tok": 3691346,
+   "zostaje_dok": 589724,
+   "zostaje_tok": 962738855,
+   "zostaje_tok_proc": 97.385
+  },
+  {
+   "powod": "int_score",
+   "odrzucone_dok": 266200,
+   "odrzucone_tok": 520582694,
+   "zostaje_dok": 323524,
+   "zostaje_tok": 442156161,
+   "zostaje_tok_proc": 44.726
+  },
+  {
+   "powod": "mojibake",
+   "odrzucone_dok": 39,
+   "odrzucone_tok": 752389,
+   "zostaje_dok": 323485,
+   "zostaje_tok": 441403772,
+   "zostaje_tok_proc": 44.65
+  },
+  {
+   "powod": "dedup_wewnatrz",
+   "odrzucone_dok": 27,
+   "odrzucone_tok": 20472,
+   "zostaje_dok": 323458,
+   "zostaje_tok": 441383300,
+   "zostaje_tok_proc": 44.648
+  },
+  {
+   "powod": "dedup_slayer107",
+   "odrzucone_dok": 399,
+   "odrzucone_tok": 170737,
+   "zostaje_dok": 323059,
+   "zostaje_tok": 441212563,
+   "zostaje_tok_proc": 44.631
+  },
+  {
+   "powod": "dedup_english_technical",
+   "odrzucone_dok": 11,
+   "odrzucone_tok": 7180,
+   "zostaje_dok": 323048,
+   "zostaje_tok": 441205383,
+   "zostaje_tok_proc": 44.63
+  },
+  {
+   "powod": "dedup_fineweb_edu_109",
+   "odrzucone_dok": 0,
+   "odrzucone_tok": 0,
+   "zostaje_dok": 323048,
+   "zostaje_tok": 441205383,
+   "zostaje_tok_proc": 44.63
+  }
+ ],
+ "niezaleznie": {
+  "licencja": {
+   "dok": 3278,
+   "tok": 5306732,
+   "tok_proc": 0.537
+  },
+  "walidacja_fabryki": {
+   "dok": 1730,
+   "tok": 904499,
+   "tok_proc": 0.091
+  },
+  "ewal_13gram": {
+   "dok": 527,
+   "tok": 1437167,
+   "tok_proc": 0.145
+  },
+  "sekrety": {
+   "dok": 305,
+   "tok": 1018461,
+   "tok_proc": 0.103
+  },
+  "wygenerowany": {
+   "dok": 4123,
+   "tok": 13600457,
+   "tok_proc": 1.376
+  },
+  "min_tresc": {
+   "dok": 40339,
+   "tok": 3710434,
+   "tok_proc": 0.375
+  },
+  "int_score": {
+   "dok": 291333,
+   "tok": 538612898,
+   "tok_proc": 54.483
+  },
+  "mojibake": {
+   "dok": 58,
+   "tok": 938771,
+   "tok_proc": 0.095
+  },
+  "dedup_wewnatrz": {
+   "dok": 77,
+   "tok": 65262,
+   "tok_proc": 0.007
+  },
+  "dedup_slayer107": {
+   "dok": 2265,
+   "tok": 1158057,
+   "tok_proc": 0.117
+  },
+  "dedup_english_technical": {
+   "dok": 21,
+   "tok": 33444,
+   "tok_proc": 0.003
+  },
+  "dedup_fineweb_edu_109": {
+   "dok": 0,
+   "tok": 0,
+   "tok_proc": 0.0
+  }
+ },
+ "uzysk": {
+  "dok": 323048,
+  "tok": 441205383,
+  "tok_proc": 44.63
+ },
+ "ewal_per_test": {
+  "X03_mbpp": 289,
+  "X02_humaneval": 136,
+  "X04_synlogic": 37,
+  "T34_math": 21,
+  "T32_mmlu": 10,
+  "T19_mathqa": 9,
+  "T10_boolq": 9,
+  "T38_squad2": 6,
+  "T43_triviaqa": 5,
+  "T41_coqa": 3,
+  "T45_medmcqa": 2,
+  "T15_rte": 2,
+  "T13_wic": 2,
+  "T04_multiblimp_pl": 2,
+  "T14_wsc273": 2,
+  "T21_sst2": 2,
+  "T40_race": 1,
+  "T35_truthfulqa": 1,
+  "T50_record": 1,
+  "T47_bbh": 1,
+  "T09_sciq": 1,
+  "X06_wsc_superglue": 1,
+  "T16_anli": 1
+ },
+ "pii_klasy_detektor_dclm": {
+  "email": 27636,
+  "telefon": 262,
+  "ip": 3743
+ },
+ "pii_tryb": "maskuj",
+ "dedup_wewnatrz_szczegoly": {
+  "identyczny_tekst": 16,
+  "minhash_bez_identycznych": 61
+ },
+ "sekrety_klasy": {
+  "google_api_key": 188,
+  "aws_access_key": 44,
+  "klucz_prywatny": 51,
+  "slack_token": 22
+ },
+ "licencje_top": {
+  "MIT": 414354,
+  "Apache-2.0": 127377,
+  "BSD-3-Clause": 44403,
+  "BSD-2-Clause": 15614,
+  "Unlicense": 7241,
+  "CC0-1.0": 3973,
+  "": 3278,
+  "MIT,Apache-2.0": 2086,
+  "Apache-2.0,MIT": 2013,
+  "ISC": 1937,
+  "BSD-3-Clause,BSD-2-Clause": 1794,
+  "BSD-3-Clause,MIT": 1162,
+  "BSD-2-Clause,BSD-3-Clause": 881,
+  "MIT,Python-2.0": 873,
+  "MIT,BSD-3-Clause": 866,
+  "BSD-3-Clause,Apache-2.0": 669,
+  "BSD-2-Clause-Views": 575,
+  "Python-2.0,MIT": 535,
+  "Apache-2.0,BSD-3-Clause": 491,
+  "MIT-0": 430,
+  "Apache-2.0,MIT,BSD-2-Clause": 357,
+  "MIT,BSD-3-Clause,Apache-2.0": 357,
+  "ZPL-2.1": 354,
+  "Zlib": 343,
+  "Apache-2.0,BSD-3-Clause,MIT": 322,
+  "Apache-2.0,Python-2.0": 270,
+  "Artistic-2.0": 270,
+  "BSD-3-Clause-LBNL": 265,
+  "BSL-1.0": 251,
+  "Python-2.0": 244
+ },
+ "eksport": {
+  "cel_tok_v6": 250000000,
+  "dok": 184198,
+  "tok_v6": 250004619,
+  "wystarcza": true
+ }
+}

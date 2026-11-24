@@ -151,6 +151,21 @@ if "min_tresc" in P["kolejnosc_powodow"]:  # aneks 24.11b: < min_slow słów po 
         SF = P["aneks_2026_11_24b"]["szablon_forum"]
         znak = np.array([any(z in (t or "") for z in SF["znaczniki"]) for t in kolumna("text")])
         powody["szablon_forum"] = znak & (slow < SF["max_slow"])
+A3 = P.get("aneks_2026_11_24c", {})
+if "pii_zaciemniony" in P["kolejnosc_powodow"]:  # aneks 24.11c: e-mail zapisany jako nazwa(AT)domena
+    rx_at = re.compile(P["aneks_2026_11_24c"]["pii_zaciemniony"]["regex"] if isinstance(A3.get("pii_zaciemniony"), dict) else
+                       json.load(open(os.path.join(os.path.dirname(PREREG_P), "..", "..", "finemath4", "skrypty", "preregistracja.json"),
+                                      encoding="utf-8"))["aneks_2026_11_24c"]["pii_zaciemniony"]["regex"])
+    powody["pii_zaciemniony"] = np.array([bool(rx_at.search(t or "")) for t in kolumna("text")])
+if "haslo_w_kodzie" in P["kolejnosc_powodow"]:  # aneks 24.11c: literał hasła w przypisaniu
+    rx_h = re.compile(A3["haslo_w_kodzie"]["regex"])
+    powody["haslo_w_kodzie"] = np.array([bool(rx_h.search(t or "")) for t in kolumna("text")])
+if "suma40" in P["kolejnosc_powodow"]:  # aneks 24.11c: zmyślone 'suma 1..40' przy oryginale bez liczby 40
+    rx_t, rx_o = re.compile(A3["suma40"]["regex_tekst"]), re.compile(A3["suma40"]["regex_oryginal"])
+    jed_s = json.load(open(f"{OPC['oryg'].split(',')[0]}/jednostki.json"))
+    oryg_t = [x for p_, g_ in jed_s for x in pq.ParquetFile(p_).read_row_group(g_, columns=["text"]).column(0).to_pylist()]
+    powody["suma40"] = np.array([bool(rx_t.search(t or "")) and not rx_o.search(o or "") for t, o in zip(kolumna("text"), oryg_t)])
+    del oryg_t
 if "domena_testow" in P["kolejnosc_powodow"]:
     powody["domena_testow"] = X["dom"] > 0
 if P["pii"]["tryb"] == "usun":

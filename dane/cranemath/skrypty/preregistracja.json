@@ -12,7 +12,7 @@
   "eksport": "jak finemath4"
  },
  "tokeny": {"tokenizer": "v6, sha256 0640d3bd3674d7a6e59c540d945a2ad275a12e1bcaeb6007c37a90751f9815dd", "regula": "tokeny tekstu bez znaków specjalnych + 1 (EOT)"},
- "kolejnosc_powodow": ["walidacja_fabryki", "domena_testow", "ewal_13gram", "ewal_13gram_oryginal", "think", "min_tresc", "szablon_forum", "pii", "mojibake", "dedup_wewnatrz", "dedup_slayer107", "dedup_english_technical", "dedup_fineweb_edu_109"],
+ "kolejnosc_powodow": ["walidacja_fabryki", "domena_testow", "ewal_13gram", "ewal_13gram_oryginal", "think", "min_tresc", "szablon_forum", "suma40", "pii", "pii_zaciemniony", "mojibake", "dedup_wewnatrz", "dedup_slayer107", "dedup_english_technical", "dedup_fineweb_edu_109"],
  "walidacja_fabryki": "jak finemath4",
  "domena_testow": "jak finemath4 (po url strony źródłowej)",
  "ewal_13gram": {
@@ -48,5 +48,14 @@
   "szablon_forum": {"znaczniki": ["phpBB", "GMAT Club", "The Student Room", "TSR Support Team", "Hello! How can I help", "I'm here to help"], "max_slow": 200,
    "regula": "przepisanie z dowolnym znacznikiem i < 200 słowami (rdzen.norm_slowa) -> usuwany: stopka forum albo powitanie czatbota zamiast treści; w przeglądzie odrzuconych takie teksty to 93-95/100 pozycji walidacja_fabryki i 57-61/100 pozycji dedup_slayer107"},
   "precyzja_regul_konserwatywnych": "jak finemath4 -> aneks_2026_11_24b; w cranemath FAIL reguł walidacja_fabryki, dedup_slayer107, dedup_english_technical i mojibake wynika głównie z tego, że odrzucone teksty to szablony bez treści, więc utrata dobrych danych jest pomijalna (koszt łącznie ok. 0,2% tokenów)"
+ },
+ "aneks_2026_11_24c": {
+  "zapisano": "2026-11-24, PO przeglądzie 300 zachowanych (wyniki/przeglad_zachowanych_1.json, dwóch recenzentów) i PRZED eksportem",
+  "wynik_przegladu": "śmieci 2,0% i 2,7%: PASS; przeoczone PII 0/300 u obu; przeoczony test: 1 zgłoszenie (AMC 10B 2015 nr 21, 'Cozy the Cat') NIE potwierdzone w teście MATH (grep 24.11); przepisania błędne (blad_matematyczny + sprzeczne) 20,7% [16,5; 25,6] i 20,0%: FAIL progu 10%",
+  "suma40": {"regex_tekst": "(?i)(sum of (all )?(the )?(numbers|integers|natural numbers)( from)? 1 (to|through) 40|\\\\frac\\{40\\}\\{2\\}\\s*\\\\times\\s*\\(1 \\+ 40\\)|20 \\\\times 41 = 820)", "regex_oryginal": "\\b40\\b",
+   "regula": "tekst pasuje do regex_tekst ORAZ tekst przed przepisaniem nie zawiera liczby 40 -> usuwany: generator wstawiał to samo zmyślone zadanie 'suma 1..40 = 820' w miejsce stron bez zadania (19-20 z 71 przepisań sprzecznych w przeglądzie); częstość przed regułą (wyniki/wzorzec_suma40.json): 28 618 z 529 328 wybranych (5,4%), bez warunku na oryginał"},
+  "pii_zaciemniony": "jak finemath4 -> aneks_2026_11_24c",
+  "przepisanie_fail": "pozostałe błędy przepisania (ok. 9% błędów rachunkowych i zmyślone zadania do stron bez zadania) to cecha CraneMath, na którym Olmo 3 zmierzyło efekt microannealu; naprawa wymaga ponownej generacji z weryfikacją, poza częścią 1. Eksport opisany jako ramię porównawcze z odsetkiem błędnych przepisań w datasheet; zadanie przed częścią 2, jeśli C wygra",
+  "probka_kontrolna": "jak finemath4 -> aneks_2026_11_24c, plus pole przepisanie na 100 pierwszych (sprawdzenie, czy suma40 zniknęła)"
  }
 }

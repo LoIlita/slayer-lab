@@ -1,0 +1,50 @@
+{
+ "regex": "[A-Za-z0-9._%+-]+\\s?[\\(\\[]\\s?(?:AT|at)\\s?[\\)\\]]\\s?[A-Za-z0-9.-]+\\s?(?:[\\(\\[]\\s?(?:DOT|dot)\\s?[\\)\\]]|\\.)\\s?[A-Za-z]{2,}",
+ "pula": 418718,
+ "trafienia_pula": 372,
+ "wybrane": 271467,
+ "trafienia_wybrane": 230,
+ "proc_wybranych": 0.085,
+ "przyklady": [
+  {
+   "nr": 381,
+   "fragment": "s the fundamental theorem of arithmetic.\n\n© Mathspage.com | Privacy | Contact | info [at] Mathspage [dot] com"
+  },
+  {
+   "nr": 1724,
+   "fragment": " his family. He used to be a good golfer.\n\nBallengee can be reached by email at ryan[at]thegolfnewsnet.com\n\nRyan occasionally links to merchants of his choosing, and GNN may earn a commi"
+  },
+  {
+   "nr": 2211,
+   "fragment": " refs; listen; history; text; internal format)\n OFFSET 0,4 COMMENTS Bob Hanlon (hanlonr(AT)cox.net) helped convert the expansion to a recursion. LINKS Alois P. Heinz, Table of n,"
+  },
+  {
+   "nr": 3535,
+   "fragment": ",-1,1).\n\n%F G.f.: x*(1+x+x^2-x^4-x^5)/ ((1+x+x^2)^2 * (1-x)^3). [Maksym Voznyy (voznyy(AT)mail.ru), Aug 11 2009; checked and corrected by _R. J. Mathar_, Sep 16 2009]\n\n%t Flatte"
+  },
+  {
+   "nr": 4125,
+   "fragment": " large numbers into their prime factors.\n\n© Mathspage.com | Privacy | Contact | info [at] Mathspage [dot] com"
+  },
+  {
+   "nr": 6953,
+   "fragment": "28251 A028252 A028253 * A028255 A028256 A028257 KEYWORD nonn AUTHOR Naoki Sato (naoki(AT)math.toronto.edu) EXTENSIONS More terms from Simon Plouffe, Jan 05 2002 STATUS approved\n\nLookup "
+  },
+  {
+   "nr": 7629,
+   "fragment": "ecutive (but disjoint) pairs of twin primes.\n\n%D Posting to Number Theory List (NMBRTHRY(AT)LISTSERV.NODAK.EDU), Nov. 19 1998.\n\n%H Sebastian Petzelberger, <a href=\"/A035791/b035791.txt\">Tabl"
+  },
+  {
+   "nr": 8670,
+   "fragment": "R Gary W. Adamson, Jun 12 2003 EXTENSIONS More terms from Antonio G. Astudillo (afg_astudillo(AT)lycos.com), Jun 26 2003 Edited. Example rewritten to conform with the triangle. Wolfdiete"
+  },
+  {
+   "nr": 8913,
+   "fragment": "178651 A178652 * A178654 A178655 A178656 KEYWORD nonn AUTHOR Eva-Maria Zschorn (e-m.zschorn(AT)zaschendorf.km3.de), Jun 01 2010 EXTENSIONS a(16)-a(31) from Robert G. Wilson v, Jul 31 2010 New n"
+  },
+  {
+   "nr": 9177,
+   "fragment": "10829 A110830 * A110832 A110833 A110834 KEYWORD easy,nonn AUTHOR Joao da Silva (zxawyh66(AT)yahoo.com), Sep 16 2005 EXTENSIONS Edited by Arkadiusz Wesolowski, Oct 11 2011 STATUS app"
+  }
+ ]
+}

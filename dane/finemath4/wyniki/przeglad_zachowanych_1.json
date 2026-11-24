@@ -1,0 +1,53 @@
+{
+ "A": {
+  "n": 300,
+  "jakosc": {
+   "tak": 198,
+   "nie": 39,
+   "watpliwy": 63
+  },
+  "pii_przeoczone": {
+   "nie": 299,
+   "tak": 1
+  },
+  "test_przeoczony": {
+   "nie": 299,
+   "tak": 1
+  },
+  "smieci": {
+   "k": 39,
+   "stopa": 13.0,
+   "wilson": [
+    9.7,
+    17.3
+   ],
+   "werdykt": "FAIL"
+  }
+ },
+ "B": {
+  "n": 300,
+  "jakosc": {
+   "tak": 194,
+   "nie": 39,
+   "watpliwy": 67
+  },
+  "pii_przeoczone": {
+   "nie": 298,
+   "tak": 2
+  },
+  "test_przeoczony": {
+   "nie": 299,
+   "tak": 1
+  },
+  "smieci": {
+   "k": 39,
+   "stopa": 13.0,
+   "wilson": [
+    9.7,
+    17.3
+   ],
+   "werdykt": "FAIL"
+  }
+ },
+ "uwaga": "przeglad 300 zachowanych z agregacji wstępnej (bez dedup_fineweb_edu_109), oceny w robocze/przeglad/oceny_{A,B}/zach_*.json"
+}

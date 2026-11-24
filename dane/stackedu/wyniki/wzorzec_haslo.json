@@ -1,0 +1,50 @@
+{
+ "regex": "(?i)\\b(?:password|passwd|pwd)\\s*[=:]\\s*['\"][^'\"\\s]{4,}['\"]",
+ "pula": 639779,
+ "trafienia_pula": 3707,
+ "wybrane": 184198,
+ "trafienia_wybrane": 784,
+ "proc_wybranych": 0.426,
+ "przyklady": [
+  {
+   "nr": 169,
+   "fragment": "er_model().objects.create_superuser(\n\t\t\temail ='kotechashubham94@gmail.com',\n\t\t\tpassword ='password123'\n\t\t\t)\n\t\tself.client.force_login(self.admin_user)\n\n\t\tself.user = get_user_model()"
+  },
+  {
+   "nr": 187,
+   "fragment": "ogin(self):\n        response = self.app.post('/login', data=dict(email='admin', password='admin'), follow_redirects=True)\n        self.assertEqual(response.status_code, SUCCESS"
+  },
+  {
+   "nr": 193,
+   "fragment": "ur postgres password\nconn = psycopg2.connect(host=\"localhost\",user = \"postgres\",password = \"*******\",database = \"postgres\") \ncur = conn.cursor()\n\n#PlayerInfo.csv format: batsman_na"
+  },
+  {
+   "nr": 366,
+   "fragment": "  model = load_pretrain_model()\n\n            r = redis.Redis('localhost', 6379, password='Byte20171116@')\n\n            while (True):\n                print('wait to compare face!')\n    "
+  },
+  {
+   "nr": 529,
+   "fragment": "cnx = mysql.connector.connect(user='arthur', database='agence_location_python', password='SGBDR')\ncursor = cnx.cursor()\n\n\nadd_commune = (\"INSERT INTO communes \"\n               "
+  },
+  {
+   "nr": 929,
+   "fragment": "         email=\"reallynice@gmail.com\",\n                                         password=\"supersecret123\")\n                                         \n        article1 = Article()\n       "
+  },
+  {
+   "nr": 1297,
+   "fragment": "nector.connect(\n    host=\"185.104.29.34\",\n    user=\"schoolproject_laravel\",\n    passwd=\"kvLXsjsPS\",\n    database=\"schoolproject_laravel\"\n)\n\nport = serial.Serial(\"/dev/ttyUSB0\", 9"
+  },
+  {
+   "nr": 1472,
+   "fragment": "User.objects.create_user(\n            username=\"fred\", email=\"fred@secret.com\", password=\"secret\", email_verified=True\n        )\n        self.user._test_agree_all_tos()\n\n    def"
+  },
+  {
+   "nr": 1524,
+   "fragment": "p\", passwords={\"basic.zip\": \"fables\"})\n    node.add_password(name=\"nested.zip\", password=\"foobles\")\n    assert node.passwords == {\"basic.zip\": \"fables\", \"nested.zip\": \"foobles\"}\n"
+  },
+  {
+   "nr": 1946,
+   "fragment": "_with_pushbullet(self):\n        self.client.login(username=\"alice@example.org\", password=\"password\")\n\n        ch = Channel(user=self.alice, kind=\"pushbullet\", value=\"test-token\")\n"
+  }
+ ]
+}

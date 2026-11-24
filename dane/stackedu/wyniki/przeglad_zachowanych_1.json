@@ -1,0 +1,51 @@
+{
+ "A": {
+  "n": 300,
+  "jakosc": {
+   "tak": 295,
+   "watpliwy": 4,
+   "nie": 1
+  },
+  "sekret_przeoczony": {
+   "nie": 299,
+   "tak": 1
+  },
+  "test_przeoczony": {
+   "nie": 300
+  },
+  "smieci": {
+   "k": 1,
+   "stopa": 0.3,
+   "wilson": [
+    0.1,
+    1.9
+   ],
+   "werdykt": "PASS"
+  }
+ },
+ "B": {
+  "n": 300,
+  "jakosc": {
+   "tak": 295,
+   "nie": 2,
+   "watpliwy": 3
+  },
+  "sekret_przeoczony": {
+   "nie": 299,
+   "tak": 1
+  },
+  "test_przeoczony": {
+   "nie": 300
+  },
+  "smieci": {
+   "k": 2,
+   "stopa": 0.7,
+   "wilson": [
+    0.2,
+    2.4
+   ],
+   "werdykt": "PASS"
+  }
+ },
+ "uwaga": "przeglad 300 zachowanych z agregacji wstępnej (bez dedup_fineweb_edu_109), oceny w robocze/przeglad/oceny_{A,B}/zach_*.json"
+}

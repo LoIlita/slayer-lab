@@ -29,11 +29,11 @@ def oczekiwane():
          "K_entech": "dedup_english_technical", "K_fwe109": "dedup_fineweb_edu_109", "K_pusty": "min_tresc"}
     if ZB == "stackedu":
         o.update({"K_humaneval": "ewal_13gram", "K_mbpp": "ewal_13gram", "K_aws": "sekrety", "K_generated": "wygenerowany",
-                  "K_licencja": "licencja", "K_int_score": "int_score", "K_email": None})
+                  "K_licencja": "licencja", "K_int_score": "int_score", "K_email": None, "K_haslo": "haslo_w_kodzie"})
     else:
-        o.update({"K_email": "pii", "K_telefon": "pii", "K_ip": "pii", "K_domena": "domena_testow"})
+        o.update({"K_email": "pii", "K_telefon": "pii", "K_ip": "pii", "K_domena": "domena_testow", "K_at": "pii_zaciemniony"})
     if ZB == "cranemath":
-        o.update({"K_think": "think", "K_gsm8k_oryg": "ewal_13gram_oryginal", "K_forum": "szablon_forum"})
+        o.update({"K_think": "think", "K_gsm8k_oryg": "ewal_13gram_oryginal", "K_forum": "szablon_forum", "K_suma40": "suma40"})
     return o
 
 
@@ -89,9 +89,15 @@ if TRYB == "buduj":
     w += [("K_entech", "https://example.org/entech", pq.read_table(ENTECH, columns=["text"]).slice(5, 1).column(0)[0].as_py()),
           ("K_fwe109", FWE_URL, baza + " Page seen in FineWeb-Edu 1.09."),
           ("K_pusty", "https://example.org/pusty", "$$\n\n$$\n\n" * 200)]
+    if ZB == "stackedu":
+        w += [("K_haslo", "https://example.org/haslo", baza + "\nconn = connect(user='app', passwd='s3cretpw')\n")]
+    else:
+        w += [("K_at", "https://example.org/at", baza + " Contributed by Jan Kowalsky (jkowal(AT)example.edu), 2004.")]
     if ZB == "cranemath":
         w += [("K_forum", "https://example.org/forum", "Question: what is 7 times 8? Answer: 56. Powered by phpBB. GMAT Club Daily Prep. "
-               "Thank you for using the timer. " * 2)]
+               "Thank you for using the timer. " * 2),
+              ("K_suma40", "https://example.org/suma40", "To find the sum of the numbers from 1 to 40, use the formula for an arithmetic "
+               "series. The sum equals n times the first plus last term divided by two, so the answer is 820. " * 3)]
     kol = {"text": [x[2] for x in w], "url": [x[1] for x in w], "id": [x[0] for x in w]}
     n = len(w)
     if ZB == "stackedu":

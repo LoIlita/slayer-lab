@@ -68,12 +68,52 @@ def entech():
 
 
 def _url_pliku(a):
+    """Kolumna url jednego pliku parquet bez pobierania całego pliku: stopka, potem dokładne zakresy bajtów kawałków kolumny url
+    (Range, wątki) zapisane pod tymi samymi offsetami w pliku rzadkim; pyarrow czyta z niego tylko te zakresy.
+    Poprzednia wersja (HfFileSystem, block_size 8 MB) czytała 8 MB na każdą grupę wierszy: ok. 7 min na plik."""
+    import requests
+    from concurrent.futures import ThreadPoolExecutor
+    from huggingface_hub.utils import build_hf_headers
     repo, rew, plik, cel = a
     if os.path.exists(cel):
         return plik, int(len(np.load(cel)))
-    fs = HfFileSystem()
-    with fs.open(f"datasets/{repo}@{rew}/{plik}", "rb", block_size=8 << 20) as h:
-        u = pq.ParquetFile(h).read(columns=["url"]).column(0).to_pylist()
+    url = f"https://huggingface.co/datasets/{repo}/resolve/{rew}/{plik}"
+    s = requests.Session()
+    s.headers.update(build_hf_headers())
+
+    def zakres(a0, b0):
+        for proba in range(5):
+            try:
+                r = s.get(url, headers={"Range": f"bytes={a0}-{b0 - 1}"}, timeout=120)
+                r.raise_for_status()
+                assert len(r.content) == b0 - a0, (len(r.content), b0 - a0)
+                return a0, r.content
+            except Exception:
+                if proba == 4:
+                    raise
+
+    rozm = int(s.head(url, allow_redirects=True, timeout=60).headers["Content-Length"])
+    _, ogon = zakres(rozm - 8, rozm)
+    dl = int.from_bytes(ogon[:4], "little")
+    rzadki = cel + ".parquet.tmp"
+    with open(rzadki, "wb") as f:
+        f.truncate(rozm)
+        a0, stopka = zakres(rozm - 8 - dl, rozm)
+        f.seek(a0)
+        f.write(stopka)
+    md = pq.ParquetFile(rzadki).metadata
+    ci = md.schema.to_arrow_schema().get_field_index("url")
+    zak = []
+    for g in range(md.num_row_groups):
+        c = md.row_group(g).column(ci)
+        p0 = c.dictionary_page_offset if c.has_dictionary_page and c.dictionary_page_offset else c.data_page_offset
+        zak.append((p0, p0 + c.total_compressed_size))
+    with ThreadPoolExecutor(16) as ex, open(rzadki, "r+b") as f:
+        for a0, dane in ex.map(lambda z: zakres(*z), zak):
+            f.seek(a0)
+            f.write(dane)
+    u = pq.read_table(rzadki, columns=["url"]).column(0).to_pylist()
+    os.remove(rzadki)
     np.save(cel + ".tmp.npy", np.unique(np.array([w.h64(w.norm_url(x)) for x in u if x], np.uint64)))
     os.replace(cel + ".tmp.npy", cel)
     return plik, len(u)
