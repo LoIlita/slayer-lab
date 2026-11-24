@@ -1,0 +1,41 @@
+{
+ "zapisano": "2026-11-24, przed pobraniem puli i przed pierwszym liczeniem; reguły jak dane/finemath4/skrypty/preregistracja.json z odstępstwami w polu 'odstepstwa'",
+ "rezerwacja": "https://github.com/slayerlabs/benchmarks-fabryka-ai/issues/346",
+ "cel": "ramię C microannealu Slayera 1B (paper mat./med. 1.2, Przepis): +15% matematyki przepisanej otwartym modelem w ramieniu 2 mld tokenów",
+ "seed": 20261124,
+ "zrodlo": {"repo": "allenai/dolma3_dolmino_mix-100B-1125", "rewizja": "f23aa129fda8335ba9760057bcc1f0c02f3d068b", "pliki": "data/ingredient1-cranemath/*.jsonl.zst (192)", "pole_tekstu": "text", "id": "id", "url": "metadata.url", "tekst_przed_przepisaniem": "metadata.original_text",
+  "generator": "Qwen/Qwen3-32B (rewizja nieopublikowana) prompt: allenai/dolma3@1a9daced datasets/dolma3_dolmino_mix/cranemath/README.md (sekcja Recipe)"},
+ "pula": {
+  "wybor": "permutacja listy plików numpy default_rng(seed); pliki po kolei, aż suma tokenów v6 puli >= cel_puli",
+  "cel_puli_tok_v6": 600000000,
+  "cel_eksportu_tok_v6": 400000000,
+  "eksport": "jak finemath4"
+ },
+ "tokeny": {"tokenizer": "v6, sha256 0640d3bd3674d7a6e59c540d945a2ad275a12e1bcaeb6007c37a90751f9815dd", "regula": "tokeny tekstu bez znaków specjalnych + 1 (EOT)"},
+ "kolejnosc_powodow": ["walidacja_fabryki", "domena_testow", "ewal_13gram", "ewal_13gram_oryginal", "think", "pii", "mojibake", "dedup_wewnatrz", "dedup_slayer107"],
+ "walidacja_fabryki": "jak finemath4",
+ "domena_testow": "jak finemath4 (po url strony źródłowej)",
+ "ewal_13gram": {
+  "indeks": "jak finemath4",
+  "testy_scisle": ["T19_mathqa", "T32_mmlu", "T33_gsm8k", "T34_math", "T47_bbh", "X02_humaneval", "X03_mbpp", "T51_gsm_plus", "T52_gsm1k"],
+  "df_min": 5,
+  "regula": "jak finemath4, na polu text"
+ },
+ "ewal_13gram_oryginal": "ta sama reguła na metadata.original_text (tekst FineMath przed przepisaniem): przepisanie zaciera dosłowne 13-gramy, a treść zadania testowego zostaje",
+ "think": "text zawiera '<think>' albo '</think>' -> dokument usuwany (ucięte ślady rozumowania: 5,7% wierszy shardu 0 wg karty; długie ślady rozumowania przy 1B wykluczone decyzją M5 paperu)",
+ "pii": {"tryb": "usun", "regula": "jak finemath4, na polu text (model może dopisać e-mail albo telefon)"},
+ "mojibake": "jak finemath4",
+ "dedup_wewnatrz": "jak finemath4",
+ "dedup_slayer107": "jak finemath4, na polu text; przepisanie strony widzianej w 1.07 nie jest kopią i zostaje",
+ "reczna_probka": {
+  "odrzucone_na_powod": 100, "zachowane": 300, "znakow": 3000,
+  "oceniajacy": "jak finemath4",
+  "progi": "jak finemath4; dodatkowo w 100 pierwszych zachowanych (z tekstem przed przepisaniem): przepisanie z błędem matematycznym albo treścią sprzeczną z oryginałem <= 10% ORAZ górna granica Wilsona 95% <= 20%"
+ },
+ "kontrole_dodatnie": "jak finemath4 plus dokument z '<think>' bez zamknięcia i dokument z treścią testu GSM8K tylko w original_text",
+ "odstepstwa": [
+  "dwa powody 13-gramowe: na tekście i na tekście przed przepisaniem",
+  "powód think",
+  "dedup wobec 1.07 tylko po tekście przepisanym"
+ ]
+}

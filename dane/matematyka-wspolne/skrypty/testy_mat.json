@@ -1,0 +1,7 @@
+{
+ "opis": "Testy dodane do indeksu 13-gramów RPG v2 (dane/korpus-rpg-v2/skrypty/testy.json) dla zbiorów matematyki do microannealu (#346): szuflada testów matematyki z paperu „Matematyka i medycyna w modelu bazowym 1B” 1.2 (Przepis, krok 1). MATH-500 to podzbiór T34_math, więc nie osobno.",
+ "testy": [
+  {"id": "T51_gsm_plus", "repo": "qintongli/GSM-Plus", "configs": "*", "splits": "!train", "zrodlo": "paper mat./med. 1.2, szuflada"},
+  {"id": "T52_gsm1k", "repo": "ScaleAI/gsm1k", "configs": "*", "splits": "!train", "zrodlo": "paper mat./med. 1.2, szuflada"}
+ ]
+}

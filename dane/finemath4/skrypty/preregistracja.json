@@ -1,0 +1,39 @@
+{
+ "zapisano": "2026-11-24, przed pobraniem puli i przed pierwszym liczeniem; reguły przejęte z DCLM-EN (dane/dclm-en/skrypty/preregistracja.json, w tym aneksy z 15.11.2026) z odstępstwami opisanymi w polu 'odstepstwa_od_dclm'",
+ "rezerwacja": "https://github.com/slayerlabs/benchmarks-fabryka-ai/issues/346",
+ "cel": "ramię B microannealu Slayera 1B (paper „Matematyka i medycyna w modelu bazowym 1B” 1.2, Przepis): +15% matematyki z sieci w ramieniu 2 mld tokenów",
+ "seed": 20261124,
+ "zrodlo": {"repo": "HuggingFaceTB/finemath", "rewizja": "e92b25a616738fe95dc186b64dfb19f9c8525594", "pliki": "finemath-4plus/*.parquet (64)", "pole_tekstu": "text", "id": "warc_filename:warc_record_offset", "url": "url"},
+ "pula": {
+  "wybor": "permutacja listy plików numpy default_rng(seed); pliki po kolei, aż suma tokenów v6 puli >= cel_puli",
+  "cel_puli_tok_v6": 600000000,
+  "cel_eksportu_tok_v6": 400000000,
+  "eksport": "dokumenty zachowane po wszystkich powodach, w kolejności permutacji default_rng(seed), aż suma tokenów v6 >= cel_eksportu; pula to cała budowa (nie próbka do szacunku), bo cel jest mały"
+ },
+ "tokeny": {"tokenizer": "v6 z SlayerLab/slayer-1.07-pretrain tokenizer.json, sha256 0640d3bd3674d7a6e59c540d945a2ad275a12e1bcaeb6007c37a90751f9815dd", "regula": "tokeny tekstu bez znaków specjalnych + 1 (EOT)"},
+ "kolejnosc_powodow": ["walidacja_fabryki", "domena_testow", "ewal_13gram", "pii", "mojibake", "dedup_wewnatrz", "dedup_slayer107"],
+ "walidacja_fabryki": "jak DCLM-EN: indeks idx_wal z dane/dclm-en (walidacje minimal-en-corpus-5b@bb3aec23 i 2b-v2@ef0ab069, osie Slayer150); szkic 13-gramów >= 0,5 albo MinHash >= 0,8 albo identyczny tekst albo identyczny url",
+ "domena_testow": "jak DCLM-EN (wikihow, instructables, projekty Wikimedia)",
+ "ewal_13gram": {
+  "indeks": "testy RPG v2 (dane/korpus-rpg-v2/skrypty/testy.json, 60 pozycji) + T51_gsm_plus i T52_gsm1k (dane/matematyka-wspolne/skrypty/testy_mat.json); te same funkcje rdzenia co DCLM-EN",
+  "testy_scisle": ["T19_mathqa", "T32_mmlu", "T33_gsm8k", "T34_math", "T47_bbh", "X02_humaneval", "X03_mbpp", "T51_gsm_plus", "T52_gsm1k"],
+  "df_min": 5,
+  "regula": "dokument odpada, gdy ma trafiający 13-gram nietrywialny (nie każde słowo to liczba lub pojedynczy znak) z testu z listy testy_scisle niezależnie od df, albo z innego testu przy df < df_min w puli (reguła aneksu 1 DCLM-EN)",
+  "uzasadnienie": "testy matematyki i kodu mierzą ten zbiór; zadanie GSM8K skopiowane na wiele stron ma wysokie df i przy regule DCLM by zostało"
+ },
+ "pii": {"tryb": "usun", "regula": "jak DCLM-EN: e-mail, telefon, IPv4 (wspolne.pii) -> dokument usuwany; eksport dodatkowo maskuje Presidio w shard.write"},
+ "mojibake": "jak DCLM-EN: >= 3 dopasowania ścisłego regexu",
+ "dedup_wewnatrz": "jak DCLM-EN: identyczny znormalizowany tekst albo MinHash 5-gramów 128 funkcji, LSH 32x4, J >= 0,8",
+ "dedup_slayer107": "jak DCLM-EN: indeks EN 1.07 (en_mix z FineMath i open-web-math + en_fineweb_edu); szkic 13-gramów >= 0,5 albo MinHash >= 0,8",
+ "reczna_probka": {
+  "odrzucone_na_powod": 100, "zachowane": 300, "znakow": 3000,
+  "oceniajacy": "dwóch niezależnych agentów, którzy nie budowali zbioru; każdy ocenia całą próbkę",
+  "progi": "jak aneks DCLM-EN z 15.11.2026: fałszywe odrzucenia per powód <= 10% ORAZ górna granica Wilsona 95% <= 20%; przeoczenia PII w 300 zachowanych 0/300 (Clopper-Pearson jednostronnie < 1%); śmieci (tekst nienadający się do treningu) w zachowanych <= 10%"
+ },
+ "kontrole_dodatnie": "wstawione dokumenty: e-mail, telefon, IP, url wikihow, 13-gram z GSM8K, MATH, GSM-Plus, GSM1k, MMLU, dokument z EN 1.07, duplikat dokumentu puli; każdy musi dostać właściwy powód",
+ "odstepstwa_od_dclm": [
+  "ewal_13gram: testy matematyki i kodu liczone ściśle (bez progu df)",
+  "brak dedup_ivme, pomiaru url FineWeb-Edu i klasyfikatora FineWeb-Edu: Ivme to DCLM, a FineMath ma własny klasyfikator",
+  "pula = budowa; ręczna próbka 100 odrzuconych na powód + 300 zachowanych od pierwszego przebiegu"
+ ]
+}

@@ -17,6 +17,11 @@ wygaszanie/wyniki/*/*.jsonl
 wygaszanie/wyniki/*/trace/
 # katalog roboczy budowy DCLM-EN (venv, pobrania, indeksy, przebieg) - odtwarzalny z METODOLOGIA.md
 dane/dclm-en/robocze/
+# katalogi robocze zbiorów matematyki do microannealu (#346): odtwarzalne z skrypty/odtworz.sh
+dane/matematyka-wspolne/robocze/
+dane/finemath4/robocze/
+dane/cranemath/robocze/
+dane/stackedu/robocze/
 # klucze
 *.pem
 vastkey*
