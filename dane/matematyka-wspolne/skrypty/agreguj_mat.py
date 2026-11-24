@@ -126,6 +126,23 @@ if "walidacja" in OPC:
     kat = OPC["walidacja"]
     powody["walidacja_fabryki"] = (baza("walidacja") | np.isin(X["hx"], np.load(f"{kat}/idx_walidacja_hx.npy"))
                                    | np.isin(X["hu"], np.load(f"{kat}/idx_walidacja_hu.npy")))
+if "entech" in OPC:  # aneks 24.11: english-technical-1b (1.08), MinHash LSH 32x4 J >= 0,8 albo identyczny tekst
+    kat = OPC["entech"]
+    e_sig = np.load(f"{kat}/idx_entech_sig.npy", mmap_mode="r")
+    e_kl, e_dok = np.load(f"{kat}/idx_entech_kl.npy"), np.load(f"{kat}/idx_entech_dok.npy")
+    ent = np.isin(X["hx"], np.load(f"{kat}/idx_entech_hx.npy"))
+    kl_d = r2.klucze_band(S[z_sig], 32, 4)
+    for j, i in enumerate(z_sig):
+        kand = set()
+        for k in kl_d[j]:
+            a, e = np.searchsorted(e_kl, k, "left"), np.searchsorted(e_kl, k, "right")
+            if e > a:
+                kand.update(e_dok[a:min(e, a + 500)].tolist())
+        if kand and float((np.asarray(e_sig[sorted(kand)]) == S[i]).mean(axis=1).max()) >= 0.8:
+            ent[i] = True
+    powody["dedup_english_technical"] = ent
+if "fwe109" in OPC:  # aneks 24.11: identyczny znormalizowany url z plikami FineWeb-Edu 1.09
+    powody["dedup_fineweb_edu_109"] = np.isin(X["hu"], np.load(f"{OPC['fwe109']}/idx_fwe109_hu.npy"))
 if "domena_testow" in P["kolejnosc_powodow"]:
     powody["domena_testow"] = X["dom"] > 0
 if P["pii"]["tryb"] == "usun":

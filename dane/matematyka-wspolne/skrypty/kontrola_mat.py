@@ -25,7 +25,8 @@ DUP_KOD = ("def is_prime(n):\n    if n < 2:\n        return False\n    k = 2\n  
 
 def oczekiwane():
     o = {"K_dup_b": "dedup_wewnatrz", "K_kopia_107": "dedup_slayer107", "K_walidacja": "walidacja_fabryki", "K_czysty": None,
-         "K_gsm8k": "ewal_13gram", "K_math": "ewal_13gram", "K_gsm_plus": "ewal_13gram", "K_gsm1k": "ewal_13gram", "K_mmlu": "ewal_13gram"}
+         "K_gsm8k": "ewal_13gram", "K_math": "ewal_13gram", "K_gsm_plus": "ewal_13gram", "K_gsm1k": "ewal_13gram", "K_mmlu": "ewal_13gram",
+         "K_entech": "dedup_english_technical", "K_fwe109": "dedup_fineweb_edu_109"}
     if ZB == "stackedu":
         o.update({"K_humaneval": "ewal_13gram", "K_mbpp": "ewal_13gram", "K_aws": "sekrety", "K_generated": "wygenerowany",
                   "K_licencja": "licencja", "K_int_score": "int_score", "K_email": None})
@@ -37,7 +38,7 @@ def oczekiwane():
 
 
 if TRYB == "buduj":
-    EW, S107, TOK, WAL, OUT = sys.argv[3:8]
+    EW, S107, TOK, WAL, OUT, ENTECH, FWE_URL = sys.argv[3:10]  # aneks 24.11: tekst z english-technical-1b i url z FineWeb-Edu 1.09
     from tokenizers import Tokenizer
     os.makedirs(OUT, exist_ok=True)
 
@@ -85,6 +86,8 @@ if TRYB == "buduj":
     if ZB == "cranemath":
         w += [("K_think", "https://example.org/think", "<think>\nOkay, let me rewrite this. First I need to " + baza),
               ("K_gsm8k_oryg", "https://example.org/gsm8korig", baza + " Rewritten without the test text.")]
+    w += [("K_entech", "https://example.org/entech", pq.read_table(ENTECH, columns=["text"]).slice(5, 1).column(0)[0].as_py()),
+          ("K_fwe109", FWE_URL, baza + " Page seen in FineWeb-Edu 1.09.")]
     kol = {"text": [x[2] for x in w], "url": [x[1] for x in w], "id": [x[0] for x in w]}
     n = len(w)
     if ZB == "stackedu":
