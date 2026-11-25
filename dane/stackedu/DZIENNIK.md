@@ -207,7 +207,7 @@ podzbiorem puli części 2** (plik 0080 jest w puli, `dedup_wewnatrz` obejmuje c
 | Podział | [`wyniki/cz2/czesci.json`](wyniki/cz2/czesci.json) (`../matematyka-wspolne/skrypty/czesci.py`): 5 części po ok. 0,99 mld v6, klucze `stack_edu_python_p01..p05` |
 | Eksport | `../matematyka-wspolne/skrypty/eksport_czesci.sh`, `eksport.log` 25.11 17:20, `KONIEC 5`; każda część: `shard.write`, test kontraktowy 1 passed, `check.py` tylko oczekiwane linie |
 | Próbka kontrolna | [`wyniki/cz2/przeglad_kontrolny.json`](wyniki/cz2/przeglad_kontrolny.json); wyniki niżej |
-| Wysyłka | repo `Lolita67/stack_edu_python-robocze`, katalogi `data/stack_edu_python_pNN/`: **w toku** |
+| Wysyłka | repo `Lolita67/stack_edu_python-robocze` (gated manual), katalogi `data/stack_edu_python_pNN/`, commit HF `eab38143`; sha256 LFS wszystkich 5 części zgodne z `*.sha256` (API HF, 25.11 ok. 18:30); anonimowe pobranie p01: 401 |
 | Dane treningowe | wiersz dla części 2: nie zmierzono (czeka na wysyłkę) |
 
 Kaskada ([`wyniki/cz2/agreguj.json`](wyniki/cz2/agreguj.json)):
@@ -274,6 +274,7 @@ Uwaga z pliku: w pozycji 6015718 numery kart to publiczne numery testowe bramek 
 - 25.11.2026 07:54: część 2, preregistracja `czesc_2` przed pobraniem (commit `380e7f0`); 09:54 `pula`: 7 218 355 plików, 11 140 913 173 tokenów v6.
 - 25.11.2026 13:11–14:40: część 2, `przebieg` 1452/1452 (`KONIEC 11818s`), `ew13`, `agreguj`: 3 629 796 / 4 956 561 831; podział na 5 części i próbka kontrolna 200 (commit `b54d108`, 14:43).
 - 25.11.2026 17:20: część 2, eksport 5 części (`KONIEC 5`): 3 516 755 plików, test kontraktowy 1 passed w każdej, `check.py` tylko oczekiwane linie (15/13/16/9/17); wysyłka w toku.
+- 25.11.2026 ok. 18:30: część 2 wysłana (commit HF `eab38143`), datasheet z nagłówkiem części, `check.py` na p04 z nowym datasheetem tylko oczekiwane linie; sha256 na HF zgodne, anonimowo 401.
 
 ## Pułapki tego przebiegu
 
