@@ -3,7 +3,9 @@
 # w slayerlabs/benchmarks-fabryka-ai; reguły: dane/<zbior>/skrypty/preregistracja.json; wyniki: dane/<zbior>/DZIENNIK.md.
 # Użycie: bash dane/matematyka-wspolne/skrypty/odtworz.sh <krok> [zbior]
 # Kroki wspólne: venv | ewal_pobierz | ewal
-# Kroki zbioru (finemath4 | cranemath | stackedu): pula | kontrola | przebieg | ew13 | agreguj | eksport
+# Kroki zbioru (finemath4 | cranemath | stackedu | infiwebmath4 | finemath3): pula | kontrola | przebieg | ew13 | agreguj | wlasne | eksport
+# Część 2 (CZESC=2 dla finemath4 i stackedu; infiwebmath4 i finemath3 mają tylko część 2): agreguj infiwebmath4 wymaga indeksu
+# `wlasne finemath4`, agreguj finemath3 indeksów `wlasne finemath4` i `wlasne infiwebmath4`; eksport części: eksport_czesci.sh.
 # Indeksy EN 1.07 i walidacji Fabryki oraz tokenizer v6 pochodzą z katalogu roboczego DCLM-EN (dane/dclm-en/skrypty/odtworz.sh:
 # tokenizer, baza107, idx107, walidacja_pobierz, idx_wal); detektory to przebieg.py i ewal_czeste.py DCLM-EN bez zmian.
 # Każdy krok jest wznawialny: pula pomija pliki z probka_pliki.json, przebieg pomija gotowe u_NNNN.npz.
@@ -25,7 +27,7 @@ mkdir -p "$RW/logi" "$RW/pobrania" "$RW/wyniki"
 KROK=${1:-}
 ZB=${2:-}
 if [ -n "$ZB" ]; then
-  case "$ZB" in finemath4|cranemath|stackedu) ;; *) echo "nieznany zbiór $ZB" >&2; exit 2 ;; esac
+  case "$ZB" in finemath4|cranemath|stackedu|infiwebmath4|finemath3) ;; *) echo "nieznany zbiór $ZB" >&2; exit 2 ;; esac
   D=$REPO/dane/$ZB
   R=$D/robocze
   WD=$D/wyniki
@@ -95,10 +97,17 @@ ew13)  # trafiające 13-gramy testów, df w puli (ewal_czeste.py DCLM-EN bez lis
 agreguj)  # kaskada powodów, uzysk, wybór do eksportu, ręczna próbka (probka_przegladu.jsonl zostaje w robocze/: ma PII)
   ORYG=()
   [ "$ZB" = cranemath ] && ORYG=(oryg="$R/wyniki/przebieg_oryg,$R/wyniki/ew13_oryg")
+  case "$ZB" in  # dedup wobec źródeł zbioru łącznego zbudowanych wcześniej (preregistracja: dedup_finemath4, dedup_infiwebmath4)
+    infiwebmath4) ORYG+=(wlasne="$RW/wyniki/bazy:finemath4") ;;
+    finemath3) ORYG+=(wlasne="$RW/wyniki/bazy:finemath4,$RW/wyniki/bazy:infiwebmath4") ;;
+  esac
   $NICE $PY -I "$W/skrypty/agreguj_mat.py" "$ZB" "$R/wyniki/przebieg" "$R/wyniki/ew13" "$PRE" "$R/wyniki/agreguj.json" \
     "$R/probka_przegladu.jsonl" "$R/wyniki/wybor.json" walidacja="$DCR/wyniki/idx_wal" ${ORYG[@]+"${ORYG[@]}"} \
     entech="$RW/wyniki/bazy" en8x3b="$RW/wyniki/bazy" fwe109="${FWE109:-$RW/wyniki/bazy}"  # FWE109: katalog z idx_fwe109_hu.npy (wstępnie pusty, gdy indeks w budowie)
   cp "$R/wyniki/agreguj.json" "$WD/agreguj.json"
+  ;;
+wlasne)  # indeks dedupu z dokumentów wybranych do eksportu tego zbioru, dla źródeł dodanych później
+  $NICE $PY -I "$W/skrypty/bazy_mat.py" "wlasne:$ZB:$R/wyniki/wybor.json" "$R/wyniki/przebieg" "$RW/wyniki/bazy" 1
   ;;
 kontrola)  # kontrola dodatnia (preregistracja -> kontrole_dodatnie): te same skrypty i indeksy co pula, wynik w wyniki/kontrola.json
   K=$R/wyniki/kontrola
