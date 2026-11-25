@@ -71,11 +71,12 @@ Oznaczenia: V = sprawdzone 2026-11-25 w podanym źródle (URL, rewizja, hash, po
   (zakłada losowy podział na shardy; górna wartość z normalizacji). Realny przyrost unikalnych stron ≈ 27–35%
   (~2,3–3 mld tokenów Llamy), o ile treść tych samych url jest bliska (zrzuty różnią się). Karta finemath (V): dedup
   między FineMath i InfiWebMath *obniżył* wynik — dla nas dedup i tak obowiązkowy (budżet unikalnych tokenów).
-- Dekontaminacja: V (karta finemath) 13-gramy wobec GSM8K, MATH, MMLU, ARC (zakładamy, że dotyczy też configów
-  infiwebmath — I); InfiMM sam nie deklaruje dekontaminacji (V karta). Nie obejmuje ~60 testów Fabryki — nasze
-  13-gramy obowiązkowe.
+- Dekontaminacja: V (karta finemath; SmolLM2 §3.3.2: każdy wariant dekontaminowany osobno, w tym InfiWebMath) 13-gramy
+  wobec GSM8K, MATH, MMLU, ARC; InfiMM sam nie deklaruje dekontaminacji (V karta). Nie obejmuje ~60 testów Fabryki —
+  nasze 13-gramy obowiązkowe.
 - PII: V e-mail (regex) w 277 z 20 000 dokumentów (1,4%); InfiMM deklaruje filtr NSFW, nie PII (V karta) →
-  maskowanie e-maili w naszym filtrze. `WARC_HEADER` zawiera adres IP serwera (nie osoby) — wyrzucić z metadanych.
+  dokument z e-mailem, telefonem albo IP usuwany w całości (reguła pii jak FineMath-4+). `WARC_HEADER` zawiera adres
+  IP serwera (nie osoby) — normalizuj.py bierze z metadanych tylko WARC-Record-ID i WARC-Date.
 - Opt-out TDM top domen: NIE SPRAWDZONE.
 - Szablonowe strony kalkulatorów (I) zawyżają skalę bez treści matematycznej rozumowania.
 
