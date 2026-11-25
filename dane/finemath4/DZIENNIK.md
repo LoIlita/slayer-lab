@@ -217,7 +217,7 @@ InfiWebMath-4+ i FineMath-3+ odcinają strony już obecne w tym eksporcie (`dedu
 | Eksport | `../matematyka-wspolne/skrypty/eksport_czesci.sh`, `eksport.log` 25.11 21:27, `KONIEC 7`; każda część: `check.py` tylko oczekiwane linie |
 | Próbka kontrolna | [`wyniki/cz2/przeglad_kontrolny.json`](wyniki/cz2/przeglad_kontrolny.json) (po aneksie 25.11c, pełne teksty); wyniki niżej |
 | Przegląd odrzuconych | na puli części 2: nie zmierzono (reguły jak w części 1 poza 25.11c; `pii_at_bez_nawiasow` oceniony w przeglądzie InfiWebMath-4+: [`../infiwebmath4/wyniki/przeglad_1.json`](../infiwebmath4/wyniki/przeglad_1.json), fałszywe odrzucenia 80% (A) / 34% (B), przyjęte jako reguła konserwatywna) |
-| Wysyłka | repo `Lolita67/finemath_4plus_en-robocze`, katalogi `data/finemath_4plus_en_pNN/`: **w toku** |
+| Wysyłka | repo `Lolita67/finemath_4plus_en-robocze` (gated manual), katalogi `data/finemath_4plus_en_pNN/`, commit HF `023b0a80`; sha256 LFS wszystkich 7 części zgodne z `*.sha256` (API HF); anonimowe pobranie p01: 401; datasheet części: wszystkie `DATASHEET_SECTIONS` obecne (sprawdzone stałą z `check.py`) |
 | Dane treningowe | wiersz dla części 2: nie zmierzono (czeka na wysyłkę) |
 
 Kaskada ([`wyniki/cz2/agreguj.json`](wyniki/cz2/agreguj.json), po aneksie 25.11c):
@@ -288,6 +288,7 @@ Próbka kontrolna 200 zachowanych po aneksie 25.11c (`default_rng(seed+3)`, dwó
 - 25.11.2026 14:30: aneks 25.11c (`601e1bc`): `pii_at_bez_nawiasow`.
 - 25.11.2026 16:30–16:38: część 2, `agreguj_25c`: 4 785 130 / 7 027 100 774; indeks `wlasne` (16:34) dla `dedup_finemath4` innych źródeł; powtórna próbka kontrolna 200 pełnym tekstem: PII i testy 0/200 (commit `fdc8237`, 16:38).
 - 25.11.2026 21:27: część 2, eksport 7 części (`KONIEC 7`): 4 763 307 dok., `check.py` tylko oczekiwane linie; wysyłka w toku.
+- 25.11.2026 (po 21:27): część 2 wysłana (commit HF `023b0a80`), sha256 na HF zgodne, anonimowo 401; lokalny eksport usunięty (dysk).
 
 ## Pułapki tego przebiegu
 
