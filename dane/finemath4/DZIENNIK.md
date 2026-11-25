@@ -198,6 +198,79 @@ PR [#353](https://github.com/slayerlabs/benchmarks-fabryka-ai/pull/353): status 
 rezerwacji [#347](https://github.com/slayerlabs/benchmarks-fabryka-ai/pull/347) scalony. Sprawdzenie, czy każdy link w wierszu odpowiada 200:
 nie zmierzono (repo za bramką zwraca 401 anonimowo).
 
+## Część 2 (pełna pula)
+
+Zbiór łączny #346 (cel ok. 20 mld tokenów v6). Wyniki w [`wyniki/cz2/`](wyniki/cz2/), logi w `robocze/cz2/logi/`. **Część 1 jest
+podzbiorem puli części 2** (4 pliki części 1 są w puli, `dedup_wewnatrz` obejmuje całość): w treningu NIE łączyć części 1 z częścią 2.
+InfiWebMath-4+ i FineMath-3+ odcinają strony już obecne w tym eksporcie (`dedup_finemath4` po ich stronie, indeks `wlasne.log`
+25.11 16:34, `KONIEC 4785130`).
+
+| krok | wynik |
+|---|---|
+| Preregistracja | [`skrypty/preregistracja.json`](skrypty/preregistracja.json) → `czesc_2`, zapisane 25.11 przed pobraniem pozostałych plików (commit `380e7f0`, 07:54): wszystkie 64 pliki w tej samej permutacji, reguły części 1 (aneksy do 25.11b), eksport wszystkich zachowanych, próbka kontrolna 200 `default_rng(seed+3)`. Świadomie odroczone (decyzja właścicielki projektu): filtr jakości (aneks 24.11c) i poprawki reguł konserwatywnych (aneks 24.11b); filtry tylko usuwają, więc można je nałożyć później |
+| Aneks 25.11c | `czesc_2.aneks_2026_11_25c`, commit `601e1bc` (14:30), po pierwszej próbce kontrolnej (recenzent B: 1 przeoczony e-mail osoby prywatnej `nazwa at domena.org`, FAIL 0/200; recenzenci czytali głównie początek tekstu), przed agregacją końcową i eksportem: `pii_at_bez_nawiasow`; wzorzec przed regułą: 29 350 z 4 814 480 wybranych (0,61%) ([`wyniki/cz2/wzorzec_email_at_bez_nawiasow.json`](wyniki/cz2/wzorzec_email_at_bez_nawiasow.json)) |
+| Pobranie | `pula.log` 25.11 10:13: `KONIEC 6699493 10552288210`; 64 pliki, 6 699 493 dok., 10 552 288 210 tokenów v6 ([`wyniki/cz2/probka_pliki.json`](wyniki/cz2/probka_pliki.json), sha256 każdego pliku) |
+| Kontrola dodatnia | na puli części 2: nie zmierzono (reguły i indeksy jak w części 1, 19/19; `pii_at_bez_nawiasow` bez przypadku kontrolnego) |
+| Przebieg | trzy logi (wznawianie): `przebieg_1.log` 189/189 `KONIEC 3903s` (09:12), `przebieg_2.log` 609/609 `KONIEC 5233s` (10:40), `przebieg_3.log` 546/546 `KONIEC 4571s` (11:56), razem 1344 jednostek; `ew13`: `dokumentow 6699493 z_trafieniem 212707 ngramow 259144`, `KONIEC` (12:04) |
+| Agregacja | przed aneksem `agreguj.log` 14:10: 4 814 480 / 7 127 596 409 (67,546%); po aneksie `agreguj_25c.log` 16:30, `KONIEC`: [`wyniki/cz2/agreguj.json`](wyniki/cz2/agreguj.json) |
+| Podział | [`wyniki/cz2/czesci.json`](wyniki/cz2/czesci.json): 7 części po ok. 1,004 mld v6, klucze `finemath_4plus_en_p01..p07` |
+| Eksport | `../matematyka-wspolne/skrypty/eksport_czesci.sh`, `eksport.log` 25.11 21:27, `KONIEC 7`; każda część: `check.py` tylko oczekiwane linie |
+| Próbka kontrolna | [`wyniki/cz2/przeglad_kontrolny.json`](wyniki/cz2/przeglad_kontrolny.json) (po aneksie 25.11c, pełne teksty); wyniki niżej |
+| Przegląd odrzuconych | na puli części 2: nie zmierzono (reguły jak w części 1 poza 25.11c; `pii_at_bez_nawiasow` oceniony w przeglądzie InfiWebMath-4+: [`../infiwebmath4/wyniki/przeglad_1.json`](../infiwebmath4/wyniki/przeglad_1.json), fałszywe odrzucenia 80% (A) / 34% (B), przyjęte jako reguła konserwatywna) |
+| Wysyłka | repo `Lolita67/finemath_4plus_en-robocze`, katalogi `data/finemath_4plus_en_pNN/`: **w toku** |
+| Dane treningowe | wiersz dla części 2: nie zmierzono (czeka na wysyłkę) |
+
+Kaskada ([`wyniki/cz2/agreguj.json`](wyniki/cz2/agreguj.json), po aneksie 25.11c):
+
+| powód | odrzucone dok. | odrzucone tok. v6 | zostaje dok. | zostaje tok. v6 | % tok. | niezależnie dok. / % tok. |
+|---|---|---|---|---|---|---|
+| `walidacja_fabryki` | 4 083 | 4 186 642 | 6 695 410 | 10 548 101 568 | 99,96 | 4 083 / 0,04 |
+| `domena_testow` | 47 827 | 127 765 691 | 6 647 583 | 10 420 335 877 | 98,75 | 47 887 / 1,212 |
+| `ewal_13gram` | 80 983 | 285 728 794 | 6 566 600 | 10 134 607 083 | 96,042 | 81 824 / 2,755 |
+| `pii` | 140 063 | 627 830 112 | 6 426 537 | 9 506 776 971 | 90,092 | 144 082 / 6,28 |
+| `pii_zaciemniony` | 5 995 | 10 103 504 | 6 420 542 | 9 496 673 467 | 89,996 | 6 289 / 0,121 |
+| `pii_at_bez_nawiasow` | 41 030 | 139 638 162 | 6 379 512 | 9 357 035 305 | 88,673 | 47 693 / 1,777 |
+| `min_tresc` | 42 275 | 3 709 604 | 6 337 237 | 9 353 325 701 | 88,638 | 42 350 / 0,035 |
+| `mojibake` | 56 514 | 160 473 284 | 6 280 723 | 9 192 852 417 | 87,117 | 60 404 / 1,794 |
+| `dedup_wewnatrz` | 640 521 | 1 017 809 945 | 5 640 202 | 8 175 042 472 | 77,472 | 691 155 / 11,211 |
+| `dedup_slayer107` | 501 565 | 717 139 748 | 5 138 637 | 7 457 902 724 | 70,676 | 615 786 / 8,839 |
+| `dedup_slayer_8x3b_en` | 6 560 | 7 667 216 | 5 132 077 | 7 450 235 508 | 70,603 | 9 258 / 0,107 |
+| `dedup_english_technical` | 2 | 10 290 | 5 132 075 | 7 450 225 218 | 70,603 | 5 / 0,0 |
+| `dedup_fineweb_edu_109` | 346 945 | 423 124 444 | 4 785 130 | 7 027 100 774 | 66,593 | 512 188 / 6,416 |
+
+- **Uzysk: 4 785 130 dok., 7 027 100 774 tokenów v6 (66,593%)**. Do eksportu: wszystkie zachowane.
+- `ewal_13gram` per test (dokumenty): MathQA 40 999, MATH 30 860, MMLU 3488, MBPP 2702, HumanEval 2008, BoolQ 949, SciQ 592,
+  SQuAD2 488, GSM-Plus 440, HellaSwag 246, reszta ≤ 189.
+- PII wg detektora DCLM: e-mail 116 352, telefon 20 396, IP 16 956 (tryb `usun`). `dedup_wewnatrz`: 18 identycznych, 691 137 przez
+  MinHash. 2 dokumenty z `id` = 0.
+
+Części i eksport (dok. = wiersze po `shard.write`; wybór przed `shard.write` w `czesci.json`, suma 4 785 130):
+
+| klucz | wybór dok. | tokeny v6 | eksport dok. | linie `check.py` (oczekiwane) | sha256 parquet |
+|---|---|---|---|---|---|
+| `finemath_4plus_en_p01` | 679 381 | 1 003 866 835 | 676 355 | 27 | `51b6e67d1e215b99822ac7f083507da89aa5a12c43b1165581ef990d59a645e5` |
+| `finemath_4plus_en_p02` | 677 662 | 1 003 851 528 | 674 766 | 26 | `3532ded4b92449de3575bd069b0900e01bca5fade78d6b486586e6d42c4e27c8` |
+| `finemath_4plus_en_p03` | 683 670 | 1 003 895 722 | 680 572 | 30 | `6362c45b0c35f6821c9e9d9373341dcdee7f0b1899ea5592cf1e41ef43fd645c` |
+| `finemath_4plus_en_p04` | 685 651 | 1 003 871 803 | 682 556 | 21 | `f80fab9efc1dceea7275cf9f77cfac28791ef7fe92cd6897047bdfa110131463` |
+| `finemath_4plus_en_p05` | 683 293 | 1 003 869 189 | 680 148 | 21 | `017ef971d727237590ebbf1fb0bb21660b8032fc08e2f423385074c65e7e37f3` |
+| `finemath_4plus_en_p06` | 688 906 | 1 003 872 498 | 685 711 | 33 | `c9a195d565165a528c66476b5b3a48a92109b6064e3e728445f0c3d82e4a19a9` |
+| `finemath_4plus_en_p07` | 686 567 | 1 003 873 199 | 683 199 | 19 | `4a67a117cddda85588d96d6c12767fce6343adb6408884734eca15df896cd3af` |
+
+- Eksport łącznie: **4 763 307 dok., 6 337 631 742 tokenów** wg licznika repo zgłoszeń (`token_count`, nie v6); `dropped`:
+  `wrong_language` 21 289, `min_chars` 534 (4 785 130 − 21 823 = 4 763 307).
+- Linie `check.py` to wyłącznie „PII left after masking” i „stats.json pii has no presidio record”; typy trafień Presidio dla części 2:
+  nie sprawdzone.
+
+Próbka kontrolna 200 zachowanych po aneksie 25.11c (`default_rng(seed+3)`, dwóch recenzentów, obaj zadeklarowali lekturę pełnych
+3000 znaków i wyszukiwanie wzorców e-mail/telefon/IP):
+
+| miara | A | B | próg | werdykt |
+|---|---|---|---|---|
+| przeoczone PII | 0/200 | 0/200 | 0/200 | PASS |
+| przeoczony test | 0/200 | 0/200 | — | PASS |
+| jakość tak / wątpliwy / nie | 143 / 36 / 21 | 149 / 33 / 18 | — | — |
+| śmieci | 10,5% [7,0; 15,5] | 9,0% [5,8; 13,8] | raportowane (cecha źródła) | filtr jakości odroczony |
+
 ## Historia odtworzeń
 
 - 24.11.2026 19:38: karta i preregistracja (`6988094`), `ewal_pobierz`; 19:46 `ewal` i `pula` (oba kod 2 po `KONIEC`).
@@ -209,6 +282,12 @@ nie zmierzono (repo za bramką zwraca 401 anonimowo).
 - 25.11.2026 00:32: eksport (druga próba, `min_chars: 200`), test kontraktowy 1 passed, `check.py` kod 1 (dwa oczekiwane błędy); commit `1a28fbd`.
 - 25.11.2026 01:28–01:37: aneks 25.11b (`753d40d`, 01:32), baza `en8x3b`, kontrola 19/19, `agreguj_8x3b`: 329 712 / 492 093 320; przegląd 100 odrzuconych `dedup_slayer_8x3b_en`.
 - 25.11.2026 02:02: eksport końcowy: 266 351 dok., sha256 `c4ae6f14…`; `check.py` kod 1 (dwa oczekiwane błędy).
+- 25.11.2026 07:54: część 2, preregistracja `czesc_2` przed pobraniem (commit `380e7f0`); 10:13 `pula`: 6 699 493 dok., 10 552 288 210 tokenów v6.
+- 25.11.2026 09:12–12:04: część 2, `przebieg` w trzech podejściach (189 + 609 + 546 jednostek), `ew13`.
+- 25.11.2026 14:10: część 2, `agreguj` przed aneksem: 4 814 480 / 7 127 596 409; pierwsza próbka kontrolna 200: 1 przeoczony e-mail (FAIL).
+- 25.11.2026 14:30: aneks 25.11c (`601e1bc`): `pii_at_bez_nawiasow`.
+- 25.11.2026 16:30–16:38: część 2, `agreguj_25c`: 4 785 130 / 7 027 100 774; indeks `wlasne` (16:34) dla `dedup_finemath4` innych źródeł; powtórna próbka kontrolna 200 pełnym tekstem: PII i testy 0/200 (commit `fdc8237`, 16:38).
+- 25.11.2026 21:27: część 2, eksport 7 części (`KONIEC 7`): 4 763 307 dok., `check.py` tylko oczekiwane linie; wysyłka w toku.
 
 ## Pułapki tego przebiegu
 
