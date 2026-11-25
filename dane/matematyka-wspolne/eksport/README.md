@@ -11,6 +11,10 @@ configs:
   data_files:
   - split: train
     path: data/*/*.parquet
+- config_name: finemath_3_en
+  data_files:
+  - split: train
+    path: data/finemath_3_en/finemath_3_en.parquet
 - config_name: cranemath_en
   data_files:
   - split: train

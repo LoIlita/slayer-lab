@@ -23,6 +23,22 @@ Optional:
 """
 
 SOURCES: dict[str, dict] = {
+    "finemath_3_en": {
+        "pretty": "FineMath-3+ score 3 (English mathematical web text, pages outside FineMath-4+)",
+        "upstream": "https://huggingface.co/datasets/HuggingFaceTB/finemath",
+        "license": "ODC-By 1.0 (compilation); page texts from Common Crawl, rights of each page owner",
+        "license_spdx": "ODC-By-1.0",
+        "domain": "mathematics",
+        "added": "2026-11-25",
+        "created": "2013-2024 (Common Crawl snapshots)",
+        "provenance": "HuggingFaceTB/finemath@e92b25a6, subset finemath-3plus, rows with int_score == 3; random files, filtered by slayer-lab dane/finemath3 (13-gram decontamination, PII, dedup vs Slayer 1.07 EN, finemath_4plus_en and infiwebmath_4plus_en)",
+        "traceable": True,
+        "is_ocr": False,
+        "min_chars": 200,  # as finemath_4plus_en
+        "language": ["en"],
+        "text_origin": "human",
+        "legal_note": "Training basis: TDM exception (Art. 4 Directive 2019/790); no per-document licence, so the submission gate is unresolved. Takedown by url / WARC record.",
+    },
     "finemath_4plus_en": {
         "pretty": "FineMath-4+ (English mathematical web text)",
         "upstream": "https://huggingface.co/datasets/HuggingFaceTB/finemath",
