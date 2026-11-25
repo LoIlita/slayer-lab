@@ -19,6 +19,10 @@ configs:
   data_files:
   - split: train
     path: data/finemath_4plus_en/finemath_4plus_en.parquet
+- config_name: infiwebmath_4plus_en
+  data_files:
+  - split: train
+    path: data/infiwebmath_4plus_en/infiwebmath_4plus_en.parquet
 - config_name: stack_edu_python
   data_files:
   - split: train

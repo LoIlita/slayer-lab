@@ -1,14 +1,15 @@
 """finemath_4plus_en: FineMath-4+ pages kept by the slayer-lab filters (dane/finemath4).
 
-Usage: python src/clean_finemath_4plus_en.py <wybor.json> [pii_processes]
-The text is unchanged; shard.write masks PII. One row per page; id is the WARC file and record offset."""
+Usage: python src/clean_finemath_4plus_en.py <wybor.json> [pii_processes] [key]
+key: a part of the full pool registered as finemath_4plus_en_pNN (slayer-lab dane/matematyka-wspolne/skrypty/czesci.py).
+The text is unchanged; Presidio is off (mat_wybor.no_masking). One row per page; id is the WARC file and record offset."""
 import sys
 from urllib.parse import urlsplit
 
 import mat_wybor
 import shard
 
-KEY = "finemath_4plus_en"
+KEY = sys.argv[3] if len(sys.argv) > 3 else "finemath_4plus_en"
 LICENSE = "ODC-By-1.0 (FineMath compilation); page text: rights of the page owner, used under the TDM exception"
 
 

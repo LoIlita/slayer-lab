@@ -1,6 +1,7 @@
 """Contract for finemath_4plus_en: canonical schema, non-empty text, positive token counts, uniform source, a per-row
 licence that is never empty, unique ids, and stats consistent with the rows."""
 import json
+import os
 from pathlib import Path
 
 import pyarrow.parquet as pq
@@ -8,7 +9,7 @@ import pytest
 
 import shard
 
-KEY = "finemath_4plus_en"
+KEY = os.environ.get("MAT_KEY", "finemath_4plus_en")  # MAT_KEY: a part finemath_4plus_en_pNN (slayer-lab czesci.py)
 D = Path(__file__).resolve().parent.parent / "data" / KEY
 
 

@@ -39,6 +39,22 @@ SOURCES: dict[str, dict] = {
         "text_origin": "human",
         "legal_note": "Training basis: TDM exception (Art. 4 Directive 2019/790); no per-document licence, so the submission gate is unresolved. Takedown by url / WARC record.",
     },
+    "infiwebmath_4plus_en": {
+        "pretty": "InfiWebMath-4+ (English mathematical web text, pages outside FineMath-4+)",
+        "upstream": "https://huggingface.co/datasets/HuggingFaceTB/finemath",
+        "license": "ODC-By 1.0 (compilation); page texts from Common Crawl via InfiMM-WebMath-40B, rights of each page owner",
+        "license_spdx": "ODC-By-1.0",
+        "domain": "mathematics",
+        "added": "2026-11-25",
+        "created": "2019-2023 (Common Crawl snapshots, WARC dates)",
+        "provenance": "HuggingFaceTB/finemath@e92b25a6, subset infiwebmath-4plus; all files, filtered by slayer-lab dane/infiwebmath4 (13-gram decontamination, PII, dedup vs Slayer 1.07 EN and vs finemath_4plus_en)",
+        "traceable": True,
+        "is_ocr": False,
+        "min_chars": 200,  # as finemath_4plus_en
+        "language": ["en"],
+        "text_origin": "human",
+        "legal_note": "Training basis: TDM exception (Art. 4 Directive 2019/790); no per-document licence, so the submission gate is unresolved. Takedown by url / WARC-Record-ID.",
+    },
     "cranemath_en": {
         "pretty": "CraneMath (FineMath-4+ rewritten by Qwen3-32B, Dolma 3 Dolmino)",
         "upstream": "https://huggingface.co/datasets/allenai/dolma3_dolmino_mix-100B-1125",
