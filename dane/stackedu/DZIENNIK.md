@@ -37,6 +37,7 @@ brak `domena_testow`; w zachowanych liczone przeoczone sekrety (cel 0/300) zamia
 | `aneks_2026_11_24` | `f159b6e` | przed odczytem agregacji | `dedup_english_technical` (główna baza dla Pythona), `dedup_fineweb_edu_109` dla jednolitości |
 | `aneks_2026_11_24b` | `8191660` | po przeglądzie odrzuconych | `min_tresc` (puste `__init__.py`, pliki z samą licencją); reguły z FAIL precyzji przyjęte, koszt ok. 1,7% tokenów |
 | `aneks_2026_11_24c` | `63da6ec` | po przeglądzie zachowanych, przed eksportem | `haslo_w_kodzie`; próbka kontrolna 200 |
+| `aneks_2026_11_25b` | `753d40d` (01:32) | przed policzeniem nowego powodu na puli (`agreguj_8x3b.log` 01:42) | `dedup_slayer_8x3b_en` jak [FineMath-4+](../finemath4/DZIENNIK.md) → `aneks_2026_11_25b` (angielska część Slayera 1.00-1.06, `slayer-pl-8x3b@d50df04a` `shared/en.parquet`, 2 384 000 dok.) |
 
 ## 4. Środowisko
 
@@ -61,11 +62,11 @@ brak `domena_testow`; w zachowanych liczone przeoczone sekrety (cel 0/300) zamia
 
 - Testy (wspólne): `odtworz.sh ewal_pobierz` 24.11.2026: indeks RPG v2 (60 testów, dowiązania do pobrań DCLM-EN) + T51 GSM-Plus i T52 GSM1k, oba `OK`, razem 62 pozycje statusu, `KONIEC`; `odtworz.sh ewal`: `ogolem 33302686` 13-gramów, `KONIEC` (bash kod 2 po `KONIEC`, ta sama pułapka co w `pula`).
 - EN 1.07 (`idx`) i walidacja Fabryki (`idx_wal`): indeksy z katalogu roboczego DCLM-EN, bez zmian.
-- Bazy z aneksu 24.11 (`bazy_mat.py`): `entech` (english-technical-1b@3b833d36) `KONIEC 209939`; `fwe109` (url FineWeb-Edu 1.09) `KONIEC 266 98512010` (266 plików, 24.11.2026 23:51; po przejściu na zakresy bajtów).
-- Kontrola dodatnia `odtworz.sh kontrola stackedu`: 17/17 przed aneksem (commit `9b7d6bd`), ostatni wynik **21/21**
-  ([`wyniki/kontrola.json`](wyniki/kontrola.json)): K_czysty, para K_dup_a/K_dup_b, K_kopia_107, K_walidacja, K_gsm8k, K_math, K_gsm_plus,
-  K_gsm1k, K_mmlu, K_email (zostaje, liczony), K_humaneval, K_mbpp, K_aws, K_generated, K_licencja, K_int_score, K_entech, K_fwe109,
-  K_pusty, K_haslo.
+- Bazy z aneksu 24.11 (`bazy_mat.py`): `entech` (english-technical-1b@3b833d36) `KONIEC 209939`; `fwe109` (url FineWeb-Edu 1.09) `KONIEC 266 98512010` (266 plików, 24.11.2026 23:51; po przejściu na zakresy bajtów). Baza z aneksu 25.11b: `en8x3b` (2 384 000 dok., 25.11.2026 01:28).
+- Kontrola dodatnia `odtworz.sh kontrola stackedu`: 17/17 przed aneksem (commit `9b7d6bd`), 21/21 po aneksach 24.11, po aneksie 25.11b
+  **22/22** ([`wyniki/kontrola.json`](wyniki/kontrola.json)): K_czysty, para K_dup_a/K_dup_b, K_kopia_107, K_walidacja, K_gsm8k, K_math,
+  K_gsm_plus, K_gsm1k, K_mmlu, K_email (zostaje, liczony), K_humaneval, K_mbpp, K_aws, K_generated, K_licencja, K_int_score, K_entech,
+  K_en8x3b, K_fwe109, K_pusty, K_haslo.
 
 ## 7. Przebieg
 
@@ -77,7 +78,7 @@ brak `domena_testow`; w zachowanych liczone przeoczone sekrety (cel 0/300) zamia
 
 ## 8. Po przebiegu
 
-Komenda `odtworz.sh agreguj stackedu`; końcowy przebieg 25.11.2026 00:04 (`agreguj_koncowe.log`, `KONIEC`), wynik
+Komenda `odtworz.sh agreguj stackedu`; końcowy przebieg 25.11.2026 01:42 (`agreguj_8x3b.log`, po aneksie 25.11b), wynik
 [`wyniki/agreguj.json`](wyniki/agreguj.json):
 
 | powód | odrzucone dok. | odrzucone tok. v6 | zostaje dok. | zostaje tok. v6 | % tok. | niezależnie dok. / % tok. |
@@ -93,10 +94,12 @@ Komenda `odtworz.sh agreguj stackedu`; końcowy przebieg 25.11.2026 00:04 (`agre
 | `mojibake` | 38 | 97 081 | 322 127 | 439 311 138 | 44,438 | 58 / 0,095 |
 | `dedup_wewnatrz` | 27 | 20 472 | 322 100 | 439 290 666 | 44,436 | 77 / 0,007 |
 | `dedup_slayer107` | 399 | 170 737 | 321 701 | 439 119 929 | 44,419 | 2 265 / 0,117 |
-| `dedup_english_technical` | 11 | 7 180 | 321 690 | 439 112 749 | 44,418 | 21 / 0,003 |
-| `dedup_fineweb_edu_109` | 0 | 0 | 321 690 | 439 112 749 | 44,418 | 0 / 0,0 |
+| `dedup_slayer_8x3b_en` | 2 | 1 208 | 321 699 | 439 118 721 | 44,419 | 2 / 0,0 |
+| `dedup_english_technical` | 11 | 7 180 | 321 688 | 439 111 541 | 44,418 | 21 / 0,003 |
+| `dedup_fineweb_edu_109` | 0 | 0 | 321 688 | 439 111 541 | 44,418 | 0 / 0,0 |
 
-- **Uzysk: 321 690 plików, 439 112 749 tokenów v6 (44,418%)**; największy koszt `int_score` < 3. Do eksportu wybrano 185 805 plików, 250 016 863 tokenów v6 (cel 250 mln: wystarcza).
+- **Uzysk: 321 688 plików, 439 111 541 tokenów v6 (44,418%)**; największy koszt `int_score` < 3. Do eksportu wybrano 186 072 pliki, 250 000 074 tokenów v6 (cel 250 mln: wystarcza).
+- `dedup_slayer_8x3b_en` (aneks 25.11b): 2 pliki w kaskadzie i niezależnie; przegląd tych 2 odrzuconych: nie zmierzono.
 - `ewal_13gram` per test: MBPP 289, HumanEval 136, SynLogic 37, MATH 21, MMLU 10, reszta ≤ 9.
 - `sekrety` wg klas: google_api_key 188, aws_access_key 44, klucz_prywatny 51, slack_token 22.
 - PII wg detektora DCLM (tylko liczone, tryb `maskuj`): e-mail 27 636, telefon 262, IP 3743. `dedup_wewnatrz`: 16 identycznych, 61 przez MinHash.
@@ -159,11 +162,11 @@ Po agregacji końcowej, `default_rng(seed+2)`, dwóch recenzentów; oceny `roboc
 
 | | |
 |---|---|
-| Komenda | `odtworz.sh eksport stackedu`, log `eksport.log` 25.11.2026 00:39 |
+| Komenda | `odtworz.sh eksport stackedu`, końcowy log `eksport.log` 25.11.2026 02:10 |
 | Key | `stack_edu_python`; datasheet [`eksport/stack_edu_python.md`](eksport/stack_edu_python.md) |
-| Liczby | 180 098 plików, 764 805 006 znaków, 188 952 459 tokenów cl100k; `language` en, `text_origin` human; `dropped`: `wrong_language` 5707, reszta 0 (185 805 − 5707 = 180 098); licencja per plik (MIT 126 017, Apache-2.0 29 379, BSD-3-Clause 11 404, BSD-2-Clause 3913, Unlicense 2471, CC0-1.0 1320, …) |
-| PII | `pii.pass` = `regex e-mail only`, `counts.pii` 9239 (maskowanie e-maili); Presidio nie uruchomione |
-| Wynik | [`wyniki/eksport_stats.json`](wyniki/eksport_stats.json); sha256 parquet `58a52663f732f91755c5723ad9e3af1f4cd7d7acf7c223b6885a96519639ef19` ([`wyniki/eksport_sha256.txt`](wyniki/eksport_sha256.txt)) |
+| Liczby | 180 282 pliki, 763 411 872 znaki, 188 814 384 tokeny cl100k; `language` en, `text_origin` human; `dropped`: `wrong_language` 5790, `min_chars` 0, reszta 0 (186 072 − 5790 = 180 282); licencja per plik (MIT 126 030, Apache-2.0 29 393, BSD-3-Clause 11 509, BSD-2-Clause 3916, Unlicense 2513, CC0-1.0 1303, …) |
+| PII | `pii.pass` = `regex e-mail only`, `counts.pii` 9206: 9 206 e-maili zamaskowanych do `[PII]`; Presidio nie uruchomione |
+| Wynik | [`wyniki/eksport_stats.json`](wyniki/eksport_stats.json); sha256 parquet `87b00034f86f9b58d2b97cf3120ab749d5ba17a1cea491e37e2d2981abc0fcd6` ([`wyniki/eksport_sha256.txt`](wyniki/eksport_sha256.txt)); wcześniejszy eksport (00:39, przed aneksem 25.11b): `58a52663…`, 180 098 plików |
 
 ## 10. Kontrola końcowa
 
@@ -171,7 +174,7 @@ Po agregacji końcowej, `default_rng(seed+2)`, dwóch recenzentów; oceny `roboc
 |---|---|
 | Komenda | w `odtworz.sh eksport`: `pytest src/test_stack_edu_python_contract.py -q` i `python src/check.py --source stack_edu_python` |
 | Test kontraktowy | 1 passed |
-| `check.py` | kod 1 z DWOMA oczekiwanymi błędami: (1) ponowny skan PII Presidio („PII left after masking: second pass adds …”) — Stack-Edu 13/200 pozycji (w `eksport.log` 13 wierszy: 7 dopisuje `[PHONE]`, 6 `[PII]`); ręcznie sprawdzone trafienia `[PII]` to liczby, hashe SHA256, ISBN, adresy 127.0.0.1 i 0.0.0.0, żadne prawdziwe dane; (2) „stats.json pii has no presidio record” — Presidio wyłączone świadomie (403 trafienia PhoneRecognizer w 300 dok. FineMath) |
+| `check.py` | kod 1 tylko z DWÓCH oczekiwanych przyczyn: (1) ponowny skan PII Presidio — 19 z 200 skanowanych plików; typy trafień sprawdzone 25.11: IP_ADDRESS 73 (adresy lokalne i przykładowe w kodzie), EMAIL_ADDRESS 1 (szablon `{LOGIN_INFO}@github.com`), CREDIT_CARD, MEDICAL_LICENSE, US_BANK_NUMBER po 1 (stałe, hashe), żadne prawdziwe dane; (2) „stats.json pii has no presidio record” — Presidio wyłączone świadomie (403 trafienia PhoneRecognizer w 300 dok. FineMath) |
 | Niezależny agent na pliku o tym samym sha256 | nie zmierzono |
 
 ## 11. Wysyłka (repo do wglądu Arka)
@@ -179,13 +182,15 @@ Po agregacji końcowej, `default_rng(seed+2)`, dwóch recenzentów; oceny `roboc
 | | |
 |---|---|
 | Repo | `Lolita67/stack_edu_python-robocze`, bramka `manual`, README jednym zdaniem |
-| Stan | upload w toku |
-| Dostęp | `grant_access` dla `Maggio33` (Arek) musi zatwierdzić człowiek w UI: token sesji OAuth dostaje 401 na `grant_access` |
-| Gotowe gdy | Arek ma link i dostęp: NIE (czeka) |
+| Bramka | anonimowe pobranie dostaje 401 (sprawdzone curl); 24.11 repo było przez ok. 3 min bez bramki (założył je upload, bo skrypt zakładający repo przerwał się po pierwszym), bramka ustawiona po wykryciu |
+| Dostęp | `grant_access` dla `Maggio33` (Arek): czeka na Anię (UI); token sesji OAuth dostaje 401 na `grant_access` |
+| Gotowe gdy | Arek ma link i dostęp: NIE (czeka na dostęp) |
 
 ## 12. Dane treningowe
 
-Czeka na upload: zmiana statusu wiersza w PR [#347](https://github.com/slayerlabs/benchmarks-fabryka-ai/pull/347) na „u Arka do wglądu” z linkiem do repo.
+PR [#353](https://github.com/slayerlabs/benchmarks-fabryka-ai/pull/353): status wiersza „u Arka do wglądu” z linkiem do repo. PR
+rezerwacji [#347](https://github.com/slayerlabs/benchmarks-fabryka-ai/pull/347) scalony. Sprawdzenie, czy każdy link w wierszu odpowiada 200:
+nie zmierzono (repo za bramką zwraca 401 anonimowo).
 
 ## Historia odtworzeń
 
@@ -195,6 +200,8 @@ Czeka na upload: zmiana statusu wiersza w PR [#347](https://github.com/slayerlab
 - 24.11.2026 20:52: `agreguj_wstepne2` (aneks 24.11b): 323 048 / 441 205 383; przegląd odrzuconych i zachowanych.
 - 25.11.2026 00:04: `agreguj_koncowe` (aneks 24.11c): 321 690 / 439 112 749; próbka kontrolna 200.
 - 25.11.2026 00:39: eksport, test kontraktowy 1 passed, `check.py` kod 1 (dwa oczekiwane błędy); commit `1a28fbd`.
+- 25.11.2026 01:28–01:42: aneks 25.11b (`753d40d`), baza `en8x3b`, kontrola 22/22, `agreguj_8x3b`: 321 688 / 439 111 541.
+- 25.11.2026 02:10: eksport końcowy: 180 282 pliki, sha256 `87b00034…`; test kontraktowy 1 passed; `check.py` kod 1 (dwa oczekiwane błędy).
 
 ## Pułapki tego przebiegu
 
@@ -203,3 +210,4 @@ Czeka na upload: zmiana statusu wiersza w PR [#347](https://github.com/slayerlab
 - Pobieranie url FineWeb-Edu przez `HfFileSystem` z `block_size` 8 MB trwało 7 min/plik; zakresy bajtów skróciły to do 31 s/plik, potem CDN zwracał 429/400: czekanie i ponowienia.
 - Agenci recenzenci: 5 odmów klasyfikatora przy pierwszym uruchomieniu (ponowione raz, przeszły); część recenzentów czytała pozycje częściowo.
 - Presidio w eksporcie maskuje liczby w matematyce i kodzie jako telefony (403 trafienia PhoneRecognizer w 300 dok. FineMath): wyłączone świadomie, `check.py` kończy się kodem 1 na dwóch oczekiwanych błędach (krok 10).
+- Repo do wglądu zakładaj z bramką przed uploadem: 24.11 dwa repo (`cranemath_en`, `stack_edu_python`) były przez ok. 3 min bez bramki, bo skrypt zakładający repo przerwał się po pierwszym, a pozostałe założył upload.

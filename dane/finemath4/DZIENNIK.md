@@ -29,7 +29,7 @@ podzbiór `finemath-4plus` (64 pliki). Trenować: TAK; zgłosić: NIEROZSTRZYGNI
 ## 3. Preregistracja
 
 [`skrypty/preregistracja.json`](skrypty/preregistracja.json), commit `6988094` przed pobraniem puli: seed 20261124, cel puli
-600 mln tokenów v6, cel eksportu 400 mln, 11 powodów w kaskadzie (po aneksach), `ewal_13gram` ściśle dla testów matematyki i
+600 mln tokenów v6, cel eksportu 400 mln, 12 powodów w kaskadzie (po aneksach), `ewal_13gram` ściśle dla testów matematyki i
 kodu, PII usuwane, ręczna próbka 100 odrzuconych na powód + 300 zachowanych, dwóch recenzentów. Aneksy (podsekcje w kroku 8):
 
 | aneks | commit | zapisany | treść |
@@ -37,6 +37,7 @@ kodu, PII usuwane, ręczna próbka 100 odrzuconych na powód + 300 zachowanych, 
 | `aneks_2026_11_24` | `f159b6e` | przed pierwszym odczytem agregacji | `dedup_english_technical` (english-technical-1b@3b833d36, dane 1.08) i `dedup_fineweb_edu_109` (url z manifestu Slayer1B-Dataset@2d248a17); wymaganie właścicielki projektu |
 | `aneks_2026_11_24b` | `8191660` | po przeglądzie odrzuconych, przed próbką zachowanych | `min_tresc` (< 50 słów); reguły z FAIL precyzji przyjęte z kosztem w tokenach |
 | `aneks_2026_11_24c` | `63da6ec` | po przeglądzie zachowanych, przed eksportem | `pii_zaciemniony` (e-mail `nazwa(AT)domena`); FAIL śmieci przyjęty jako cecha ramienia porównawczego; próbka kontrolna 200 |
+| `aneks_2026_11_25b` | `753d40d` (01:32) | po eksporcie roboczym, PRZED policzeniem nowego powodu na puli (`agreguj_8x3b.log` 01:37) | `dedup_slayer_8x3b_en` wobec angielskiej części Slayera 1.00-1.06: `SlayerLab/slayer-pl-8x3b@d50df04a` `shared/en.parquet` (sha256 `f3d451b7…`, 2 384 000 dok., bez url; [`../matematyka-wspolne/robocze/wyniki/bazy/en8x3b.json`](../matematyka-wspolne/robocze/wyniki/bazy/en8x3b.json)); MinHash J ≥ 0,8 albo identyczny tekst; wszystkie trzy zbiory |
 
 ## 4. Środowisko
 
@@ -61,12 +62,12 @@ kodu, PII usuwane, ręczna próbka 100 odrzuconych na powód + 300 zachowanych, 
 
 - Testy (wspólne): `odtworz.sh ewal_pobierz` 24.11.2026: indeks RPG v2 (60 testów, dowiązania do pobrań DCLM-EN) + T51 GSM-Plus i T52 GSM1k, oba `OK`, razem 62 pozycje statusu, `KONIEC`; `odtworz.sh ewal`: `ogolem 33302686` 13-gramów, `KONIEC` (bash kod 2 po `KONIEC`, ta sama pułapka co w `pula`).
 - EN 1.07 (`idx`) i walidacja Fabryki (`idx_wal`): indeksy z katalogu roboczego DCLM-EN, bez zmian.
-- Bazy z aneksu 24.11 (`bazy_mat.py`): `entech` (english-technical-1b@3b833d36) `KONIEC 209939`; `fwe109` (url FineWeb-Edu 1.09) `KONIEC 266 98512010` (266 plików, 24.11.2026 23:51; po przejściu na zakresy bajtów).
-- Kontrola dodatnia `odtworz.sh kontrola finemath4`: 14/14 przed aneksem (commit `9b7d6bd`), po dołożeniu baz i reguł z aneksów
-  **18/18** ([`wyniki/kontrola.json`](wyniki/kontrola.json)): K_czysty, para K_dup_a/K_dup_b, K_kopia_107, K_walidacja, K_gsm8k, K_math,
-  K_gsm_plus, K_gsm1k, K_mmlu, K_email, K_telefon, K_ip, K_domena, K_entech, K_fwe109, K_pusty, K_at. Pierwsza wersja miała parę
-  duplikatów na tym samym tle co dokument czysty (`K_dup_a` dostawał `dedup_wewnatrz` jako kopia tła); para dostała własny tekst,
-  kontrola powtórzona.
+- Bazy z aneksu 24.11 (`bazy_mat.py`): `entech` (english-technical-1b@3b833d36) `KONIEC 209939`; `fwe109` (url FineWeb-Edu 1.09) `KONIEC 266 98512010` (266 plików, 24.11.2026 23:51; po przejściu na zakresy bajtów). Baza z aneksu 25.11b: `en8x3b` (2 384 000 dok., log `bazy_en8x3b.log` 25.11.2026 01:28).
+- Kontrola dodatnia `odtworz.sh kontrola finemath4`: 14/14 przed aneksem (commit `9b7d6bd`), 18/18 po aneksach 24.11, po aneksie 25.11b
+  **19/19** ([`wyniki/kontrola.json`](wyniki/kontrola.json)): K_czysty, para K_dup_a/K_dup_b, K_kopia_107, K_walidacja, K_gsm8k, K_math,
+  K_gsm_plus, K_gsm1k, K_mmlu, K_email, K_telefon, K_ip, K_domena, K_entech, K_en8x3b, K_fwe109, K_pusty, K_at. Pierwsza
+  wersja miała parę duplikatów na tym samym tle co dokument czysty (`K_dup_a` dostawał `dedup_wewnatrz` jako kopia tła); para
+  dostała własny tekst, kontrola powtórzona.
 
 ## 7. Przebieg
 
@@ -78,7 +79,7 @@ kodu, PII usuwane, ręczna próbka 100 odrzuconych na powód + 300 zachowanych, 
 
 ## 8. Po przebiegu
 
-Komenda `odtworz.sh agreguj finemath4`; końcowy przebieg 25.11.2026 00:00 (`agreguj_koncowe.log`, `KONIEC`), wynik
+Komenda `odtworz.sh agreguj finemath4`; końcowy przebieg 25.11.2026 01:37 (`agreguj_8x3b.log`, po aneksie 25.11b), wynik
 [`wyniki/agreguj.json`](wyniki/agreguj.json). Kaskada (powód = pierwszy w kolejności preregistracji):
 
 | powód | odrzucone dok. | odrzucone tok. v6 | zostaje dok. | zostaje tok. v6 | % tok. | niezależnie dok. / % tok. |
@@ -92,10 +93,11 @@ Komenda `odtworz.sh agreguj finemath4`; końcowy przebieg 25.11.2026 00:00 (`agr
 | `mojibake` | 3 543 | 10 121 526 | 394 545 | 580 864 998 | 87,936 | 3 741 / 1,765 |
 | `dedup_wewnatrz` | 3 658 | 6 183 891 | 390 887 | 574 681 107 | 87,0 | 3 931 / 1,06 |
 | `dedup_slayer107` | 35 928 | 51 579 836 | 354 959 | 523 101 271 | 79,191 | 38 514 / 8,778 |
-| `dedup_english_technical` | 0 | 0 | 354 959 | 523 101 271 | 79,191 | 0 / 0,0 |
-| `dedup_fineweb_edu_109` | 24 965 | 30 669 662 | 329 994 | 492 431 609 | 74,548 | 31 918 / 6,449 |
+| `dedup_slayer_8x3b_en` | 507 | 575 146 | 354 452 | 522 526 125 | 79,104 | 605 / 0,111 |
+| `dedup_english_technical` | 0 | 0 | 354 452 | 522 526 125 | 79,104 | 0 / 0,0 |
+| `dedup_fineweb_edu_109` | 24 740 | 30 432 805 | 329 712 | 492 093 320 | 74,497 | 31 918 / 6,449 |
 
-- **Uzysk: 329 994 dok., 492 431 609 tokenów v6 (74,548%)**. Do eksportu wybrano 267 453 dok., 400 001 347 tokenów v6 (cel 400 mln: wystarcza).
+- **Uzysk: 329 712 dok., 492 093 320 tokenów v6 (74,497%)**. Do eksportu wybrano 267 504 dok., 400 000 934 tokenów v6 (cel 400 mln: wystarcza).
 - `ewal_13gram` per test (dokumenty): MathQA 2506, MATH 1964, BoolQ 406, MMLU 224, SciQ 217, MBPP 165, HumanEval 136, SQuAD2 54, SynLogic 36, HellaSwag 29, reszta ≤ 27.
 - PII wg detektora DCLM: e-mail 7227, telefon 1250, IP 1106 (tryb `usun`). `dedup_wewnatrz`: 0 identycznych, 3931 przez MinHash.
 - 2 dokumenty z `id` = 0 (`dok_z_id0`).
@@ -150,18 +152,27 @@ Po agregacji końcowej (z `dedup_fineweb_edu_109`), dwóch recenzentów; oceny `
 | miara | A | B | próg | werdykt |
 |---|---|---|---|---|
 | przeoczone PII | 0/200 | 0/200 | 0/200 | PASS |
-| przeoczony test | 2/200 (nr 9636, 84036, „do weryfikacji”) | 1/200 (nr 84036, „niepewne”) | — | weryfikacja w teście MATH: nie zmierzono |
+| przeoczony test | 2/200 (nr 9636, 84036, „do weryfikacji”) | 1/200 (nr 84036, „niepewne”) | — | brak odpowiedników w teście MATH (grep po T34_math, wszystkie pliki test, 25.11; sprawdzone też zgłoszenie nr 238166) |
+
+### Aneks 25.11b (commit `753d40d`)
+
+Nowy powód `dedup_slayer_8x3b_en` (definicja w tabeli kroku 3), zapisany przed policzeniem na puli. Efekt w końcowej agregacji:
+507 dok. w kaskadzie, 605 niezależnie (0,111% tokenów). Próbka kontrolna 200 z aneksu 24.11c zostaje ważna jako podzbiór.
+
+Przegląd 100 odrzuconych tym powodem (jeden recenzent, `robocze/przeglad/oceny_A/odrz_8x3b.json`): **99 trafnych, 0 fałszywych,
+1 wątpliwy**: 0,0% fałszywych odrzuceń, PASS. Z 20 losowych pozycji (seed 20261125) sprawdzonych frazami w samej bazie: 19 z kopią,
+1 prawdopodobna (różnica znaku punktora).
 
 ## 9. Eksport
 
 | | |
 |---|---|
-| Komenda | `odtworz.sh eksport finemath4` (kopia robocza repo zgłoszeń w `../matematyka-wspolne/robocze/zgloszenia`, `src/clean_finemath_4plus_en.py`), log `eksport.log` 25.11.2026 00:32 |
+| Komenda | `odtworz.sh eksport finemath4` (kopia robocza repo zgłoszeń w `../matematyka-wspolne/robocze/zgloszenia`, `src/clean_finemath_4plus_en.py`), końcowy log `eksport.log` 25.11.2026 02:02 |
 | Key | `finemath_4plus_en`; datasheet [`eksport/finemath_4plus_en.md`](eksport/finemath_4plus_en.md) (status `held_for_review`) |
 | Pierwsza próba | błąd bramki językowej krótkich wierszy (82% < 90%) → `min_chars: 200` w rejestrze dla `finemath_4plus_en` i `cranemath_en`, eksport powtórzony |
-| Liczby | 266 297 dok., 1 249 534 050 znaków, 360 881 667 tokenów cl100k; `language` en, `text_origin` human; `dropped`: `min_chars` 28, `wrong_language` 1128, reszta 0 (267 453 − 1156 = 266 297) |
+| Liczby | 266 351 dok., 1 248 763 375 znaków, 360 900 014 tokenów cl100k; `language` en, `text_origin` human; `dropped`: `min_chars` 24, `wrong_language` 1129, reszta 0 (267 504 − 1153 = 266 351) |
 | PII | `pii.pass` = `none` (Presidio nie uruchomione, powód w `stats.json`); dokumenty z e-mailem, telefonem, IP, zaciemnionym e-mailem usunięte wcześniej w całości |
-| Wynik | [`wyniki/eksport_stats.json`](wyniki/eksport_stats.json); sha256 parquet `0a65c6ea15d989d0b3bbdaf36ac5ef8e01d637f9f29403419cb02a1cfc8df93b` ([`wyniki/eksport_sha256.txt`](wyniki/eksport_sha256.txt)) |
+| Wynik | [`wyniki/eksport_stats.json`](wyniki/eksport_stats.json); sha256 parquet `c4ae6f1424dd45e482d43d7524bab5e3dbf44d44beb4acc7888ff769c0c2d4c5` ([`wyniki/eksport_sha256.txt`](wyniki/eksport_sha256.txt)); wcześniejszy eksport (00:32, przed aneksem 25.11b): `0a65c6ea…`, 266 297 dok. |
 
 ## 10. Kontrola końcowa
 
@@ -169,7 +180,7 @@ Po agregacji końcowej (z `dedup_fineweb_edu_109`), dwóch recenzentów; oceny `
 |---|---|
 | Komenda | w `odtworz.sh eksport`: `pytest src/test_finemath_4plus_en_contract.py -q` i `python src/check.py --source finemath_4plus_en` |
 | Test kontraktowy | 1 passed |
-| `check.py` | kod 1 z DWOMA oczekiwanymi błędami: (1) ponowny skan PII Presidio („PII left after masking: second pass adds …”) — FineMath 29/200 pozycji (w `eksport.log` 27 wierszy, dopisane `[PHONE]`, w 3 także `[PII]`); ręcznie sprawdzone trafienia `[PII]` to liczby, hashe SHA256, ISBN, adresy 127.0.0.1 i 0.0.0.0, żadne prawdziwe dane; (2) „stats.json pii has no presidio record” — Presidio wyłączone świadomie (403 trafienia PhoneRecognizer w 300 dok. FineMath) |
+| `check.py` | kod 1 tylko z DWÓCH oczekiwanych przyczyn: (1) ponowny skan PII Presidio — 28 z 200 skanowanych dokumentów; typy trafień sprawdzone 25.11: CREDIT_CARD 3, UK_NHS 1, IP_ADDRESS 1, wszystkie to liczby i ISBN, żadne prawdziwe dane; (2) „stats.json pii has no presidio record” — Presidio wyłączone świadomie (403 trafienia PhoneRecognizer w 300 dok. FineMath) |
 | Niezależny agent na pliku o tym samym sha256 | nie zmierzono |
 
 ## 11. Wysyłka (repo do wglądu Arka)
@@ -177,13 +188,15 @@ Po agregacji końcowej (z `dedup_fineweb_edu_109`), dwóch recenzentów; oceny `
 | | |
 |---|---|
 | Repo | `Lolita67/finemath_4plus_en-robocze`, bramka `manual`, README jednym zdaniem |
-| Stan | upload w toku |
-| Dostęp | `grant_access` dla `Maggio33` (Arek) musi zatwierdzić człowiek w UI: token sesji OAuth dostaje 401 na `grant_access` |
-| Gotowe gdy | Arek ma link i dostęp: NIE (czeka) |
+| Bramka | anonimowe pobranie dostaje 401 (sprawdzone curl) |
+| Dostęp | `grant_access` dla `Maggio33` (Arek): czeka na Anię (UI); token sesji OAuth dostaje 401 na `grant_access` |
+| Gotowe gdy | Arek ma link i dostęp: NIE (czeka na dostęp) |
 
 ## 12. Dane treningowe
 
-Czeka na upload: zmiana statusu wiersza w PR [#347](https://github.com/slayerlabs/benchmarks-fabryka-ai/pull/347) na „u Arka do wglądu” z linkiem do repo.
+PR [#353](https://github.com/slayerlabs/benchmarks-fabryka-ai/pull/353): status wiersza „u Arka do wglądu” z linkiem do repo. PR
+rezerwacji [#347](https://github.com/slayerlabs/benchmarks-fabryka-ai/pull/347) scalony. Sprawdzenie, czy każdy link w wierszu odpowiada 200:
+nie zmierzono (repo za bramką zwraca 401 anonimowo).
 
 ## Historia odtworzeń
 
@@ -194,6 +207,8 @@ Czeka na upload: zmiana statusu wiersza w PR [#347](https://github.com/slayerlab
 - 24.11.2026 23:51: indeks url FineWeb-Edu 1.09 gotowy (266 plików, 98 512 010 url).
 - 25.11.2026 00:00: `agreguj_koncowe` (+ `pii_zaciemniony`, `dedup_fineweb_edu_109`): 329 994 / 492 431 609; próbka kontrolna 200.
 - 25.11.2026 00:32: eksport (druga próba, `min_chars: 200`), test kontraktowy 1 passed, `check.py` kod 1 (dwa oczekiwane błędy); commit `1a28fbd`.
+- 25.11.2026 01:28–01:37: aneks 25.11b (`753d40d`, 01:32), baza `en8x3b`, kontrola 19/19, `agreguj_8x3b`: 329 712 / 492 093 320; przegląd 100 odrzuconych `dedup_slayer_8x3b_en`.
+- 25.11.2026 02:02: eksport końcowy: 266 351 dok., sha256 `c4ae6f14…`; `check.py` kod 1 (dwa oczekiwane błędy).
 
 ## Pułapki tego przebiegu
 
@@ -202,3 +217,4 @@ Czeka na upload: zmiana statusu wiersza w PR [#347](https://github.com/slayerlab
 - Pobieranie url FineWeb-Edu przez `HfFileSystem` z `block_size` 8 MB trwało 7 min/plik; zakresy bajtów skróciły to do 31 s/plik, potem CDN zwracał 429/400: czekanie i ponowienia.
 - Agenci recenzenci: 5 odmów klasyfikatora przy pierwszym uruchomieniu (ponowione raz, przeszły); część recenzentów czytała pozycje częściowo.
 - Presidio w eksporcie maskuje liczby w matematyce i kodzie jako telefony (403 trafienia PhoneRecognizer w 300 dok. FineMath): wyłączone świadomie, `check.py` kończy się kodem 1 na dwóch oczekiwanych błędach (krok 10).
+- Repo do wglądu zakładaj z bramką przed uploadem: 24.11 dwa repo (`cranemath_en`, `stack_edu_python`) były przez ok. 3 min bez bramki, bo skrypt zakładający repo przerwał się po pierwszym, a pozostałe założył upload; bramkę ustawiono po wykryciu.

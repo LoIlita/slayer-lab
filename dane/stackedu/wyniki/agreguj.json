@@ -93,19 +93,27 @@
    "zostaje_tok_proc": 44.419
   },
   {
+   "powod": "dedup_slayer_8x3b_en",
+   "odrzucone_dok": 2,
+   "odrzucone_tok": 1208,
+   "zostaje_dok": 321699,
+   "zostaje_tok": 439118721,
+   "zostaje_tok_proc": 44.419
+  },
+  {
    "powod": "dedup_english_technical",
    "odrzucone_dok": 11,
    "odrzucone_tok": 7180,
-   "zostaje_dok": 321690,
-   "zostaje_tok": 439112749,
+   "zostaje_dok": 321688,
+   "zostaje_tok": 439111541,
    "zostaje_tok_proc": 44.418
   },
   {
    "powod": "dedup_fineweb_edu_109",
    "odrzucone_dok": 0,
    "odrzucone_tok": 0,
-   "zostaje_dok": 321690,
-   "zostaje_tok": 439112749,
+   "zostaje_dok": 321688,
+   "zostaje_tok": 439111541,
    "zostaje_tok_proc": 44.418
   }
  ],
@@ -165,6 +173,11 @@
    "tok": 1158057,
    "tok_proc": 0.117
   },
+  "dedup_slayer_8x3b_en": {
+   "dok": 2,
+   "tok": 1208,
+   "tok_proc": 0.0
+  },
   "dedup_english_technical": {
    "dok": 21,
    "tok": 33444,
@@ -177,8 +190,8 @@
   }
  },
  "uzysk": {
-  "dok": 321690,
-  "tok": 439112749,
+  "dok": 321688,
+  "tok": 439111541,
   "tok_proc": 44.418
  },
  "ewal_per_test": {
@@ -193,8 +206,8 @@
   "T43_triviaqa": 5,
   "T41_coqa": 3,
   "T45_medmcqa": 2,
-  "T13_wic": 2,
   "T15_rte": 2,
+  "T13_wic": 2,
   "T04_multiblimp_pl": 2,
   "T14_wsc273": 2,
   "T21_sst2": 2,
@@ -256,8 +269,8 @@
  },
  "eksport": {
   "cel_tok_v6": 250000000,
-  "dok": 185805,
-  "tok_v6": 250016863,
+  "dok": 186072,
+  "tok_v6": 250000074,
   "wystarcza": true
  }
 }

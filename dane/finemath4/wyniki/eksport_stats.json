@@ -1,22 +1,22 @@
 {
-  "docs": 266297,
-  "chars": 1249534050,
-  "tokens": 360881667,
+  "docs": 266351,
+  "chars": 1248763375,
+  "tokens": 360900014,
   "languages": {
-    "en": 266297
+    "en": 266351
   },
   "text_origins": {
-    "human": 266297
+    "human": 266351
   },
   "licenses": {
-    "ODC-By-1.0 (FineMath compilation); page text: rights of the page owner, used under the TDM exception": 266297
+    "ODC-By-1.0 (FineMath compilation); page text: rights of the page owner, used under the TDM exception": 266351
   },
   "dropped": {
     "dynaword_key": 0,
     "takedown": 0,
-    "min_chars": 28,
+    "min_chars": 24,
     "ocr": 0,
-    "wrong_language": 1128,
+    "wrong_language": 1129,
     "dynaword_key_masked": 0,
     "takedown_masked": 0,
     "placeholder_only": 0,

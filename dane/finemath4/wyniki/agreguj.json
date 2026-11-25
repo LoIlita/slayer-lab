@@ -77,20 +77,28 @@
    "zostaje_tok_proc": 79.191
   },
   {
+   "powod": "dedup_slayer_8x3b_en",
+   "odrzucone_dok": 507,
+   "odrzucone_tok": 575146,
+   "zostaje_dok": 354452,
+   "zostaje_tok": 522526125,
+   "zostaje_tok_proc": 79.104
+  },
+  {
    "powod": "dedup_english_technical",
    "odrzucone_dok": 0,
    "odrzucone_tok": 0,
-   "zostaje_dok": 354959,
-   "zostaje_tok": 523101271,
-   "zostaje_tok_proc": 79.191
+   "zostaje_dok": 354452,
+   "zostaje_tok": 522526125,
+   "zostaje_tok_proc": 79.104
   },
   {
    "powod": "dedup_fineweb_edu_109",
-   "odrzucone_dok": 24965,
-   "odrzucone_tok": 30669662,
-   "zostaje_dok": 329994,
-   "zostaje_tok": 492431609,
-   "zostaje_tok_proc": 74.548
+   "odrzucone_dok": 24740,
+   "odrzucone_tok": 30432805,
+   "zostaje_dok": 329712,
+   "zostaje_tok": 492093320,
+   "zostaje_tok_proc": 74.497
   }
  ],
  "niezaleznie": {
@@ -139,6 +147,11 @@
    "tok": 57982072,
    "tok_proc": 8.778
   },
+  "dedup_slayer_8x3b_en": {
+   "dok": 605,
+   "tok": 730621,
+   "tok_proc": 0.111
+  },
   "dedup_english_technical": {
    "dok": 0,
    "tok": 0,
@@ -151,9 +164,9 @@
   }
  },
  "uzysk": {
-  "dok": 329994,
-  "tok": 492431609,
-  "tok_proc": 74.548
+  "dok": 329712,
+  "tok": 492093320,
+  "tok_proc": 74.497
  },
  "ewal_per_test": {
   "T19_mathqa": 2506,
@@ -198,8 +211,8 @@
  },
  "eksport": {
   "cel_tok_v6": 400000000,
-  "dok": 267453,
-  "tok_v6": 400001347,
+  "dok": 267504,
+  "tok_v6": 400000934,
   "wystarcza": true
  }
 }

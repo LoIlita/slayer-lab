@@ -109,6 +109,14 @@
    "zostaje_tok_proc": 70.66
   },
   {
+   "powod": "dedup_slayer_8x3b_en",
+   "odrzucone_dok": 0,
+   "odrzucone_tok": 0,
+   "zostaje_dok": 565251,
+   "zostaje_tok": 440427842,
+   "zostaje_tok_proc": 70.66
+  },
+  {
    "powod": "dedup_english_technical",
    "odrzucone_dok": 0,
    "odrzucone_tok": 0,
@@ -190,6 +198,11 @@
    "dok": 1360,
    "tok": 705593,
    "tok_proc": 0.113
+  },
+  "dedup_slayer_8x3b_en": {
+   "dok": 1,
+   "tok": 1738,
+   "tok_proc": 0.0
   },
   "dedup_english_technical": {
    "dok": 115,

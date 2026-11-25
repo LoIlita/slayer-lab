@@ -51,7 +51,7 @@ Not checked:
 ## Cleaning
 
 Rules preregistered 2026-11-24 (`skrypty/preregistracja.json`) before any count; applied as a cascade in this order.
-Counts from `wyniki/agreguj.json` (`kaskada`).
+Counts from the final `wyniki/agreguj.json` (`kaskada`; "independent" = documents with the reason regardless of order).
 
 | # | Reason | Rule | dropped docs | dropped tokens (v6) |
 |---|---|---|---|---|
@@ -66,14 +66,19 @@ Counts from `wyniki/agreguj.json` (`kaskada`).
 | 9 | `mojibake` | ≥ 3 matches of a strict mojibake regex. | 38 | 97081 |
 | 10 | `dedup_wewnatrz` | Identical normalised text or MinHash (5-grams, 128 perm., LSH 32×4) J ≥ 0.8 within the pool. | 27 | 20472 |
 | 11 | `dedup_slayer107` | 13-gram sketch ≥ 0.5 or MinHash ≥ 0.8 vs Slayer 1.07 English data. | 399 | 170737 |
-| 12 | `dedup_english_technical` | MinHash J ≥ 0.8 or identical text vs `SlayerLab/english-technical-1b@3b833d36` (1.08 data, includes code). | 11 | 7180 |
-| 13 | `dedup_fineweb_edu_109` | Identical normalised url vs FineWeb-Edu urls in `SlayerLab/Slayer1B-Dataset@2d248a17` (kept for uniformity). | 0 | 0 |
+| 12 | `dedup_slayer_8x3b_en` | MinHash J ≥ 0.8 or identical text vs the English part of Slayer 1.00–1.06, `SlayerLab/slayer-pl-8x3b@d50df04a` `shared/en.parquet` (sha256 `f3d451b7…`, 2 384 000 docs; annex 2026-11-25b). Independent: 2 docs. | 2 | 1208 |
+| 13 | `dedup_english_technical` | MinHash J ≥ 0.8 or identical text vs `SlayerLab/english-technical-1b@3b833d36` (1.08 data, includes code). | 11 | 7180 |
+| 14 | `dedup_fineweb_edu_109` | Identical normalised url vs FineWeb-Edu urls in `SlayerLab/Slayer1B-Dataset@2d248a17` (kept for uniformity). | 0 | 0 |
 
-Pool 639 779 docs / 988 588 081 v6 tokens. Kept after all reasons (`uzysk`): 321 690 docs / 439 112 749 tokens
-(44.418%). Exported (`eksport`, kept files in permutation order up to the 250M target): 185 805 docs /
-250 016 863 tokens.
+Pool 639 779 docs / 988 588 081 v6 tokens. Kept after all reasons (`uzysk`): 321 688 docs / 439 111 541 tokens
+(44.418%). Selected for export (`eksport`, kept files in permutation order up to the 250M target): 186 072 docs /
+250 000 074 v6 tokens.
 
-Positive control: 21/21 planted cases behaved as expected (`wyniki/kontrola.json`).
+Export (`wyniki/eksport_stats.json`): **180 282 docs, 188 814 384 tokens (cl100k)**, 763 411 872 characters;
+`dropped`: `wrong_language` 5790, `min_chars` 0, all other counters 0; 9 206 e-mails masked to `[PII]`. Parquet sha256
+`87b00034f86f9b58d2b97cf3120ab749d5ba17a1cea491e37e2d2981abc0fcd6` (`wyniki/eksport_sha256.txt`).
+
+Positive control: 22/22 planted cases behaved as expected (`wyniki/kontrola.json`, after annex 2026-11-25b).
 
 Review of dropped documents (100 per reason, two reviewers A/B, false-drop thresholds ≤ 10% and Wilson 95% upper
 bound ≤ 20%; `wyniki/przeglad_odrzuconych_1.json`):
@@ -113,8 +118,10 @@ database password in a `connect` call), FAIL of the 0 threshold → rule `haslo_
   tagged 403 spans in 300 FineMath-4+ documents, almost all of them numbers, and code is equally dense in numeric
   literals, so masking would corrupt the code. The `pii` record of `stack_edu_python.stats.json` stores
   `"pass": "regex e-mail only"` and this reason.
-- Consequently `src/check.py` reports a mismatch in its Presidio PII rescan of the parquet. This is expected and
-  caused by the opt-out above, not by a failure of the e-mail masking.
+- Consequently `src/check.py` exits 1 for two expected reasons only: "stats.json pii has no presidio record", and the
+  Presidio rescan of 200 files flags 19 of them. Hit types checked 2026-11-25: IP_ADDRESS 73 (local or example
+  addresses in code), EMAIL_ADDRESS 1 (the template `{LOGIN_INFO}@github.com`), CREDIT_CARD, MEDICAL_LICENSE and
+  US_BANK_NUMBER 1 each (constants, hashes); no real personal data.
 - Control sample of 200 kept files: missed secrets 0/200 for both reviewers (see `## Sample`).
 
 ## Sample

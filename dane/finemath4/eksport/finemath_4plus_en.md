@@ -45,7 +45,7 @@ Not checked:
 ## Cleaning
 
 Rules preregistered 2026-11-24 (`skrypty/preregistracja.json`) before any count; applied as a cascade in this order.
-Counts from `wyniki/agreguj.json` (`kaskada`).
+Counts from the final `wyniki/agreguj.json` (`kaskada`; "independent" = documents with the reason regardless of order).
 
 | # | Reason | Rule | dropped docs | dropped tokens (v6) |
 |---|---|---|---|---|
@@ -58,14 +58,23 @@ Counts from `wyniki/agreguj.json` (`kaskada`).
 | 7 | `mojibake` | ≥ 3 matches of a strict mojibake regex. | 3543 | 10121526 |
 | 8 | `dedup_wewnatrz` | Identical normalised text or MinHash (5-grams, 128 perm., LSH 32×4) J ≥ 0.8 within the pool. | 3658 | 6183891 |
 | 9 | `dedup_slayer107` | 13-gram sketch ≥ 0.5 or MinHash ≥ 0.8 vs Slayer 1.07 English data (FineMath, open-web-math, FineWeb-Edu). | 35928 | 51579836 |
-| 10 | `dedup_english_technical` | MinHash J ≥ 0.8 or identical text vs `SlayerLab/english-technical-1b@3b833d36` (1.08 data). | 0 | 0 |
-| 11 | `dedup_fineweb_edu_109` | Identical normalised url vs FineWeb-Edu files in `SlayerLab/Slayer1B-Dataset@2d248a17` (1.09). | 24965 | 30669662 |
+| 10 | `dedup_slayer_8x3b_en` | MinHash J ≥ 0.8 or identical text vs the English part of Slayer 1.00–1.06, `SlayerLab/slayer-pl-8x3b@d50df04a` `shared/en.parquet` (sha256 `f3d451b7…`, 2 384 000 docs; annex 2026-11-25b). Independent: 605 docs, 0.11% tokens. | 507 | 575146 |
+| 11 | `dedup_english_technical` | MinHash J ≥ 0.8 or identical text vs `SlayerLab/english-technical-1b@3b833d36` (1.08 data). | 0 | 0 |
+| 12 | `dedup_fineweb_edu_109` | Identical normalised url vs FineWeb-Edu files in `SlayerLab/Slayer1B-Dataset@2d248a17` (1.09). | 24740 | 30432805 |
 
-Pool 418 718 docs / 660 554 470 v6 tokens. Kept after all reasons (`uzysk`): 329 994 docs / 492 431 609 tokens
-(74.548%). Exported (`eksport`, kept documents in permutation order up to the 400M target): 267 453 docs /
-400 001 347 tokens.
+Pool 418 718 docs / 660 554 470 v6 tokens. Kept after all reasons (`uzysk`): 329 712 docs / 492 093 320 tokens
+(74.497%). Selected for export (`eksport`, kept documents in permutation order up to the 400M target): 267 504 docs /
+400 000 934 v6 tokens.
 
-Positive control: 18/18 planted documents got the expected reason (`wyniki/kontrola.json`).
+Export (`wyniki/eksport_stats.json`): **266 351 docs, 360 900 014 tokens (cl100k)**, 1 248 763 375 characters;
+`dropped`: `wrong_language` 1129, `min_chars` 24 (registry `min_chars: 200`), all other counters 0. Parquet sha256
+`c4ae6f1424dd45e482d43d7524bab5e3dbf44d44beb4acc7888ff769c0c2d4c5` (`wyniki/eksport_sha256.txt`).
+
+Positive control: 19/19 planted documents got the expected reason (`wyniki/kontrola.json`, after annex 2026-11-25b).
+
+Review of `dedup_slayer_8x3b_en` (annex 2026-11-25b, one reviewer, 100 dropped documents): 99 correct, 0 false,
+1 doubtful; 20 random items (seed 20261125) checked by phrase search in the base itself: 19 with a copy, 1 probable
+(bullet character differs).
 
 Review of dropped documents (100 per reason, two reviewers A/B, false-drop thresholds ≤ 10% and Wilson 95% upper
 bound ≤ 20%; `wyniki/przeglad_odrzuconych_1.json`):
@@ -100,8 +109,9 @@ filter comes before part 2 if arm B wins. Missed PII 1–2/300 (OEIS `name(AT)do
   2026-11-24, Presidio's PhoneRecognizer tagged 403 spans in 300 FineMath-4+ documents, almost all of them numbers in
   the mathematics itself (percentages, ISBNs, decimals, physical constants), so masking would destroy the training
   signal. The `pii` record of `finemath_4plus_en.stats.json` stores `"pass": "none"` and this reason.
-- Consequently `src/check.py` reports a mismatch in its Presidio PII rescan of the parquet. This is expected and
-  caused by the opt-out above, not by unmasked personal data missed by our rules.
+- Consequently `src/check.py` exits 1 for two expected reasons only: "stats.json pii has no presidio record", and the
+  Presidio rescan of 200 documents flags 28 of them. Hit types checked 2026-11-25: CREDIT_CARD 3, UK_NHS 1,
+  IP_ADDRESS 1, all numbers or ISBNs in the mathematics; no real personal data.
 - Control sample of 200 kept documents: missed PII 0/200 for both reviewers (see `## Sample`).
 
 ## Sample
@@ -111,6 +121,6 @@ filter comes before part 2 if arm B wins. Missed PII 1–2/300 (OEIS `name(AT)do
   independent reviewers A and B who did not build the set; Wilson 95% intervals as above.
 - Control sample of 200 kept documents from the final selection, `default_rng(seed+2)` = `20261126`, two reviewers
   A and B, PII and missed-test fields only: missed PII **0/200** for both; missed test items: 0 confirmed (items 9636,
-  84036 and 238166 were flagged from memory and are not in the MATH test, grep 2026-11-25). Some reviewers read items
-  partly (beginning plus a regex over the whole text), as they reported.
+  84036 and 238166 were flagged and have no counterpart in the MATH test, grep over all T34_math test files 2026-11-25).
+  Some reviewers read items partly (beginning plus a regex over the whole text), as they reported.
 - The inline sample generated by `src/render_sample.py` from the built shard goes in the PR description.

@@ -40,6 +40,7 @@ dodatkowo przepisanie z błędem matematycznym albo sprzeczne z oryginałem ≤ 
 | `aneks_2026_11_24b` | `8191660` | po przeglądzie odrzuconych | `min_tresc`, `szablon_forum` (stopki phpBB/GMAT Club/The Student Room, powitania czatbota, < 200 słów) |
 | `aneks_2026_11_24c` | `63da6ec` | po przeglądzie zachowanych, przed eksportem | `suma40` (zmyślone zadanie „suma 1..40 = 820”), `pii_zaciemniony`; FAIL przepisań przyjęty jako cecha ramienia |
 | `aneks_2026_11_25` | `1a28fbd` | po próbce kontrolnej 200, przed eksportem | `suma40`: warunek na oryginał zmieniony z „brak liczby 40” na „brak zadania o sumie do 40” |
+| `aneks_2026_11_25b` | `753d40d` (01:32) | przed policzeniem nowego powodu na puli (`agreguj_8x3b.log` 01:50) | `dedup_slayer_8x3b_en` jak [FineMath-4+](../finemath4/DZIENNIK.md) → `aneks_2026_11_25b` (angielska część Slayera 1.00-1.06, `slayer-pl-8x3b@d50df04a` `shared/en.parquet`, 2 384 000 dok.) |
 
 ## 4. Środowisko
 
@@ -64,10 +65,10 @@ dodatkowo przepisanie z błędem matematycznym albo sprzeczne z oryginałem ≤ 
 
 - Testy (wspólne): `odtworz.sh ewal_pobierz` 24.11.2026: indeks RPG v2 (60 testów, dowiązania do pobrań DCLM-EN) + T51 GSM-Plus i T52 GSM1k, oba `OK`, razem 62 pozycje statusu, `KONIEC`; `odtworz.sh ewal`: `ogolem 33302686` 13-gramów, `KONIEC` (bash kod 2 po `KONIEC`, ta sama pułapka co w `pula`).
 - EN 1.07 (`idx`) i walidacja Fabryki (`idx_wal`): indeksy z katalogu roboczego DCLM-EN, bez zmian.
-- Bazy z aneksu 24.11 (`bazy_mat.py`): `entech` (english-technical-1b@3b833d36) `KONIEC 209939`; `fwe109` (url FineWeb-Edu 1.09) `KONIEC 266 98512010` (266 plików, 24.11.2026 23:51; po przejściu na zakresy bajtów).
-- Kontrola dodatnia `odtworz.sh kontrola cranemath`: 16/16 przed aneksem (commit `9b7d6bd`), ostatni wynik **22/22**
-  ([`wyniki/kontrola.json`](wyniki/kontrola.json)): przypadki FineMath plus K_think, K_gsm8k_oryg (treść GSM8K tylko w oryginale),
-  K_forum, K_suma40.
+- Bazy z aneksu 24.11 (`bazy_mat.py`): `entech` (english-technical-1b@3b833d36) `KONIEC 209939`; `fwe109` (url FineWeb-Edu 1.09) `KONIEC 266 98512010` (266 plików, 24.11.2026 23:51; po przejściu na zakresy bajtów). Baza z aneksu 25.11b: `en8x3b` (2 384 000 dok., 25.11.2026 01:28).
+- Kontrola dodatnia `odtworz.sh kontrola cranemath`: 16/16 przed aneksem (commit `9b7d6bd`), 22/22 po aneksach 24.11-25.11, po aneksie
+  25.11b **23/23** ([`wyniki/kontrola.json`](wyniki/kontrola.json)): przypadki FineMath (w tym K_en8x3b) plus K_think, K_gsm8k_oryg
+  (treść GSM8K tylko w oryginale), K_forum, K_suma40.
 
 ## 7. Przebieg
 
@@ -79,7 +80,7 @@ dodatkowo przepisanie z błędem matematycznym albo sprzeczne z oryginałem ≤ 
 
 ## 8. Po przebiegu
 
-Komenda `odtworz.sh agreguj cranemath`; końcowy przebieg 25.11.2026 00:17 (`agreguj_koncowe2.log`, po aneksie 25.11, `KONIEC`),
+Komenda `odtworz.sh agreguj cranemath`; końcowy przebieg 25.11.2026 01:50 (`agreguj_8x3b.log`, po aneksie 25.11b),
 wynik [`wyniki/agreguj.json`](wyniki/agreguj.json):
 
 | powód | odrzucone dok. | odrzucone tok. v6 | zostaje dok. | zostaje tok. v6 | % tok. | niezależnie dok. / % tok. |
@@ -97,12 +98,15 @@ wynik [`wyniki/agreguj.json`](wyniki/agreguj.json):
 | `mojibake` | 9 | 7 999 | 566 089 | 441 670 732 | 70,86 | 23 / 0,011 |
 | `dedup_wewnatrz` | 516 | 817 330 | 565 573 | 440 853 402 | 70,729 | 4 351 / 0,268 |
 | `dedup_slayer107` | 322 | 425 560 | 565 251 | 440 427 842 | 70,66 | 1 360 / 0,113 |
+| `dedup_slayer_8x3b_en` | 0 | 0 | 565 251 | 440 427 842 | 70,66 | 1 / 0,0 |
 | `dedup_english_technical` | 0 | 0 | 565 251 | 440 427 842 | 70,66 | 115 / 0,021 |
 | `dedup_fineweb_edu_109` | 43 270 | 32 432 171 | 521 981 | 407 995 671 | 65,457 | 50 628 / 7,129 |
 
 - **Uzysk: 521 981 dok., 407 995 671 tokenów v6 (65,457%)**. Do eksportu wybrano 511 710 dok., 400 000 473 tokenów v6 (wystarcza).
 - `ewal_13gram` per test (tekst): MATH 5458, MathQA 879, MMLU 461, MBPP 212, HumanEval 82, reszta ≤ 35; na oryginale: MathQA 4081, MATH 3030, BoolQ 524, MMLU 334, SciQ 286, MBPP 264, HumanEval 181.
 - PII wg detektora DCLM: e-mail 178, telefon 50, IP 178 (tryb `usun`). `dedup_wewnatrz`: 2218 identycznych, 2133 przez MinHash.
+- Ograniczenie: wiersze z url bez schematu (ok. 1,3%) nie mogły być porównane po url z FineWeb-Edu 1.09 (`dedup_fineweb_edu_109`).
+- `dedup_slayer_8x3b_en` (aneks 25.11b): 0 dok. w kaskadzie, 1 niezależnie; uzysk i wybór do eksportu bez zmian. Przeglądu odrzuconych tego powodu nie było (brak odrzuconych w kaskadzie).
 
 ### Przegląd odrzuconych (24.11.2026)
 
@@ -173,13 +177,13 @@ usunięcia. Ponowna `agreguj` (00:17): `suma40` w kaskadzie 34 020 dok., zostaje
 
 | | |
 |---|---|
-| Komenda | `odtworz.sh eksport cranemath`, log `eksport.log` 25.11.2026 00:48 |
+| Komenda | `odtworz.sh eksport cranemath`, końcowy log `eksport.log` 25.11.2026 02:19 |
 | Key | `cranemath_en`; datasheet [`eksport/cranemath_en.md`](eksport/cranemath_en.md) |
 | Bramka językowa | `min_chars: 200` w rejestrze (po błędzie krótkich wierszy w pierwszej próbie FineMath) |
 | Liczby | 510 129 dok., 1 120 137 336 znaków, 363 789 411 tokenów cl100k; `language` en, `text_origin` synthetic; `dropped`: `wrong_language` 1574, `placeholder_only` 7, reszta 0 (511 710 − 1581 = 510 129) |
 | PII | `pii.pass` = `none` (Presidio nie uruchomione); usuwanie wcześniej w kaskadzie |
-| Wynik | [`wyniki/eksport_stats.json`](wyniki/eksport_stats.json); sha256 parquet `2f42e38f61bee2377c99b24dd9af4d53ff8711b3cfe098bd23458d242a301305` ([`wyniki/eksport_sha256.txt`](wyniki/eksport_sha256.txt)) |
-| Ostrzeżenia | 6801 wierszy `malformed derived_from` w `eksport.log` (`derived_from` = sama domena, bez schematu URL); czy to błąd `check.py`, czy ostrzeżenie: nie zmierzono |
+| Wynik | [`wyniki/eksport_stats.json`](wyniki/eksport_stats.json); sha256 parquet `1aecacfa36842b3be24a06f5a08430a342d45d08d252df3a8d10aac745767e8f` ([`wyniki/eksport_sha256.txt`](wyniki/eksport_sha256.txt)); wcześniejszy eksport (00:48): `2f42e38f…` |
+| `derived_from` | dla wierszy z url bez schematu (ok. 1,3%) to rekord WARC `https://data.commoncrawl.org/<warc_filename>#offset=<offset>` ([`../matematyka-wspolne/eksport/src/clean_cranemath_en.py`](../matematyka-wspolne/eksport/src/clean_cranemath_en.py)); błąd `malformed derived_from` (6801 w eksporcie z 00:48) zniknął |
 
 ## 10. Kontrola końcowa
 
@@ -187,7 +191,7 @@ usunięcia. Ponowna `agreguj` (00:17): `suma40` w kaskadzie 34 020 dok., zostaje
 |---|---|
 | Komenda | w `odtworz.sh eksport`: `pytest src/test_cranemath_en_contract.py -q` i `python src/check.py --source cranemath_en` |
 | Test kontraktowy | 1 passed |
-| `check.py` | kod 1 z DWOMA oczekiwanymi błędami: (1) ponowny skan PII Presidio („PII left after masking: second pass adds …”) — liczba pozycji dla CraneMath nie podana; w `eksport.log` 8 wierszy, każdy dopisuje `[PHONE]`; (2) „stats.json pii has no presidio record” — Presidio wyłączone świadomie (403 trafienia PhoneRecognizer w 300 dok. FineMath) |
+| `check.py` | kod 1 tylko z DWÓCH oczekiwanych przyczyn: (1) ponowny skan PII Presidio — 8 z 200 skanowanych dokumentów, same telefony (liczby), brak trafień kategorii pii (sprawdzone 25.11); (2) „stats.json pii has no presidio record” — Presidio wyłączone świadomie (403 trafienia PhoneRecognizer w 300 dok. FineMath) |
 | Niezależny agent na pliku o tym samym sha256 | nie zmierzono |
 
 ## 11. Wysyłka (repo do wglądu Arka)
@@ -195,13 +199,15 @@ usunięcia. Ponowna `agreguj` (00:17): `suma40` w kaskadzie 34 020 dok., zostaje
 | | |
 |---|---|
 | Repo | `Lolita67/cranemath_en-robocze`, bramka `manual`, README jednym zdaniem |
-| Stan | upload w toku |
-| Dostęp | `grant_access` dla `Maggio33` (Arek) musi zatwierdzić człowiek w UI: token sesji OAuth dostaje 401 na `grant_access` |
-| Gotowe gdy | Arek ma link i dostęp: NIE (czeka) |
+| Bramka | anonimowe pobranie dostaje 401 (sprawdzone curl); 24.11 repo było przez ok. 3 min bez bramki (założył je upload, bo skrypt zakładający repo przerwał się po pierwszym), bramka ustawiona po wykryciu |
+| Dostęp | `grant_access` dla `Maggio33` (Arek): czeka na Anię (UI); token sesji OAuth dostaje 401 na `grant_access` |
+| Gotowe gdy | Arek ma link i dostęp: NIE (czeka na dostęp) |
 
 ## 12. Dane treningowe
 
-Czeka na upload: zmiana statusu wiersza w PR [#347](https://github.com/slayerlabs/benchmarks-fabryka-ai/pull/347) na „u Arka do wglądu” z linkiem do repo.
+PR [#353](https://github.com/slayerlabs/benchmarks-fabryka-ai/pull/353): status wiersza „u Arka do wglądu” z linkiem do repo. PR
+rezerwacji [#347](https://github.com/slayerlabs/benchmarks-fabryka-ai/pull/347) scalony. Sprawdzenie, czy każdy link w wierszu odpowiada 200:
+nie zmierzono (repo za bramką zwraca 401 anonimowo).
 
 ## Historia odtworzeń
 
@@ -211,7 +217,9 @@ Czeka na upload: zmiana statusu wiersza w PR [#347](https://github.com/slayerlab
 - 24.11.2026 20:55: `agreguj_wstepne2` (aneks 24.11b): 597 543 / 451 586 981; przegląd odrzuconych i zachowanych.
 - 25.11.2026 00:09: `agreguj_koncowe` (aneks 24.11c, url FineWeb-Edu 1.09): 528 214 / 410 273 160; próbka kontrolna 200.
 - 25.11.2026 00:17: `agreguj_koncowe2` (aneks 25.11): 521 981 / 407 995 671.
-- 25.11.2026 00:48: eksport, test kontraktowy 1 passed, `check.py` kod 1 (dwa oczekiwane błędy); commit `1a28fbd`.
+- 25.11.2026 00:48: eksport, test kontraktowy 1 passed, `check.py` kod 1 (dwa oczekiwane błędy, 6801 `malformed derived_from`); commit `1a28fbd`.
+- 25.11.2026 01:28–01:50: aneks 25.11b (`753d40d`), baza `en8x3b`, kontrola 23/23, `agreguj_8x3b`: 521 981 / 407 995 671 (bez zmian).
+- 25.11.2026 02:19: eksport końcowy z `derived_from` z rekordu WARC: 510 129 dok., sha256 `1aecacfa…`; test kontraktowy 1 passed; `check.py` kod 1 (dwa oczekiwane błędy).
 
 ## Pułapki tego przebiegu
 
@@ -220,3 +228,5 @@ Czeka na upload: zmiana statusu wiersza w PR [#347](https://github.com/slayerlab
 - Pobieranie url FineWeb-Edu przez `HfFileSystem` z `block_size` 8 MB trwało 7 min/plik; zakresy bajtów skróciły to do 31 s/plik, potem CDN zwracał 429/400: czekanie i ponowienia.
 - Agenci recenzenci: 5 odmów klasyfikatora przy pierwszym uruchomieniu (ponowione raz, przeszły); część recenzentów czytała pozycje częściowo.
 - Presidio w eksporcie maskuje liczby w matematyce i kodzie jako telefony (403 trafienia PhoneRecognizer w 300 dok. FineMath): wyłączone świadomie, `check.py` kończy się kodem 1 na dwóch oczekiwanych błędach (krok 10).
+- Repo do wglądu zakładaj z bramką przed uploadem: 24.11 dwa repo (`cranemath_en`, `stack_edu_python`) były przez ok. 3 min bez bramki, bo skrypt zakładający repo przerwał się po pierwszym, a pozostałe założył upload.
+- Url w CraneMath bywa bez schematu (sama domena): `derived_from` trzeba brać z rekordu WARC, a porównanie po url z FineWeb-Edu takich wierszy nie obejmuje.

@@ -16,6 +16,8 @@ Marks: **V** = verified 2026-11-24 at the cited source (URL, revision, hash); **
   Generator field: `Qwen/Qwen3-32B@unpublished prompt:cranemath_recipe.md`; Ai2 did not publish the model
   revision, sampling parameters or thinking mode.
 - V: each row keeps `metadata.url` and `metadata.warc_*` of the FineMath source page; `derived_from` is that url.
+  For rows whose url has no scheme (≈ 1.3%) `derived_from` is the WARC record
+  `https://data.commoncrawl.org/<warc_filename>#offset=<offset>` (`eksport/src/clean_cranemath_en.py`).
   `metadata.original_text` (pre-rewrite text) is used only for filtering and is not exported.
 - V: pool = shards chosen by a `numpy.default_rng(20261124)` permutation until ≥ 600M v6 tokens: 663 285 rows,
   623 303 464 v6 tokens; file list with sha256 in `wyniki/probka_pliki.json`. Export target 400M v6 tokens in
@@ -46,7 +48,7 @@ Not checked:
 ## Cleaning
 
 Rules preregistered 2026-11-24 (`skrypty/preregistracja.json`) before any count; applied as a cascade in this order.
-Counts from `wyniki/agreguj.json` (`kaskada`).
+Counts from the final `wyniki/agreguj.json` (`kaskada`; "independent" = documents with the reason regardless of order).
 
 | # | Reason | Rule | dropped docs | dropped tokens (v6) |
 |---|---|---|---|---|
@@ -63,15 +65,24 @@ Counts from `wyniki/agreguj.json` (`kaskada`).
 | 11 | `mojibake` | ≥ 3 matches of a strict mojibake regex. | 9 | 7999 |
 | 12 | `dedup_wewnatrz` | Identical normalised text or MinHash (5-grams, 128 perm., LSH 32×4) J ≥ 0.8 within the pool. | 516 | 817330 |
 | 13 | `dedup_slayer107` | 13-gram sketch ≥ 0.5 or MinHash ≥ 0.8 of `text` vs Slayer 1.07 English data. | 322 | 425560 |
-| 14 | `dedup_english_technical` | MinHash J ≥ 0.8 or identical text vs `SlayerLab/english-technical-1b@3b833d36` (1.08 data). | 0 | 0 |
-| 15 | `dedup_fineweb_edu_109` | Source page url identical (normalised) to a url of FineWeb-Edu in `SlayerLab/Slayer1B-Dataset@2d248a17` (1.09). | 43270 | 32432171 |
+| 14 | `dedup_slayer_8x3b_en` | MinHash J ≥ 0.8 or identical text vs the English part of Slayer 1.00–1.06, `SlayerLab/slayer-pl-8x3b@d50df04a` `shared/en.parquet` (sha256 `f3d451b7…`, 2 384 000 docs; annex 2026-11-25b). Independent: 1 doc. | 0 | 0 |
+| 15 | `dedup_english_technical` | MinHash J ≥ 0.8 or identical text vs `SlayerLab/english-technical-1b@3b833d36` (1.08 data). | 0 | 0 |
+| 16 | `dedup_fineweb_edu_109` | Source page url identical (normalised) to a url of FineWeb-Edu in `SlayerLab/Slayer1B-Dataset@2d248a17` (1.09). | 43270 | 32432171 |
+
+Limitation: rows whose source url has no scheme (≈ 1.3%, now exported with a WARC-record `derived_from`) could not
+be compared by url with FineWeb-Edu 1.09.
 
 Pool 663 285 docs / 623 303 464 v6 tokens. Kept after all reasons (`uzysk`): 521 981 docs / 407 995 671 tokens
-(65.457%). Exported (`eksport`, kept documents in permutation order up to the 400M target): 511 710 docs /
-400 000 473 tokens.
+(65.457%). Selected for export (`eksport`, kept documents in permutation order up to the 400M target): 511 710 docs /
+400 000 473 v6 tokens.
 
-Positive control: 22/22 planted documents got the expected reason (`wyniki/kontrola.json`), including an unclosed
-`<think>` and a GSM8K item present only in `original_text`.
+Export (`wyniki/eksport_stats.json`): **510 129 docs, 363 789 411 tokens (cl100k)**, 1 120 137 336 characters;
+`dropped`: `wrong_language` 1574, `min_chars` 0 (registry `min_chars: 200`), `placeholder_only` 7, all other
+counters 0. Parquet sha256 `1aecacfa36842b3be24a06f5a08430a342d45d08d252df3a8d10aac745767e8f`
+(`wyniki/eksport_sha256.txt`).
+
+Positive control: 23/23 planted documents got the expected reason (`wyniki/kontrola.json`, after annex 2026-11-25b),
+including an unclosed `<think>` and a GSM8K item present only in `original_text`.
 
 Review of dropped documents (100 per reason, two reviewers A/B, false-drop thresholds ≤ 10% and Wilson 95% upper
 bound ≤ 20%; `wyniki/przeglad_odrzuconych_1.json`):
@@ -118,8 +129,9 @@ if arm C wins. One missed-test flag (AMC 10B 2015, not in our MATH test by grep)
   2026-11-24, Presidio's PhoneRecognizer tagged 403 spans in 300 FineMath-4+ documents (the inputs of CraneMath),
   almost all of them numbers in the mathematics itself, so masking would destroy the training signal. The `pii`
   record of `cranemath_en.stats.json` stores `"pass": "none"` and this reason.
-- Consequently `src/check.py` reports a mismatch in its Presidio PII rescan of the parquet. This is expected and
-  caused by the opt-out above, not by unmasked personal data missed by our rules.
+- Consequently `src/check.py` exits 1 for two expected reasons only: "stats.json pii has no presidio record", and the
+  Presidio rescan of 200 documents flags 8 of them, all phone-like numbers in the mathematics; no hits in the `pii`
+  category (checked 2026-11-25).
 - Control sample of 200 kept documents: missed PII 0/200 for both reviewers (see `## Sample`).
 
 ## Sample
