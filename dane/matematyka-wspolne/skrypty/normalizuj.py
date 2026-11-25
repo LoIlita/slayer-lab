@@ -6,6 +6,7 @@ Tekst niezmieniony. Format wyjścia jak pobierz.py DCLM-EN, więc przebieg.py DC
   cranemath  allenai/dolma3_dolmino_mix-100B-1125, data/ingredient1-cranemath/*.jsonl.zst; obok kopia 'oryg' z text=original_text
              (13-gramy testów liczone też na tekście przed przepisaniem)
   stackedu   common-pile/stackv2_edu_filtered, *.json.gz; tylko metadata.language == 'Python'
+  infiwebmath4  HuggingFaceTB/finemath, infiwebmath-4plus/*.parquet; id = WARC-Record-ID z metadata.WARC_HEADER
 Argumenty: zrodlo katalog_pobran probka_pliki.json cel_tokenow_v6 tokenizer.json seed"""
 import gzip
 import hashlib
@@ -25,6 +26,7 @@ ZRODLA = {
     "finemath4": ("HuggingFaceTB/finemath", "e92b25a616738fe95dc186b64dfb19f9c8525594", "finemath-4plus/", ".parquet"),
     "cranemath": ("allenai/dolma3_dolmino_mix-100B-1125", "f23aa129fda8335ba9760057bcc1f0c02f3d068b", "data/ingredient1-cranemath/", ".jsonl.zst"),
     "stackedu": ("common-pile/stackv2_edu_filtered", "c354dbe88469a1153e97c6a63ac50591849654de", "stack-edu-", ".json.gz"),
+    "infiwebmath4": ("HuggingFaceTB/finemath", "e92b25a616738fe95dc186b64dfb19f9c8525594", "infiwebmath-4plus/", ".parquet"),
 }
 ZR, CEL, WYN, DOCEL, TOK, SEED = sys.argv[1], sys.argv[2], sys.argv[3], int(sys.argv[4]), sys.argv[5], int(sys.argv[6])
 REPO, REW, PREF, SUF = ZRODLA[ZR]
@@ -50,6 +52,12 @@ def wiersze(p):
         t = pq.read_table(p, columns=["text", "url", "crawl", "warc_filename", "warc_record_offset", "warc_record_length", "snapshot_type"])
         for r in t.to_pylist():
             r["id"] = f"{r['warc_filename']}:{r['warc_record_offset']}"
+            yield r, None
+    elif ZR == "infiwebmath4":
+        t = pq.read_table(p, columns=["text", "url", "metadata"])
+        for r in t.to_pylist():
+            w = json.loads(json.loads(r.pop("metadata"))["WARC_HEADER"])
+            r["id"], r["warc_record_id"], r["warc_date"] = w["WARC-Record-ID"], w["WARC-Record-ID"], w.get("WARC-Date")
             yield r, None
     elif ZR == "cranemath":
         with open(p, "rb") as f:

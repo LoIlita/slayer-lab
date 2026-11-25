@@ -66,12 +66,12 @@
  },
  "czesc_2": {
   "zapisano": "2026-11-25, przed pobraniem pozostałych plików",
-  "powod": "decyzja właścicielki projektu (25.11): zbiór matematyki i kodu ok. 20 mld tokenów v6; FineMath-4+ wybrany zamiast CraneMath dla wspólnych stron (więcej tokenów; śmieci szkodzą mniej niż błędne rozwiązania w ok. 20% przepisań CraneMath, przegląd 24.11); CraneMath do podmiany po wyniku microannealu",
+  "powod": "decyzja właścicielki projektu (25.11): zbiór matematyki i kodu ok. 20 mld tokenów v6 teraz, bez czekania na microanneal. Wybór FineMath-4+ zamiast CraneMath dla wspólnych stron to decyzja budującej, przedstawiona właścicielce (więcej tokenów; śmieci szkodzą mniej niż błędne rozwiązania w ok. 20% przepisań CraneMath, przegląd 24.11); CraneMath do podmiany po wyniku microannealu",
   "pula": "wszystkie 64 pliki finemath-4plus w tej samej permutacji default_rng(seed); pliki części 1 (4) wchodzą do puli, więc eksport części 1 jest jej podzbiorem i dedup wewnątrz obejmuje całość",
   "cel_puli_tok_v6": 1000000000000,
   "cel_eksportu_tok_v6": 1000000000000,
   "eksport": "wszystkie dokumenty zachowane po regułach z kolejnosc_powodow (bez losowania do celu)",
-  "reguly": "bez zmian względem części 1 (kolejnosc_powodow i aneksy do 25.11b); dodatkowo przy zbiorze łącznym dedup wobec innych źródeł 20 mld idzie po stronie źródła dodanego później (InfiWebMath-4+, FineMath-3+), nie tutaj",
+  "reguly": "bez zmian względem części 1 (kolejnosc_powodow i aneksy do 25.11b). Odroczone świadomie, z decyzji właścicielki projektu (zbiór teraz, bez czekania na microanneal): filtr jakości z aneksu 24.11c (śmieci ok. 13% zostają jako cecha źródła, opisane w datasheet) i poprawki reguł konserwatywnych z aneksu 24.11b (koszt < 5% tokenów na regułę); filtry tylko usuwają, więc można je nałożyć później na wyeksportowany zbiór bez przebudowy. Dedup wobec innych źródeł zbioru łącznego idzie po stronie źródła dodanego później (InfiWebMath-4+, dopełnienie), nie tutaj",
   "probka": "próbka kontrolna 200 zachowanych default_rng(seed+3), dwóch recenzentów, pola jakosc, pii_przeoczone, test_przeoczony; progi jak w aneksie 24.11c (śmieci jako cecha źródła raportowana, PII 0/200)"
  }
 }
