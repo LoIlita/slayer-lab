@@ -45,60 +45,68 @@
    "zostaje_tok_proc": 89.996
   },
   {
+   "powod": "pii_at_bez_nawiasow",
+   "odrzucone_dok": 41030,
+   "odrzucone_tok": 139638162,
+   "zostaje_dok": 6379512,
+   "zostaje_tok": 9357035305,
+   "zostaje_tok_proc": 88.673
+  },
+  {
    "powod": "min_tresc",
    "odrzucone_dok": 42275,
    "odrzucone_tok": 3709604,
-   "zostaje_dok": 6378267,
-   "zostaje_tok": 9492963863,
-   "zostaje_tok_proc": 89.961
+   "zostaje_dok": 6337237,
+   "zostaje_tok": 9353325701,
+   "zostaje_tok_proc": 88.638
   },
   {
    "powod": "mojibake",
-   "odrzucone_dok": 57115,
-   "odrzucone_tok": 164493306,
-   "zostaje_dok": 6321152,
-   "zostaje_tok": 9328470557,
-   "zostaje_tok_proc": 88.402
+   "odrzucone_dok": 56514,
+   "odrzucone_tok": 160473284,
+   "zostaje_dok": 6280723,
+   "zostaje_tok": 9192852417,
+   "zostaje_tok_proc": 87.117
   },
   {
    "powod": "dedup_wewnatrz",
-   "odrzucone_dok": 645635,
-   "odrzucone_tok": 1036067556,
-   "zostaje_dok": 5675517,
-   "zostaje_tok": 8292403001,
-   "zostaje_tok_proc": 78.584
+   "odrzucone_dok": 640521,
+   "odrzucone_tok": 1017809945,
+   "zostaje_dok": 5640202,
+   "zostaje_tok": 8175042472,
+   "zostaje_tok_proc": 77.472
   },
   {
    "powod": "dedup_slayer107",
-   "odrzucone_dok": 505457,
-   "odrzucone_tok": 727871887,
-   "zostaje_dok": 5170060,
-   "zostaje_tok": 7564531114,
-   "zostaje_tok_proc": 71.686
+   "odrzucone_dok": 501565,
+   "odrzucone_tok": 717139748,
+   "zostaje_dok": 5138637,
+   "zostaje_tok": 7457902724,
+   "zostaje_tok_proc": 70.676
   },
   {
    "powod": "dedup_slayer_8x3b_en",
-   "odrzucone_dok": 6611,
-   "odrzucone_tok": 7797920,
-   "zostaje_dok": 5163449,
-   "zostaje_tok": 7556733194,
-   "zostaje_tok_proc": 71.612
+   "odrzucone_dok": 6560,
+   "odrzucone_tok": 7667216,
+   "zostaje_dok": 5132077,
+   "zostaje_tok": 7450235508,
+   "zostaje_tok_proc": 70.603
   },
   {
    "powod": "dedup_english_technical",
    "odrzucone_dok": 2,
    "odrzucone_tok": 10290,
-   "zostaje_dok": 5163447,
-   "zostaje_tok": 7556722904,
-   "zostaje_tok_proc": 71.612
+   "zostaje_dok": 5132075,
+   "zostaje_tok": 7450225218,
+   "zostaje_tok_proc": 70.603
   },
   {
    "powod": "dedup_fineweb_edu_109",
-   "odrzucone_dok": 348967,
-   "odrzucone_tok": 429126495,
-   "zostaje_dok": 4814480,
-   "zostaje_tok": 7127596409,
-   "zostaje_tok_proc": 67.546
+   "odrzucone_dok": 346945,
+   "odrzucone_tok": 423124444,
+   "zostaje_dok": 4785130,
+   "zostaje_tok": 7027100774,
+   "zostaje_tok_proc": 66.593
   }
  ],
  "niezaleznie": {
@@ -126,6 +134,11 @@
    "dok": 6289,
    "tok": 12740396,
    "tok_proc": 0.121
+  },
+  "pii_at_bez_nawiasow": {
+   "dok": 47693,
+   "tok": 187462104,
+   "tok_proc": 1.777
   },
   "min_tresc": {
    "dok": 42350,
@@ -164,9 +177,9 @@
   }
  },
  "uzysk": {
-  "dok": 4814480,
-  "tok": 7127596409,
-  "tok_proc": 67.546
+  "dok": 4785130,
+  "tok": 7027100774,
+  "tok_proc": 66.593
  },
  "ewal_per_test": {
   "T19_mathqa": 40999,
@@ -218,8 +231,8 @@
  },
  "eksport": {
   "cel_tok_v6": 1000000000000,
-  "dok": 4814480,
-  "tok_v6": 7127596409,
+  "dok": 4785130,
+  "tok_v6": 7027100774,
   "wystarcza": false
  }
 }

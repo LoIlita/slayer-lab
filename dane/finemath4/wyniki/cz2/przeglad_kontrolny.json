@@ -1,0 +1,51 @@
+{
+ "probka": "200 zachowanych z wybor.json części 2 po aneksie 25.11c, default_rng(seed+3); pierwsza próbka (przed aneksem) w historii: 1 przeoczony e-mail 'nazwa at domena', FAIL",
+ "recenzenci": {
+  "A": {
+   "pozycji": 200,
+   "jakosc": {
+    "tak": 143,
+    "watpliwy": 36,
+    "nie": 21
+   },
+   "pii_przeoczone": {
+    "nie": 200
+   },
+   "test_przeoczony": {
+    "nie": 200
+   }
+  },
+  "B": {
+   "pozycji": 200,
+   "jakosc": {
+    "tak": 149,
+    "watpliwy": 33,
+    "nie": 18
+   },
+   "pii_przeoczone": {
+    "nie": 200
+   },
+   "test_przeoczony": {
+    "nie": 200
+   }
+  }
+ },
+ "pelny_tekst": "obaj zadeklarowali lekturę pełnych 3000 znaków i dodatkowe wyszukiwanie wzorców e-mail/telefon/IP",
+ "smieci_proc": {
+  "A": [
+   10.5,
+   [
+    7.0,
+    15.5
+   ]
+  ],
+  "B": [
+   9.0,
+   [
+    5.8,
+    13.8
+   ]
+  ]
+ },
+ "wynik": "PII 0/200 i testy 0/200 u obu: PASS. Śmieci 9-10,5% (+ wątpliwe 15-18%): cecha źródła, filtr jakości odroczony (czesc_2.reguly), opisane w datasheet"
+}
