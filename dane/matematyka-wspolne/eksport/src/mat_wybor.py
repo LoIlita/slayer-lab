@@ -57,17 +57,21 @@ def _mask_emails(text: str) -> tuple[str, int]:
     return EMAIL_AT.sub(sub, text), n
 
 
+MASKED = {"pii": 0}  # e-mails masked by premask_emails before shard.write
+
+
+def premask_emails(text: str) -> str:
+    """Mask e-mails BEFORE shard.write: its language gate then sees the same text check.py rescans. Masking inside
+    shard.write ran after the gate, and 8 Python files whose gate vote flipped on the masked text failed check.py
+    (independent check, 2026-11-25)."""
+    masked, n = _mask_emails(text)
+    MASKED["pii"] += n
+    return masked
+
+
 def no_masking(emails: bool = False) -> None:
-    """Presidio off (see module docstring). emails=True (stack_edu_python, where author e-mails in file headers are kept
-    upstream): e-mail addresses become [PII] with the slayer-lab detector's pattern, example domains excepted."""
-    def mask(texts, language, *, names=False):
-        if not emails:
-            return list(texts), {}
-        out, total = [], 0
-        for t in texts:
-            m, n = _mask_emails(t)
-            out.append(m)
-            total += n
-        return out, {"pii": total}
-    pii.mask = mask
-    pii.record = lambda languages, *, names: {"pass": "regex e-mail only" if emails else "none", "reason": REASON}
+    """Presidio off (see module docstring). emails=True (stack_edu_python): rows arrive pre-masked by premask_emails, and the
+    count of masked e-mails goes into stats.json."""
+    pii.mask = lambda texts, language, *, names=False: (list(texts), dict(MASKED) if emails else {})
+    pii.record = lambda languages, *, names: {"pass": "regex e-mail only, before the language gate" if emails else "none",
+                                              "reason": REASON}

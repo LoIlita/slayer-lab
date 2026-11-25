@@ -162,11 +162,11 @@ Po agregacji końcowej, `default_rng(seed+2)`, dwóch recenzentów; oceny `roboc
 
 | | |
 |---|---|
-| Komenda | `odtworz.sh eksport stackedu`, końcowy log `eksport.log` 25.11.2026 02:10 |
+| Komenda | `odtworz.sh eksport stackedu`, końcowy log `eksport.log` 25.11.2026 02:53 |
 | Key | `stack_edu_python`; datasheet [`eksport/stack_edu_python.md`](eksport/stack_edu_python.md) |
-| Liczby | 180 282 pliki, 763 411 872 znaki, 188 814 384 tokeny cl100k; `language` en, `text_origin` human; `dropped`: `wrong_language` 5790, `min_chars` 0, reszta 0 (186 072 − 5790 = 180 282); licencja per plik (MIT 126 030, Apache-2.0 29 393, BSD-3-Clause 11 509, BSD-2-Clause 3916, Unlicense 2513, CC0-1.0 1303, …) |
-| PII | `pii.pass` = `regex e-mail only`, `counts.pii` 9206: 9 206 e-maili zamaskowanych do `[PII]`; Presidio nie uruchomione |
-| Wynik | [`wyniki/eksport_stats.json`](wyniki/eksport_stats.json); sha256 parquet `87b00034f86f9b58d2b97cf3120ab749d5ba17a1cea491e37e2d2981abc0fcd6` ([`wyniki/eksport_sha256.txt`](wyniki/eksport_sha256.txt)); wcześniejszy eksport (00:39, przed aneksem 25.11b): `58a52663…`, 180 098 plików |
+| Liczby | 180 275 plików, 763 432 617 znaków, 188 819 386 tokenów cl100k; `language` en, `text_origin` human; `dropped`: `wrong_language` 5797, `min_chars` 0, reszta 0 (186 072 − 5797 = 180 275); licencja per plik (MIT 126 028, Apache-2.0 29 389, BSD-3-Clause 11 508, BSD-2-Clause 3916, Unlicense 2513, CC0-1.0 1303, …) |
+| PII | `pii.pass` = `regex e-mail only, before the language gate`, `counts.pii` 9484: 9 484 e-maili zamaskowanych do `[PII]` PRZED `shard.write` (`mat_wybor.premask_emails`, wołane z `eksport/src/clean_stack_edu_python.py`); Presidio nie uruchomione |
+| Wynik | [`wyniki/eksport_stats.json`](wyniki/eksport_stats.json); sha256 parquet `4ccfbb8c3e483192545a2264cb813c88d21bfd5e4f9abd5b525884fdeadd2d83` ([`wyniki/eksport_sha256.txt`](wyniki/eksport_sha256.txt)); wcześniejsze eksporty: 00:39 `58a52663…` (180 098 plików), 02:10 `87b00034…` (180 282 pliki, maskowanie po bramce językowej) |
 
 ## 10. Kontrola końcowa
 
@@ -174,15 +174,15 @@ Po agregacji końcowej, `default_rng(seed+2)`, dwóch recenzentów; oceny `roboc
 |---|---|
 | Komenda | w `odtworz.sh eksport`: `pytest src/test_stack_edu_python_contract.py -q` i `python src/check.py --source stack_edu_python` |
 | Test kontraktowy | 1 passed |
-| `check.py` | kod 1 tylko z DWÓCH oczekiwanych przyczyn: (1) ponowny skan PII Presidio — 19 z 200 skanowanych plików; typy trafień sprawdzone 25.11: IP_ADDRESS 73 (adresy lokalne i przykładowe w kodzie), EMAIL_ADDRESS 1 (szablon `{LOGIN_INFO}@github.com`), CREDIT_CARD, MEDICAL_LICENSE, US_BANK_NUMBER po 1 (stałe, hashe), żadne prawdziwe dane; (2) „stats.json pii has no presidio record” — Presidio wyłączone świadomie (403 trafienia PhoneRecognizer w 300 dok. FineMath) |
-| Niezależny agent na pliku o tym samym sha256 | nie zmierzono |
+| `check.py` | kod 1 tylko z DWÓCH oczekiwanych przyczyn: (1) ponowny skan PII Presidio — 11 wierszy „PII left after masking”; typy trafień sprawdzone 25.11 na eksporcie `87b00034…` (19 z 200 skanowanych plików): IP_ADDRESS 73 (adresy lokalne i przykładowe w kodzie), EMAIL_ADDRESS 1 (szablon `{LOGIN_INFO}@github.com`), CREDIT_CARD, MEDICAL_LICENSE, US_BANK_NUMBER po 1 (stałe, hashe), żadne prawdziwe dane; dla eksportu `4ccfbb8c…` typy trafień nie sprawdzone; (2) „stats.json pii has no presidio record” — Presidio wyłączone świadomie (403 trafienia PhoneRecognizer w 300 dok. FineMath); 0 wierszy bramki językowej |
+| Niezależny agent na pliku o tym samym sha256 | na `87b00034…` (plik z HF): wykrył 8 wierszy „fails the en language gate” w `check.py`, pominiętych przy filtrze logu po prefiksie `stack_edu_python:` (te wiersze mają `stack_edu_python/<id>:`); przyczyna: maskowanie e-maili do `[PII]` szło po bramce językowej `shard.write`, a `check.py` bada tekst zamaskowany; poprawka `premask_emails`, eksport powtórzony. Na `4ccfbb8c…` (pobrany z HF, sha zgodny): pytest PASS, `check.py` kod 1 wyłącznie z 11 „PII left after masking” i 1 „no presidio record”, wszystkie linie policzone bez filtra, innych błędów brak |
 
 ## 11. Wysyłka (repo do wglądu Arka)
 
 | | |
 |---|---|
-| Repo | `Lolita67/stack_edu_python-robocze`, bramka `manual`, README jednym zdaniem |
-| Bramka | anonimowe pobranie dostaje 401 (sprawdzone curl); 24.11 repo było przez ok. 3 min bez bramki (założył je upload, bo skrypt zakładający repo przerwał się po pierwszym), bramka ustawiona po wykryciu |
+| Repo | `Lolita67/stack_edu_python-robocze`, bramka `manual`, README jednym zdaniem; upload eksportu `4ccfbb8c…`: commit HF `a345d3e5` |
+| Bramka | anonimowe pobranie dostaje 401 (sprawdzone curl, także po commicie `a345d3e5`); 24.11 repo było przez ok. 3 min bez bramki (założył je upload, bo skrypt zakładający repo przerwał się po pierwszym), bramka ustawiona po wykryciu |
 | Dostęp | `grant_access` dla `Maggio33` (Arek): czeka na Anię (UI); token sesji OAuth dostaje 401 na `grant_access` |
 | Gotowe gdy | Arek ma link i dostęp: NIE (czeka na dostęp) |
 
@@ -201,7 +201,8 @@ nie zmierzono (repo za bramką zwraca 401 anonimowo).
 - 25.11.2026 00:04: `agreguj_koncowe` (aneks 24.11c): 321 690 / 439 112 749; próbka kontrolna 200.
 - 25.11.2026 00:39: eksport, test kontraktowy 1 passed, `check.py` kod 1 (dwa oczekiwane błędy); commit `1a28fbd`.
 - 25.11.2026 01:28–01:42: aneks 25.11b (`753d40d`), baza `en8x3b`, kontrola 22/22, `agreguj_8x3b`: 321 688 / 439 111 541.
-- 25.11.2026 02:10: eksport końcowy: 180 282 pliki, sha256 `87b00034…`; test kontraktowy 1 passed; `check.py` kod 1 (dwa oczekiwane błędy).
+- 25.11.2026 02:10: eksport: 180 282 pliki, sha256 `87b00034…`; test kontraktowy 1 passed; niezależna kontrola: 8 wierszy bramki językowej w `check.py`.
+- 25.11.2026 02:53: eksport końcowy z maskowaniem e-maili przed bramką językową: 180 275 plików, sha256 `4ccfbb8c…`; `check.py`: 11 „PII left after masking”, 1 „no presidio record”, 0 bramki językowej; upload HF `a345d3e5`; powtórna niezależna kontrola na pliku z HF: PASS (tylko oczekiwane linie).
 
 ## Pułapki tego przebiegu
 
@@ -211,3 +212,5 @@ nie zmierzono (repo za bramką zwraca 401 anonimowo).
 - Agenci recenzenci: 5 odmów klasyfikatora przy pierwszym uruchomieniu (ponowione raz, przeszły); część recenzentów czytała pozycje częściowo.
 - Presidio w eksporcie maskuje liczby w matematyce i kodzie jako telefony (403 trafienia PhoneRecognizer w 300 dok. FineMath): wyłączone świadomie, `check.py` kończy się kodem 1 na dwóch oczekiwanych błędach (krok 10).
 - Repo do wglądu zakładaj z bramką przed uploadem: 24.11 dwa repo (`cranemath_en`, `stack_edu_python`) były przez ok. 3 min bez bramki, bo skrypt zakładający repo przerwał się po pierwszym, a pozostałe założył upload.
+- Przeglądaj całe wyjście `check.py`, nie tylko linie z prefiksem `<key>:`: błędy per wiersz mają postać `<key>/<id>:` (tak przeoczono 8 wierszy bramki językowej).
+- Maskowanie zmieniające tekst (tu e-maile do `[PII]`) musi iść PRZED bramką językową `shard.write`, bo `check.py` bada tekst po maskowaniu.

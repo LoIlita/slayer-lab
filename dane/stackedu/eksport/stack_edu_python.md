@@ -74,9 +74,10 @@ Pool 639 779 docs / 988 588 081 v6 tokens. Kept after all reasons (`uzysk`): 321
 (44.418%). Selected for export (`eksport`, kept files in permutation order up to the 250M target): 186 072 docs /
 250 000 074 v6 tokens.
 
-Export (`wyniki/eksport_stats.json`): **180 282 docs, 188 814 384 tokens (cl100k)**, 763 411 872 characters;
-`dropped`: `wrong_language` 5790, `min_chars` 0, all other counters 0; 9 206 e-mails masked to `[PII]`. Parquet sha256
-`87b00034f86f9b58d2b97cf3120ab749d5ba17a1cea491e37e2d2981abc0fcd6` (`wyniki/eksport_sha256.txt`).
+Export (`wyniki/eksport_stats.json`): **180 275 docs, 188 819 386 tokens (cl100k)**, 763 432 617 characters;
+`dropped`: `wrong_language` 5797, `min_chars` 0, all other counters 0; 9 484 e-mails masked to `[PII]` before the
+language gate. Parquet sha256 `4ccfbb8c3e483192545a2264cb813c88d21bfd5e4f9abd5b525884fdeadd2d83`
+(`wyniki/eksport_sha256.txt`).
 
 Positive control: 22/22 planted cases behaved as expected (`wyniki/kontrola.json`, after annex 2026-11-25b).
 
@@ -110,18 +111,20 @@ database password in a `connect` call), FAIL of the 0 threshold → rule `haslo_
 
 - Files are dropped whole for secrets: recognisable key formats (`sekrety`) and hard-coded passwords
   (`haslo_w_kodzie`).
-- E-mail addresses are masked, not dropped (code with an author's address is good code): at export, plain addresses and
-  the `name(AT)domain(DOT)tld` form are replaced with `[PII]` using the slayer-lab detector's patterns, example domains
-  excepted (`no_masking(emails=True)` in `src/mat_wybor.py`). Phone numbers and IPs are only counted by our detector,
-  not masked.
+- E-mail addresses are masked, not dropped (code with an author's address is good code): plain addresses and the
+  `name(AT)domain(DOT)tld` form are replaced with `[PII]` using the slayer-lab detector's patterns, example domains
+  excepted, **before** `shard.write` (`premask_emails` in `src/mat_wybor.py`, called from
+  `src/clean_stack_edu_python.py`), so the language gate sees the same text that `src/check.py` checks. Phone numbers
+  and IPs are only counted by our detector, not masked.
 - The Presidio pass of `shard.write` is **off** for this source: measured on 2026-11-24, Presidio's PhoneRecognizer
   tagged 403 spans in 300 FineMath-4+ documents, almost all of them numbers, and code is equally dense in numeric
   literals, so masking would corrupt the code. The `pii` record of `stack_edu_python.stats.json` stores
-  `"pass": "regex e-mail only"` and this reason.
+  `"pass": "regex e-mail only, before the language gate"` and this reason.
 - Consequently `src/check.py` exits 1 for two expected reasons only: "stats.json pii has no presidio record", and the
-  Presidio rescan of 200 files flags 19 of them. Hit types checked 2026-11-25: IP_ADDRESS 73 (local or example
-  addresses in code), EMAIL_ADDRESS 1 (the template `{LOGIN_INFO}@github.com`), CREDIT_CARD, MEDICAL_LICENSE and
-  US_BANK_NUMBER 1 each (constants, hashes); no real personal data.
+  Presidio rescan ("PII left after masking") flags 11 files; no language-gate failures. Hit types checked 2026-11-25
+  on the previous export (19 flagged files): IP_ADDRESS 73 (local or example addresses in code), EMAIL_ADDRESS 1 (the
+  template `{LOGIN_INFO}@github.com`), CREDIT_CARD, MEDICAL_LICENSE and US_BANK_NUMBER 1 each (constants, hashes); no
+  real personal data.
 - Control sample of 200 kept files: missed secrets 0/200 for both reviewers (see `## Sample`).
 
 ## Sample

@@ -1,17 +1,17 @@
 {
-  "docs": 180282,
-  "chars": 763411872,
-  "tokens": 188814384,
+  "docs": 180275,
+  "chars": 763432617,
+  "tokens": 188819386,
   "languages": {
-    "en": 180282
+    "en": 180275
   },
   "text_origins": {
-    "human": 180282
+    "human": 180275
   },
   "licenses": {
-    "BSD-3-Clause": 11509,
-    "Apache-2.0": 29393,
-    "MIT": 126030,
+    "BSD-3-Clause": 11508,
+    "Apache-2.0": 29389,
+    "MIT": 126028,
     "BSD-2-Clause": 3916,
     "BSD-3-Clause,0BSD": 1,
     "Unlicense": 2513,
@@ -326,7 +326,7 @@
     "takedown": 0,
     "min_chars": 0,
     "ocr": 0,
-    "wrong_language": 5790,
+    "wrong_language": 5797,
     "dynaword_key_masked": 0,
     "takedown_masked": 0,
     "placeholder_only": 0,
@@ -335,11 +335,11 @@
   },
   "lang_gate": "diacritic ratio, then langid vote",
   "pii": {
-    "pass": "regex e-mail only",
+    "pass": "regex e-mail only, before the language gate",
     "reason": "Presidio not run: its phone recognizer masks numbers in mathematical text and code (403 spans in 300 FineMath-4+ documents, 2026-11-24). Documents with an e-mail, phone, IPv4 or obfuscated e-mail are dropped whole upstream (slayer-lab dane/<set>/skrypty/preregistracja.json, reasons pii, pii_zaciemniony, sekrety, haslo_w_kodzie).",
     "counts": {
       "phone": 0,
-      "pii": 9206,
+      "pii": 9484,
       "person": 0
     }
   }
