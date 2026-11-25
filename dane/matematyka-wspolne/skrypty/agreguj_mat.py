@@ -43,12 +43,11 @@ urls = [u for m in meta for u in m["urls"]]
 ids = [u for m in meta for u in m["ids"]]
 
 
-def kolumna(nazwa):
-    """Kolumna lokalnej kopii puli w kolejności dokumentów przebiegu."""
-    out = []
-    for sciezka, g in jed:
-        out.extend(pq.ParquetFile(sciezka).read_row_group(g, columns=[nazwa]).column(0).to_pylist())
-    return out
+def kolumna(nazwa, jednostki=None):
+    """Kolumna lokalnej kopii puli w kolejności dokumentów przebiegu, strumieniowo po grupach wierszy: pełna pula części 2
+    (miliony dokumentów, dziesiątki GB tekstu) nie mieści się w pamięci jako lista."""
+    for sciezka, g in (jednostki or jed):
+        yield from pq.ParquetFile(sciezka).read_row_group(g, columns=[nazwa]).column(0).to_pylist()
 
 
 def tekst(i):
@@ -129,18 +128,20 @@ if "walidacja" in OPC:
 
 
 def baza_minhash(kat, nazwa):
-    """Indeks bazy_mat.py: MinHash LSH 32x4 z J >= 0,8 do dowolnego dokumentu bazy albo identyczny znormalizowany tekst."""
+    """Indeks bazy_mat.py: MinHash LSH 32x4 z J >= 0,8 do dowolnego dokumentu bazy albo identyczny znormalizowany tekst.
+    Zakresy kluczy liczone wektorowo dla całej puli; pętla tylko po dokumentach z kandydatem (pełna pula: miliony dokumentów)."""
     b_sig = np.load(f"{kat}/idx_{nazwa}_sig.npy", mmap_mode="r")
     b_kl, b_dok = np.load(f"{kat}/idx_{nazwa}_kl.npy"), np.load(f"{kat}/idx_{nazwa}_dok.npy")
     traf = np.isin(X["hx"], np.load(f"{kat}/idx_{nazwa}_hx.npy"))
     kl_d = r2.klucze_band(S[z_sig], 32, 4)
-    for j, i in enumerate(z_sig):
+    a_, e_ = np.searchsorted(b_kl, kl_d, "left"), np.searchsorted(b_kl, kl_d, "right")
+    for j in np.flatnonzero((e_ > a_).any(axis=1)):
         kand = set()
-        for k in kl_d[j]:
-            a, e = np.searchsorted(b_kl, k, "left"), np.searchsorted(b_kl, k, "right")
+        for a, e in zip(a_[j], e_[j]):
             if e > a:
                 kand.update(b_dok[a:min(e, a + 500)].tolist())
-        if kand and float((np.asarray(b_sig[sorted(kand)]) == S[i]).mean(axis=1).max()) >= 0.8:
+        i = z_sig[j]
+        if float((np.asarray(b_sig[sorted(kand)]) == S[i]).mean(axis=1).max()) >= 0.8:
             traf[i] = True
     return traf
 
@@ -151,6 +152,9 @@ if "en8x3b" in OPC:  # aneks 25.11b: angielska część slayer-pl-8x3b (1.00-1.0
     powody["dedup_slayer_8x3b_en"] = baza_minhash(OPC["en8x3b"], "en8x3b")
 if "fwe109" in OPC:  # aneks 24.11: identyczny znormalizowany url z plikami FineWeb-Edu 1.09
     powody["dedup_fineweb_edu_109"] = np.isin(X["hu"], np.load(f"{OPC['fwe109']}/idx_fwe109_hu.npy"))
+for kat_n in filter(None, OPC.get("wlasne", "").split(",")):  # część 2: dokumenty wyeksportowane z wcześniej zbudowanego źródła
+    kat, nazwa = kat_n.split(":")
+    powody[f"dedup_{nazwa}"] = baza_minhash(kat, nazwa) | np.isin(X["hu"], np.load(f"{kat}/idx_{nazwa}_hu.npy"))
 if "min_tresc" in P["kolejnosc_powodow"]:  # aneks 24.11b: < min_slow słów po norm_slowa; cranemath także szablon_forum
     MIN = P["aneks_2026_11_24b"]["min_tresc"]["min_slow"] if isinstance(P["aneks_2026_11_24b"]["min_tresc"], dict) else 50
     slow = np.array([len(r.norm_slowa(t or "")) for t in kolumna("text")])
@@ -173,24 +177,23 @@ if "suma40" in P["kolejnosc_powodow"]:  # aneks 24.11c, warunek na oryginał z a
     a4 = P.get("aneks_2026_11_25", {}).get("suma40")
     rx_o = re.compile(a4["regex_oryginal_zadanie"] if a4 else A3["suma40"]["regex_oryginal"])
     jed_s = json.load(open(f"{OPC['oryg'].split(',')[0]}/jednostki.json"))
-    oryg_t = [x for p_, g_ in jed_s for x in pq.ParquetFile(p_).read_row_group(g_, columns=["text"]).column(0).to_pylist()]
-    powody["suma40"] = np.array([bool(rx_t.search(t or "")) and not rx_o.search(o or "") for t, o in zip(kolumna("text"), oryg_t)])
-    del oryg_t
+    powody["suma40"] = np.array([bool(rx_t.search(t or "")) and not rx_o.search(o or "")
+                                 for t, o in zip(kolumna("text"), kolumna("text", jed_s))])
+
 if "domena_testow" in P["kolejnosc_powodow"]:
     powody["domena_testow"] = X["dom"] > 0
 if P["pii"]["tryb"] == "usun":
     powody["pii"] = X["pii"] > 0
 dodatkowe = {}
 if ZB == "cranemath":
-    teksty = kolumna("text")
-    powody["think"] = np.array(["<think>" in t or "</think>" in t for t in teksty])
+    powody["think"] = np.array(["<think>" in t or "</think>" in t for t in kolumna("text")])
     do, dk = OPC["oryg"].split(",")
     jed_o = json.load(open(f"{do}/jednostki.json"))
     assert len(jed_o) == len(jed)
     powody["ewal_13gram_oryginal"], dodatkowe["ewal_oryginal_per_test"] = ewal(dk, N)
-    del teksty
+
 if ZB == "stackedu":
-    lic, lic_t = kolumna("license"), kolumna("license_type")
+    lic, lic_t = list(kolumna("license")), list(kolumna("license_type"))
     powody["licencja"] = np.array([not (a or "").strip() or b != "permissive" for a, b in zip(lic, lic_t)])
     powody["int_score"] = np.array([(s if s is not None else -1) < P["int_score"]["min"] for s in kolumna("int_score")])
     rx = [re.compile(x) for x in P["sekrety"]["wzorce"]]

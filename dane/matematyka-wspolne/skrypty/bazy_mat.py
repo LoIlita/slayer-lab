@@ -169,6 +169,30 @@ def fwe109():
     print("KONIEC", len(pliki), len(hu), flush=True)
 
 
+def wlasne(nazwa, wybor_p):
+    """Indeks z dokumentów wybranych do eksportu w już zbudowanym źródle (POB = katalog przebiegu, wybor.json z agreguj_mat.py):
+    podpisy, hasze tekstu i url policzone w przebiegu, bez ponownego czytania tekstów."""
+    wyb = np.asarray(json.load(open(wybor_p))["dokumenty_globalne"], np.int64)
+    jed = json.load(open(f"{POB}/jednostki.json"))
+    S, hx, hu = [], [], []
+    for k in range(len(jed)):
+        z = np.load(f"{POB}/u_{k:04d}.npz")
+        S.append(z["sig"]), hx.append(z["hx"]), hu.append(z["hu"])
+    S, hx, hu = np.vstack(S)[wyb], np.concatenate(hx)[wyb], np.concatenate(hu)[wyb]
+    kl = r2.klucze_band(S, 32, 4).ravel()
+    dk = np.repeat(np.arange(S.shape[0], dtype=np.int64), 32)
+    por = np.argsort(kl, kind="stable")
+    hu = np.setdiff1d(hu, np.array([w.h64(w.norm_url(""))], np.uint64))  # dokument bez url nie dopasowuje się po url
+    for k, v in (("sig", S), ("kl", kl[por]), ("dok", dk[por]), ("hx", np.unique(hx)), ("hu", hu)):
+        np.save(f"{OUT}/idx_{nazwa}_{k}.npy", v)
+    json.dump({"przebieg": POB, "wybor": wybor_p, "dokumentow": int(S.shape[0]), "url": True},
+              open(f"{OUT}/{nazwa}.json", "w", encoding="utf-8"), indent=1)
+    print("KONIEC", S.shape[0], flush=True)
+
+
 if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)
-    fwe109() if TRYB == "fwe109" else indeks_minhash(TRYB)
+    if TRYB.startswith("wlasne:"):  # wlasne:<nazwa>:<wybor.json>, POB = katalog przebiegu
+        wlasne(*TRYB.split(":")[1:3])
+    else:
+        fwe109() if TRYB == "fwe109" else indeks_minhash(TRYB)
