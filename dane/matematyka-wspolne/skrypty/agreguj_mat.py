@@ -169,6 +169,9 @@ if "pii_zaciemniony" in P["kolejnosc_powodow"]:  # aneks 24.11c: e-mail zapisany
                        json.load(open(os.path.join(os.path.dirname(PREREG_P), "..", "..", "finemath4", "skrypty", "preregistracja.json"),
                                       encoding="utf-8"))["aneks_2026_11_24c"]["pii_zaciemniony"]["regex"])
     powody["pii_zaciemniony"] = np.array([bool(rx_at.search(t or "")) for t in kolumna("text")])
+if "pii_at_bez_nawiasow" in P["kolejnosc_powodow"]:  # aneks 25.11c: e-mail zapisany jako nazwa at domena.tld (bez nawiasów)
+    rx_ab = re.compile(P["aneks_2026_11_25c"]["pii_at_bez_nawiasow"]["regex"])
+    powody["pii_at_bez_nawiasow"] = np.array([bool(rx_ab.search(t or "")) for t in kolumna("text")])
 if "haslo_w_kodzie" in P["kolejnosc_powodow"]:  # aneks 24.11c: literał hasła w przypisaniu
     rx_h = re.compile(A3["haslo_w_kodzie"]["regex"])
     powody["haslo_w_kodzie"] = np.array([bool(rx_h.search(t or "")) for t in kolumna("text")])
