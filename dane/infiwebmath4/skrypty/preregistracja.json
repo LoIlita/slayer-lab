@@ -131,7 +131,7 @@
   "stackedu": "bez tej reguły: w kodzie e-maile są maskowane przed bramką językową (mat_wybor.premask_emails), nie usuwane; próbka kontrolna części 2 Stack-Edu sprawdza pole sekret_przeoczony i PII"
  },
  "aneks_2026_11_25e": {
-  "zapisano": "2026-11-25 ok. 21:30, PO przeglądzie próbki (wyniki/przeglad_1.json, dwóch recenzentów, 1610 pozycji, pełne teksty) i PRZED eksportem",
+  "zapisano": "2026-11-25 18:49 (commit 3c13221; wcześniej błędnie wpisane 'ok. 21:30'), PO przeglądzie próbki (wyniki/przeglad_1.json, dwóch recenzentów, 1610 pozycji, pełne teksty) i PRZED eksportem",
   "wynik": "PASS: domena_testow, walidacja_fabryki (A 9%, górna 16,2%), min_tresc, mojibake, dedup_wewnatrz, dedup_finemath4 (0/100 u obu, ocena z parą: skrypt para_wlasne.py; pierwsza ocena bez pary unieważniona, bo zakładała dopasowanie po url), dedup_slayer107, dedup_slayer_8x3b_en, dedup_fineweb_edu_109, pii_zaciemniony; zachowane: PII przeoczone 0/300 i testy 0/300 u obu",
   "fail_przyjete": {
    "ewal_13gram": "fałszywe odrzucenia 42% (A) / 44% (B): formułki, kod Asymptote, idiomy Pythona; koszt 2,4% tokenów puli; reguła usuwa dobre teksty, nie przepuszcza złych; jak aneks 24.11b przyjęta, poprawka (wykluczenie formułek) odroczona (finemath4 czesc_2.reguly)",
