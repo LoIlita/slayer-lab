@@ -28,8 +28,22 @@ if [ -n "$ZB" ]; then
   case "$ZB" in finemath4|cranemath|stackedu) ;; *) echo "nieznany zbiór $ZB" >&2; exit 2 ;; esac
   D=$REPO/dane/$ZB
   R=$D/robocze
+  WD=$D/wyniki
   PRE=$D/skrypty/preregistracja.json
-  mkdir -p "$R/logi" "$R/wyniki" "$D/wyniki"
+  POBR=$R/pobrania
+  if [ "${CZESC:-1}" != 1 ]; then  # część N: katalog roboczy i wyniki osobno, pobrania wspólne; pole czesc_N nadpisuje pulę
+    R=$D/robocze/cz$CZESC
+    WD=$D/wyniki/cz$CZESC
+    mkdir -p "$R/wyniki"
+    $PY -c "
+import json, sys
+p = json.load(open(sys.argv[1], encoding='utf-8')); c = p['czesc_' + sys.argv[2]]
+p['pula'] = {**p['pula'], 'cel_puli_tok_v6': c['cel_puli_tok_v6'], 'cel_eksportu_tok_v6': c['cel_eksportu_tok_v6'], 'czesc': sys.argv[2]}
+json.dump(p, open(sys.argv[3], 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+" "$PRE" "$CZESC" "$R/preregistracja.json"
+    PRE=$R/preregistracja.json
+  fi
+  mkdir -p "$R/logi" "$R/wyniki" "$WD"
   SEED=$($PY -c "import json,sys; print(json.load(open(sys.argv[1]))['seed'])" "$PRE")
 fi
 
@@ -56,10 +70,10 @@ ewal)  # indeks 13-gramów i krótkich napisów: 60 testów RPG v2 + 2 testy mat
   ;;
 pula)  # pobranie i normalizacja plików źródła do celu puli (preregistracja -> pula)
   CEL=$($PY -c "import json,sys; print(json.load(open(sys.argv[1]))['pula']['cel_puli_tok_v6'])" "$PRE")
-  $NICE $PY -I "$W/skrypty/normalizuj.py" "$ZB" "$R/pobrania" "$D/wyniki/probka_pliki.json" "$CEL" "$TOK" "$SEED"
+  $NICE $PY -I "$W/skrypty/normalizuj.py" "$ZB" "$POBR" "$WD/probka_pliki.json" "$CEL" "$TOK" "$SEED"
   ;;
 przebieg)  # detektory DCLM-EN: tokeny v6, domena, PII, mojibake, 13-gramy, MinHash, EN 1.07, walidacja Fabryki
-  $NICE $PY -I -W ignore "$DC/skrypty/przebieg.py" "$D/wyniki/probka_pliki.json" "$RW/wyniki/ewal" "$DCR/wyniki/idx" \
+  $NICE $PY -I -W ignore "$DC/skrypty/przebieg.py" "$WD/probka_pliki.json" "$RW/wyniki/ewal" "$DCR/wyniki/idx" \
     "$TOK" "$R/wyniki/przebieg" "${PROC:-6}" walidacja="$DCR/wyniki/idx_wal"
   if [ "$ZB" = cranemath ]; then  # 13-gramy na tekście przed przepisaniem: ta sama pula z text=original_text
     $PY -I -c "
@@ -84,7 +98,7 @@ agreguj)  # kaskada powodów, uzysk, wybór do eksportu, ręczna próbka (probka
   $NICE $PY -I "$W/skrypty/agreguj_mat.py" "$ZB" "$R/wyniki/przebieg" "$R/wyniki/ew13" "$PRE" "$R/wyniki/agreguj.json" \
     "$R/probka_przegladu.jsonl" "$R/wyniki/wybor.json" walidacja="$DCR/wyniki/idx_wal" ${ORYG[@]+"${ORYG[@]}"} \
     entech="$RW/wyniki/bazy" en8x3b="$RW/wyniki/bazy" fwe109="${FWE109:-$RW/wyniki/bazy}"  # FWE109: katalog z idx_fwe109_hu.npy (wstępnie pusty, gdy indeks w budowie)
-  cp "$R/wyniki/agreguj.json" "$D/wyniki/agreguj.json"
+  cp "$R/wyniki/agreguj.json" "$WD/agreguj.json"
   ;;
 kontrola)  # kontrola dodatnia (preregistracja -> kontrole_dodatnie): te same skrypty i indeksy co pula, wynik w wyniki/kontrola.json
   K=$R/wyniki/kontrola

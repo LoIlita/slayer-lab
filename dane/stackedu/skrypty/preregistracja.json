@@ -57,5 +57,15 @@
   "haslo_w_kodzie": {"regex": "(?i)\\b(?:password|passwd|pwd)\\s*[=:]\\s*['\"][^'\"\\s]{4,}['\"]", "regula": "trafienie -> plik usuwany; częstość przed regułą (wyniki/wzorzec_haslo.json): 784 z 184 198 wybranych (0,43%); łapie też hasła przykładowe, koszt przyjęty jak w aneks_2026_11_24b"},
   "probka_kontrolna": "po eksportowej agregacji nowa próbka 200 zachowanych, default_rng(seed+2), dwóch recenzentów, pola sekret_przeoczony i test_przeoczony; próg 0/200"
  },
- "aneks_2026_11_25b": "jak dane/finemath4/skrypty/preregistracja.json -> aneks_2026_11_25b"
+ "aneks_2026_11_25b": "jak dane/finemath4/skrypty/preregistracja.json -> aneks_2026_11_25b",
+ "czesc_2": {
+  "zapisano": "2026-11-25, przed pobraniem pozostałych plików",
+  "powod": "jak dane/finemath4/skrypty/preregistracja.json -> czesc_2 (zbiór ok. 20 mld tokenów v6)",
+  "pula": "wszystkie 12 plików Pythona (0073-0084) w tej samej permutacji default_rng(seed); plik części 1 wchodzi do puli",
+  "cel_puli_tok_v6": 1000000000000,
+  "cel_eksportu_tok_v6": 1000000000000,
+  "eksport": "wszystkie pliki zachowane po regułach z kolejnosc_powodow",
+  "reguly": "bez zmian względem części 1",
+  "probka": "próbka kontrolna 200 zachowanych default_rng(seed+3), dwóch recenzentów, pola jakosc, sekret_przeoczony, test_przeoczony; progi jak w aneksie 24.11c"
+ }
 }

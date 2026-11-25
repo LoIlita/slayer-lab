@@ -63,5 +63,15 @@
   "powod": "przegląd luk dedupu dla właścicielki projektu: angielska część Slayera 1.00-1.06 (SlayerLab/slayer-pl-8x3b@d50df04a shared/en.parquet, FineWeb-Edu, 2 384 000 dok.) nie była w indeksie EN 1.07",
   "dedup_slayer_8x3b_en": "MinHash 5-gramów 128 funkcji, LSH 32x4, J >= 0,8 ALBO identyczny znormalizowany tekst wobec indeksu bazy_mat.py en8x3b (plik bez kolumny url, więc bez dopasowania po url) -> dokument usuwany; wszystkie trzy zbiory",
   "probka": "powód tylko usuwa; próbka kontrolna 200 z aneksu 24.11c pozostaje ważna jako podzbiór, przegląd odrzuconych dla tego powodu jak dla dedup_english_technical (do 100 pozycji, jeden recenzent wystarczy przy < 100 trafieniach)"
+ },
+ "czesc_2": {
+  "zapisano": "2026-11-25, przed pobraniem pozostałych plików",
+  "powod": "decyzja właścicielki projektu (25.11): zbiór matematyki i kodu ok. 20 mld tokenów v6; FineMath-4+ wybrany zamiast CraneMath dla wspólnych stron (więcej tokenów; śmieci szkodzą mniej niż błędne rozwiązania w ok. 20% przepisań CraneMath, przegląd 24.11); CraneMath do podmiany po wyniku microannealu",
+  "pula": "wszystkie 64 pliki finemath-4plus w tej samej permutacji default_rng(seed); pliki części 1 (4) wchodzą do puli, więc eksport części 1 jest jej podzbiorem i dedup wewnątrz obejmuje całość",
+  "cel_puli_tok_v6": 1000000000000,
+  "cel_eksportu_tok_v6": 1000000000000,
+  "eksport": "wszystkie dokumenty zachowane po regułach z kolejnosc_powodow (bez losowania do celu)",
+  "reguly": "bez zmian względem części 1 (kolejnosc_powodow i aneksy do 25.11b); dodatkowo przy zbiorze łącznym dedup wobec innych źródeł 20 mld idzie po stronie źródła dodanego później (InfiWebMath-4+, FineMath-3+), nie tutaj",
+  "probka": "próbka kontrolna 200 zachowanych default_rng(seed+3), dwóch recenzentów, pola jakosc, pii_przeoczone, test_przeoczony; progi jak w aneksie 24.11c (śmieci jako cecha źródła raportowana, PII 0/200)"
  }
 }
