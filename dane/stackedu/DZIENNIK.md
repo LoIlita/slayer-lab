@@ -192,6 +192,74 @@ PR [#353](https://github.com/slayerlabs/benchmarks-fabryka-ai/pull/353): status 
 rezerwacji [#347](https://github.com/slayerlabs/benchmarks-fabryka-ai/pull/347) scalony. Sprawdzenie, czy każdy link w wierszu odpowiada 200:
 nie zmierzono (repo za bramką zwraca 401 anonimowo).
 
+## Część 2 (pełna pula)
+
+Zbiór łączny #346 (cel ok. 20 mld tokenów v6). Wyniki w [`wyniki/cz2/`](wyniki/cz2/), logi w `robocze/cz2/logi/`. **Część 1 jest
+podzbiorem puli części 2** (plik 0080 jest w puli, `dedup_wewnatrz` obejmuje całość): w treningu NIE dodawać części 1 do części 2.
+
+| krok | wynik |
+|---|---|
+| Preregistracja | [`skrypty/preregistracja.json`](skrypty/preregistracja.json) → `czesc_2`, zapisane 25.11.2026 przed pobraniem pozostałych plików (commit `380e7f0`, 07:54): wszystkie 12 plików Pythona w tej samej permutacji, reguły bez zmian względem części 1 (z aneksami do 25.11b), eksport wszystkich zachowanych, próbka kontrolna 200 `default_rng(seed+3)` |
+| Pobranie | `pula.log` 25.11 09:54: `KONIEC 7218355 11140913173`; 12 plików 0073–0084, 7 218 355 plików Pythona, 11 140 913 173 tokenów v6 ([`wyniki/cz2/probka_pliki.json`](wyniki/cz2/probka_pliki.json), sha256 każdego pliku) |
+| Kontrola dodatnia | osobny wynik dla puli części 2: nie zmierzono (reguły i indeksy jak w części 1, 22/22) |
+| Przebieg | 1452/1452 jednostek, `KONIEC 11818s` (`przebieg.log` 13:11); `ew13`: `dokumentow 7218355 z_trafieniem 50423 ngramow 43239`, `KONIEC` |
+| Agregacja | `agreguj.log` 14:40, `KONIEC`; [`wyniki/cz2/agreguj.json`](wyniki/cz2/agreguj.json); kaskada niżej |
+| Podział | [`wyniki/cz2/czesci.json`](wyniki/cz2/czesci.json) (`../matematyka-wspolne/skrypty/czesci.py`): 5 części po ok. 0,99 mld v6, klucze `stack_edu_python_p01..p05` |
+| Eksport | `../matematyka-wspolne/skrypty/eksport_czesci.sh`, `eksport.log` 25.11 17:20, `KONIEC 5`; każda część: `shard.write`, test kontraktowy 1 passed, `check.py` tylko oczekiwane linie |
+| Próbka kontrolna | [`wyniki/cz2/przeglad_kontrolny.json`](wyniki/cz2/przeglad_kontrolny.json); wyniki niżej |
+| Wysyłka | repo `Lolita67/stack_edu_python-robocze`, katalogi `data/stack_edu_python_pNN/`: **w toku** |
+| Dane treningowe | wiersz dla części 2: nie zmierzono (czeka na wysyłkę) |
+
+Kaskada ([`wyniki/cz2/agreguj.json`](wyniki/cz2/agreguj.json)):
+
+| powód | odrzucone dok. | odrzucone tok. v6 | zostaje dok. | zostaje tok. v6 | % tok. | niezależnie dok. / % tok. |
+|---|---|---|---|---|---|---|
+| `licencja` | 37 976 | 59 580 580 | 7 180 379 | 11 081 332 593 | 99,465 | 37 976 / 0,535 |
+| `walidacja_fabryki` | 19 198 | 9 983 175 | 7 161 181 | 11 071 349 418 | 99,376 | 19 211 / 0,09 |
+| `ewal_13gram` | 5 930 | 14 665 069 | 7 155 251 | 11 056 684 349 | 99,244 | 5 961 / 0,132 |
+| `sekrety` | 3 254 | 15 450 727 | 7 151 997 | 11 041 233 622 | 99,105 | 3 278 / 0,14 |
+| `haslo_w_kodzie` | 43 141 | 85 495 814 | 7 108 856 | 10 955 737 808 | 98,338 | 43 564 / 0,778 |
+| `wygenerowany` | 44 529 | 150 438 674 | 7 064 327 | 10 805 299 134 | 96,988 | 44 995 / 1,367 |
+| `min_tresc` | 450 825 | 41 463 792 | 6 613 502 | 10 763 835 342 | 96,615 | 454 286 / 0,375 |
+| `int_score` | 2 974 444 | 5 796 572 174 | 3 639 058 | 4 967 263 168 | 44,586 | 3 282 607 / 54,299 |
+| `mojibake` | 404 | 1 855 568 | 3 638 654 | 4 965 407 600 | 44,569 | 710 / 0,066 |
+| `dedup_wewnatrz` | 4 204 | 6 515 276 | 3 634 450 | 4 958 892 324 | 44,511 | 9 121 / 0,131 |
+| `dedup_slayer107` | 4 502 | 2 070 622 | 3 629 948 | 4 956 821 702 | 44,492 | 25 079 / 0,116 |
+| `dedup_slayer_8x3b_en` | 12 | 10 560 | 3 629 936 | 4 956 811 142 | 44,492 | 12 / 0,0 |
+| `dedup_english_technical` | 140 | 249 311 | 3 629 796 | 4 956 561 831 | 44,49 | 289 / 0,006 |
+| `dedup_fineweb_edu_109` | 0 | 0 | 3 629 796 | 4 956 561 831 | 44,49 | 0 / 0,0 |
+
+- **Uzysk: 3 629 796 plików, 4 956 561 831 tokenów v6 (44,49%)**; `int_score` < 3 zabiera 54,3% tokenów puli niezależnie.
+- `ewal_13gram` per test: MBPP 3305, HumanEval 1832, MATH 258, SynLogic 151, MMLU 118, MathQA 85, reszta ≤ 74.
+- `sekrety` wg klas: google_api_key 2013, klucz_prywatny 566, aws_access_key 443, slack_token 225, github_token 39.
+- PII wg detektora DCLM (tylko liczone, tryb `maskuj`): e-mail 313 414, telefon 3211, IP 43 034. `dedup_wewnatrz`: 2009 identycznych, 7112 przez MinHash. 581 plików z `id` = 0.
+- Przegląd odrzuconych na puli części 2: nie zmierzono (reguły bez zmian, obowiązuje przegląd części 1).
+
+Części i eksport:
+
+| klucz | dok. (wybór) | tokeny v6 | linie `check.py` (oczekiwane) | sha256 parquet |
+|---|---|---|---|---|
+| `stack_edu_python_p01` | 722 555 | 991 310 853 | 15 | `8e0a40ab3d829ab526ac4b499cad4a13cd101af02ef3fd4e249cf9c8e46c7c9d` |
+| `stack_edu_python_p02` | 729 634 | 991 312 955 | 13 | `0a2a596e3e30c0bf69ab4d85fae665194c912dd7e375c9733b14c98ee4bfa66c` |
+| `stack_edu_python_p03` | 728 181 | 991 312 869 | 16 | `582896c2bb8ff00c5e288fd96163e2e65b7ccee9fae47a661396437ce4705c09` |
+| `stack_edu_python_p04` | 726 339 | 991 308 269 | 9 | `2455ab6a61c849f41d42c09a300b285409b47610eda611c8ac58c1614ec5afca` |
+| `stack_edu_python_p05` | 723 087 | 991 316 885 | 17 | `ccfb85dbd6dd2d13e7e133f6b193229f43932c722a32cf36766be5f108d8cf8f` |
+
+- Linie `check.py` to wyłącznie „PII left after masking” i „stats.json pii has no presidio record”; typy trafień Presidio dla części 2: nie sprawdzone.
+- Eksport łącznie: **3 516 755 plików, 3 744 422 806 tokenów** wg licznika repo zgłoszeń (`token_count`, inny tokenizer niż v6); bramka językowa `shard.write` odrzuciła 113 041 (3 629 796 − 113 041 = 3 516 755); e-maile zamaskowane przed bramką: 185 412. Liczby eksportu per część: nie zapisane w tym katalogu.
+- Licencje top: MIT 2 460 101, Apache-2.0 573 192, BSD-3-Clause 224 976, BSD-2-Clause 75 616, Unlicense 48 516, CC0-1.0 24 234, ISC 10 175.
+
+Próbka kontrolna 200 zachowanych (`default_rng(seed+3)`, dwóch recenzentów, obaj zadeklarowali lekturę pełnych 3000 znaków):
+
+| miara | A | B | próg | werdykt |
+|---|---|---|---|---|
+| przeoczony sekret | 0/200 | 0/200 | 0/200 | PASS |
+| przeoczone PII | 0/200 | 0/200 | — | PASS |
+| przeoczony test | 0/200 | 0/200 | 0/200 | PASS |
+| jakość tak / wątpliwy | 196 / 4 | 195 / 5 | — | — |
+
+Uwaga z pliku: w pozycji 6015718 numery kart to publiczne numery testowe bramek płatniczych (komentarz „test card numbers”), sprawdzone 25.11.
+
 ## Historia odtworzeń
 
 - 24.11.2026 19:38: karta i preregistracja (`6988094`); 19:47 `pula` (kod 2 po `KONIEC`).
@@ -203,6 +271,9 @@ nie zmierzono (repo za bramką zwraca 401 anonimowo).
 - 25.11.2026 01:28–01:42: aneks 25.11b (`753d40d`), baza `en8x3b`, kontrola 22/22, `agreguj_8x3b`: 321 688 / 439 111 541.
 - 25.11.2026 02:10: eksport: 180 282 pliki, sha256 `87b00034…`; test kontraktowy 1 passed; niezależna kontrola: 8 wierszy bramki językowej w `check.py`.
 - 25.11.2026 02:53: eksport końcowy z maskowaniem e-maili przed bramką językową: 180 275 plików, sha256 `4ccfbb8c…`; `check.py`: 11 „PII left after masking”, 1 „no presidio record”, 0 bramki językowej; upload HF `a345d3e5`; powtórna niezależna kontrola na pliku z HF: PASS (tylko oczekiwane linie).
+- 25.11.2026 07:54: część 2, preregistracja `czesc_2` przed pobraniem (commit `380e7f0`); 09:54 `pula`: 7 218 355 plików, 11 140 913 173 tokenów v6.
+- 25.11.2026 13:11–14:40: część 2, `przebieg` 1452/1452 (`KONIEC 11818s`), `ew13`, `agreguj`: 3 629 796 / 4 956 561 831; podział na 5 części i próbka kontrolna 200 (commit `b54d108`, 14:43).
+- 25.11.2026 17:20: część 2, eksport 5 części (`KONIEC 5`): 3 516 755 plików, test kontraktowy 1 passed w każdej, `check.py` tylko oczekiwane linie (15/13/16/9/17); wysyłka w toku.
 
 ## Pułapki tego przebiegu
 
