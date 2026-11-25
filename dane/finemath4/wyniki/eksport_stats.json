@@ -1,0 +1,36 @@
+{
+  "docs": 266297,
+  "chars": 1249534050,
+  "tokens": 360881667,
+  "languages": {
+    "en": 266297
+  },
+  "text_origins": {
+    "human": 266297
+  },
+  "licenses": {
+    "ODC-By-1.0 (FineMath compilation); page text: rights of the page owner, used under the TDM exception": 266297
+  },
+  "dropped": {
+    "dynaword_key": 0,
+    "takedown": 0,
+    "min_chars": 28,
+    "ocr": 0,
+    "wrong_language": 1128,
+    "dynaword_key_masked": 0,
+    "takedown_masked": 0,
+    "placeholder_only": 0,
+    "dup_earlier": 0,
+    "dup_within": 0
+  },
+  "lang_gate": "diacritic ratio, then langid vote",
+  "pii": {
+    "pass": "none",
+    "reason": "Presidio not run: its phone recognizer masks numbers in mathematical text and code (403 spans in 300 FineMath-4+ documents, 2026-11-24). Documents with an e-mail, phone, IPv4 or obfuscated e-mail are dropped whole upstream (slayer-lab dane/<set>/skrypty/preregistracja.json, reasons pii, pii_zaciemniony, sekrety, haslo_w_kodzie).",
+    "counts": {
+      "phone": 0,
+      "pii": 0,
+      "person": 0
+    }
+  }
+}

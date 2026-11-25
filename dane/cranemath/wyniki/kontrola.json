@@ -1,5 +1,5 @@
 {
- "wynik": "22/22",
+ "wynik": "23/23",
  "przypadki": {
   "K_czysty": {
    "powody": [],
@@ -118,6 +118,13 @@
     "dedup_english_technical"
    ],
    "oczekiwany": "dedup_english_technical",
+   "ok": true
+  },
+  "K_en8x3b": {
+   "powody": [
+    "dedup_slayer_8x3b_en"
+   ],
+   "oczekiwany": "dedup_slayer_8x3b_en",
    "ok": true
   },
   "K_fwe109": {

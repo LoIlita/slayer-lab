@@ -12,7 +12,7 @@
   "eksport": "jak finemath4"
  },
  "tokeny": {"tokenizer": "v6, sha256 0640d3bd3674d7a6e59c540d945a2ad275a12e1bcaeb6007c37a90751f9815dd", "regula": "tokeny tekstu bez znaków specjalnych + 1 (EOT)"},
- "kolejnosc_powodow": ["walidacja_fabryki", "domena_testow", "ewal_13gram", "ewal_13gram_oryginal", "think", "min_tresc", "szablon_forum", "suma40", "pii", "pii_zaciemniony", "mojibake", "dedup_wewnatrz", "dedup_slayer107", "dedup_english_technical", "dedup_fineweb_edu_109"],
+ "kolejnosc_powodow": ["walidacja_fabryki", "domena_testow", "ewal_13gram", "ewal_13gram_oryginal", "think", "min_tresc", "szablon_forum", "suma40", "pii", "pii_zaciemniony", "mojibake", "dedup_wewnatrz", "dedup_slayer107", "dedup_slayer_8x3b_en", "dedup_english_technical", "dedup_fineweb_edu_109"],
  "walidacja_fabryki": "jak finemath4",
  "domena_testow": "jak finemath4 (po url strony źródłowej)",
  "ewal_13gram": {
@@ -63,5 +63,6 @@
   "wynik_probki": "PII 0/200 u obu, testy 0/200 potwierdzonych (zgłoszenie 187012 'ellipse x^2+2y^2=6' nie ma odpowiednika w teście MATH, grep 25.11); suma40 nadal w 1-2 pozycjach (301032, 359177): oryginał zawiera gdzieś liczbę 40, więc warunek aneksu 24.11c go przepuścił",
   "suma40": {"regex_oryginal_zadanie": "(?i)(1\\s*(to|through|-|–|\\.\\.\\.?|…)\\s*40\\b|1\\s*\\+\\s*2\\s*\\+.{0,20}\\+\\s*40\\b|first\\s+40\\s+(natural|positive|counting)?\\s*(numbers|integers))",
    "regula": "zastępuje warunek na oryginał z aneksu 24.11c: tekst pasuje do regex_tekst ORAZ oryginał NIE zawiera zadania o sumie do 40 (regex_oryginal_zadanie) -> usuwany; pomiar przed zmianą (wyniki/suma40_reszta.json): 6 136 wybranych pasuje do regex_tekst, z tego 58 ma zadanie w oryginale, 6 078 do usunięcia"}
- }
+ },
+ "aneks_2026_11_25b": "jak dane/finemath4/skrypty/preregistracja.json -> aneks_2026_11_25b"
 }

@@ -26,7 +26,8 @@ DUP_KOD = ("def is_prime(n):\n    if n < 2:\n        return False\n    k = 2\n  
 def oczekiwane():
     o = {"K_dup_b": "dedup_wewnatrz", "K_kopia_107": "dedup_slayer107", "K_walidacja": "walidacja_fabryki", "K_czysty": None,
          "K_gsm8k": "ewal_13gram", "K_math": "ewal_13gram", "K_gsm_plus": "ewal_13gram", "K_gsm1k": "ewal_13gram", "K_mmlu": "ewal_13gram",
-         "K_entech": "dedup_english_technical", "K_fwe109": "dedup_fineweb_edu_109", "K_pusty": "min_tresc"}
+         "K_entech": "dedup_english_technical", "K_fwe109": "dedup_fineweb_edu_109", "K_pusty": "min_tresc",
+         "K_en8x3b": "dedup_slayer_8x3b_en"}
     if ZB == "stackedu":
         o.update({"K_humaneval": "ewal_13gram", "K_mbpp": "ewal_13gram", "K_aws": "sekrety", "K_generated": "wygenerowany",
                   "K_licencja": "licencja", "K_int_score": "int_score", "K_email": None, "K_haslo": "haslo_w_kodzie"})
@@ -38,7 +39,7 @@ def oczekiwane():
 
 
 if TRYB == "buduj":
-    EW, S107, TOK, WAL, OUT, ENTECH, FWE_URL = sys.argv[3:10]  # aneks 24.11: tekst z english-technical-1b i url z FineWeb-Edu 1.09
+    EW, S107, TOK, WAL, OUT, ENTECH, EN8X3B, FWE_URL = sys.argv[3:11]  # aneksy 24.11 i 25.11b: teksty baz 1.08 i 1.00-1.06, url FWE 1.09
     from tokenizers import Tokenizer
     os.makedirs(OUT, exist_ok=True)
 
@@ -87,6 +88,7 @@ if TRYB == "buduj":
         w += [("K_think", "https://example.org/think", "<think>\nOkay, let me rewrite this. First I need to " + baza),
               ("K_gsm8k_oryg", "https://example.org/gsm8korig", baza + " Rewritten without the test text.")]
     w += [("K_entech", "https://example.org/entech", pq.read_table(ENTECH, columns=["text"]).slice(5, 1).column(0)[0].as_py()),
+          ("K_en8x3b", "https://example.org/en8x3b", pq.ParquetFile(EN8X3B).read_row_group(0, columns=["text"]).column(0)[5].as_py()),
           ("K_fwe109", FWE_URL, baza + " Page seen in FineWeb-Edu 1.09."),
           ("K_pusty", "https://example.org/pusty", "$$\n\n$$\n\n" * 200)]
     if ZB == "stackedu":

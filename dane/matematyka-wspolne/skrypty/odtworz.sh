@@ -83,7 +83,7 @@ agreguj)  # kaskada powodów, uzysk, wybór do eksportu, ręczna próbka (probka
   [ "$ZB" = cranemath ] && ORYG=(oryg="$R/wyniki/przebieg_oryg,$R/wyniki/ew13_oryg")
   $NICE $PY -I "$W/skrypty/agreguj_mat.py" "$ZB" "$R/wyniki/przebieg" "$R/wyniki/ew13" "$PRE" "$R/wyniki/agreguj.json" \
     "$R/probka_przegladu.jsonl" "$R/wyniki/wybor.json" walidacja="$DCR/wyniki/idx_wal" ${ORYG[@]+"${ORYG[@]}"} \
-    entech="$RW/wyniki/bazy" fwe109="${FWE109:-$RW/wyniki/bazy}"  # FWE109: katalog z idx_fwe109_hu.npy (wstępnie pusty, gdy indeks w budowie)
+    entech="$RW/wyniki/bazy" en8x3b="$RW/wyniki/bazy" fwe109="${FWE109:-$RW/wyniki/bazy}"  # FWE109: katalog z idx_fwe109_hu.npy (wstępnie pusty, gdy indeks w budowie)
   cp "$R/wyniki/agreguj.json" "$D/wyniki/agreguj.json"
   ;;
 kontrola)  # kontrola dodatnia (preregistracja -> kontrole_dodatnie): te same skrypty i indeksy co pula, wynik w wyniki/kontrola.json
@@ -91,7 +91,7 @@ kontrola)  # kontrola dodatnia (preregistracja -> kontrole_dodatnie): te same sk
   rm -rf "$K"
   $PY -I "$W/skrypty/kontrola_mat.py" buduj "$ZB" "$RW/pobrania/ewal" "$DCR/pobrania/slayer107" "$TOK" \
     "$DCR/pobrania/mincorp/minimal-en-corpus-5b/validation/shard-00000.parquet" "$K" \
-    "$RW/pobrania/entech/data/test.parquet" "$($PY -c "
+    "$RW/pobrania/entech/data/test.parquet" "$RW/pobrania/en8x3b/shared/en.parquet" "$($PY -c "
 from huggingface_hub import HfFileSystem; import pyarrow.parquet as pq
 with HfFileSystem().open('datasets/HuggingFaceFW/fineweb-edu@87f09149ef4734204d70ed1d046ddc9ca3f2b8f9/sample/100BT/001_00000.parquet', 'rb') as h:
     print(pq.ParquetFile(h).read_row_group(0, columns=['url']).column(0)[3].as_py())")"
@@ -105,7 +105,7 @@ with HfFileSystem().open('datasets/HuggingFaceFW/fineweb-edu@87f09149ef4734204d7
     ORYG=(oryg="$K/przebieg_oryg,$K/ew13_oryg")
   fi
   $PY -I "$W/skrypty/agreguj_mat.py" "$ZB" "$K/przebieg" "$K/ew13" "$PRE" "$K/agreguj.json" "$K/probka.jsonl" "$K/wybor.json" \
-    walidacja="$DCR/wyniki/idx_wal" ${ORYG[@]+"${ORYG[@]}"} entech="$RW/wyniki/bazy" fwe109="$RW/wyniki/bazy" > /dev/null
+    walidacja="$DCR/wyniki/idx_wal" ${ORYG[@]+"${ORYG[@]}"} entech="$RW/wyniki/bazy" en8x3b="$RW/wyniki/bazy" fwe109="$RW/wyniki/bazy" > /dev/null
   $PY -I "$W/skrypty/kontrola_mat.py" sprawdz "$ZB" "$K"
   cp "$K/kontrola_wynik.json" "$D/wyniki/kontrola.json"
   ;;

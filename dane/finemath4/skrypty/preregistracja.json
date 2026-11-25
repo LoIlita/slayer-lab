@@ -11,7 +11,7 @@
   "eksport": "dokumenty zachowane po wszystkich powodach, w kolejności permutacji default_rng(seed), aż suma tokenów v6 >= cel_eksportu; pula to cała budowa (nie próbka do szacunku), bo cel jest mały"
  },
  "tokeny": {"tokenizer": "v6 z SlayerLab/slayer-1.07-pretrain tokenizer.json, sha256 0640d3bd3674d7a6e59c540d945a2ad275a12e1bcaeb6007c37a90751f9815dd", "regula": "tokeny tekstu bez znaków specjalnych + 1 (EOT)"},
- "kolejnosc_powodow": ["walidacja_fabryki", "domena_testow", "ewal_13gram", "pii", "pii_zaciemniony", "min_tresc", "mojibake", "dedup_wewnatrz", "dedup_slayer107", "dedup_english_technical", "dedup_fineweb_edu_109"],
+ "kolejnosc_powodow": ["walidacja_fabryki", "domena_testow", "ewal_13gram", "pii", "pii_zaciemniony", "min_tresc", "mojibake", "dedup_wewnatrz", "dedup_slayer107", "dedup_slayer_8x3b_en", "dedup_english_technical", "dedup_fineweb_edu_109"],
  "walidacja_fabryki": "jak DCLM-EN: indeks idx_wal z dane/dclm-en (walidacje minimal-en-corpus-5b@bb3aec23 i 2b-v2@ef0ab069, osie Slayer150); szkic 13-gramów >= 0,5 albo MinHash >= 0,8 albo identyczny tekst albo identyczny url",
  "domena_testow": "jak DCLM-EN (wikihow, instructables, projekty Wikimedia)",
  "ewal_13gram": {
@@ -57,5 +57,11 @@
   "pii_zaciemniony": {"regex": "[A-Za-z0-9._%+-]+\\s?[\\(\\[]\\s?(?:AT|at)\\s?[\\)\\]]\\s?[A-Za-z0-9.-]+\\s?(?:[\\(\\[]\\s?(?:DOT|dot)\\s?[\\)\\]]|\\.)\\s?[A-Za-z]{2,}", "regula": "trafienie -> dokument usuwany; częstość zmierzona przed regułą (wyniki/wzorzec_email_at.json): 230 z 271 467 wybranych (0,085%)"},
   "smieci_fail": "przyjęty z zapisem: odsetek śmieci (spam SEO, strony bez matematyki, wzory zgubione przy ekstrakcji) to cecha opublikowanego FineMath-4+, który ramię B microannealu ma porównać z przepisaniem (ramię C); dodatkowy filtr jakości zmieniłby ramię. Eksport opisany jako ramię porównawcze z odsetkiem śmieci w datasheet; filtr jakości przed częścią 2, jeśli B wygra",
   "probka_kontrolna": "po eksportowej agregacji (z dedup_fineweb_edu_109) nowa próbka 200 zachowanych, default_rng(seed+2), dwóch recenzentów, tylko pola pii_przeoczone i test_przeoczony; próg 0/200 dla PII"
+ },
+ "aneks_2026_11_25b": {
+  "zapisano": "2026-11-25, po eksporcie roboczym i PRZED policzeniem nowego powodu na puli",
+  "powod": "przegląd luk dedupu dla właścicielki projektu: angielska część Slayera 1.00-1.06 (SlayerLab/slayer-pl-8x3b@d50df04a shared/en.parquet, FineWeb-Edu, 2 384 000 dok.) nie była w indeksie EN 1.07",
+  "dedup_slayer_8x3b_en": "MinHash 5-gramów 128 funkcji, LSH 32x4, J >= 0,8 ALBO identyczny znormalizowany tekst wobec indeksu bazy_mat.py en8x3b (plik bez kolumny url, więc bez dopasowania po url) -> dokument usuwany; wszystkie trzy zbiory",
+  "probka": "powód tylko usuwa; próbka kontrolna 200 z aneksu 24.11c pozostaje ważna jako podzbiór, przegląd odrzuconych dla tego powodu jak dla dedup_english_technical (do 100 pozycji, jeden recenzent wystarczy przy < 100 trafieniach)"
  }
 }

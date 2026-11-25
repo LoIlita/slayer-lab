@@ -11,7 +11,7 @@
   "eksport": "jak finemath4"
  },
  "tokeny": {"tokenizer": "v6, sha256 0640d3bd3674d7a6e59c540d945a2ad275a12e1bcaeb6007c37a90751f9815dd", "regula": "tokeny tekstu bez znaków specjalnych + 1 (EOT)"},
- "kolejnosc_powodow": ["licencja", "walidacja_fabryki", "ewal_13gram", "sekrety", "haslo_w_kodzie", "wygenerowany", "min_tresc", "int_score", "mojibake", "dedup_wewnatrz", "dedup_slayer107", "dedup_english_technical", "dedup_fineweb_edu_109"],
+ "kolejnosc_powodow": ["licencja", "walidacja_fabryki", "ewal_13gram", "sekrety", "haslo_w_kodzie", "wygenerowany", "min_tresc", "int_score", "mojibake", "dedup_wewnatrz", "dedup_slayer107", "dedup_slayer_8x3b_en", "dedup_english_technical", "dedup_fineweb_edu_109"],
  "licencja": "metadata.license puste albo metadata.license_type != 'permissive' -> wiersz usuwany (karta: 0,5% Pythona ma puste license; licencja z gha_license_id nie wystarcza do zgłoszenia)",
  "walidacja_fabryki": "jak finemath4",
  "ewal_13gram": {
@@ -56,5 +56,6 @@
   "wynik_przegladu": "śmieci 0,3% i 0,7%: PASS; przeoczone testy 0/300: PASS; przeoczony sekret 1/300 u obu recenzentów (to samo hasło do lokalnej bazy MySQL w wywołaniu connect, nr 468782): FAIL progu 0",
   "haslo_w_kodzie": {"regex": "(?i)\\b(?:password|passwd|pwd)\\s*[=:]\\s*['\"][^'\"\\s]{4,}['\"]", "regula": "trafienie -> plik usuwany; częstość przed regułą (wyniki/wzorzec_haslo.json): 784 z 184 198 wybranych (0,43%); łapie też hasła przykładowe, koszt przyjęty jak w aneks_2026_11_24b"},
   "probka_kontrolna": "po eksportowej agregacji nowa próbka 200 zachowanych, default_rng(seed+2), dwóch recenzentów, pola sekret_przeoczony i test_przeoczony; próg 0/200"
- }
+ },
+ "aneks_2026_11_25b": "jak dane/finemath4/skrypty/preregistracja.json -> aneks_2026_11_25b"
 }

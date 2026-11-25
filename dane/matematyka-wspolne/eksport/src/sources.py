@@ -34,6 +34,7 @@ SOURCES: dict[str, dict] = {
         "provenance": "HuggingFaceTB/finemath@e92b25a6, subset finemath-4plus; random files, filtered by slayer-lab dane/finemath4 (13-gram decontamination, PII, dedup vs Slayer 1.07 EN)",
         "traceable": True,
         "is_ocr": False,
+        "min_chars": 200,  # short rows are mostly bare formulas that langid cannot place; check.py's short-row gate fails at 82%
         "language": ["en"],
         "text_origin": "human",
         "legal_note": "Training basis: TDM exception (Art. 4 Directive 2019/790); no per-document licence, so the submission gate is unresolved. Takedown by url / WARC record.",
@@ -49,6 +50,7 @@ SOURCES: dict[str, dict] = {
         "provenance": "allenai/dolma3_dolmino_mix-100B-1125@f23aa129, data/ingredient1-cranemath; random files, filtered by slayer-lab dane/cranemath (13-gram decontamination on text and original_text, truncated <think>, PII, dedup)",
         "traceable": True,
         "is_ocr": False,
+        "min_chars": 200,  # as finemath_4plus_en
         "language": ["en"],
         "text_origin": "synthetic",
         "legal_note": "Rewrites of web pages; the input pages carry no per-document licence, so the submission gate is unresolved. Training basis: TDM exception. Ai2 does not publish the Qwen3-32B revision.",

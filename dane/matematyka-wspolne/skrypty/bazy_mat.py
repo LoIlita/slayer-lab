@@ -1,12 +1,13 @@
-"""Bazy porównania dodane aneksem z 24.11.2026 (preregistracje zbiorów #346, pole 'aneks_2026_11_24'): dane już w treningu
-Slayera, których nie obejmuje indeks EN 1.07.
-  entech  SlayerLab/english-technical-1b@3b833d36 (dane 1.08: kod i dokumentacja projektów open source), pliki
-          data/{train,validation,test}.parquet -> indeks w formacie DCLM-EN indeksy.py: MinHash 128 + klucze LSH 32x4 + hasz
-          znormalizowanego tekstu (idx_entech_{sig,kl,dok,hx}.npy)
-  fwe109  kolumna url wszystkich plików FineWeb-Edu z composants.csv manifestu SlayerLab/Slayer1B-Dataset@2d248a17
+"""Bazy porównania dodane aneksami preregistracji zbiorów #346: dane już w treningu Slayera, których nie obejmuje indeks EN 1.07.
+  entech  (aneks 24.11) SlayerLab/english-technical-1b@3b833d36 (dane 1.08: kod i dokumentacja projektów open source), pliki
+          data/{train,validation,test}.parquet
+  en8x3b  (aneks 25.11b) SlayerLab/slayer-pl-8x3b@d50df04a, plik shared/en.parquet (angielska część 1.00-1.06: FineWeb-Edu)
+          -> dla obu indeks w formacie DCLM-EN indeksy.py: MinHash 128 + klucze LSH 32x4 + hasz znormalizowanego tekstu
+          (idx_<nazwa>_{sig,kl,dok,hx}.npy), plus hasz url, gdy plik ma kolumnę url (idx_<nazwa>_hu.npy)
+  fwe109  kolumna url wszystkich plików FineWeb-Edu z components.csv manifestu SlayerLab/Slayer1B-Dataset@2d248a17
           (źródło fineweb-edu 1.09, c01-c17) -> idx_fwe109_hu.npy (hasz znormalizowanego url, jak przebieg.py); wznawialny,
           jeden plik .npy na plik FineWeb-Edu
-Argumenty: entech|fwe109 katalog_pobran wyjscie procesy"""
+Argumenty: entech|en8x3b|fwe109 katalog_pobran wyjscie procesy"""
 import csv
 import hashlib
 import json
@@ -23,7 +24,11 @@ import wspolne as w  # noqa: E402
 from wspolne import r, r2  # noqa: E402
 
 TRYB, POB, OUT, PROC = sys.argv[1], sys.argv[2], sys.argv[3], int(sys.argv[4])
-ENTECH, ENTECH_REW = "SlayerLab/english-technical-1b", "3b833d36bd3ba9aeecf46f39605c9ac849bb96a3"
+BAZY_MINHASH = {
+    "entech": ("SlayerLab/english-technical-1b", "3b833d36bd3ba9aeecf46f39605c9ac849bb96a3",
+               ("data/train.parquet", "data/validation.parquet", "data/test.parquet")),
+    "en8x3b": ("SlayerLab/slayer-pl-8x3b", "d50df04a6ad46876fa559a87cca5d3e2a96e7098", ("shared/en.parquet",)),
+}
 MANIFEST, MANIFEST_REW = "SlayerLab/Slayer1B-Dataset", "2d248a172451938fbee67477a59db12fb58c278a"
 A, B = r.perm_param(128)
 
@@ -46,24 +51,37 @@ def licz(teksty):
     return np.vstack(sig), np.array(hx, np.uint64)
 
 
-def entech():
-    teksty, pliki = [], []
-    for f in ("data/train.parquet", "data/validation.parquet", "data/test.parquet"):
-        p = hf_hub_download(ENTECH, f, repo_type="dataset", revision=ENTECH_REW, local_dir=f"{POB}/entech")
-        t = pq.read_table(p, columns=["text"]).column(0).to_pylist()
-        teksty += t
-        pliki.append({"plik": f, "sha256": sha(p), "dokumentow": len(t)})
-        print(f, len(t), flush=True)
+def indeks_minhash(nazwa):
+    """Strumieniowo po grupach wierszy, więc plik 4,7 GB nie trafia w całości do pamięci."""
+    repo, rew, pliki_repo = BAZY_MINHASH[nazwa]
+    sigs, hxs, hus, pliki = [], [], [], []
     with mp.get_context("fork").Pool(PROC) as pool:
-        cz = pool.map(licz, [teksty[i:i + 2000] for i in range(0, len(teksty), 2000)])
-    S = np.vstack([c[0] for c in cz])
+        for f in pliki_repo:
+            p = hf_hub_download(repo, f, repo_type="dataset", revision=rew, local_dir=f"{POB}/{nazwa}")
+            pf = pq.ParquetFile(p)
+            kol = [c for c in ("text", "url") if c in pf.schema_arrow.names]
+            n = 0
+            for g in range(pf.metadata.num_row_groups):
+                t = pf.read_row_group(g, columns=kol)
+                teksty = t.column("text").to_pylist()
+                for s_, h_ in pool.map(licz, [teksty[i:i + 2000] for i in range(0, len(teksty), 2000)]):
+                    sigs.append(s_)
+                    hxs.append(h_)
+                if "url" in kol:
+                    hus.append(np.array([w.h64(w.norm_url(u)) for u in t.column("url").to_pylist() if u], np.uint64))
+                n += len(teksty)
+            pliki.append({"plik": f, "sha256": sha(p), "dokumentow": n})
+            print(f, n, flush=True)
+    S = np.vstack(sigs)
     kl = r2.klucze_band(S, 32, 4).ravel()
     dk = np.repeat(np.arange(S.shape[0], dtype=np.int64), 32)
     por = np.argsort(kl, kind="stable")
-    for k, v in (("sig", S), ("kl", kl[por]), ("dok", dk[por]), ("hx", np.unique(np.concatenate([c[1] for c in cz])))):
-        np.save(f"{OUT}/idx_entech_{k}.npy", v)
-    json.dump({"repo": ENTECH, "rewizja": ENTECH_REW, "pliki": pliki, "dokumentow": int(S.shape[0])},
-              open(f"{OUT}/entech.json", "w", encoding="utf-8"), indent=1)
+    for k, v in (("sig", S), ("kl", kl[por]), ("dok", dk[por]), ("hx", np.unique(np.concatenate(hxs)))):
+        np.save(f"{OUT}/idx_{nazwa}_{k}.npy", v)
+    if hus:
+        np.save(f"{OUT}/idx_{nazwa}_hu.npy", np.unique(np.concatenate(hus)))
+    json.dump({"repo": repo, "rewizja": rew, "pliki": pliki, "dokumentow": int(S.shape[0]), "url": bool(hus)},
+              open(f"{OUT}/{nazwa}.json", "w", encoding="utf-8"), indent=1)
     print("KONIEC", S.shape[0], flush=True)
 
 
@@ -153,4 +171,4 @@ def fwe109():
 
 if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)
-    entech() if TRYB == "entech" else fwe109()
+    fwe109() if TRYB == "fwe109" else indeks_minhash(TRYB)
