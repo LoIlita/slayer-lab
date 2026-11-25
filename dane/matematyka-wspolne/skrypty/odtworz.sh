@@ -81,7 +81,7 @@ import json, sys
 p = json.load(open(sys.argv[1], encoding='utf-8'))
 for x in p['pliki']: x['lokalnie'] = x['lokalnie_oryg']
 json.dump(p, open(sys.argv[2], 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
-" "$D/wyniki/probka_pliki.json" "$R/wyniki/probka_pliki_oryg.json"
+" "$WD/probka_pliki.json" "$R/wyniki/probka_pliki_oryg.json"
     $NICE $PY -I -W ignore "$DC/skrypty/przebieg.py" "$R/wyniki/probka_pliki_oryg.json" "$RW/wyniki/ewal" "$DCR/wyniki/idx" \
       "$TOK" "$R/wyniki/przebieg_oryg" "${PROC:-6}"
   fi
@@ -134,8 +134,8 @@ eksport)  # krok 9-10 METODOLOGII: kopia robocza repo zgłoszeń + nakładka eks
   cp "$D/eksport/$KEY.md" "$Z/data/$KEY/$KEY.md"
   (cd "$Z" && $NICE "$EXPY" src/clean_$KEY.py "$R/wyniki/wybor.json" "${PII_PROC:-8}")
   (cd "$Z" && "$EXPY" -m pytest "src/test_${KEY}_contract.py" -q && "$EXPY" src/check.py --source "$KEY")
-  cp "$Z/data/$KEY/$KEY.stats.json" "$D/wyniki/eksport_stats.json"
-  shasum -a 256 "$Z/data/$KEY/$KEY.parquet" | tee "$D/wyniki/eksport_sha256.txt"
+  cp "$Z/data/$KEY/$KEY.stats.json" "$WD/eksport_stats.json"
+  shasum -a 256 "$Z/data/$KEY/$KEY.parquet" | tee "$WD/eksport_sha256.txt"
   ;;
 *)
   sed -n 2,8p "$0"; exit 2

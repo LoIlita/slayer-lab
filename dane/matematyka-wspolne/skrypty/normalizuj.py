@@ -113,8 +113,7 @@ for i in kolej:
             lok_o = lok.replace(".rg5000.parquet", ".oryg.rg5000.parquet")
             zapisz([{"text": o, "url": r["url"], "id": r["id"]} for r, o in zip(rows, oryg)], lok_o)
             x["lokalnie_oryg"] = lok_o
-        if ZR != "finemath4":
-            os.remove(p)  # surowy plik niepotrzebny po konwersji; suma sha256 zapisana
+        os.remove(p)  # surowy plik niepotrzebny po konwersji (sha256 zapisana); przy 20 mld tokenów dysk się nie zmieści
     out.append(x)
     suma_tok += x["tokeny_v6"]
     suma_w += x["wiersze"]
