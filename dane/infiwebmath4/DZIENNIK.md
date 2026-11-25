@@ -158,19 +158,19 @@ FAIL-e przyjęte przed eksportem:
 |---|---|
 | Podział | [`wyniki/czesci.json`](wyniki/czesci.json): 1 część, `infiwebmath_4plus_en_p01`, 1 027 027 dok., 1 141 984 853 tokenów v6 |
 | Key | `infiwebmath_4plus_en`; datasheet [`eksport/infiwebmath_4plus_en.md`](eksport/infiwebmath_4plus_en.md) (status `held_for_review`); wpis w `../matematyka-wspolne/eksport/src/sources.py` |
-| Eksport, liczby, `dropped`, sha256 | **w toku** |
+| Eksport | `../matematyka-wspolne/skrypty/eksport_czesci.sh` (`robocze/logi/eksport.log`, `KONIEC 1`): 1 025 440 dok., 1 049 426 401 `token_count` (licznik repo zgłoszeń, nie v6); `dropped`: wrong_language 1 515, min_chars 72; sha256 `b854ae40fd66dbaf9509614f65db5c14d3d601a82587ff55b2731ddc6af5bbec` |
 | PII | Presidio wyłączone jak w FineMath-4+ (`no_masking()` w `../matematyka-wspolne/eksport/src/mat_wybor.py`); dokumenty z PII usunięte wcześniej w całości |
 
 ## 10. Kontrola końcowa
 
 | | |
 |---|---|
-| Test kontraktowy, `check.py` | **w toku** |
+| Test kontraktowy, `check.py` | test kontraktowy 1 passed; `check.py` 21 linii, wyłącznie oczekiwane („PII left after masking”, „no presidio record”) |
 | Niezależny agent na pliku o tym samym sha256 | nie zmierzono |
 
 ## 11. Wysyłka (repo do wglądu Arka)
 
-**W toku.** Repo i dostęp dla `Maggio33`: nie zmierzono.
+Repo `Lolita67/infiwebmath_4plus_en-robocze`, gated manual ustawione PRZED wysyłką (repo nigdy nie było otwarte), commit HF `3075ec3c`; sha256 LFS zgodne (API HF); anonimowe pobranie: 401. Dostęp dla `Maggio33`: czeka na właścicielkę (Settings → Gated user access).
 
 ## 12. Dane treningowe
 
@@ -184,7 +184,7 @@ Czeka na wysyłkę: nie zmierzono.
 - 25.11.2026 14:30: aneks 25.11c (`601e1bc`): `pii_at_bez_nawiasow`, przed agregacją.
 - 25.11.2026 18:29: `agreguj`: 1 027 027 / 1 141 984 853 (12,266%); 18:30 indeks własnego wyboru (`wlasne.log`, `KONIEC 1027027`).
 - 25.11.2026 18:49: przegląd 1610 pozycji i aneks 25.11e (`3c13221`), przed eksportem.
-- Eksport i `check.py`: w toku.
+- 25.11.2026 ok. 20:00: eksport (`KONIEC 1`, sha256 `b854ae40…`), `check.py` tylko oczekiwane linie; wysyłka HF `3075ec3c`, sha256 zgodne, anonimowo 401.
 
 ## Pułapki tego przebiegu
 

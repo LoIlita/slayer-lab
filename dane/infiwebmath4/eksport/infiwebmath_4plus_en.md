@@ -71,7 +71,9 @@ independently; 1 503 028 identical texts and 1 018 778 MinHash matches) and agai
 in the cascade, 63.2% independently). One part (`wyniki/czesci.json`): `infiwebmath_4plus_en_p01`, 1 027 027 docs,
 1 141 984 853 v6 tokens.
 
-Export (`shard.write`, docs, `token_count`, `dropped`), parquet sha256 and `src/check.py`: in progress.
+Export (`shard.write`): 1 025 440 docs, 1 049 426 401 `token_count` (the submissions repo's counter, not v6); `dropped`:
+wrong_language 1 515, min_chars 72. Parquet sha256 `b854ae40fd66dbaf9509614f65db5c14d3d601a82587ff55b2731ddc6af5bbec`.
+Contract test: 1 passed. `src/check.py`: 21 lines, only the two expected causes (Presidio rescan, no presidio record).
 
 Positive control: not run on this source; rules and indexes are the same as for FineMath-4+, whose positive control
 passed 19/19 (`dane/finemath4/wyniki/kontrola.json`).
@@ -118,7 +120,7 @@ threshold). Accepted (annex 2026-11-25e): junk (SEO spam, pages without mathemat
   `matematyka-wspolne/eksport/src/mat_wybor.py`): on 2026-11-24 Presidio's PhoneRecognizer tagged 403 spans in 300
   FineMath-4+ documents, almost all of them numbers in the mathematics itself, so masking would destroy the training
   signal. The `pii` record of `stats.json` stores `"pass": "none"` and this reason; `src/check.py`'s Presidio rescan is
-  therefore expected to report a mismatch (result for this source: in progress).
+  therefore expected to report a mismatch (result for this source: 21 lines of that kind, nothing else).
 - Review of 300 kept documents: missed PII **0/300** for both reviewers.
 
 ## Sample
