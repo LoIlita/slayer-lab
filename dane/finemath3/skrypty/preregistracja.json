@@ -15,7 +15,7 @@
  },
  "pula": {
   "wybor": "permutacja listy plików numpy default_rng(seed); pliki po kolei, aż suma tokenów v6 wierszy z int_score == 3 >= cel_puli",
-  "cel_puli_tok_v6": 10000000000,
+  "cel_puli_tok_v6": 12500000000,
   "cel_eksportu_tok_v6": 1000000000000,
   "eksport": "wszystkie zachowane; jeśli zbiór łączny przekroczy 20 mld, nadwyżka odcinana na końcu kolejności puli (całe części), decyzja zapisana w dzienniku przed eksportem"
  },
@@ -133,5 +133,11 @@
    "czestosc": "przed regułą (finemath4/robocze/cz2/wyniki/wzorzec_email_at_bez_nawiasow.json): 29 350 z 4 814 480 wybranych (0,61%); w 80 przykładach ok. 1/3 to prawdziwe adresy osób, reszta to fraza 'available at Amazon.com' itp. Reguła konserwatywna: fałszywe odrzucenia ok. 0,4% dokumentów przyjmujemy, ochrona prywatności ma pierwszeństwo (jak aneks 24.11b)"
   },
   "stackedu": "bez tej reguły: w kodzie e-maile są maskowane przed bramką językową (mat_wybor.premask_emails), nie usuwane; próbka kontrolna części 2 Stack-Edu sprawdza pole sekret_przeoczony i PII"
+ },
+ "aneks_2026_11_25d": {
+  "zapisano": "2026-11-25 ok. 19:00, PO agregacji FineMath-4+ (7,03 mld v6), Stack-Edu (4,96 mld) i InfiWebMath-4+ (1,14 mld) i PRZED agregacją FineMath-3+ (żaden wynik reguł FineMath-3+ nie był liczony)",
+  "powod": "InfiWebMath-4+ dał 1,14 mld zamiast szacowanych 2-3 mld (dedup wewnątrz 49% tokenów: wiele zrzutów tej samej strony; dedup_finemath4 kolejne 33%); do 20 mld brakuje ok. 6,9 mld, a pula FineMath-3+ 10,17 mld przy uzysku ok. 60-67% (jak FineMath-4+) daje ok. 6,1-6,8 mld",
+  "cel_puli_tok_v6": 12500000000,
+  "regula": "pula FineMath-3+ dopobierana w tej samej permutacji plików (default_rng(seed)) do 12,5 mld tokenów v6 warstwy 3; pozostałe reguły bez zmian; nadwyżka ponad 20 mld łącznie odcinana całymi częściami z końca kolejności puli FineMath-3+ (pole pula.eksport)"
  }
 }
