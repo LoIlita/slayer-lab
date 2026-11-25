@@ -23,7 +23,7 @@ case "$ZB" in
   *) echo "nieznany zbiór $ZB" >&2; exit 2 ;;
 esac
 D=$REPO/dane/$ZB
-Z=$RW/zgloszenia_czesci
+Z=$RW/zgloszenia_czesci_$KEY  # osobna kopia na źródło: eksporty różnych źródeł mogą iść równolegle
 mkdir -p "$Z" "$OUT"
 rsync -a --delete --exclude data --exclude .git "$RW/zgloszenia/" "$Z/"
 cp -R "$W/eksport/." "$Z/"
