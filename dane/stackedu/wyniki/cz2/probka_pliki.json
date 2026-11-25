@@ -1,0 +1,107 @@
+{
+ "repo": "common-pile/stackv2_edu_filtered",
+ "rewizja": "c354dbe88469a1153e97c6a63ac50591849654de",
+ "plikow_w_repo": 12,
+ "seed": 20261124,
+ "wiersze": 7218355,
+ "tokeny_v6": 11140913173,
+ "cel_tokenow_v6": 1000000000000,
+ "pliki": [
+  {
+   "plik": "stack-edu-0080.json.gz",
+   "rozmiar": 971712713,
+   "sha256": "7847a264bc3abcfd02fb68bab0a2afb5ff099fa1dc670a8cb0d87f0d5d5d5608",
+   "wiersze": 639779,
+   "tokeny_v6": 988588081,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/stackedu/robocze/pobrania/lok/stack-edu-0080.rg5000.parquet"
+  },
+  {
+   "plik": "stack-edu-0083.json.gz",
+   "rozmiar": 983678048,
+   "sha256": "7396ecba90289dbb242cd86aed8c180b0449e5e72f3f60f9838453f2e07ee1fa",
+   "wiersze": 640393,
+   "tokeny_v6": 1001810984,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/stackedu/robocze/pobrania/lok/stack-edu-0083.rg5000.parquet"
+  },
+  {
+   "plik": "stack-edu-0081.json.gz",
+   "rozmiar": 978858699,
+   "sha256": "21ce2f93b1c92e40f3afdedefb7c560de79ca92fde299ef52d91d7be74644577",
+   "wiersze": 639421,
+   "tokeny_v6": 993207788,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/stackedu/robocze/pobrania/lok/stack-edu-0081.rg5000.parquet"
+  },
+  {
+   "plik": "stack-edu-0078.json.gz",
+   "rozmiar": 972955403,
+   "sha256": "b70cd0d934d518d6523e3296c85bc004ad43590edbb8ea82e0751dc72c786c13",
+   "wiersze": 640184,
+   "tokeny_v6": 987972447,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/stackedu/robocze/pobrania/lok/stack-edu-0078.rg5000.parquet"
+  },
+  {
+   "plik": "stack-edu-0079.json.gz",
+   "rozmiar": 970216639,
+   "sha256": "7eeb9e77151c3766af1b611e3230869cde9833a47ea8c06749187b295b863dc4",
+   "wiersze": 640017,
+   "tokeny_v6": 981994066,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/stackedu/robocze/pobrania/lok/stack-edu-0079.rg5000.parquet"
+  },
+  {
+   "plik": "stack-edu-0077.json.gz",
+   "rozmiar": 971788667,
+   "sha256": "d0ca3bcfb871b717855383bfef6500b0c5ba5333b739b5acae94ca12ce5fb36d",
+   "wiersze": 640451,
+   "tokeny_v6": 981470927,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/stackedu/robocze/pobrania/lok/stack-edu-0077.rg5000.parquet"
+  },
+  {
+   "plik": "stack-edu-0073.json.gz",
+   "rozmiar": 976494926,
+   "sha256": "b04f81e60a5397b1ade2099e1640ef5c1b105abfeb61c57e6b2e7c4dacef836e",
+   "wiersze": 640424,
+   "tokeny_v6": 986417602,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/stackedu/robocze/pobrania/lok/stack-edu-0073.rg5000.parquet"
+  },
+  {
+   "plik": "stack-edu-0074.json.gz",
+   "rozmiar": 974511426,
+   "sha256": "bb655343ccf1200b022e8e7d118a41cdc22b6c0c66ea664e849d3c1e64af4018",
+   "wiersze": 641017,
+   "tokeny_v6": 983212670,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/stackedu/robocze/pobrania/lok/stack-edu-0074.rg5000.parquet"
+  },
+  {
+   "plik": "stack-edu-0084.json.gz",
+   "rozmiar": 987435422,
+   "sha256": "5e2ad7d634976f90694a2f644922a6fc92b54d624958440eea532a7ae2bda3b8",
+   "wiersze": 174868,
+   "tokeny_v6": 267116165,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/stackedu/robocze/pobrania/lok/stack-edu-0084.rg5000.parquet"
+  },
+  {
+   "plik": "stack-edu-0075.json.gz",
+   "rozmiar": 977861558,
+   "sha256": "b59b65a638bb26fffc45db87f8da363a36435c80f6d8276b37fc81c9fe53e5a4",
+   "wiersze": 640735,
+   "tokeny_v6": 990609213,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/stackedu/robocze/pobrania/lok/stack-edu-0075.rg5000.parquet"
+  },
+  {
+   "plik": "stack-edu-0076.json.gz",
+   "rozmiar": 976451737,
+   "sha256": "3e48dfa8ef1cf594b1a7042f66862b8946477eeb284d24b158e1d822bf765ffe",
+   "wiersze": 640870,
+   "tokeny_v6": 988572935,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/stackedu/robocze/pobrania/lok/stack-edu-0076.rg5000.parquet"
+  },
+  {
+   "plik": "stack-edu-0082.json.gz",
+   "rozmiar": 974994520,
+   "sha256": "65a78e66c9548fa2f2668c560d37cc4576f4307183582d345e3aa8ef88a1656b",
+   "wiersze": 640196,
+   "tokeny_v6": 989940295,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/stackedu/robocze/pobrania/lok/stack-edu-0082.rg5000.parquet"
+  }
+ ]
+}

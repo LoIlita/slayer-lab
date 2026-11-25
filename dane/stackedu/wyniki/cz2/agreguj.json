@@ -1,0 +1,290 @@
+{
+ "zbior": "stackedu",
+ "dokumenty": 7218355,
+ "tokeny_v6": 11140913173,
+ "dok_z_id0": 581,
+ "kaskada": [
+  {
+   "powod": "licencja",
+   "odrzucone_dok": 37976,
+   "odrzucone_tok": 59580580,
+   "zostaje_dok": 7180379,
+   "zostaje_tok": 11081332593,
+   "zostaje_tok_proc": 99.465
+  },
+  {
+   "powod": "walidacja_fabryki",
+   "odrzucone_dok": 19198,
+   "odrzucone_tok": 9983175,
+   "zostaje_dok": 7161181,
+   "zostaje_tok": 11071349418,
+   "zostaje_tok_proc": 99.376
+  },
+  {
+   "powod": "ewal_13gram",
+   "odrzucone_dok": 5930,
+   "odrzucone_tok": 14665069,
+   "zostaje_dok": 7155251,
+   "zostaje_tok": 11056684349,
+   "zostaje_tok_proc": 99.244
+  },
+  {
+   "powod": "sekrety",
+   "odrzucone_dok": 3254,
+   "odrzucone_tok": 15450727,
+   "zostaje_dok": 7151997,
+   "zostaje_tok": 11041233622,
+   "zostaje_tok_proc": 99.105
+  },
+  {
+   "powod": "haslo_w_kodzie",
+   "odrzucone_dok": 43141,
+   "odrzucone_tok": 85495814,
+   "zostaje_dok": 7108856,
+   "zostaje_tok": 10955737808,
+   "zostaje_tok_proc": 98.338
+  },
+  {
+   "powod": "wygenerowany",
+   "odrzucone_dok": 44529,
+   "odrzucone_tok": 150438674,
+   "zostaje_dok": 7064327,
+   "zostaje_tok": 10805299134,
+   "zostaje_tok_proc": 96.988
+  },
+  {
+   "powod": "min_tresc",
+   "odrzucone_dok": 450825,
+   "odrzucone_tok": 41463792,
+   "zostaje_dok": 6613502,
+   "zostaje_tok": 10763835342,
+   "zostaje_tok_proc": 96.615
+  },
+  {
+   "powod": "int_score",
+   "odrzucone_dok": 2974444,
+   "odrzucone_tok": 5796572174,
+   "zostaje_dok": 3639058,
+   "zostaje_tok": 4967263168,
+   "zostaje_tok_proc": 44.586
+  },
+  {
+   "powod": "mojibake",
+   "odrzucone_dok": 404,
+   "odrzucone_tok": 1855568,
+   "zostaje_dok": 3638654,
+   "zostaje_tok": 4965407600,
+   "zostaje_tok_proc": 44.569
+  },
+  {
+   "powod": "dedup_wewnatrz",
+   "odrzucone_dok": 4204,
+   "odrzucone_tok": 6515276,
+   "zostaje_dok": 3634450,
+   "zostaje_tok": 4958892324,
+   "zostaje_tok_proc": 44.511
+  },
+  {
+   "powod": "dedup_slayer107",
+   "odrzucone_dok": 4502,
+   "odrzucone_tok": 2070622,
+   "zostaje_dok": 3629948,
+   "zostaje_tok": 4956821702,
+   "zostaje_tok_proc": 44.492
+  },
+  {
+   "powod": "dedup_slayer_8x3b_en",
+   "odrzucone_dok": 12,
+   "odrzucone_tok": 10560,
+   "zostaje_dok": 3629936,
+   "zostaje_tok": 4956811142,
+   "zostaje_tok_proc": 44.492
+  },
+  {
+   "powod": "dedup_english_technical",
+   "odrzucone_dok": 140,
+   "odrzucone_tok": 249311,
+   "zostaje_dok": 3629796,
+   "zostaje_tok": 4956561831,
+   "zostaje_tok_proc": 44.49
+  },
+  {
+   "powod": "dedup_fineweb_edu_109",
+   "odrzucone_dok": 0,
+   "odrzucone_tok": 0,
+   "zostaje_dok": 3629796,
+   "zostaje_tok": 4956561831,
+   "zostaje_tok_proc": 44.49
+  }
+ ],
+ "niezaleznie": {
+  "licencja": {
+   "dok": 37976,
+   "tok": 59580580,
+   "tok_proc": 0.535
+  },
+  "walidacja_fabryki": {
+   "dok": 19211,
+   "tok": 9992982,
+   "tok_proc": 0.09
+  },
+  "ewal_13gram": {
+   "dok": 5961,
+   "tok": 14697813,
+   "tok_proc": 0.132
+  },
+  "sekrety": {
+   "dok": 3278,
+   "tok": 15542138,
+   "tok_proc": 0.14
+  },
+  "haslo_w_kodzie": {
+   "dok": 43564,
+   "tok": 86714752,
+   "tok_proc": 0.778
+  },
+  "wygenerowany": {
+   "dok": 44995,
+   "tok": 152305793,
+   "tok_proc": 1.367
+  },
+  "min_tresc": {
+   "dok": 454286,
+   "tok": 41809259,
+   "tok_proc": 0.375
+  },
+  "int_score": {
+   "dok": 3282607,
+   "tok": 6049396636,
+   "tok_proc": 54.299
+  },
+  "mojibake": {
+   "dok": 710,
+   "tok": 7382650,
+   "tok_proc": 0.066
+  },
+  "dedup_wewnatrz": {
+   "dok": 9121,
+   "tok": 14570742,
+   "tok_proc": 0.131
+  },
+  "dedup_slayer107": {
+   "dok": 25079,
+   "tok": 12968238,
+   "tok_proc": 0.116
+  },
+  "dedup_slayer_8x3b_en": {
+   "dok": 12,
+   "tok": 10560,
+   "tok_proc": 0.0
+  },
+  "dedup_english_technical": {
+   "dok": 289,
+   "tok": 640966,
+   "tok_proc": 0.006
+  },
+  "dedup_fineweb_edu_109": {
+   "dok": 0,
+   "tok": 0,
+   "tok_proc": 0.0
+  }
+ },
+ "uzysk": {
+  "dok": 3629796,
+  "tok": 4956561831,
+  "tok_proc": 44.49
+ },
+ "ewal_per_test": {
+  "X03_mbpp": 3305,
+  "X02_humaneval": 1832,
+  "T34_math": 258,
+  "X04_synlogic": 151,
+  "T32_mmlu": 118,
+  "T19_mathqa": 85,
+  "T10_boolq": 74,
+  "T38_squad2": 51,
+  "T43_triviaqa": 38,
+  "T50_record": 17,
+  "T47_bbh": 13,
+  "T16_anli": 13,
+  "T21_sst2": 12,
+  "T15_rte": 10,
+  "T45_medmcqa": 9,
+  "T04_multiblimp_pl": 8,
+  "T14_wsc273": 8,
+  "X06_wsc_superglue": 8,
+  "T30_polqa": 8,
+  "T41_coqa": 8,
+  "T35_truthfulqa": 5,
+  "T40_race": 4,
+  "T13_wic": 4,
+  "T12_cb": 2,
+  "T42_nq_open": 2,
+  "T03_wikitext2": 2,
+  "T49_cola": 2,
+  "T09_sciq": 1,
+  "T18_logiqa": 1,
+  "T17_lambada": 1,
+  "T05_hellaswag": 1,
+  "T44_pubmedqa": 1,
+  "T24_belebele": 1,
+  "T06_piqa": 1,
+  "T02_arc_challenge": 1,
+  "T27_psc": 1
+ },
+ "pii_klasy_detektor_dclm": {
+  "email": 313414,
+  "telefon": 3211,
+  "ip": 43034
+ },
+ "pii_tryb": "maskuj",
+ "dedup_wewnatrz_szczegoly": {
+  "identyczny_tekst": 2009,
+  "minhash_bez_identycznych": 7112
+ },
+ "sekrety_klasy": {
+  "google_api_key": 2013,
+  "aws_access_key": 443,
+  "klucz_prywatny": 566,
+  "slack_token": 225,
+  "github_token": 39
+ },
+ "licencje_top": {
+  "MIT": 4667754,
+  "Apache-2.0": 1439926,
+  "BSD-3-Clause": 504084,
+  "BSD-2-Clause": 175423,
+  "Unlicense": 81387,
+  "CC0-1.0": 43864,
+  "": 37976,
+  "MIT,Apache-2.0": 23277,
+  "ISC": 22260,
+  "Apache-2.0,MIT": 22191,
+  "BSD-3-Clause,BSD-2-Clause": 20383,
+  "BSD-3-Clause,MIT": 13333,
+  "BSD-2-Clause,BSD-3-Clause": 10161,
+  "MIT,Python-2.0": 9837,
+  "MIT,BSD-3-Clause": 9672,
+  "BSD-3-Clause,Apache-2.0": 7830,
+  "BSD-2-Clause-Views": 6292,
+  "Python-2.0,MIT": 5793,
+  "Apache-2.0,BSD-3-Clause": 5006,
+  "MIT-0": 4697,
+  "Apache-2.0,MIT,BSD-2-Clause": 4369,
+  "Zlib": 4122,
+  "ZPL-2.1": 4085,
+  "MIT,BSD-3-Clause,Apache-2.0": 3923,
+  "Apache-2.0,BSD-3-Clause,MIT": 3841,
+  "Apache-2.0,Python-2.0": 3034,
+  "BSD-3-Clause-LBNL": 2990,
+  "Artistic-2.0": 2955,
+  "BSL-1.0": 2931,
+  "MIT,BSD-2-Clause": 2814
+ },
+ "eksport": {
+  "cel_tok_v6": 1000000000000,
+  "dok": 3629796,
+  "tok_v6": 4956561831,
+  "wystarcza": false
+ }
+}

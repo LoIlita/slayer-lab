@@ -1,0 +1,33 @@
+{
+ "wybor": "stackedu/robocze/cz2/wyniki/wybor.json",
+ "cel_tokenow_v6": 1000000000,
+ "czesci": [
+  {
+   "czesc": 1,
+   "dokumenty": 722555,
+   "tokeny_v6": 991310853
+  },
+  {
+   "czesc": 2,
+   "dokumenty": 729634,
+   "tokeny_v6": 991312955
+  },
+  {
+   "czesc": 3,
+   "dokumenty": 728181,
+   "tokeny_v6": 991312869
+  },
+  {
+   "czesc": 4,
+   "dokumenty": 726339,
+   "tokeny_v6": 991308269
+  },
+  {
+   "czesc": 5,
+   "dokumenty": 723087,
+   "tokeny_v6": 991316885
+  }
+ ],
+ "dokumenty": 3629796,
+ "tokeny_v6": 4956561831
+}

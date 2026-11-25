@@ -1,0 +1,49 @@
+{
+ "probka": "200 zachowanych z wybor.json części 2, default_rng(seed+3), probka_kontrolna.py PRZESUNIECIE=3",
+ "recenzenci": {
+  "A": {
+   "pozycji": 200,
+   "jakosc": {
+    "tak": 196,
+    "watpliwy": 4
+   },
+   "sekret_przeoczony": {
+    "nie": 200
+   },
+   "pii_przeoczone": {
+    "nie": 200
+   },
+   "test_przeoczony": {
+    "nie": 200
+   },
+   "tak_w_przeoczeniach": {
+    "sekret_przeoczony": [],
+    "pii_przeoczone": [],
+    "test_przeoczony": []
+   }
+  },
+  "B": {
+   "pozycji": 200,
+   "jakosc": {
+    "tak": 195,
+    "watpliwy": 5
+   },
+   "sekret_przeoczony": {
+    "nie": 200
+   },
+   "pii_przeoczone": {
+    "nie": 200
+   },
+   "test_przeoczony": {
+    "nie": 200
+   },
+   "tak_w_przeoczeniach": {
+    "sekret_przeoczony": [],
+    "pii_przeoczone": [],
+    "test_przeoczony": []
+   }
+  }
+ },
+ "pelny_tekst": "obaj zadeklarowali lekturę pełnych 3000 znaków",
+ "uwagi": "6015718: numery kart to publiczne numery testowe bramek płatniczych (komentarz 'test card numbers', repo card_identifier), sprawdzone 25.11; wynik: sekrety, PII i testy 0/200 u obu, jakość tak 195-196/200"
+}
