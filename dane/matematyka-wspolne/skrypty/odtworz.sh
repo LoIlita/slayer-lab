@@ -41,6 +41,7 @@ if [ -n "$ZB" ]; then
 import json, sys
 p = json.load(open(sys.argv[1], encoding='utf-8')); c = p['czesc_' + sys.argv[2]]
 p['pula'] = {**p['pula'], 'cel_puli_tok_v6': c['cel_puli_tok_v6'], 'cel_eksportu_tok_v6': c['cel_eksportu_tok_v6'], 'czesc': sys.argv[2]}
+p.update({k: v for k, v in c.items() if k == 'kolejnosc_powodow' or k.startswith('aneks_')})  # reguły dodane w tej części
 json.dump(p, open(sys.argv[3], 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 " "$PRE" "$CZESC" "$R/preregistracja.json"
     PRE=$R/preregistracja.json
