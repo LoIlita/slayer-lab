@@ -1,0 +1,380 @@
+{
+ "zbior": "infiwebmath4",
+ "recenzenci": {
+  "A": {
+   "brakujace_oceny": 0,
+   "powody": {
+    "dedup_english_technical": {
+     "k": 0,
+     "n": 10,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      27.8
+     ],
+     "werdykt": "FAIL",
+     "watpliwe": 0
+    },
+    "dedup_finemath4": {
+     "k": 0,
+     "n": 100,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      3.7
+     ],
+     "werdykt": "PASS",
+     "watpliwe": 0
+    },
+    "dedup_fineweb_edu_109": {
+     "k": 0,
+     "n": 100,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      3.7
+     ],
+     "werdykt": "PASS",
+     "watpliwe": 0
+    },
+    "dedup_slayer107": {
+     "k": 0,
+     "n": 100,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      3.7
+     ],
+     "werdykt": "PASS",
+     "watpliwe": 1
+    },
+    "dedup_slayer_8x3b_en": {
+     "k": 0,
+     "n": 100,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      3.7
+     ],
+     "werdykt": "PASS",
+     "watpliwe": 0
+    },
+    "dedup_wewnatrz": {
+     "k": 0,
+     "n": 100,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      3.7
+     ],
+     "werdykt": "PASS",
+     "watpliwe": 0
+    },
+    "domena_testow": {
+     "k": 0,
+     "n": 100,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      3.7
+     ],
+     "werdykt": "PASS",
+     "watpliwe": 0
+    },
+    "ewal_13gram": {
+     "k": 42,
+     "n": 100,
+     "stopa": 42.0,
+     "wilson95": [
+      32.8,
+      51.8
+     ],
+     "werdykt": "FAIL",
+     "watpliwe": 6
+    },
+    "min_tresc": {
+     "k": 0,
+     "n": 100,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      3.7
+     ],
+     "werdykt": "PASS",
+     "watpliwe": 0
+    },
+    "mojibake": {
+     "k": 0,
+     "n": 100,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      3.7
+     ],
+     "werdykt": "PASS",
+     "watpliwe": 0
+    },
+    "pii": {
+     "k": 15,
+     "n": 100,
+     "stopa": 15.0,
+     "wilson95": [
+      9.3,
+      23.3
+     ],
+     "werdykt": "FAIL",
+     "watpliwe": 46
+    },
+    "pii_at_bez_nawiasow": {
+     "k": 80,
+     "n": 100,
+     "stopa": 80.0,
+     "wilson95": [
+      71.1,
+      86.7
+     ],
+     "werdykt": "FAIL",
+     "watpliwe": 0
+    },
+    "pii_zaciemniony": {
+     "k": 4,
+     "n": 100,
+     "stopa": 4.0,
+     "wilson95": [
+      1.6,
+      9.8
+     ],
+     "werdykt": "PASS",
+     "watpliwe": 2
+    },
+    "walidacja_fabryki": {
+     "k": 9,
+     "n": 100,
+     "stopa": 9.0,
+     "wilson95": [
+      4.8,
+      16.2
+     ],
+     "werdykt": "PASS",
+     "watpliwe": 19
+    }
+   },
+   "zachowane": {
+    "smieci": {
+     "k": 26,
+     "n": 300,
+     "stopa": 8.7,
+     "wilson95": [
+      6.0,
+      12.4
+     ],
+     "werdykt": "PASS",
+     "watpliwe": 46
+    },
+    "pii_przeoczone": {
+     "k": 0,
+     "n": 300,
+     "werdykt": "PASS"
+    },
+    "test_przeoczony": {
+     "k": 0,
+     "n": 300,
+     "werdykt": "PASS"
+    }
+   }
+  },
+  "B": {
+   "brakujace_oceny": 0,
+   "powody": {
+    "dedup_english_technical": {
+     "k": 0,
+     "n": 10,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      27.8
+     ],
+     "werdykt": "FAIL",
+     "watpliwe": 0
+    },
+    "dedup_finemath4": {
+     "k": 0,
+     "n": 100,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      3.7
+     ],
+     "werdykt": "PASS",
+     "watpliwe": 0
+    },
+    "dedup_fineweb_edu_109": {
+     "k": 0,
+     "n": 100,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      3.7
+     ],
+     "werdykt": "PASS",
+     "watpliwe": 0
+    },
+    "dedup_slayer107": {
+     "k": 0,
+     "n": 100,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      3.7
+     ],
+     "werdykt": "PASS",
+     "watpliwe": 0
+    },
+    "dedup_slayer_8x3b_en": {
+     "k": 0,
+     "n": 100,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      3.7
+     ],
+     "werdykt": "PASS",
+     "watpliwe": 0
+    },
+    "dedup_wewnatrz": {
+     "k": 0,
+     "n": 100,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      3.7
+     ],
+     "werdykt": "PASS",
+     "watpliwe": 0
+    },
+    "domena_testow": {
+     "k": 0,
+     "n": 100,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      3.7
+     ],
+     "werdykt": "PASS",
+     "watpliwe": 0
+    },
+    "ewal_13gram": {
+     "k": 44,
+     "n": 100,
+     "stopa": 44.0,
+     "wilson95": [
+      34.7,
+      53.8
+     ],
+     "werdykt": "FAIL",
+     "watpliwe": 8
+    },
+    "min_tresc": {
+     "k": 0,
+     "n": 100,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      3.7
+     ],
+     "werdykt": "PASS",
+     "watpliwe": 0
+    },
+    "mojibake": {
+     "k": 0,
+     "n": 100,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      3.7
+     ],
+     "werdykt": "PASS",
+     "watpliwe": 26
+    },
+    "pii": {
+     "k": 4,
+     "n": 100,
+     "stopa": 4.0,
+     "wilson95": [
+      1.6,
+      9.8
+     ],
+     "werdykt": "PASS",
+     "watpliwe": 57
+    },
+    "pii_at_bez_nawiasow": {
+     "k": 34,
+     "n": 100,
+     "stopa": 34.0,
+     "wilson95": [
+      25.5,
+      43.7
+     ],
+     "werdykt": "FAIL",
+     "watpliwe": 46
+    },
+    "pii_zaciemniony": {
+     "k": 1,
+     "n": 100,
+     "stopa": 1.0,
+     "wilson95": [
+      0.2,
+      5.4
+     ],
+     "werdykt": "PASS",
+     "watpliwe": 42
+    },
+    "walidacja_fabryki": {
+     "k": 0,
+     "n": 100,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      3.7
+     ],
+     "werdykt": "PASS",
+     "watpliwe": 1
+    }
+   },
+   "zachowane": {
+    "smieci": {
+     "k": 31,
+     "n": 300,
+     "stopa": 10.3,
+     "wilson95": [
+      7.4,
+      14.3
+     ],
+     "werdykt": "FAIL",
+     "watpliwe": 58
+    },
+    "pii_przeoczone": {
+     "k": 0,
+     "n": 300,
+     "werdykt": "PASS"
+    },
+    "test_przeoczony": {
+     "k": 0,
+     "n": 300,
+     "werdykt": "PASS"
+    }
+   }
+  }
+ },
+ "werdykt": "NIE PRZESZŁO",
+ "fail": [
+  "A:dedup_english_technical",
+  "A:ewal_13gram",
+  "A:pii",
+  "A:pii_at_bez_nawiasow",
+  "B:dedup_english_technical",
+  "B:ewal_13gram",
+  "B:pii_at_bez_nawiasow",
+  "B:smieci"
+ ]
+}

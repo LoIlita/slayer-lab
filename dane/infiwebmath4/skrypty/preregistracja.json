@@ -129,5 +129,16 @@
    "czestosc": "przed regułą (finemath4/robocze/cz2/wyniki/wzorzec_email_at_bez_nawiasow.json): 29 350 z 4 814 480 wybranych (0,61%); w 80 przykładach ok. 1/3 to prawdziwe adresy osób, reszta to fraza 'available at Amazon.com' itp. Reguła konserwatywna: fałszywe odrzucenia ok. 0,4% dokumentów przyjmujemy, ochrona prywatności ma pierwszeństwo (jak aneks 24.11b)"
   },
   "stackedu": "bez tej reguły: w kodzie e-maile są maskowane przed bramką językową (mat_wybor.premask_emails), nie usuwane; próbka kontrolna części 2 Stack-Edu sprawdza pole sekret_przeoczony i PII"
+ },
+ "aneks_2026_11_25e": {
+  "zapisano": "2026-11-25 ok. 21:30, PO przeglądzie próbki (wyniki/przeglad_1.json, dwóch recenzentów, 1610 pozycji, pełne teksty) i PRZED eksportem",
+  "wynik": "PASS: domena_testow, walidacja_fabryki (A 9%, górna 16,2%), min_tresc, mojibake, dedup_wewnatrz, dedup_finemath4 (0/100 u obu, ocena z parą: skrypt para_wlasne.py; pierwsza ocena bez pary unieważniona, bo zakładała dopasowanie po url), dedup_slayer107, dedup_slayer_8x3b_en, dedup_fineweb_edu_109, pii_zaciemniony; zachowane: PII przeoczone 0/300 i testy 0/300 u obu",
+  "fail_przyjete": {
+   "ewal_13gram": "fałszywe odrzucenia 42% (A) / 44% (B): formułki, kod Asymptote, idiomy Pythona; koszt 2,4% tokenów puli; reguła usuwa dobre teksty, nie przepuszcza złych; jak aneks 24.11b przyjęta, poprawka (wykluczenie formułek) odroczona (finemath4 czesc_2.reguly)",
+   "pii": "A 15% (cyfry pi, ISBN, numery rozdziałów jako IP), B 4%; 46-57% trafień poza widocznymi 3000 znakami (nieocenialne); koszt 3,7% tokenów; prywatność ma pierwszeństwo",
+   "pii_at_bez_nawiasow": "A 80%, B 34% (frazy 'here at Shaalaa.com'); koszt 1,5% tokenów; reguła z aneksu 25.11c przyjęta jako konserwatywna",
+   "dedup_english_technical": "0/10 u obu; FAIL tylko z górnej granicy Wilsona przy n = 10 (populacja trafień tej reguły jest mała)",
+   "smieci": "B 10,3% [7,4; 14,3] (próg 10%), A 8,7%; cecha źródła jak FineMath-4+ (aneks 24.11c), filtr jakości odroczony, opisany w datasheet"
+  }
  }
 }
