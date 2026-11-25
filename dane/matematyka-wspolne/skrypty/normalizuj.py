@@ -7,6 +7,7 @@ Tekst niezmieniony. Format wyjścia jak pobierz.py DCLM-EN, więc przebieg.py DC
              (13-gramy testów liczone też na tekście przed przepisaniem)
   stackedu   common-pile/stackv2_edu_filtered, *.json.gz; tylko metadata.language == 'Python'
   infiwebmath4  HuggingFaceTB/finemath, infiwebmath-4plus/*.parquet; id = WARC-Record-ID z metadata.WARC_HEADER
+  finemath3  HuggingFaceTB/finemath, finemath-3plus/*.parquet; tylko int_score == 3
 Argumenty: zrodlo katalog_pobran probka_pliki.json cel_tokenow_v6 tokenizer.json seed"""
 import gzip
 import hashlib
@@ -27,6 +28,7 @@ ZRODLA = {
     "cranemath": ("allenai/dolma3_dolmino_mix-100B-1125", "f23aa129fda8335ba9760057bcc1f0c02f3d068b", "data/ingredient1-cranemath/", ".jsonl.zst"),
     "stackedu": ("common-pile/stackv2_edu_filtered", "c354dbe88469a1153e97c6a63ac50591849654de", "stack-edu-", ".json.gz"),
     "infiwebmath4": ("HuggingFaceTB/finemath", "e92b25a616738fe95dc186b64dfb19f9c8525594", "infiwebmath-4plus/", ".parquet"),
+    "finemath3": ("HuggingFaceTB/finemath", "e92b25a616738fe95dc186b64dfb19f9c8525594", "finemath-3plus/", ".parquet"),
 }
 ZR, CEL, WYN, DOCEL, TOK, SEED = sys.argv[1], sys.argv[2], sys.argv[3], int(sys.argv[4]), sys.argv[5], int(sys.argv[6])
 REPO, REW, PREF, SUF = ZRODLA[ZR]
@@ -48,9 +50,12 @@ def tokeny(teksty):
 
 def wiersze(p):
     """Wiersze pliku jako słowniki o polach wspólnych: text, url, id + pochodzenie; drugi element: tekst przed przepisaniem."""
-    if ZR == "finemath4":
-        t = pq.read_table(p, columns=["text", "url", "crawl", "warc_filename", "warc_record_offset", "warc_record_length", "snapshot_type"])
+    if ZR in ("finemath4", "finemath3"):
+        kol = ["text", "url", "crawl", "warc_filename", "warc_record_offset", "warc_record_length", "snapshot_type"]
+        t = pq.read_table(p, columns=kol + ["int_score"]) if ZR == "finemath3" else pq.read_table(p, columns=kol)
         for r in t.to_pylist():
+            if ZR == "finemath3" and r.pop("int_score") != 3:  # oceny 4-5 to FineMath-4+ (karta dane/finemath3)
+                continue
             r["id"] = f"{r['warc_filename']}:{r['warc_record_offset']}"
             yield r, None
     elif ZR == "infiwebmath4":
