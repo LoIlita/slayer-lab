@@ -1,0 +1,53 @@
+{
+ "wybor": "finemath3/robocze/wyniki/wybor.json",
+ "cel_tokenow_v6": 1000000000,
+ "czesci": [
+  {
+   "czesc": 1,
+   "dokumenty": 565421,
+   "tokeny_v6": 1037444134
+  },
+  {
+   "czesc": 2,
+   "dokumenty": 557936,
+   "tokeny_v6": 1037443223
+  },
+  {
+   "czesc": 3,
+   "dokumenty": 563027,
+   "tokeny_v6": 1037446598
+  },
+  {
+   "czesc": 4,
+   "dokumenty": 561799,
+   "tokeny_v6": 1037444374
+  },
+  {
+   "czesc": 5,
+   "dokumenty": 568300,
+   "tokeny_v6": 1037441350
+  },
+  {
+   "czesc": 6,
+   "dokumenty": 568151,
+   "tokeny_v6": 1037442718
+  },
+  {
+   "czesc": 7,
+   "dokumenty": 568093,
+   "tokeny_v6": 1037449737
+  },
+  {
+   "czesc": 8,
+   "dokumenty": 574033,
+   "tokeny_v6": 1037443420
+  },
+  {
+   "czesc": 9,
+   "dokumenty": 568489,
+   "tokeny_v6": 1037446371
+  }
+ ],
+ "dokumenty": 5095249,
+ "tokeny_v6": 9337001925
+}

@@ -41,6 +41,7 @@ def tekst_bazy(j):
 
 
 n = 0
+os.makedirs(os.path.dirname(os.path.abspath(OUT)), exist_ok=True)
 with open(OUT, "w", encoding="utf-8") as f:
     for linia in open(PROBKA, encoding="utf-8"):
         o = json.loads(linia)
