@@ -88,7 +88,9 @@ from `wyniki/agreguj.json` (`kaskada`; "independent" = files with the reason reg
 Pool 21 385 files / 213 219 274 v6 tokens. Kept after all reasons (`uzysk`): **20 479 files / 208 735 321 v6 tokens
 (97.90%)**. One part (`wyniki/czesci.json`): `formal_math_p01`, 20 479 files, 208 735 321 v6 tokens.
 
-Export (`shard.write`, rows, `token_count`, `dropped`), parquet sha256 and `src/check.py`: in progress.
+Export (`shard.write`): 20 390 rows, 157 587 646 `token_count` (the submissions repo's counter, not v6); `dropped`:
+wrong_language 89. Parquet sha256 `06c9c5b8e09e54dee541cba189cee835bd30d7b8dab50731579b724d295431bf`.
+Contract test: 1 passed. `src/check.py`: 15 lines, only the two expected causes (Presidio rescan, no presidio record).
 
 Positive control: no result file for this source (not measured); planned cases in the preregistration
 (`kontrole_dodatnie`).
@@ -123,7 +125,8 @@ Accepted (annex `aneks_2026_11_26_przeglad`): `ewal_13gram` 5/5 false (formulae,
 - Files with a phone number or IPv4 address (DCLM-EN detector) are dropped (`pii`, 37 files). Author names stay in
   headers (attribution required by the licences).
 - The Presidio pass of `shard.write` is off (`no_masking(emails=True)`): its PhoneRecognizer masks numbers in
-  mathematics and code (403 spans in 300 FineMath-4+ documents, 2026-11-24). `check.py` result: in progress.
+  mathematics and code (403 spans in 300 FineMath-4+ documents, 2026-11-24). `check.py` result: 15 lines, only "PII
+  left after masking" and "no presidio record".
 
 ## Sample
 

@@ -143,22 +143,22 @@ FAIL-e przyjęte przed eksportem (reguły usuwają dobre teksty, nie przepuszcza
 |---|---|
 | Podział | [`wyniki/czesci.json`](wyniki/czesci.json): 1 część, `open_textbooks_math_en_p01`, 2 989 dok., 9 879 250 tokenów v6 |
 | Key | `open_textbooks_math_en`; datasheet [`eksport/open_textbooks_math_en.md`](eksport/open_textbooks_math_en.md); wpis w `../matematyka-wspolne/eksport/src/sources.py` (`license_spdx` `LicenseRef-per-row`); skrypt `../matematyka-wspolne/eksport/src/clean_open_textbooks_math_en.py` (commit `47e715e`): licencja per wiersz, Presidio wyłączone (`no_masking()`) |
-| Eksport, liczby, `dropped`, sha256 | **w toku** |
+| Eksport | `../matematyka-wspolne/skrypty/eksport_czesci.sh` (`robocze/logi/eksport.log`, `KONIEC 1`): 2 986 dok., 8 954 754 `token_count` (licznik repo zgłoszeń, nie v6); `dropped`: wrong_language 3; sha256 `eedae7b78eae5703ce53fb3a5a91a1c3051a8111656720fda5b723f8de50de21` |
 
 ## 10. Kontrola końcowa
 
 | | |
 |---|---|
-| Test kontraktowy, `check.py` | **w toku** |
+| Test kontraktowy, `check.py` | test kontraktowy 1 passed; `check.py` 21 linii, wyłącznie oczekiwane („PII left after masking”, „no presidio record”) |
 | Niezależny agent na pliku o tym samym sha256 | nie zmierzono |
 
 ## 11. Wysyłka
 
-**W toku.**
+Repo `Lolita67/matematyka-kod-en-robocze` (gated manual), `data/open_textbooks_math_en_p01/`, commit HF `3d695f2c`; sha256 LFS zgodne z `robocze/eksport/open_textbooks_math_en_p01/open_textbooks_math_en_p01.sha256` (API HF); anonimowe pobranie: 401. Dostęp dla `Maggio33`: czeka na właścicielkę (Settings → Gated user access).
 
 ## 12. Dane treningowe
 
-Czeka na wysyłkę: nie zmierzono.
+Wersja stokenizowana `tokenized/slayer-v6/open_textbooks_math_en_p01` (z parquetu o sha256 `eedae7b7…`): 2 986 dok. (= liczba wierszy parquetu), 9 875 422 tokenów v6; commit HF `75496dac` (bin), `adf9214d` (metadane).
 
 ## Historia odtworzeń
 
@@ -167,7 +167,8 @@ Czeka na wysyłkę: nie zmierzono.
 - 26.11.2026 16:28: `przebieg` 2/2 (`KONIEC 154s`), `ew13`; 16:31 `agreguj`: 2 989 / 9 879 250 (37,389%), commit `1caa30c`.
 - 26.11.2026 16:38: przegląd próbki i `aneks_2026_11_26_przeglad` przed eksportem (`df8f74a`).
 - 26.11.2026 19:50: nakładka eksportu `clean_open_textbooks_math_en.py`, rejestr, test kontraktowy (`47e715e`).
-- Eksport i `check.py`: w toku.
+- 26.11.2026 19:57: eksport (`KONIEC 1`, sha256 `eedae7b7…`), test kontraktowy 1 passed, `check.py` tylko oczekiwane linie; wysyłka HF `3d695f2c`, sha256 zgodne, anonimowo 401.
+- 26.11.2026 20:55: tokenizacja v6 na HF (`75496dac`, `adf9214d`): 2 986 dok., 9 875 422 tok. v6.
 
 ## Pułapki tego przebiegu
 

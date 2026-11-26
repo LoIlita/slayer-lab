@@ -157,22 +157,22 @@ FAIL-e przyjęte przed eksportem (reguły usuwają dobre teksty, nie przepuszcza
 |---|---|
 | Podział | [`wyniki/czesci.json`](wyniki/czesci.json): 1 część, `stackexchange_math_p01`, 1 614 957 dok., 1 297 285 890 tokenów v6 |
 | Key | `stackexchange_math`; datasheet [`eksport/stackexchange_math.md`](eksport/stackexchange_math.md) (status `held_for_review`); wpis w `../matematyka-wspolne/eksport/src/sources.py`; skrypt `../matematyka-wspolne/eksport/src/clean_stackexchange_math.py` (commit `18c385d`): `id` = `<serwis>/<id pytania>`, `license` = wersja CC BY-SA pytania (SPDX), `author` = nazwy wyświetlane autorów postów (bez linków profili), Presidio wyłączone (`no_masking()`) |
-| Eksport, liczby, `dropped`, sha256 | **w toku** |
+| Eksport | `../matematyka-wspolne/skrypty/eksport_czesci.sh` (`robocze/logi/eksport.log`, `KONIEC 1`): 1 614 905 dok., 1 187 714 477 `token_count` (licznik repo zgłoszeń, nie v6); `dropped`: wrong_language 52; sha256 `78f6efd26679d307acae8920e111ddc7857b2c4d461da8c9fe6697435d2bb79c` |
 
 ## 10. Kontrola końcowa
 
 | | |
 |---|---|
-| Test kontraktowy, `check.py` | **w toku** |
+| Test kontraktowy, `check.py` | test kontraktowy 1 passed; `check.py` 8 linii, wyłącznie oczekiwane („PII left after masking”, „no presidio record”) |
 | Niezależny agent na pliku o tym samym sha256 | nie zmierzono |
 
 ## 11. Wysyłka
 
-**W toku.** Przed zgłoszeniem do repo zespołu: przegląd praw (opt-out platformy).
+Repo `Lolita67/matematyka-kod-en-robocze` (do wglądu, gated manual), `data/stackexchange_math_p01/`, commit HF `73eb3c08`; sha256 LFS zgodne z sha256 z logu eksportu (API HF); anonimowe pobranie: 401. Status datasheetu nadal `held_for_review`: przed zgłoszeniem do repo zespołu przegląd praw (opt-out platformy). Dostęp dla `Maggio33`: czeka na właścicielkę (Settings → Gated user access).
 
 ## 12. Dane treningowe
 
-Czeka na wysyłkę: nie zmierzono.
+Wersja stokenizowana `tokenized/slayer-v6/stackexchange_math_p01` (z parquetu o sha256 `78f6efd2…`): 1 614 905 dok. (= liczba wierszy parquetu), 1 297 166 546 tokenów v6; commit HF `f1a9b400` (bin), `005dfc3c` (metadane).
 
 ## Historia odtworzeń
 
@@ -182,7 +182,8 @@ Czeka na wysyłkę: nie zmierzono.
 - 26.11.2026 15:14: `agreguj`: 1 614 957 / 1 297 285 890 (77,799%); commit `7151944` (15:15).
 - 26.11.2026 15:16: nakładka eksportu `clean_stackexchange_math.py`, rejestr, test kontraktowy (`18c385d`).
 - 26.11.2026 15:20: przegląd próbki i `aneks_2026_11_26_przeglad` przed eksportem (`3865ee2`).
-- Eksport i `check.py`: w toku.
+- 26.11.2026 15:57: eksport (`KONIEC 1`, sha256 `78f6efd2…`), test kontraktowy 1 passed, `check.py` tylko oczekiwane linie; wysyłka HF `73eb3c08`, sha256 zgodne, anonimowo 401.
+- 26.11.2026 21:52: tokenizacja v6 na HF (`f1a9b400`, `005dfc3c`): 1 614 905 dok., 1 297 166 546 tok. v6.
 
 ## Pułapki tego przebiegu
 

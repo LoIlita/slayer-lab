@@ -138,22 +138,22 @@ reguły usuwają dobre teksty, nie przepuszczają złych; prywatność ma pierws
 |---|---|
 | Podział | [`wyniki/czesci.json`](wyniki/czesci.json): 1 część, `oeis_en_p01`, 261 467 dok., 154 276 254 tokenów v6 |
 | Key | `oeis_en`; datasheet [`eksport/oeis_en.md`](eksport/oeis_en.md); wpis w `../matematyka-wspolne/eksport/src/sources.py` (licencja `CC-BY-SA-4.0`); skrypt `../matematyka-wspolne/eksport/src/clean_oeis_en.py` (commit `18c385d`): e-maile maskowane ponownie `premask_emails` przed `shard.write`, Presidio wyłączone (`no_masking(emails=True)`) |
-| Eksport, liczby, `dropped`, sha256 | **w toku** |
+| Eksport | `../matematyka-wspolne/skrypty/eksport_czesci.sh` (`robocze/logi/eksport.log`, `KONIEC 1`): 260 277 dok., 141 883 692 `token_count` (licznik repo zgłoszeń, nie v6); `dropped`: wrong_language 1 190; sha256 `16c928cff39924e7e28077a8c615490ec93c4261b34087fda504d3cd501d24bc` |
 
 ## 10. Kontrola końcowa
 
 | | |
 |---|---|
-| Test kontraktowy, `check.py` | **w toku** |
+| Test kontraktowy, `check.py` | test kontraktowy 1 passed; `check.py` 92 linie, wyłącznie oczekiwane („PII left after masking”, „no presidio record”) |
 | Niezależny agent na pliku o tym samym sha256 | nie zmierzono |
 
 ## 11. Wysyłka
 
-**W toku.**
+Repo `Lolita67/matematyka-kod-en-robocze` (gated manual), `data/oeis_en_p01/`, commit HF `73eb3c08`; sha256 LFS zgodne z sha256 z logu eksportu (API HF); anonimowe pobranie: 401. Dostęp dla `Maggio33`: czeka na właścicielkę (Settings → Gated user access).
 
 ## 12. Dane treningowe
 
-Czeka na wysyłkę: nie zmierzono.
+Wersja stokenizowana `tokenized/slayer-v6/oeis_en_p01` (z parquetu o sha256 `16c928cf…`): 260 277 dok. (= liczba wierszy parquetu), 153 731 738 tokenów v6; commit HF `3173cf0b` (bin), `6513927c` (metadane).
 
 ## Historia odtworzeń
 
@@ -162,7 +162,8 @@ Czeka na wysyłkę: nie zmierzono.
 - 26.11.2026 14:54: `agreguj`: 261 467 / 154 276 254 (80,719%); commit `f9306d4`.
 - 26.11.2026 15:14: przegląd próbki i `aneks_2026_11_26_przeglad` przed eksportem (`de04099`).
 - 26.11.2026 15:16: nakładka eksportu `clean_oeis_en.py`, rejestr i test kontraktowy (`18c385d`).
-- Eksport i `check.py`: w toku.
+- 26.11.2026 15:24: eksport (`KONIEC 1`, sha256 `16c928cf…`), test kontraktowy 1 passed, `check.py` tylko oczekiwane linie; wysyłka HF `73eb3c08`, sha256 zgodne, anonimowo 401.
+- 26.11.2026 20:20: tokenizacja v6 na HF (`3173cf0b`, `6513927c`): 260 277 dok., 153 731 738 tok. v6.
 
 ## Pułapki tego przebiegu
 

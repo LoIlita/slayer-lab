@@ -140,22 +140,22 @@ FAIL-e przyjęte przed eksportem:
 |---|---|
 | Podział | [`wyniki/czesci.json`](wyniki/czesci.json): 1 część, `wikipedia_math_en_p01`, 6 762 dok., 19 734 493 tokenów v6 |
 | Key | `wikipedia_math_en`; datasheet [`eksport/wikipedia_math_en.md`](eksport/wikipedia_math_en.md); wpis w `../matematyka-wspolne/eksport/src/sources.py` (licencja `CC-BY-SA-4.0`); skrypt `../matematyka-wspolne/eksport/src/clean_wikipedia_math_en.py` (commit `47e715e`): `author` = loginy edytorów, Presidio wyłączone (`no_masking()`) |
-| Eksport, liczby, `dropped`, sha256 | **w toku** |
+| Eksport | `../matematyka-wspolne/skrypty/eksport_czesci.sh` (`robocze/logi/eksport.log`, `KONIEC 1`): 6 762 dok., 18 300 403 `token_count` (licznik repo zgłoszeń, nie v6); `dropped`: brak; sha256 `40348175d1f9276b0f3435ca847889d44940a8ea6d3c8ccb9516f0bc6fd05c6d` |
 
 ## 10. Kontrola końcowa
 
 | | |
 |---|---|
-| Test kontraktowy, `check.py` | **w toku** |
+| Test kontraktowy, `check.py` | test kontraktowy 1 passed; `check.py` 11 linii, wyłącznie oczekiwane („PII left after masking”, „no presidio record”) |
 | Niezależny agent na pliku o tym samym sha256 | nie zmierzono |
 
 ## 11. Wysyłka
 
-**W toku.**
+Repo `Lolita67/matematyka-kod-en-robocze` (gated manual), `data/wikipedia_math_en_p01/`, commit HF `3d695f2c`; sha256 LFS zgodne z `robocze/eksport/wikipedia_math_en_p01/wikipedia_math_en_p01.sha256` (API HF); anonimowe pobranie: 401. Dostęp dla `Maggio33`: czeka na właścicielkę (Settings → Gated user access).
 
 ## 12. Dane treningowe
 
-Czeka na wysyłkę: nie zmierzono.
+Wersja stokenizowana `tokenized/slayer-v6/wikipedia_math_en_p01` (z parquetu o sha256 `40348175…`): 6 762 dok. (= liczba wierszy parquetu), 19 734 493 tokenów v6; commit HF `a7390857` (bin), `3d9af022` (metadane).
 
 ## Historia odtworzeń
 
@@ -164,7 +164,8 @@ Czeka na wysyłkę: nie zmierzono.
 - 26.11.2026 16:22: `przebieg` 2/2 (`KONIEC 88s`), `ew13`; 16:26 `agreguj`: 6 762 / 19 734 493 (64,023%); commit `1caa30c` (16:31).
 - 26.11.2026 16:38: przegląd próbki i `aneks_2026_11_26_przeglad` przed eksportem (`df8f74a`).
 - 26.11.2026 19:50: nakładka eksportu `clean_wikipedia_math_en.py`, rejestr, test kontraktowy (`47e715e`).
-- Eksport i `check.py`: w toku.
+- 26.11.2026 19:56: eksport (`KONIEC 1`, sha256 `40348175…`), test kontraktowy 1 passed, `check.py` tylko oczekiwane linie; wysyłka HF `3d695f2c`, sha256 zgodne, anonimowo 401.
+- 26.11.2026 21:52: tokenizacja v6 na HF (`a7390857`, `3d9af022`): 6 762 dok., 19 734 493 tok. v6.
 
 ## Pułapki tego przebiegu
 

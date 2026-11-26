@@ -87,7 +87,9 @@ Pool 6 819 docs / 26 422 540 v6 tokens. Kept after all reasons (`uzysk`): **2 98
 (37.39%)**; near-duplicates within the pool (25.5 percentage points) and pages already in FineMath-4+ (26.0 points)
 take most of the loss. One part (`wyniki/czesci.json`): `open_textbooks_math_en_p01`, 2 989 docs, 9 879 250 v6 tokens.
 
-Export (`shard.write`, docs, `token_count`, `dropped`), parquet sha256 and `src/check.py`: in progress.
+Export (`shard.write`): 2 986 docs, 8 954 754 `token_count` (the submissions repo's counter, not v6); `dropped`:
+wrong_language 3. Parquet sha256 `eedae7b78eae5703ce53fb3a5a91a1c3051a8111656720fda5b723f8de50de21`.
+Contract test: 1 passed. `src/check.py`: 21 lines, only the two expected causes (Presidio rescan, no presidio record).
 
 Positive control: no result file for this source (not measured); rules and indexes as in InfiWebMath-4+.
 
@@ -121,7 +123,7 @@ chapters without mathematics — PASS.
 - Author names from the source metadata stay in `author` (attribution required by the licences).
 - The Presidio pass of `shard.write` is off (`no_masking()` in `matematyka-wspolne/eksport/src/mat_wybor.py`): its
   PhoneRecognizer masks numbers in mathematics (403 spans in 300 FineMath-4+ documents, 2026-11-24). `check.py` result:
-  in progress.
+  21 lines, only "PII left after masking" and "no presidio record".
 - Review of 300 kept documents: missed PII **0/300** for both reviewers.
 
 ## Sample

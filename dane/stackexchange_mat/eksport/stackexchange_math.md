@@ -86,7 +86,9 @@ Pool 1 938 345 docs / 1 667 484 804 v6 tokens. Kept after all reasons (`uzysk`):
 tokens (77.80%)**; dedup against our earlier sources (FineMath-4+, InfiWebMath-4+, SE pages) takes 20.9 percentage points.
 One part (`wyniki/czesci.json`): `stackexchange_math_p01`, 1 614 957 docs, 1 297 285 890 v6 tokens.
 
-Export (`shard.write`, docs, `token_count`, `dropped`), parquet sha256 and `src/check.py`: in progress.
+Export (`shard.write`): 1 614 905 docs, 1 187 714 477 `token_count` (the submissions repo's counter, not v6); `dropped`:
+wrong_language 52. Parquet sha256 `78f6efd26679d307acae8920e111ddc7857b2c4d461da8c9fe6697435d2bb79c`.
+Contract test: 1 passed. `src/check.py`: 8 lines, only the two expected causes (Presidio rescan, no presidio record).
 
 Positive control: no result file for this source (not measured); rules and indexes as in InfiWebMath-4+ / FineMath-4+.
 
@@ -124,7 +126,7 @@ junk **0/300** for both reviewers (1–2 doubtful: formulas in images), PASS.
   CC BY-SA). Profile links are not exported (`clean_stackexchange_math.py` keeps names only).
 - The Presidio pass of `shard.write` is off (`no_masking()` in `matematyka-wspolne/eksport/src/mat_wybor.py`): its
   PhoneRecognizer masks numbers in mathematics (403 spans in 300 FineMath-4+ documents, 2026-11-24). `check.py` result:
-  in progress.
+  8 lines, only "PII left after masking" and "no presidio record".
 - Review of 300 kept documents: missed PII **0/300** for both reviewers.
 
 ## Sample

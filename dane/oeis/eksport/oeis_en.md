@@ -73,7 +73,9 @@ Pool 311 925 docs / 191 127 613 v6 tokens. Kept after all reasons (`uzysk`): **2
 (80.72%)**; `dedup_finemath4` takes 16.8% of pool tokens. One part (`wyniki/czesci.json`): `oeis_en_p01`, 261 467
 docs, 154 276 254 v6 tokens.
 
-Export (`shard.write`, docs, `token_count`, `dropped`), parquet sha256 and `src/check.py`: in progress.
+Export (`shard.write`): 260 277 docs, 141 883 692 `token_count` (the submissions repo's counter, not v6); `dropped`:
+wrong_language 1 190. Parquet sha256 `16c928cff39924e7e28077a8c615490ec93c4261b34087fda504d3cd501d24bc`.
+Contract test: 1 passed. `src/check.py`: 92 lines, only the two expected causes (Presidio rescan, no presidio record).
 
 Positive control: no result file for this source (not measured); `buduj_pule.py` asserts the e-mail masking on lines
 with `(AT)`, `@` and ` at ` before building.
@@ -108,7 +110,8 @@ of tokens and drop good text rather than let bad text through. 300 kept document
 - Author names stay in the text as required attribution (CC BY-SA); `_Name_` markers are unwrapped outside program
   lines.
 - The Presidio pass of `shard.write` is off (`no_masking(emails=True)`): its PhoneRecognizer masks numbers in
-  mathematical text (403 spans in 300 FineMath-4+ documents, 2026-11-24). `check.py` result: in progress.
+  mathematical text (403 spans in 300 FineMath-4+ documents, 2026-11-24). `check.py` result: 92 lines, only "PII left
+  after masking" and "no presidio record".
 - Review of 300 kept documents: missed PII **0/300** for both reviewers.
 
 ## Sample

@@ -156,23 +156,23 @@ Wynik [`wyniki/przeglad_1.json`](wyniki/przeglad_1.json). Progi: fałszywe odrzu
 |---|---|
 | Podział | [`wyniki/czesci.json`](wyniki/czesci.json): 1 część, `formal_math_p01`, 20 479 plików, 208 735 321 tokenów v6 |
 | Key | `formal_math`; datasheet [`eksport/formal_math.md`](eksport/formal_math.md); wpis w `../matematyka-wspolne/eksport/src/sources.py` (`license_spdx` `LicenseRef-per-file`); skrypt `../matematyka-wspolne/eksport/src/clean_formal_math.py` (commit `18c385d`): `premask_emails(..., bare_at=True)` przed `shard.write`, licencja per plik, Presidio wyłączone (`no_masking(emails=True)`) |
-| Kontrola po eksporcie (aneks 26.11d) | 0 trafień trzech wzorców e-maila w części: **w toku** |
-| Eksport, liczby, `dropped`, sha256 | **w toku** |
+| Kontrola po eksporcie (aneks 26.11d) | `resztki_email.py formalna/wyniki/probka_pliki.json 1` (cała pula przez `premask_emails(bare_at=True)`, ta sama funkcja co w eksporcie, 26.11): **0 dokumentów z resztkami**; na samym pliku części nie mierzone osobno |
+| Eksport | `../matematyka-wspolne/skrypty/eksport_czesci.sh` (`robocze/logi/eksport.log`, `KONIEC 1`): 20 390 plików, 157 587 646 `token_count` (licznik repo zgłoszeń, nie v6); `dropped`: wrong_language 89; sha256 `06c9c5b8e09e54dee541cba189cee835bd30d7b8dab50731579b724d295431bf` |
 
 ## 10. Kontrola końcowa
 
 | | |
 |---|---|
-| Test kontraktowy, `check.py` | **w toku** |
+| Test kontraktowy, `check.py` | test kontraktowy 1 passed; `check.py` 15 linii, wyłącznie oczekiwane („PII left after masking”, „no presidio record”) |
 | Niezależny agent na pliku o tym samym sha256 | nie zmierzono |
 
 ## 11. Wysyłka
 
-**W toku.**
+Repo `Lolita67/matematyka-kod-en-robocze` (gated manual), `data/formal_math_p01/`, commit HF `73eb3c08`; sha256 LFS zgodne z sha256 z logu eksportu (API HF); anonimowe pobranie: 401. Dostęp dla `Maggio33`: czeka na właścicielkę (Settings → Gated user access).
 
 ## 12. Dane treningowe
 
-Czeka na wysyłkę: nie zmierzono.
+Wersja stokenizowana `tokenized/slayer-v6/formal_math_p01` (z parquetu o sha256 `06c9c5b8…`): 20 390 plików (= liczba wierszy parquetu), 208 104 938 tokenów v6; commit HF `c0ba1c48` (bin), `efbfd864` (metadane).
 
 ## Historia odtworzeń
 
@@ -184,7 +184,8 @@ Czeka na wysyłkę: nie zmierzono.
 - 26.11.2026 14:58–15:02: aneks 26.11d (`ceaf711`), maskowanie `bare_at` (`b2041d2`), `agreguj_26d`: 20 479 / 208 735 321 (`c61fe2d`).
 - 26.11.2026 15:05–15:14: próbka z parami (`1d96d53`), maskowanie form z przeglądu i `resztki_email.py` (`5799bec`), przegląd i aneks (`de04099`).
 - 26.11.2026 15:16: nakładka eksportu `clean_formal_math.py`, rejestr, test kontraktowy (`18c385d`).
-- Eksport i `check.py`: w toku.
+- 26.11.2026 15:25: eksport (`KONIEC 1`, sha256 `06c9c5b8…`), test kontraktowy 1 passed, `check.py` tylko oczekiwane linie; wysyłka HF `73eb3c08`, sha256 zgodne, anonimowo 401.
+- 26.11.2026 18:22: tokenizacja v6 na HF (`c0ba1c48`, `efbfd864`): 20 390 plików, 208 104 938 tok. v6.
 
 ## Pułapki tego przebiegu
 

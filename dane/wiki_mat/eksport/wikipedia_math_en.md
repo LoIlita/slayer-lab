@@ -76,7 +76,9 @@ Pool 9 990 docs / 30 824 027 v6 tokens. Kept after all reasons (`uzysk`): **6 76
 (64.02%)**; `dedup_fineweb_edu_109` takes 24.9 percentage points (article page already in FineWeb-Edu 1.09). One part
 (`wyniki/czesci.json`): `wikipedia_math_en_p01`, 6 762 docs, 19 734 493 v6 tokens.
 
-Export (`shard.write`, docs, `token_count`, `dropped`), parquet sha256 and `src/check.py`: in progress.
+Export (`shard.write`): 6 762 docs, 18 300 403 `token_count` (the submissions repo's counter, not v6); `dropped`: none.
+Parquet sha256 `40348175d1f9276b0f3435ca847889d44940a8ea6d3c8ccb9516f0bc6fd05c6d`.
+Contract test: 1 passed. `src/check.py`: 11 lines, only the two expected causes (Presidio rescan, no presidio record).
 
 Positive control: no result file for this source (not measured); rules and indexes as in InfiWebMath-4+.
 
@@ -109,7 +111,7 @@ numbers), cost 0.19%; `pii_at_bez_nawiasow` 0/3, all beyond the visible text, co
 - Editor logins stay in `author` (public user names; attribution required by CC BY-SA).
 - The Presidio pass of `shard.write` is off (`no_masking()` in `matematyka-wspolne/eksport/src/mat_wybor.py`): its
   PhoneRecognizer masks numbers in mathematics (403 spans in 300 FineMath-4+ documents, 2026-11-24). `check.py` result:
-  in progress.
+  11 lines, only "PII left after masking" and "no presidio record".
 - Review of 300 kept documents: missed PII **0/300** for both reviewers.
 
 ## Sample
