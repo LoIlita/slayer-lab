@@ -1,0 +1,237 @@
+{
+ "zbior": "wiki_mat",
+ "dokumenty": 9990,
+ "tokeny_v6": 30824027,
+ "dok_z_id0": 0,
+ "kaskada": [
+  {
+   "powod": "walidacja_fabryki",
+   "odrzucone_dok": 1,
+   "odrzucone_tok": 536,
+   "zostaje_dok": 9989,
+   "zostaje_tok": 30823491,
+   "zostaje_tok_proc": 99.998
+  },
+  {
+   "powod": "domena_testow",
+   "odrzucone_dok": 0,
+   "odrzucone_tok": 0,
+   "zostaje_dok": 9989,
+   "zostaje_tok": 30823491,
+   "zostaje_tok_proc": 99.998
+  },
+  {
+   "powod": "ewal_13gram",
+   "odrzucone_dok": 200,
+   "odrzucone_tok": 999883,
+   "zostaje_dok": 9789,
+   "zostaje_tok": 29823608,
+   "zostaje_tok_proc": 96.754
+  },
+  {
+   "powod": "pii",
+   "odrzucone_dok": 8,
+   "odrzucone_tok": 59837,
+   "zostaje_dok": 9781,
+   "zostaje_tok": 29763771,
+   "zostaje_tok_proc": 96.56
+  },
+  {
+   "powod": "pii_zaciemniony",
+   "odrzucone_dok": 0,
+   "odrzucone_tok": 0,
+   "zostaje_dok": 9781,
+   "zostaje_tok": 29763771,
+   "zostaje_tok_proc": 96.56
+  },
+  {
+   "powod": "pii_at_bez_nawiasow",
+   "odrzucone_dok": 3,
+   "odrzucone_tok": 6305,
+   "zostaje_dok": 9778,
+   "zostaje_tok": 29757466,
+   "zostaje_tok_proc": 96.54
+  },
+  {
+   "powod": "min_tresc",
+   "odrzucone_dok": 0,
+   "odrzucone_tok": 0,
+   "zostaje_dok": 9778,
+   "zostaje_tok": 29757466,
+   "zostaje_tok_proc": 96.54
+  },
+  {
+   "powod": "mojibake",
+   "odrzucone_dok": 0,
+   "odrzucone_tok": 0,
+   "zostaje_dok": 9778,
+   "zostaje_tok": 29757466,
+   "zostaje_tok_proc": 96.54
+  },
+  {
+   "powod": "dedup_wewnatrz",
+   "odrzucone_dok": 86,
+   "odrzucone_tok": 100815,
+   "zostaje_dok": 9692,
+   "zostaje_tok": 29656651,
+   "zostaje_tok_proc": 96.213
+  },
+  {
+   "powod": "dedup_finemath4",
+   "odrzucone_dok": 72,
+   "odrzucone_tok": 218577,
+   "zostaje_dok": 9620,
+   "zostaje_tok": 29438074,
+   "zostaje_tok_proc": 95.504
+  },
+  {
+   "powod": "dedup_infiwebmath4",
+   "odrzucone_dok": 230,
+   "odrzucone_tok": 628899,
+   "zostaje_dok": 9390,
+   "zostaje_tok": 28809175,
+   "zostaje_tok_proc": 93.463
+  },
+  {
+   "powod": "dedup_slayer107",
+   "odrzucone_dok": 361,
+   "odrzucone_tok": 1385742,
+   "zostaje_dok": 9029,
+   "zostaje_tok": 27423433,
+   "zostaje_tok_proc": 88.968
+  },
+  {
+   "powod": "dedup_slayer_8x3b_en",
+   "odrzucone_dok": 1,
+   "odrzucone_tok": 2615,
+   "zostaje_dok": 9028,
+   "zostaje_tok": 27420818,
+   "zostaje_tok_proc": 88.959
+  },
+  {
+   "powod": "dedup_english_technical",
+   "odrzucone_dok": 0,
+   "odrzucone_tok": 0,
+   "zostaje_dok": 9028,
+   "zostaje_tok": 27420818,
+   "zostaje_tok_proc": 88.959
+  },
+  {
+   "powod": "dedup_fineweb_edu_109",
+   "odrzucone_dok": 2266,
+   "odrzucone_tok": 7686325,
+   "zostaje_dok": 6762,
+   "zostaje_tok": 19734493,
+   "zostaje_tok_proc": 64.023
+  }
+ ],
+ "niezaleznie": {
+  "walidacja_fabryki": {
+   "dok": 1,
+   "tok": 536,
+   "tok_proc": 0.002
+  },
+  "domena_testow": {
+   "dok": 0,
+   "tok": 0,
+   "tok_proc": 0.0
+  },
+  "ewal_13gram": {
+   "dok": 200,
+   "tok": 999883,
+   "tok_proc": 3.244
+  },
+  "pii": {
+   "dok": 9,
+   "tok": 63880,
+   "tok_proc": 0.207
+  },
+  "pii_zaciemniony": {
+   "dok": 0,
+   "tok": 0,
+   "tok_proc": 0.0
+  },
+  "pii_at_bez_nawiasow": {
+   "dok": 3,
+   "tok": 6305,
+   "tok_proc": 0.02
+  },
+  "min_tresc": {
+   "dok": 0,
+   "tok": 0,
+   "tok_proc": 0.0
+  },
+  "mojibake": {
+   "dok": 0,
+   "tok": 0,
+   "tok_proc": 0.0
+  },
+  "dedup_wewnatrz": {
+   "dok": 87,
+   "tok": 102226,
+   "tok_proc": 0.332
+  },
+  "dedup_finemath4": {
+   "dok": 76,
+   "tok": 229871,
+   "tok_proc": 0.746
+  },
+  "dedup_infiwebmath4": {
+   "dok": 237,
+   "tok": 651154,
+   "tok_proc": 2.112
+  },
+  "dedup_slayer107": {
+   "dok": 368,
+   "tok": 1408461,
+   "tok_proc": 4.569
+  },
+  "dedup_slayer_8x3b_en": {
+   "dok": 1,
+   "tok": 2615,
+   "tok_proc": 0.008
+  },
+  "dedup_english_technical": {
+   "dok": 0,
+   "tok": 0,
+   "tok_proc": 0.0
+  },
+  "dedup_fineweb_edu_109": {
+   "dok": 2622,
+   "tok": 9030322,
+   "tok_proc": 29.296
+  }
+ },
+ "uzysk": {
+  "dok": 6762,
+  "tok": 19734493,
+  "tok_proc": 64.023
+ },
+ "ewal_per_test": {
+  "T34_math": 114,
+  "T10_boolq": 46,
+  "T32_mmlu": 24,
+  "T48_paws": 8,
+  "T38_squad2": 7,
+  "X02_humaneval": 4,
+  "T45_medmcqa": 3,
+  "T24_belebele": 1,
+  "T16_anli": 1
+ },
+ "pii_klasy_detektor_dclm": {
+  "email": 0,
+  "telefon": 0,
+  "ip": 9
+ },
+ "pii_tryb": "usun",
+ "dedup_wewnatrz_szczegoly": {
+  "identyczny_tekst": 1,
+  "minhash_bez_identycznych": 86
+ },
+ "eksport": {
+  "cel_tok_v6": 1000000000000000,
+  "dok": 6762,
+  "tok_v6": 19734493,
+  "wystarcza": false
+ }
+}
