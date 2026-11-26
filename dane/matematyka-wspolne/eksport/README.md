@@ -11,6 +11,14 @@ configs:
   data_files:
   - split: train
     path: data/*/*.parquet
+- config_name: wikipedia_math_en
+  data_files:
+  - split: train
+    path: data/wikipedia_math_en/wikipedia_math_en.parquet
+- config_name: open_textbooks_math_en
+  data_files:
+  - split: train
+    path: data/open_textbooks_math_en/open_textbooks_math_en.parquet
 - config_name: oeis_en
   data_files:
   - split: train

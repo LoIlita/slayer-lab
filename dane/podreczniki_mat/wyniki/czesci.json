@@ -1,0 +1,13 @@
+{
+ "wybor": "podreczniki_mat/robocze/wyniki/wybor.json",
+ "cel_tokenow_v6": 1000000000,
+ "czesci": [
+  {
+   "czesc": 1,
+   "dokumenty": 2989,
+   "tokeny_v6": 9879250
+  }
+ ],
+ "dokumenty": 2989,
+ "tokeny_v6": 9879250
+}

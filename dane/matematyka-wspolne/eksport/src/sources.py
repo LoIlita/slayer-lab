@@ -23,6 +23,36 @@ Optional:
 """
 
 SOURCES: dict[str, dict] = {
+    "wikipedia_math_en": {
+        "pretty": "English Wikipedia and Wikibooks: mathematics articles",
+        "upstream": "https://huggingface.co/datasets/common-pile/wikimedia",
+        "license": "CC BY-SA 4.0 (Wikimedia terms of use, per article)",
+        "license_spdx": "CC-BY-SA-4.0",
+        "domain": "mathematics",
+        "added": "2026-11-26",
+        "created": "2001-2025 (article revisions in the Common Pile dump)",
+        "provenance": "common-pile/wikimedia@781b263a, en.wikipedia and en.wikibooks, articles selected by formula density and a mathematics vocabulary test (slayer-lab dane/wiki_mat, rule 1, measured precision 87%); filtered there (13-gram decontamination, PII, dedup vs Slayer 1.07 EN, FineWeb-Edu 1.09 urls, finemath_4plus_en and infiwebmath_4plus_en)",
+        "traceable": True,
+        "is_ocr": False,
+        "language": ["en"],
+        "text_origin": "human",
+        "legal_note": "CC BY-SA 4.0 per article; attribution by article url and editor logins. Share-alike applies to redistributions of this source. Takedown by url.",
+    },
+    "open_textbooks_math_en": {
+        "pretty": "Open textbooks: mathematics and statistics (LibreTexts, PressBooks)",
+        "upstream": ["https://huggingface.co/datasets/common-pile/libretexts", "https://huggingface.co/datasets/common-pile/pressbooks"],
+        "license": "per chapter: CC BY 3.0/4.0, CC BY-SA 3.0/4.0, GFDL 1.3, public domain",
+        "license_spdx": "LicenseRef-per-row",
+        "domain": "mathematics",
+        "added": "2026-11-26",
+        "created": "2010-2025 (page dates in the source metadata)",
+        "provenance": "common-pile/libretexts@d4ce4b1e (math. and stats. bookshelves) and common-pile/pressbooks@29fa162f (mathematics books), OpenStax-derived chapters excluded, exact duplicate chapters removed (slayer-lab dane/podreczniki_mat); filtered there (13-gram decontamination, PII, dedup vs Slayer 1.07 EN, finemath_4plus_en and infiwebmath_4plus_en)",
+        "traceable": True,
+        "is_ocr": False,
+        "language": ["en"],
+        "text_origin": "human",
+        "legal_note": "Licence per chapter from the source metadata, no NC/ND. OpenStax chapters excluded although the copies are CC BY 4.0: the publisher moved new versions to CC BY-NC-SA in 2026 and named AI training as a reason. Takedown by url.",
+    },
     "oeis_en": {
         "pretty": "OEIS sequence entries (English, rendered as text)",
         "upstream": "https://github.com/oeis/oeisdata",

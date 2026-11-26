@@ -1,0 +1,13 @@
+{
+ "wybor": "wiki_mat/robocze/wyniki/wybor.json",
+ "cel_tokenow_v6": 1000000000,
+ "czesci": [
+  {
+   "czesc": 1,
+   "dokumenty": 6762,
+   "tokeny_v6": 19734493
+  }
+ ],
+ "dokumenty": 6762,
+ "tokeny_v6": 19734493
+}

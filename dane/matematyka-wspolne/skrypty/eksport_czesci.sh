@@ -24,6 +24,9 @@ case "$ZB" in
   oeis) KEY=oeis_en ;;
   formalna) KEY=formal_math ;;
   stackexchange_mat) KEY=stackexchange_math ;;
+  wiki_mat) KEY=wikipedia_math_en ;;
+  podreczniki_mat) KEY=open_textbooks_math_en ;;
+  arxiv_mat) KEY=arxiv_math_en ;;
   *) echo "nieznany zbiór $ZB" >&2; exit 2 ;;
 esac
 D=$REPO/dane/$ZB
