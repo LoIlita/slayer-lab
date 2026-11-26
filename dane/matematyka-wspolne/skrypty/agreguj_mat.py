@@ -21,6 +21,10 @@ from wspolne import r, r2  # noqa: E402
 ZB, D, EW13, PREREG_P, OUT, PRZEGLAD, WYBOR = sys.argv[1:8]
 OPC = dict(a.split("=", 1) for a in sys.argv[8:])
 P = json.load(open(PREREG_P, encoding="utf-8"))
+if "aneksy_przejete" in P:  # preregistracja odsyła do aneksów InfiWebMath-4+ zamiast je kopiować (oeis, formalna)
+    _baza = json.load(open(os.path.join(os.path.dirname(PREREG_P), "..", "..", "infiwebmath4", "skrypty", "preregistracja.json"), encoding="utf-8"))
+    for _k in re.findall(r"aneks_\d{4}_\d{2}_\d{2}[a-z]?", P["aneksy_przejete"]):
+        P.setdefault(_k, _baza[_k])
 SEED = P["seed"]
 jed = json.load(open(f"{D}/jednostki.json"))
 
