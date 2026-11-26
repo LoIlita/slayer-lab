@@ -110,5 +110,15 @@
   "wikivoyage.org",
   "wikibooks.org"
  ],
- "domena_testow_wylaczone_uwaga": "zapis maszynowy reguły z pola domena_testow (dopisany 26.11 przez integratora przed przebiegiem; treść reguły bez zmian); przeciek testów z Wikipedii (np. WikiText-2, BoolQ) łapie ewal_13gram"
+ "domena_testow_wylaczone_uwaga": "zapis maszynowy reguły z pola domena_testow (dopisany 26.11 przez integratora przed przebiegiem; treść reguły bez zmian); przeciek testów z Wikipedii (np. WikiText-2, BoolQ) łapie ewal_13gram",
+ "aneks_2026_11_26_przeglad": {
+  "zapisano": "2026-11-26, PO przeglądzie próbki (wyniki/przeglad_1.json, dwóch recenzentów, pełne teksty zachowanych; wycinki z niepełną lekturą doczytane) i PRZED eksportem",
+  "wynik": "PASS zachowanych: śmieci 1/300 u obu, PII 0/300, testy 0/300; dedupy trafne",
+  "fail_przyjete": {
+   "ewal_13gram": "fałszywe 66-68% (macierze, wzory); trafne 28-31% to pasaże testów czytania z Wikipedii (BoolQ, PAWS, ANLI, SQuAD2, Belebele) — reguła działa tu zgodnie z celem; koszt 3,24% tokenów",
+   "pii": "0/9 fałszywych w ocenie (9 poza widocznym tekstem; pełny tekst: 2 prawdziwe, reszta numery); FAIL tylko z małej próby; koszt 0,19%",
+   "pii_at_bez_nawiasow": "0/3, wszystkie poza widocznym tekstem; koszt 0,02%",
+   "walidacja_fabryki, dedup_slayer_8x3b_en": "0/1 — FAIL tylko z górnej granicy Wilsona przy n=1"
+  }
+ }
 }

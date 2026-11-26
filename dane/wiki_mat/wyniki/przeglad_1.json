@@ -1,0 +1,294 @@
+{
+ "zbior": "wiki_mat",
+ "recenzenci": {
+  "A": {
+   "brakujace_oceny": 0,
+   "powody": {
+    "dedup_finemath4": {
+     "k": 0,
+     "n": 75,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      4.9
+     ],
+     "werdykt": "PASS",
+     "watpliwe": 0
+    },
+    "dedup_fineweb_edu_109": {
+     "k": 0,
+     "n": 100,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      3.7
+     ],
+     "werdykt": "PASS",
+     "watpliwe": 0
+    },
+    "dedup_infiwebmath4": {
+     "k": 0,
+     "n": 98,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      3.8
+     ],
+     "werdykt": "PASS",
+     "watpliwe": 0
+    },
+    "dedup_slayer107": {
+     "k": 0,
+     "n": 97,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      3.8
+     ],
+     "werdykt": "PASS",
+     "watpliwe": 0
+    },
+    "dedup_slayer_8x3b_en": {
+     "k": 0,
+     "n": 1,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      79.3
+     ],
+     "werdykt": "FAIL",
+     "watpliwe": 0
+    },
+    "dedup_wewnatrz": {
+     "k": 0,
+     "n": 87,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      4.2
+     ],
+     "werdykt": "PASS",
+     "watpliwe": 0
+    },
+    "ewal_13gram": {
+     "k": 66,
+     "n": 93,
+     "stopa": 71.0,
+     "wilson95": [
+      61.1,
+      79.2
+     ],
+     "werdykt": "FAIL",
+     "watpliwe": 2
+    },
+    "pii": {
+     "k": 0,
+     "n": 9,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      29.9
+     ],
+     "werdykt": "FAIL",
+     "watpliwe": 9
+    },
+    "pii_at_bez_nawiasow": {
+     "k": 0,
+     "n": 3,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      56.2
+     ],
+     "werdykt": "FAIL",
+     "watpliwe": 3
+    },
+    "walidacja_fabryki": {
+     "k": 0,
+     "n": 1,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      79.3
+     ],
+     "werdykt": "FAIL",
+     "watpliwe": 0
+    }
+   },
+   "zachowane": {
+    "smieci": {
+     "k": 1,
+     "n": 300,
+     "stopa": 0.3,
+     "wilson95": [
+      0.1,
+      1.9
+     ],
+     "werdykt": "PASS",
+     "watpliwe": 13
+    },
+    "pii_przeoczone": {
+     "k": 0,
+     "n": 300,
+     "werdykt": "PASS"
+    },
+    "test_przeoczony": {
+     "k": 0,
+     "n": 300,
+     "werdykt": "PASS"
+    }
+   }
+  },
+  "B": {
+   "brakujace_oceny": 0,
+   "powody": {
+    "dedup_finemath4": {
+     "k": 0,
+     "n": 75,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      4.9
+     ],
+     "werdykt": "PASS",
+     "watpliwe": 0
+    },
+    "dedup_fineweb_edu_109": {
+     "k": 0,
+     "n": 100,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      3.7
+     ],
+     "werdykt": "PASS",
+     "watpliwe": 0
+    },
+    "dedup_infiwebmath4": {
+     "k": 0,
+     "n": 98,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      3.8
+     ],
+     "werdykt": "PASS",
+     "watpliwe": 0
+    },
+    "dedup_slayer107": {
+     "k": 0,
+     "n": 97,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      3.8
+     ],
+     "werdykt": "PASS",
+     "watpliwe": 0
+    },
+    "dedup_slayer_8x3b_en": {
+     "k": 0,
+     "n": 1,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      79.3
+     ],
+     "werdykt": "FAIL",
+     "watpliwe": 0
+    },
+    "dedup_wewnatrz": {
+     "k": 0,
+     "n": 87,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      4.2
+     ],
+     "werdykt": "PASS",
+     "watpliwe": 0
+    },
+    "ewal_13gram": {
+     "k": 63,
+     "n": 93,
+     "stopa": 67.7,
+     "wilson95": [
+      57.7,
+      76.4
+     ],
+     "werdykt": "FAIL",
+     "watpliwe": 2
+    },
+    "pii": {
+     "k": 0,
+     "n": 9,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      29.9
+     ],
+     "werdykt": "FAIL",
+     "watpliwe": 9
+    },
+    "pii_at_bez_nawiasow": {
+     "k": 0,
+     "n": 3,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      56.2
+     ],
+     "werdykt": "FAIL",
+     "watpliwe": 3
+    },
+    "walidacja_fabryki": {
+     "k": 0,
+     "n": 1,
+     "stopa": 0.0,
+     "wilson95": [
+      0.0,
+      79.3
+     ],
+     "werdykt": "FAIL",
+     "watpliwe": 0
+    }
+   },
+   "zachowane": {
+    "smieci": {
+     "k": 1,
+     "n": 300,
+     "stopa": 0.3,
+     "wilson95": [
+      0.1,
+      1.9
+     ],
+     "werdykt": "PASS",
+     "watpliwe": 13
+    },
+    "pii_przeoczone": {
+     "k": 0,
+     "n": 300,
+     "werdykt": "PASS"
+    },
+    "test_przeoczony": {
+     "k": 0,
+     "n": 300,
+     "werdykt": "PASS"
+    }
+   }
+  }
+ },
+ "werdykt": "NIE PRZESZŁO",
+ "fail": [
+  "A:dedup_slayer_8x3b_en",
+  "A:ewal_13gram",
+  "A:pii",
+  "A:pii_at_bez_nawiasow",
+  "A:walidacja_fabryki",
+  "B:dedup_slayer_8x3b_en",
+  "B:ewal_13gram",
+  "B:pii",
+  "B:pii_at_bez_nawiasow",
+  "B:walidacja_fabryki"
+ ]
+}

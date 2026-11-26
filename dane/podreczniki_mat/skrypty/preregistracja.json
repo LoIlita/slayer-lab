@@ -4,11 +4,21 @@
  "cel": "część 3 zbioru matematyki i logiki dla Slayera (#357): otwarte podręczniki matematyki i statystyki (C1 LibreTexts, C2 PressBooks w dane/matematyka-wspolne/kandydaci_czyste.md)",
  "seed": 20261126,
  "zrodlo": {
-  "C1": {"repo": "huggingface.co/datasets/common-pile/libretexts", "rewizja": "d4ce4b1edf95888b24992db3bbb2ae8e2bf6c22f",
-         "pliki": {"00000_libretext.json.gz": "eee45504dab26b692653943a8528ead0d0361bce3b5255ed07b69da3fbd3c984"}},
-  "C2": {"repo": "huggingface.co/datasets/common-pile/pressbooks", "rewizja": "29fa162fc78277b160a7010f18086b5189ffb761",
-         "pliki": {"00000_pressbooks.json.gz": "67d1135ad65d3c1f2f4d88d44ad35d37a4e381cb518c1bd878e4d2c350c9ff21",
-                   "00001_pressbooks.json.gz": "cd3a484605b52654a3a1b022bd125091fa15739b243d8b9967c97454e1227c41"}},
+  "C1": {
+   "repo": "huggingface.co/datasets/common-pile/libretexts",
+   "rewizja": "d4ce4b1edf95888b24992db3bbb2ae8e2bf6c22f",
+   "pliki": {
+    "00000_libretext.json.gz": "eee45504dab26b692653943a8528ead0d0361bce3b5255ed07b69da3fbd3c984"
+   }
+  },
+  "C2": {
+   "repo": "huggingface.co/datasets/common-pile/pressbooks",
+   "rewizja": "29fa162fc78277b160a7010f18086b5189ffb761",
+   "pliki": {
+    "00000_pressbooks.json.gz": "67d1135ad65d3c1f2f4d88d44ad35d37a4e381cb518c1bd878e4d2c350c9ff21",
+    "00001_pressbooks.json.gz": "cd3a484605b52654a3a1b022bd125091fa15739b243d8b9967c97454e1227c41"
+   }
+  },
   "C3": "common-pile/oercommons ODRZUCONE w całości (karta §3: precyzja 11/20 i 8/20, pula 63 dok.)",
   "licencja": "metadata.license per dokument, mapowane na SPDX (CC-BY-4.0, CC-BY-SA-4.0, CC-BY-3.0, CC-BY-SA-3.0, CC-BY-SA-2.5, CC0-1.0, LicenseRef-PD, GFDL-1.3-or-later); dokument z licencją spoza mapy albo z NC/ND -> odrzucony (licencja)",
   "karta": "dane/podreczniki_mat/KARTA_ZRODLA.md"
@@ -68,7 +78,17 @@
  "domena_testow": "jak DCLM-EN; oczekiwane 0",
  "ewal_13gram": {
   "indeks": "jak infiwebmath4: testy RPG v2 + T51_gsm_plus i T52_gsm1k",
-  "testy_scisle": ["T19_mathqa", "T32_mmlu", "T33_gsm8k", "T34_math", "T47_bbh", "X02_humaneval", "X03_mbpp", "T51_gsm_plus", "T52_gsm1k"],
+  "testy_scisle": [
+   "T19_mathqa",
+   "T32_mmlu",
+   "T33_gsm8k",
+   "T34_math",
+   "T47_bbh",
+   "X02_humaneval",
+   "X03_mbpp",
+   "T51_gsm_plus",
+   "T52_gsm1k"
+  ],
   "df_min": 5,
   "regula": "jak infiwebmath4 (karta §5: ćwiczenia podręcznikowe krążą jako zadania testów)"
  },
@@ -103,5 +123,15 @@
   "zapisano": "2026-11-26, PO pierwszym przebiegu budowy (liczby filtra budowy widziane, treści puli nie oglądane), PRZED eksportem",
   "zmiana": "reguła openstax sprawdzana na metadata.url/id + oknach 3000 znaków surowego tekstu ORAZ na id + oknach tekstu po normalizacji; trafienie w którymkolwiek -> wykluczony",
   "powod": "kontrola puli (sprawdz) znalazła dokumenty ze słowem OpenStax w oknie 3000 znaków po normalizacji ('[latex]' -> '\\(' i wycięcie nawigacji przesuwają granicę okna), których surowe okno nie obejmowało; decyzja konserwatywna wymaga ich wykluczenia; zmiana tylko zaostrza wykluczenie"
+ },
+ "aneks_2026_11_26_przeglad": {
+  "zapisano": "2026-11-26, PO przeglądzie próbki (wyniki/przeglad_1.json, dwóch recenzentów, pełne teksty zachowanych; wycinki z niepełną lekturą doczytane) i PRZED eksportem",
+  "wynik": "PASS zachowanych: śmieci 7/300 i 6/300 (sama nawigacja LibreTexts, rozdziały bez matematyki), PII 0/300, testy 0/300; dedupy trafne",
+  "fail_przyjete": {
+   "ewal_13gram": "88-92% fałszywych (wzory, definicje); koszt 3,19%",
+   "pii": "7/32 fałszywych (numery ćwiczeń jako IP), reszta poza widocznym tekstem; koszt 0,80%",
+   "pii_at_bez_nawiasow": "B: 11/88 fałszywych w widocznym tekście, reszta poza nim (pełny tekst: frazy 'available at …'); koszt 2,65%; jak aneks 25.11c",
+   "mojibake, dedup_slayer_8x3b_en": "0/2, 0/6 — FAIL tylko z małej próby"
+  }
  }
 }
