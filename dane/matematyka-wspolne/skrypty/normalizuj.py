@@ -6,9 +6,10 @@ Tekst niezmieniony. Format wyjścia jak pobierz.py DCLM-EN, więc przebieg.py DC
   cranemath  allenai/dolma3_dolmino_mix-100B-1125, data/ingredient1-cranemath/*.jsonl.zst; obok kopia 'oryg' z text=original_text
              (13-gramy testów liczone też na tekście przed przepisaniem)
   stackedu   common-pile/stackv2_edu_filtered, *.json.gz; tylko metadata.language == 'Python'
+  stackexchange_mat  common-pile/stackexchange (raw), serwisy z preregistracji; pytania sprzed 2022-12-01, posty z licencją
   infiwebmath4  HuggingFaceTB/finemath, infiwebmath-4plus/*.parquet; id = WARC-Record-ID z metadata.WARC_HEADER
   finemath3  HuggingFaceTB/finemath, finemath-3plus/*.parquet; tylko int_score == 3
-Argumenty: zrodlo katalog_pobran probka_pliki.json cel_tokenow_v6 tokenizer.json seed"""
+Argumenty: zrodlo katalog_pobran probka_pliki.json cel_tokenow_v6 tokenizer.json seed [preregistracja.json]"""
 import gzip
 import hashlib
 import io
@@ -29,11 +30,14 @@ ZRODLA = {
     "stackedu": ("common-pile/stackv2_edu_filtered", "c354dbe88469a1153e97c6a63ac50591849654de", "stack-edu-", ".json.gz"),
     "infiwebmath4": ("HuggingFaceTB/finemath", "e92b25a616738fe95dc186b64dfb19f9c8525594", "infiwebmath-4plus/", ".parquet"),
     "finemath3": ("HuggingFaceTB/finemath", "e92b25a616738fe95dc186b64dfb19f9c8525594", "finemath-3plus/", ".parquet"),
+    "stackexchange_mat": ("common-pile/stackexchange", "5ec3aa2e65b7c61b7c18f1ff18ccbc4d3279a23c", "", "_se.jsonl.gz"),
 }
 ZR, CEL, WYN, DOCEL, TOK, SEED = sys.argv[1], sys.argv[2], sys.argv[3], int(sys.argv[4]), sys.argv[5], int(sys.argv[6])
+PRE = json.load(open(sys.argv[7], encoding="utf-8")) if len(sys.argv) > 7 else {}  # preregistracja: wybór plików i wierszy
 REPO, REW, PREF, SUF = ZRODLA[ZR]
 RG = 5000
 TK = Tokenizer.from_file(TOK)
+SE_DATA_DO = "2022-12-01"  # stackexchange_mat: preregistracja wybor_wierszy.data
 
 
 def sha(p):
@@ -72,6 +76,16 @@ def wiersze(p):
                 yield ({"text": o["text"], "url": m.get("url") or "", "id": o["id"], "crawl": m.get("crawl"),
                         "warc_filename": m.get("warc_filename"), "warc_record_offset": m.get("warc_record_offset"),
                         "warc_record_length": m.get("warc_record_length")}, m.get("original_text") or "")
+    elif ZR == "stackexchange_mat":  # preregistracja wybor_wierszy: pytania sprzed 2022-12-01, wszystkie posty z licencją
+        with gzip.open(p, "rt", encoding="utf-8") as f:
+            for linia in f:
+                o = json.loads(linia)
+                m = o["metadata"]
+                if (o.get("created") or "9999") >= SE_DATA_DO or "'None'" in (m.get("all_licenses") or "'None'"):
+                    continue
+                yield ({"text": o["text"], "url": m["url"], "id": f"{m['site']}/{o['id']}", "site": m["site"],
+                        "license": m.get("license"), "all_licenses": m.get("all_licenses"), "authors": m.get("authors"),
+                        "created": o.get("created")}, None)
     else:
         with gzip.open(p, "rt", encoding="utf-8") as f:
             for linia in f:
@@ -99,6 +113,9 @@ api = HfApi()
 wsz = sorted(f for f in api.list_repo_files(REPO, repo_type="dataset", revision=REW) if f.startswith(PREF) and f.endswith(SUF))
 if ZR == "stackedu":  # Python leży w plikach 0073-0084 (karta źródła, pole 3); 0084 zaczyna się Pythonem, potem Ruby
     wsz = [f for f in wsz if 73 <= int(f[len(PREF):-len(SUF)]) <= 84]
+if ZR == "stackexchange_mat":  # tylko serwisy z preregistracji (zrodlo.serwisy), katalog <serwis>/documents/
+    wsz = [f for f in wsz if f.split("/")[0] in PRE["zrodlo"]["serwisy"] and f.split("/")[1] == "documents"]
+    assert {f.split("/")[0] for f in wsz} == set(PRE["zrodlo"]["serwisy"]), "serwis z preregistracji bez plików w repo"
 kolej = np.random.default_rng(SEED).permutation(len(wsz)).tolist()
 os.makedirs(CEL, exist_ok=True)
 gotowe = {}

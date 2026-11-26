@@ -27,7 +27,7 @@ mkdir -p "$RW/logi" "$RW/pobrania" "$RW/wyniki"
 KROK=${1:-}
 ZB=${2:-}
 if [ -n "$ZB" ]; then
-  case "$ZB" in finemath4|cranemath|stackedu|infiwebmath4|finemath3) ;; *) echo "nieznany zbiór $ZB" >&2; exit 2 ;; esac
+  case "$ZB" in finemath4|cranemath|stackedu|infiwebmath4|finemath3|stackexchange_mat) ;; *) echo "nieznany zbiór $ZB" >&2; exit 2 ;; esac
   D=$REPO/dane/$ZB
   R=$D/robocze
   WD=$D/wyniki
@@ -73,7 +73,7 @@ ewal)  # indeks 13-gramów i krótkich napisów: 60 testów RPG v2 + 2 testy mat
   ;;
 pula)  # pobranie i normalizacja plików źródła do celu puli (preregistracja -> pula)
   CEL=$($PY -c "import json,sys; print(json.load(open(sys.argv[1]))['pula']['cel_puli_tok_v6'])" "$PRE")
-  $NICE $PY -I "$W/skrypty/normalizuj.py" "$ZB" "$POBR" "$WD/probka_pliki.json" "$CEL" "$TOK" "$SEED"
+  $NICE $PY -I "$W/skrypty/normalizuj.py" "$ZB" "$POBR" "$WD/probka_pliki.json" "$CEL" "$TOK" "$SEED" "$PRE"
   ;;
 przebieg)  # detektory DCLM-EN: tokeny v6, domena, PII, mojibake, 13-gramy, MinHash, EN 1.07, walidacja Fabryki
   $NICE $PY -I -W ignore "$DC/skrypty/przebieg.py" "$WD/probka_pliki.json" "$RW/wyniki/ewal" "$DCR/wyniki/idx" \
