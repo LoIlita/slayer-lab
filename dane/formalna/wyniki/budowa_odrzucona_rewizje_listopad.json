@@ -1,0 +1,69 @@
+{
+  "wiersze": 16917,
+  "tokeny_v6": 180297515,
+  "biblioteki": {
+    "mathlib4": {
+      "rewizja": "e54979a532247ae4eb9d5578a8fd40a1bc332101",
+      "wiersze": 1498,
+      "tokeny_v6": 4038490,
+      "ai_plikow_wykluczonych": 6866,
+      "ai_tokeny_v6_wykluczonych": 38659885
+    },
+    "afp": {
+      "rewizja": "02fd3c6b5326d1c53704c52c09cabb3fd2a772f5",
+      "wiersze": 10557,
+      "tokeny_v6": 129985322,
+      "ai_plikow_wykluczonych": 0,
+      "ai_tokeny_v6_wykluczonych": 0
+    },
+    "hol_light": {
+      "rewizja": "096417cac706ff0818f739bbc19f2ed499e43283",
+      "wiersze": 467,
+      "tokeny_v6": 6370279,
+      "ai_plikow_wykluczonych": 506,
+      "ai_tokeny_v6_wykluczonych": 34718195
+    },
+    "setmm": {
+      "rewizja": "ce7f29d6bb49ca66913cc4adae72bb4df5bcb854",
+      "wiersze": 621,
+      "tokeny_v6": 11155284,
+      "ai_plikow_wykluczonych": 2,
+      "ai_tokeny_v6_wykluczonych": 40573
+    },
+    "rocq_stdlib": {
+      "rewizja": "9657c7502ceb46ec94131c7500d9e484e1dddf3b",
+      "wiersze": 583,
+      "tokeny_v6": 2605422,
+      "ai_plikow_wykluczonych": 0,
+      "ai_tokeny_v6_wykluczonych": 0
+    },
+    "mathcomp": {
+      "rewizja": "656cdbcf752c1624c8afb245886b05dfd16b227c",
+      "wiersze": 149,
+      "tokeny_v6": 2776193,
+      "ai_plikow_wykluczonych": 0,
+      "ai_tokeny_v6_wykluczonych": 0
+    },
+    "unimath": {
+      "rewizja": "11e01f098e50285e9ec93fce1f09e57417342eec",
+      "wiersze": 1659,
+      "tokeny_v6": 10183276,
+      "ai_plikow_wykluczonych": 49,
+      "ai_tokeny_v6_wykluczonych": 578161
+    },
+    "agda_stdlib": {
+      "rewizja": "119d176134c44bcb5aad56bb6ce69bc97851c094",
+      "wiersze": 1190,
+      "tokeny_v6": 2156221,
+      "ai_plikow_wykluczonych": 0,
+      "ai_tokeny_v6_wykluczonych": 0
+    },
+    "stacks": {
+      "rewizja": "a04446e57ec1fbc252a871afcec7752fb2807b14",
+      "wiersze": 193,
+      "tokeny_v6": 11027028,
+      "ai_plikow_wykluczonych": 0,
+      "ai_tokeny_v6_wykluczonych": 0
+    }
+  }
+}

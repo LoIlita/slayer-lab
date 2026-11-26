@@ -1,0 +1,560 @@
+{
+ "mathlib4": {
+  "commitow": 1,
+  "plikow_wykluczonych": 1,
+  "tokeny_v6_wykluczonych": 22507,
+  "fragmenty_setmm": [],
+  "commity": [
+   {
+    "commit": "994364d23b300ad9d92152df97104ce3aee11111",
+    "data": "2023-10-05",
+    "temat": "feat: add lemma List.getD_map (#7307)",
+    "trafienie": "nstead of `induction'`/`cases'`\r\n\r\n~~Co-authored-by: GitHub Copilot~~\r\n\r\n\n\n\n\n",
+    "plikow": 1
+   }
+  ],
+  "pliki": {
+   "Mathlib/Data/List/Basic.lean": {
+    "tokeny_v6": 22507,
+    "commity": [
+     "994364d23b"
+    ]
+   }
+  }
+ },
+ "afp": {
+  "commitow": 0,
+  "plikow_wykluczonych": 0,
+  "tokeny_v6_wykluczonych": 0,
+  "fragmenty_setmm": [],
+  "commity": [],
+  "pliki": {}
+ },
+ "hol_light": {
+  "commitow": 0,
+  "plikow_wykluczonych": 0,
+  "tokeny_v6_wykluczonych": 0,
+  "fragmenty_setmm": [],
+  "commity": [],
+  "pliki": {}
+ },
+ "setmm": {
+  "commitow": 22,
+  "plikow_wykluczonych": 0,
+  "tokeny_v6_wykluczonych": 0,
+  "fragmenty_setmm": [
+   {
+    "id": "formalna/setmm/set.mm#L418339-L420881",
+    "znaki": 48955,
+    "tokeny_v6": 19936,
+    "trafienie": "Asking Claude"
+   },
+   {
+    "id": "formalna/setmm/set.mm#L731099-L733694",
+    "znaki": 47662,
+    "tokeny_v6": 20637,
+    "trafienie": "Contributed by OpenAI"
+   }
+  ],
+  "commity": [
+   {
+    "commit": "7b308bd7c2cb5bdf70c6f4070eb7dbcd00d5bc12",
+    "data": "2026-10-14",
+    "temat": "Add omexcn: the complex axioms imply Infinity (new mathbox) (#5528)",
+    "trafienie": "(thanks BJ), $j usage tag, contributor list, mathbox before OpenAI\n",
+    "plikow": 1
+   },
+   {
+    "commit": "5edaa133ddc4a6e26bcf05140a03384d538af326",
+    "data": "2026-03-18",
+    "temat": "restore according to part 6 of ChatGPT analysis (#5238)",
+    "trafienie": "restore according to part 6 of ChatGPT analysis (#5238)\n\n* add df-peters\n\n* add df-pet2parts\n\n* ad",
+    "plikow": 1
+   },
+   {
+    "commit": "7e71cf4e6cb31a4ba0d742daf1e6e4229c5184f2",
+    "data": "2025-07-02",
+    "temat": "proof shortening by a pre-trained language model (#4919)",
+    "trafienie": "proof shortening by a pre-trained language model (#4919)\n\n* Add Hongxiu Chen's mathbox\n\n* Shorten 3jaob\n\n* S",
+    "plikow": 2
+   },
+   {
+    "commit": "4d2efbafbf1ed68f4c19a72f44bb3cbde88a611e",
+    "data": "2020-07-12",
+    "temat": "Merge pull request #1719 from metamath/tarskigeom",
+    "trafienie": "t #1719 from metamath/tarskigeom\n\n`gsummptres` proved using OpenAI's proof assistant, other theorems\n",
+    "plikow": 2
+   },
+   {
+    "commit": "db6a7abbd5d860696a7b19537e05a21efcc83653",
+    "data": "2020-07-11",
+    "temat": "`gsummptres` proved using OpenAI's proof assistant, other theorems",
+    "trafienie": "`gsummptres` proved using OpenAI's proof assistant, other theorems\n\n* lemmas for Lambda-Pi t",
+    "plikow": 1
+   },
+   {
+    "commit": "3d7f2e0de20537b8643a0fe6fef3580da12dcf77",
+    "data": "2020-07-10",
+    "temat": "Merge pull request #1715 from avekens/develop",
+    "trafienie": "ull request #1715 from avekens/develop\n\nProofs shortened by OpenAI\n",
+    "plikow": 2
+   },
+   {
+    "commit": "79d26467b3533a819440e1f069d0acfa11a55f94",
+    "data": "2020-07-09",
+    "temat": "Merge pull request #1710 from augustepoiroux/openai-unproven",
+    "trafienie": "rge pull request #1710 from augustepoiroux/openai-unproven\n\nOpenAI: proofs of some unproven assertions of set.mm.\n",
+    "plikow": 1
+   },
+   {
+    "commit": "e8673adb551312eaf91683ebc30f93deb5952a1e",
+    "data": "2020-07-09",
+    "temat": "Small change: Proven by OpenAI to Revised by OpenAI",
+    "trafienie": "Small change: Proven by OpenAI to Revised by OpenAI\n\n",
+    "plikow": 1
+   },
+   {
+    "commit": "cfdb7c40994f07b077ea4e752d2d272d9d6afee3",
+    "data": "2020-07-09",
+    "temat": "Merge pull request #2 from metamath/develop",
+    "trafienie": "Merge pull request #2 from metamath/develop\n\nOpenAI's mathbox\n",
+    "plikow": 2
+   },
+   {
+    "commit": "fce2b982e06d49212a92413e6a44d503d4fdde5b",
+    "data": "2020-07-08",
+    "temat": "Merge pull request #1712 from nmegill/develop",
+    "trafienie": "equest #1712 from nmegill/develop\n\nset.mm - add mathbox for OpenAI\n",
+    "plikow": 1
+   },
+   {
+    "commit": "27e56d0618e9534f386c936c85fb68da40db8462",
+    "data": "2020-07-08",
+    "temat": "set.mm - add mathbox for OpenAI",
+    "trafienie": "set.mm - add mathbox for OpenAI\n\n",
+    "plikow": 1
+   },
+   {
+    "commit": "f6b94ea9b939d9c00c88615946d70979899241cb",
+    "data": "2020-04-12",
+    "temat": "Merge pull request #1585 from metamath/openai-avatars",
+    "trafienie": "Merge pull request #1585 from metamath/openai-avatars\n\nAdd OpenAI-related avatars\n",
+    "plikow": 3
+   },
+   {
+    "commit": "11a7d1301f9e21dc5955fb2956aed2892ef9d7db",
+    "data": "2020-04-12",
+    "temat": "Add OpenAI-related avatars",
+    "trafienie": "Add OpenAI-related avatars\n\nAdd avatars for OpenAI and Stanislas Polu\n",
+    "plikow": 3
+   },
+   {
+    "commit": "a6d60770068b65aabfbe04fec448c0ef17f319f5",
+    "data": "2020-04-10",
+    "temat": "Add more Gource captions",
+    "trafienie": "sm paper (which has been mentioned many times since)\n* Note OpenAI - the first machine learning based *contribution*\n* Note et",
+    "plikow": 1
+   },
+   {
+    "commit": "40332cfea8b9036af755dd3c6d316b75be8df628",
+    "data": "2020-03-30",
+    "temat": "Merge pull request #1561 from spolu/openai-shorten2",
+    "trafienie": "Merge pull request #1561 from spolu/openai-shorten2\n\nOpenAI prover's shortening of supmax, dprdwd, unitg, bnj538\n",
+    "plikow": 2
+   },
+   {
+    "commit": "1540bebd3176735befb17cd155958764349b88e4",
+    "data": "2020-03-28",
+    "temat": "Add clarifications on ALT and OLD statements",
+    "trafienie": "bout ALT and OLD statements, based on interactions with the\nOpenAI group.\n\nSigned-off-by: David A. Wheeler <dwheeler@dwheeler.",
+    "plikow": 1
+   },
+   {
+    "commit": "00bd5ea36ce0d6871ac47095f28cb190c37ab4a6",
+    "data": "2020-03-27",
+    "temat": "Merge pull request #1549 from spolu/openai-old_ordering",
+    "trafienie": "#1549 from spolu/openai-old_ordering\n\nMove OLD versions (of OpenAI shortened proofs) before current\n",
+    "plikow": 1
+   },
+   {
+    "commit": "4e7c583ae5c77fc4ddf408fcc71e4113526a2d58",
+    "data": "2020-03-27",
+    "temat": "Move OLD versions (of OpenAI shortened proofs) before current",
+    "trafienie": "Move OLD versions (of OpenAI shortened proofs) before current\n\n",
+    "plikow": 1
+   },
+   {
+    "commit": "1471b42ee4563dae9ee85d2ee4385471f4c5387a",
+    "data": "2020-03-27",
+    "temat": "Merge pull request #1547 from spolu/openai-shorten",
+    "trafienie": "spolu/openai-shorten\n\nShortening of various proofs based on OpenAI's provers\n",
+    "plikow": 1
+   },
+   {
+    "commit": "3fa7f725f48be51bf80bac7c58689faaa23e0aad",
+    "data": "2018-12-11",
+    "temat": "Merge pull request #684 from metamath/part-whole",
+    "trafienie": "om metamath/part-whole\n\nAdd note about part-whole theory in Aristotle comments\n",
+    "plikow": 1
+   },
+   {
+    "commit": "f5c8fabc1508a6b013cb1ef71e8aaacc4093c045",
+    "data": "2018-12-11",
+    "temat": "Add note about part-whole theory in Aristotle comments",
+    "trafienie": "Add note about part-whole theory in Aristotle comments\n\nAdd a note about part-whole theory in the discuss",
+    "plikow": 1
+   },
+   {
+    "commit": "01cd73df43342f6f20fc93d3da2c756e13ca2baf",
+    "data": "2016-08-30",
+    "temat": "Add a cross-reference hyperlink from Stoic intro text to Aristotle (#73)",
+    "trafienie": "Add a cross-reference hyperlink from Stoic intro text to Aristotle (#73)\n\n\n",
+    "plikow": 1
+   }
+  ],
+  "pliki": {}
+ },
+ "rocq_stdlib": {
+  "commitow": 0,
+  "plikow_wykluczonych": 0,
+  "tokeny_v6_wykluczonych": 0,
+  "fragmenty_setmm": [],
+  "commity": [],
+  "pliki": {}
+ },
+ "mathcomp": {
+  "commitow": 0,
+  "plikow_wykluczonych": 0,
+  "tokeny_v6_wykluczonych": 0,
+  "fragmenty_setmm": [],
+  "commity": [],
+  "pliki": {}
+ },
+ "unimath": {
+  "commitow": 1,
+  "plikow_wykluczonych": 49,
+  "tokeny_v6_wykluczonych": 578161,
+  "fragmenty_setmm": [],
+  "commity": [
+   {
+    "commit": "7a4b03cce49449f45ce0d4285615165172f50546",
+    "data": "2026-11-05",
+    "temat": "Adapt to rocq-prover/rocq#22711 (level-tolerance is now an error) (#2102)",
+    "trafienie": "Should be backwards compatible.\n\n---------\n\nCo-authored-by: Claude Opus 5.5 <noreply@anthropic.com>\n",
+    "plikow": 49
+   }
+  ],
+  "pliki": {
+   "UniMath/Algebra/AbelianGroups.v": {
+    "tokeny_v6": 12123,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/Algebra/AbelianMonoids.v": {
+    "tokeny_v6": 17903,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/Algebra/GaussianElimination/Auxiliary.v": {
+    "tokeny_v6": 7572,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/Algebra/GaussianElimination/Corollaries.v": {
+    "tokeny_v6": 10815,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/Algebra/GaussianElimination/Elimination.v": {
+    "tokeny_v6": 21076,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/Algebra/GaussianElimination/Matrices.v": {
+    "tokeny_v6": 8990,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/Algebra/GaussianElimination/RowOps.v": {
+    "tokeny_v6": 6634,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/Algebra/GaussianElimination/Vectors.v": {
+    "tokeny_v6": 6114,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/Algebra/Groups2.v": {
+    "tokeny_v6": 9834,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/Algebra/Modules/Core.v": {
+    "tokeny_v6": 7963,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/Algebra/Monoids2.v": {
+    "tokeny_v6": 7031,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/Algebra/Universal/Terms.v": {
+    "tokeny_v6": 11490,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/AlgebraicGeometry/Topology.v": {
+    "tokeny_v6": 786,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/AlgebraicTheories/AlgebraicTheories.v": {
+    "tokeny_v6": 1951,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/Bicategories/ComprehensionCat/CompCatNotations.v": {
+    "tokeny_v6": 28359,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/Bicategories/Core/Bicat.v": {
+    "tokeny_v6": 23830,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/Bicategories/DisplayedBicats/DispBicat.v": {
+    "tokeny_v6": 29576,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/Bicategories/DoubleCategories/AlternativeDefinitions/DoubleCatsUnfolded.v": {
+    "tokeny_v6": 18062,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/Bicategories/DoubleCategories/Core/DoubleCats.v": {
+    "tokeny_v6": 11209,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/Bicategories/DoubleCategories/Core/StrictDoubleCats.v": {
+    "tokeny_v6": 15987,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/CategoryTheory/Categories/Quotient.v": {
+    "tokeny_v6": 1511,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/CategoryTheory/CategoriesWithFamilies/CatsWithFams.v": {
+    "tokeny_v6": 20984,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/CategoryTheory/ComprehensionCats/CompCats.v": {
+    "tokeny_v6": 21112,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/CategoryTheory/ComprehensionCats/CwfFromCompCatWithUniv.v": {
+    "tokeny_v6": 13680,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/CategoryTheory/Core/TwoCategories.v": {
+    "tokeny_v6": 10754,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/CategoryTheory/DaggerCategories/Functors/Precomp.v": {
+    "tokeny_v6": 14850,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/CategoryTheory/DisplayedCats/ReindexingForward.v": {
+    "tokeny_v6": 18422,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/CategoryTheory/EnrichedCats/Enrichment.v": {
+    "tokeny_v6": 12457,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/CategoryTheory/EnrichedCats/Examples/HomFunctor.v": {
+    "tokeny_v6": 2674,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/CategoryTheory/Hyperdoctrines/FirstOrderHyperdoctrine.v": {
+    "tokeny_v6": 29107,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/CategoryTheory/Hyperdoctrines/HValuedSets.v": {
+    "tokeny_v6": 6424,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/CategoryTheory/Hyperdoctrines/Tripos.v": {
+    "tokeny_v6": 5888,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/CategoryTheory/ModelCategories/MorphismClass.v": {
+    "tokeny_v6": 1519,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/CategoryTheory/Monoidal/AlternativeDefinitions/AugmentedSimplexCategory.v": {
+    "tokeny_v6": 18667,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/CategoryTheory/Monoidal/AlternativeDefinitions/DisplayedMonoidalTensored.v": {
+    "tokeny_v6": 10981,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/CategoryTheory/Profunctors/Core.v": {
+    "tokeny_v6": 5347,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/CategoryTheory/precomp_ess_surj.v": {
+    "tokeny_v6": 11979,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/Combinatorics/StandardFiniteSets.v": {
+    "tokeny_v6": 28523,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/Combinatorics/Tests.v": {
+    "tokeny_v6": 8079,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/Foundations/Init.v": {
+    "tokeny_v6": 2796,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/ModelCategories/MorphismClass.v": {
+    "tokeny_v6": 2196,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/MoreFoundations/Subtypes.v": {
+    "tokeny_v6": 7634,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/NumberSystems/RationalNumbers.v": {
+    "tokeny_v6": 13854,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/OrderTheory/OrderedSets/OrderedSets.v": {
+    "tokeny_v6": 9801,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/OrderTheory/OrderedSets/WellOrderedSets.v": {
+    "tokeny_v6": 23637,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/SubstitutionSystems/GenMendlerIteration.v": {
+    "tokeny_v6": 3863,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/SubstitutionSystems/GenMendlerIteration_alt.v": {
+    "tokeny_v6": 3890,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/SubstitutionSystems/Notation.v": {
+    "tokeny_v6": 723,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   },
+   "UniMath/SubstitutionSystems/UntypedForests.v": {
+    "tokeny_v6": 9504,
+    "commity": [
+     "7a4b03cce4"
+    ]
+   }
+  }
+ },
+ "agda_stdlib": {
+  "commitow": 0,
+  "plikow_wykluczonych": 0,
+  "tokeny_v6_wykluczonych": 0,
+  "fragmenty_setmm": [],
+  "commity": [],
+  "pliki": {}
+ },
+ "stacks": {
+  "commitow": 0,
+  "plikow_wykluczonych": 0,
+  "tokeny_v6_wykluczonych": 0,
+  "fragmenty_setmm": [],
+  "commity": [],
+  "pliki": {}
+ }
+}

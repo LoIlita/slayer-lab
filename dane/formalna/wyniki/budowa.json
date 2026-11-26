@@ -1,0 +1,349 @@
+{
+ "tokenizer_sha256": "0640d3bd3674d7a6e59c540d945a2ad275a12e1bcaeb6007c37a90751f9815dd",
+ "wiersze": 21385,
+ "tokeny_v6": 213219274,
+ "biblioteki": {
+  "mathlib4": {
+   "repo": "https://github.com/leanprover-community/mathlib4",
+   "rewizja": "9bed6a56adef68a259c58f72d5dc46ba3a68c176",
+   "data_rewizji": "2025-03-31T22:40:31Z",
+   "plikow_wybranych": 5892,
+   "wiersze": 5892,
+   "tokeny_v6": 30775066,
+   "znaki": 67113367,
+   "bajty_plikow_zrodlowych": 70174698,
+   "licencje_wierszy": {
+    "Apache-2.0": 5892
+   },
+   "licencje_tokeny": {
+    "Apache-2.0": 30775066
+   },
+   "wykluczone_powody": {
+    "poza_Mathlib_Archive_Counterexamples": 23,
+    "metaprogramowanie": 336,
+    "testy": 268,
+    "ai_commit": 1
+   },
+   "wykluczone_przyklady": {
+    "metaprogramowanie": [
+     "Mathlib/Lean/CoreM.lean",
+     "Mathlib/Lean/Elab/Tactic/Basic.lean",
+     "Mathlib/Lean/Elab/Term.lean",
+     "Mathlib/Lean/EnvExtension.lean",
+     "Mathlib/Lean/Exception.lean",
+     "Mathlib/Lean/Expr.lean",
+     "Mathlib/Lean/Expr/Basic.lean",
+     "Mathlib/Lean/Expr/ExtraRecognizers.lean",
+     "Mathlib/Lean/Expr/Rat.lean",
+     "Mathlib/Lean/Expr/ReplaceRec.lean"
+    ],
+    "testy": [
+     "MathlibTest/AesopUnusedTactic.lean",
+     "MathlibTest/ApplyAt.lean",
+     "MathlibTest/ArithMult.lean",
+     "MathlibTest/AssertExists.lean",
+     "MathlibTest/AssertImported.lean",
+     "MathlibTest/BinPow.lean",
+     "MathlibTest/BinaryRec.lean",
+     "MathlibTest/Bound/attribute.lean",
+     "MathlibTest/Bound/bound.lean",
+     "MathlibTest/CalcQuestionMark.lean"
+    ],
+    "ai_commit": [
+     "Mathlib/Data/List/Basic.lean"
+    ],
+    "poza_Mathlib_Archive_Counterexamples": [
+     "Archive.lean",
+     "Cache/Hashing.lean",
+     "Cache/IO.lean",
+     "Cache/Lean.lean",
+     "Cache/Main.lean",
+     "Cache/Requests.lean",
+     "Counterexamples.lean",
+     "DownstreamTest/DownstreamTest.lean",
+     "LongestPole/Main.lean",
+     "LongestPole/Rectangles.lean"
+    ]
+   },
+   "tokeny_max": 54132,
+   "tokeny_mediana": 3320,
+   "ai_plikow_wykluczonych": 1,
+   "ai_tokeny_v6_wykluczonych": 22507
+  },
+  "afp": {
+   "repo": "https://github.com/isabelle-prover/mirror-afp-devel",
+   "rewizja": "02fd3c6b5326d1c53704c52c09cabb3fd2a772f5",
+   "data_rewizji": "2026-11-25T21:04:42Z",
+   "plikow_wybranych": 10557,
+   "wiersze": 10557,
+   "tokeny_v6": 129985322,
+   "znaki": 296741405,
+   "bajty_plikow_zrodlowych": 296880226,
+   "licencje_wierszy": {
+    "BSD-3-Clause": 10238,
+    "LGPL-2.1-only": 319
+   },
+   "licencje_tokeny": {
+    "BSD-3-Clause": 125816763,
+    "LGPL-2.1-only": 4168559
+   },
+   "wykluczone_powody": {
+    "powyzej_1MB": 5
+   },
+   "wykluczone_przyklady": {
+    "powyzej_1MB": [
+     "thys/Bicategory/BicategoryOfSpans.thy",
+     "thys/Crypto_Standards/FIPS198_1_Test_Vectors.thy",
+     "thys/IsaGeoCoq/Tarski_Neutral.thy",
+     "thys/Crypto_Standards/SEC1v2_0_Test_Vectors.thy",
+     "thys/Broadcast_Psi/Semantics.thy"
+    ]
+   },
+   "tokeny_max": 528357,
+   "tokeny_mediana": 4991,
+   "ai_plikow_wykluczonych": 0,
+   "ai_tokeny_v6_wykluczonych": 0
+  },
+  "hol_light": {
+   "repo": "https://github.com/jrh13/hol-light",
+   "rewizja": "b9a430b8fee43cc94babc8e3970cdd2740a994dc",
+   "data_rewizji": "2025-12-11T20:28:06Z",
+   "plikow_wybranych": 541,
+   "wiersze": 541,
+   "tokeny_v6": 12555462,
+   "znaki": 25495325,
+   "bajty_plikow_zrodlowych": 25538239,
+   "licencje_wierszy": {
+    "BSD-2-Clause": 541
+   },
+   "licencje_tokeny": {
+    "BSD-2-Clause": 12555462
+   },
+   "wykluczone_powody": {
+    "naglowek_z_inna_licencja": 2,
+    "powyzej_1MB": 9,
+    "nie_utf8": 2
+   },
+   "wykluczone_przyklady": {
+    "nie_utf8": [
+     "Proofrecording/diffs/proofobjects_trt.ml",
+     "Proofrecording/diffs/proofobjects_dummy.ml"
+    ],
+    "naglowek_z_inna_licencja": [
+     "100/transcendence.ml",
+     "Jordan/float.ml"
+    ],
+    "powyzej_1MB": [
+     "Multivariate/measure.ml",
+     "Multivariate/paths.ml",
+     "Multivariate/cauchy.ml",
+     "Multivariate/metric.ml",
+     "Multivariate/integration.ml",
+     "Multivariate/complex_database.ml",
+     "Multivariate/topology.ml",
+     "Divstep/hull_light.ml",
+     "Jordan/jordan_curve_theorem.ml"
+    ]
+   },
+   "tokeny_max": 518942,
+   "tokeny_mediana": 5558,
+   "ai_plikow_wykluczonych": 0,
+   "ai_tokeny_v6_wykluczonych": 0
+  },
+  "setmm": {
+   "repo": "https://github.com/metamath/set.mm",
+   "rewizja": "ce7f29d6bb49ca66913cc4adae72bb4df5bcb854",
+   "data_rewizji": "2026-11-26T09:09:11+01:00",
+   "plikow_wybranych": 2,
+   "wiersze": 621,
+   "tokeny_v6": 11155284,
+   "znaki": 26679609,
+   "bajty_plikow_zrodlowych": 64170648,
+   "licencje_wierszy": {
+    "CC0-1.0": 621
+   },
+   "licencje_tokeny": {
+    "CC0-1.0": 11155284
+   },
+   "wykluczone_powody": {},
+   "wykluczone_przyklady": {},
+   "tokeny_max": 161050,
+   "tokeny_mediana": 18523,
+   "ai_plikow_wykluczonych": 2,
+   "ai_tokeny_v6_wykluczonych": 40573
+  },
+  "rocq_stdlib": {
+   "repo": "https://github.com/rocq-prover/stdlib",
+   "rewizja": "9657c7502ceb46ec94131c7500d9e484e1dddf3b",
+   "data_rewizji": "2026-11-26T10:52:20+01:00",
+   "plikow_wybranych": 583,
+   "wiersze": 583,
+   "tokeny_v6": 2605422,
+   "znaki": 6388250,
+   "bajty_plikow_zrodlowych": 6390575,
+   "licencje_wierszy": {
+    "LGPL-2.1-only": 583
+   },
+   "licencje_tokeny": {
+    "LGPL-2.1-only": 2605422
+   },
+   "wykluczone_powody": {
+    "poza_theories": 321
+   },
+   "wykluczone_przyklady": {
+    "poza_theories": [
+     "subcomponents/all.v",
+     "subcomponents/arith.v",
+     "subcomponents/bool.v",
+     "subcomponents/classes.v",
+     "subcomponents/classical_logic.v",
+     "subcomponents/compat.v",
+     "subcomponents/corelib_wrapper.v",
+     "subcomponents/extraction.v",
+     "subcomponents/field.v",
+     "subcomponents/fmaps_fsets_msets.v"
+    ]
+   },
+   "tokeny_max": 55159,
+   "tokeny_mediana": 2002,
+   "ai_plikow_wykluczonych": 0,
+   "ai_tokeny_v6_wykluczonych": 0
+  },
+  "mathcomp": {
+   "repo": "https://github.com/math-comp/math-comp",
+   "rewizja": "656cdbcf752c1624c8afb245886b05dfd16b227c",
+   "data_rewizji": "2026-11-26T09:49:56+01:00",
+   "plikow_wybranych": 149,
+   "wiersze": 149,
+   "tokeny_v6": 2776193,
+   "znaki": 5948450,
+   "bajty_plikow_zrodlowych": 5948466,
+   "licencje_wierszy": {
+    "CECILL-B": 149
+   },
+   "licencje_tokeny": {
+    "CECILL-B": 2776193
+   },
+   "wykluczone_powody": {},
+   "wykluczone_przyklady": {},
+   "tokeny_max": 118111,
+   "tokeny_mediana": 13290,
+   "ai_plikow_wykluczonych": 0,
+   "ai_tokeny_v6_wykluczonych": 0
+  },
+  "unimath": {
+   "repo": "https://github.com/UniMath/UniMath",
+   "rewizja": "11e01f098e50285e9ec93fce1f09e57417342eec",
+   "data_rewizji": "2026-11-26T06:28:33+08:00",
+   "plikow_wybranych": 1659,
+   "wiersze": 1659,
+   "tokeny_v6": 10183276,
+   "znaki": 26133645,
+   "bajty_plikow_zrodlowych": 26591510,
+   "licencje_wierszy": {
+    "LicenseRef-UniMath": 1659
+   },
+   "licencje_tokeny": {
+    "LicenseRef-UniMath": 10183276
+   },
+   "wykluczone_powody": {
+    "poza_UniMath": 6,
+    "ai_commit": 49
+   },
+   "wykluczone_przyklady": {
+    "poza_UniMath": [
+     "documentation/guides/tutorials/t01_type_formers.v",
+     "documentation/guides/tutorials/t02_paths.v",
+     "documentation/guides/tutorials/t03_equivalences.v",
+     "documentation/guides/tutorials/t04_htypes.v",
+     "documentation/guides/tutorials/t05_category_theory.v",
+     "documentation/guides/tutorials/t06_transports.v"
+    ],
+    "ai_commit": [
+     "UniMath/Algebra/AbelianGroups.v",
+     "UniMath/Algebra/AbelianMonoids.v",
+     "UniMath/Algebra/GaussianElimination/Auxiliary.v",
+     "UniMath/Algebra/GaussianElimination/Corollaries.v",
+     "UniMath/Algebra/GaussianElimination/Elimination.v",
+     "UniMath/Algebra/GaussianElimination/Matrices.v",
+     "UniMath/Algebra/GaussianElimination/RowOps.v",
+     "UniMath/Algebra/GaussianElimination/Vectors.v",
+     "UniMath/Algebra/Groups2.v",
+     "UniMath/Algebra/Modules/Core.v"
+    ]
+   },
+   "tokeny_max": 99456,
+   "tokeny_mediana": 4327,
+   "ai_plikow_wykluczonych": 49,
+   "ai_tokeny_v6_wykluczonych": 578161
+  },
+  "agda_stdlib": {
+   "repo": "https://github.com/agda/agda-stdlib",
+   "rewizja": "119d176134c44bcb5aad56bb6ce69bc97851c094",
+   "data_rewizji": "2026-11-26T00:02:45Z",
+   "plikow_wybranych": 1190,
+   "wiersze": 1190,
+   "tokeny_v6": 2156221,
+   "znaki": 4747700,
+   "bajty_plikow_zrodlowych": 5208665,
+   "licencje_wierszy": {
+    "MIT": 1190
+   },
+   "licencje_tokeny": {
+    "MIT": 2156221
+   },
+   "wykluczone_powody": {
+    "poza_src": 80
+   },
+   "wykluczone_przyklady": {
+    "poza_src": [
+     ".github/tooling/index.agda",
+     "doc/README.agda",
+     "doc/README/Axiom.agda",
+     "doc/README/Case.agda",
+     "doc/README/Data.agda",
+     "doc/README/Data/Container/FreeMonad.agda",
+     "doc/README/Data/Container/Indexed/MultiSortedAlgebraExample.agda",
+     "doc/README/Data/Container/Indexed/VectorExample.agda",
+     "doc/README/Data/Default.agda",
+     "doc/README/Data/Fin/Relation/Unary/Top.agda"
+    ]
+   },
+   "tokeny_max": 52399,
+   "tokeny_mediana": 786,
+   "ai_plikow_wykluczonych": 0,
+   "ai_tokeny_v6_wykluczonych": 0
+  },
+  "stacks": {
+   "repo": "https://github.com/stacks/stacks-project",
+   "rewizja": "a04446e57ec1fbc252a871afcec7752fb2807b14",
+   "data_rewizji": "2026-07-28T16:28:32-04:00",
+   "plikow_wybranych": 115,
+   "wiersze": 193,
+   "tokeny_v6": 11027028,
+   "znaki": 27650410,
+   "bajty_plikow_zrodlowych": 27650410,
+   "licencje_wierszy": {
+    "GFDL-1.2-no-invariants-or-later": 193
+   },
+   "licencje_tokeny": {
+    "GFDL-1.2-no-invariants-or-later": 11027028
+   },
+   "wykluczone_powody": {
+    "licencja_lub_preambula": 4
+   },
+   "wykluczone_przyklady": {
+    "licencja_lub_preambula": [
+     "bibliography.tex",
+     "chapters.tex",
+     "fdl.tex",
+     "preamble.tex"
+    ]
+   },
+   "tokeny_max": 365508,
+   "tokeny_mediana": 30648,
+   "ai_plikow_wykluczonych": 0,
+   "ai_tokeny_v6_wykluczonych": 0
+  }
+ }
+}

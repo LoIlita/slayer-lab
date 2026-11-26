@@ -1,0 +1,54 @@
+{
+ "wynik": "PASS",
+ "wiersze": 21385,
+ "tokeny_v6": 213219274,
+ "unikalne_id": 21385,
+ "pliki": {
+  "mathlib4": {
+   "wiersze": 5892,
+   "tokeny_v6": 30775066,
+   "row_groups": 2
+  },
+  "afp": {
+   "wiersze": 10557,
+   "tokeny_v6": 129985322,
+   "row_groups": 3
+  },
+  "hol_light": {
+   "wiersze": 541,
+   "tokeny_v6": 12555462,
+   "row_groups": 1
+  },
+  "setmm": {
+   "wiersze": 621,
+   "tokeny_v6": 11155284,
+   "row_groups": 1
+  },
+  "rocq_stdlib": {
+   "wiersze": 583,
+   "tokeny_v6": 2605422,
+   "row_groups": 1
+  },
+  "mathcomp": {
+   "wiersze": 149,
+   "tokeny_v6": 2776193,
+   "row_groups": 1
+  },
+  "unimath": {
+   "wiersze": 1659,
+   "tokeny_v6": 10183276,
+   "row_groups": 1
+  },
+  "agda_stdlib": {
+   "wiersze": 1190,
+   "tokeny_v6": 2156221,
+   "row_groups": 1
+  },
+  "stacks": {
+   "wiersze": 193,
+   "tokeny_v6": 11027028,
+   "row_groups": 1
+  }
+ },
+ "bledy": []
+}

@@ -1,0 +1,26 @@
+{
+ "wykluczone": {
+  "100/transcendence.ml": {
+   "powod": "naglowek_z_inna_licencja",
+   "fragment": "\nThis file is hereby placed into the public domain.\n\nSPDX-License-Identifier: LicenseRef-PD-hp OR CC0-1.0 OR 0BSD OR MIT-0 OR MIT\n\n=====\n\nTo re-verify under Debian (about an hour depending on CPU):\n  sudo apt install opam xdot -y\n  time opam init git"
+  },
+  "Jordan/float.ml": {
+   "powod": "naglowek_z_inna_licencja",
+   "fragment": "\n(* License: GPL http://www.gnu.org/copyleft/gpl.html                  *)\n(* Project: FLYSPECK http://www.math.pitt.edu/~thales/flyspeck/       *)\n(* -------------------------------------------------------------"
+  }
+ },
+ "podkatalogi_z_licencja": {
+  "GL": {
+   "plik": "GL/COPYING",
+   "licencja": "BSD-2-Clause"
+  },
+  "Quaternions": {
+   "plik": "Quaternions/COPYING",
+   "licencja": "BSD-2-Clause"
+  }
+ },
+ "zostawione": 552,
+ "licencje": {
+  "BSD-2-Clause": 552
+ }
+}

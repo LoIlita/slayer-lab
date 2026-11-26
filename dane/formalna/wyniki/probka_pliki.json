@@ -1,0 +1,99 @@
+{
+ "repo": "formalna (9 repozytoriów git; repo i rewizja per plik w pliki[])",
+ "rewizja": "per biblioteka, pliki[].rewizja = skrypty/preregistracja.json zrodlo.biblioteki",
+ "seed": 20261126,
+ "wiersze": 21385,
+ "tokeny_v6": 213219274,
+ "pliki": [
+  {
+   "plik": "mathlib4",
+   "repo": "https://github.com/leanprover-community/mathlib4",
+   "rewizja": "9bed6a56adef68a259c58f72d5dc46ba3a68c176",
+   "rozmiar": 19990694,
+   "sha256": "de5abbc445e530b39f97d66e433953df21946e687367879bb02d7f2e730ac43d",
+   "wiersze": 5892,
+   "tokeny_v6": 30775066,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/formalna/robocze/pula/mathlib4.parquet"
+  },
+  {
+   "plik": "afp",
+   "repo": "https://github.com/isabelle-prover/mirror-afp-devel",
+   "rewizja": "02fd3c6b5326d1c53704c52c09cabb3fd2a772f5",
+   "rozmiar": 60874051,
+   "sha256": "4d4464708cfdf81cf6fbd7ad4717911958e580d274f61757cc29251f59f9bebc",
+   "wiersze": 10557,
+   "tokeny_v6": 129985322,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/formalna/robocze/pula/afp.parquet"
+  },
+  {
+   "plik": "hol_light",
+   "repo": "https://github.com/jrh13/hol-light",
+   "rewizja": "b9a430b8fee43cc94babc8e3970cdd2740a994dc",
+   "rozmiar": 5284383,
+   "sha256": "56dc07182735ea82446729ec79c51f4acbe53d579cf371799634c9defbd4703a",
+   "wiersze": 541,
+   "tokeny_v6": 12555462,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/formalna/robocze/pula/hol_light.parquet"
+  },
+  {
+   "plik": "setmm",
+   "repo": "https://github.com/metamath/set.mm",
+   "rewizja": "ce7f29d6bb49ca66913cc4adae72bb4df5bcb854",
+   "rozmiar": 5399043,
+   "sha256": "fc6afda21626a42acea5e8d98139e88f3750067cea1d1cbe85428002aca99ad7",
+   "wiersze": 621,
+   "tokeny_v6": 11155284,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/formalna/robocze/pula/setmm.parquet"
+  },
+  {
+   "plik": "rocq_stdlib",
+   "repo": "https://github.com/rocq-prover/stdlib",
+   "rewizja": "9657c7502ceb46ec94131c7500d9e484e1dddf3b",
+   "rozmiar": 1549967,
+   "sha256": "955473518c4bb92d25f6ffc7c82f4bae2d9367894dea7290fad45d6e1a389285",
+   "wiersze": 583,
+   "tokeny_v6": 2605422,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/formalna/robocze/pula/rocq_stdlib.parquet"
+  },
+  {
+   "plik": "mathcomp",
+   "repo": "https://github.com/math-comp/math-comp",
+   "rewizja": "656cdbcf752c1624c8afb245886b05dfd16b227c",
+   "rozmiar": 1741333,
+   "sha256": "480036a417ec8a6335b9fbca6e2e6b79a00e8c2873627b80bc3cfad8332fc21d",
+   "wiersze": 149,
+   "tokeny_v6": 2776193,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/formalna/robocze/pula/mathcomp.parquet"
+  },
+  {
+   "plik": "unimath",
+   "repo": "https://github.com/UniMath/UniMath",
+   "rewizja": "11e01f098e50285e9ec93fce1f09e57417342eec",
+   "rozmiar": 5210046,
+   "sha256": "1cea030c2f5ba90d49712f9dd9b4bb5aaf88ede9b006bc848a588df162ad3662",
+   "wiersze": 1659,
+   "tokeny_v6": 10183276,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/formalna/robocze/pula/unimath.parquet"
+  },
+  {
+   "plik": "agda_stdlib",
+   "repo": "https://github.com/agda/agda-stdlib",
+   "rewizja": "119d176134c44bcb5aad56bb6ce69bc97851c094",
+   "rozmiar": 1331145,
+   "sha256": "d7222c9c491c750a573883481afc6fce63ebdab0034eb06b9be9cbdc6eb0079a",
+   "wiersze": 1190,
+   "tokeny_v6": 2156221,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/formalna/robocze/pula/agda_stdlib.parquet"
+  },
+  {
+   "plik": "stacks",
+   "repo": "https://github.com/stacks/stacks-project",
+   "rewizja": "a04446e57ec1fbc252a871afcec7752fb2807b14",
+   "rozmiar": 6929352,
+   "sha256": "24a02dc1aa1c1e13831046cc193c24c9393d4c15158dab80fb8d8a9519a237e0",
+   "wiersze": 193,
+   "tokeny_v6": 11027028,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/formalna/robocze/pula/stacks.parquet"
+  }
+ ]
+}

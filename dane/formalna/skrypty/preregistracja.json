@@ -1,0 +1,128 @@
+{
+ "zapisano": "2026-11-26 14:23 CET (mtime pliku 14:23:13), przed klonowaniem repozytoriów (start klonu 14:24:05, robocze/logi/klon.log) i przed pierwszym liczeniem; rewizje rozwiązane przez API GitHub (commits/<prefiks>) 14:21 CET; reguły wspólne i aneksy przejęte z dane/infiwebmath4/skrypty/preregistracja.json bez zmian w treści, odstępstwa w polu 'odstepstwa'",
+ "rezerwacja": "https://github.com/slayerlabs/benchmarks-fabryka-ai/issues/357 (część 3)",
+ "cel": "część 3 zbioru matematyki (#357): czysta matematyka formalna z bibliotek z jawną licencją (kandydaci B1-B5 z dane/matematyka-wspolne/kandydaci_czyste.md)",
+ "seed": 20261126,
+ "karta": "dane/formalna/KARTA_ZRODLA.md",
+ "zrodlo": {
+  "nazwa": "formalna",
+  "biblioteki": {
+   "mathlib4": {"repo": "https://github.com/leanprover-community/mathlib4", "rewizja": "e54979a532247ae4eb9d5578a8fd40a1bc332101", "pliki": "Mathlib/**/*.lean, Archive/**/*.lean, Counterexamples/**/*.lean", "wykluczone": "MathlibTest/ (testy), Mathlib/Tactic/**, Mathlib/Util/**, Mathlib/Lean/** (metaprogramowanie, nie matematyka), pliki-indeksy importów Mathlib.lean, Archive.lean, Counterexamples.lean (generowane przez mk_all)", "licencja": "Apache-2.0 (LICENSE + nagłówek pliku 'Released under Apache 2.0 license')"},
+   "afp": {"repo": "https://github.com/isabelle-prover/mirror-afp-devel", "rewizja": "02fd3c6b5326d1c53704c52c09cabb3fd2a772f5", "pliki": "thys/<wpis>/**/*.thy", "wykluczone": "ROOT, document/*.tex, pliki poza thys/; wpis bez metadata/entries/<wpis>.toml albo z licencją spoza mapowania -> cały wpis wykluczony", "licencja": "per wpis z metadata/entries/<wpis>.toml pole license: 'bsd' -> BSD-3-Clause, 'lgpl' -> LGPL-2.1-only; mapowanie SPDX potwierdzane tekstem LICENSE w repo po klonie, rozbieżność = aneks"},
+   "hol_light": {"repo": "https://github.com/jrh13/hol-light", "rewizja": "096417cac706ff0818f739bbc19f2ed499e43283", "pliki": "**/*.ml", "wykluczone": "plik, którego pierwsze 3000 znaków zawiera własną deklarację licencji inną niż HOL Light (słowa GPL, LGPL, MIT, Apache, 'Creative Commons', 'public domain', 'license'/'licence' bez odwołania do LICENSE HOL Light), albo leży w podkatalogu z własnym plikiem LICENSE/COPYING o innej treści; lista wykluczonych w wyniki/hol_light_licencje.json", "licencja": "BSD-2-Clause (LICENSE: 'Redistribution and use... permitted', 2 warunki)"},
+   "setmm": {"repo": "https://github.com/metamath/set.mm", "rewizja": "ce7f29d6bb49ca66913cc4adae72bb4df5bcb854", "pliki": "set.mm, iset.mm", "wykluczone": "pozostałe bazy .mm (nf, ql, hol, peano, demo, big-unifier itd.), pliki pomocnicze", "licencja": "CC0-1.0 (LICENSE)"},
+   "rocq_stdlib": {"repo": "https://github.com/rocq-prover/stdlib", "rewizja": "9657c7502ceb46ec94131c7500d9e484e1dddf3b", "pliki": "theories/**/*.v", "wykluczone": "test-suite/, doc/, dev/", "licencja": "LGPL-2.1-only (LICENSE + nagłówek 'GNU Lesser General Public License Version 2.1')"},
+   "mathcomp": {"repo": "https://github.com/math-comp/math-comp", "rewizja": "656cdbcf752c1624c8afb245886b05dfd16b227c", "pliki": "**/*.v", "wykluczone": "test-suite/, docs/, doc/, etc/, .nix/, .github/", "licencja": "CECILL-B (plik LICENCE)"},
+   "unimath": {"repo": "https://github.com/UniMath/UniMath", "rewizja": "11e01f098e50285e9ec93fce1f09e57417342eec", "pliki": "UniMath/**/*.v", "wykluczone": "pliki poza UniMath/ (sandbox, testy, narzędzia)", "licencja": "LicenseRef-UniMath (LICENSE.md: tekst MIT z 'UniMath' zamiast 'the Software'; bez NC/ND)"},
+   "agda_stdlib": {"repo": "https://github.com/agda/agda-stdlib", "rewizja": "119d176134c44bcb5aad56bb6ce69bc97851c094", "pliki": "src/**/*.agda, src/**/*.lagda.md", "wykluczone": "tests/, doc/, README/ (przykłady), GenerateEverything", "licencja": "MIT (LICENCE)"},
+   "stacks": {"repo": "https://github.com/stacks/stacks-project", "rewizja": "a04446e57ec1fbc252a871afcec7752fb2807b14", "pliki": "*.tex w katalogu głównym (rozdziały)", "wykluczone": "fdl.tex (tekst licencji), preamble.tex, chapters.tex, book.tex, bibliography.tex, hyperref.cfg, katalogi documentation/, scripts/, tags/", "licencja": "GFDL-1.2 (COPYING; wersja 'only' albo 'or-later' sprawdzana w README/nagłówkach po klonie, wynik w karcie)"}
+  },
+  "pobranie": "git clone --filter=blob:none --no-checkout <repo> robocze/repo/<biblioteka>; git checkout <rewizja>; git rev-parse HEAD == rewizja, inaczej skrypt przerywa",
+  "pole_tekstu": "text = treść pliku UTF-8 (BOM usunięty, końce linii \\n), dla set.mm/iset.mm fragment z regułą 'setmm'",
+  "id": "formalna/<biblioteka>/<ścieżka>[#L<od>-L<do>]",
+  "url": "https://github.com/<repo>/blob/<rewizja>/<ścieżka>[#L<od>-L<do>]",
+  "created": "data (ISO, UTC) ostatniego commita zmieniającego plik w historii do rewizji (git log -1 --format=%cI); brak = data commita rewizji",
+  "licencja_wiersza": "kolumna license (SPDX albo LicenseRef) z pola licencja biblioteki, dla AFP z pliku toml wpisu"
+ },
+ "dokument": {
+  "regula": "jeden plik źródłowy = jeden dokument",
+  "setmm": "set.mm i iset.mm dzielone na granicach nagłówków sekcji Metamath (komentarze $( z liniami ####, #*#*#, =-=-=, -.-.-) i łączone kolejno w fragmenty <= 50 000 znaków; sekcja dłuższa niż 50 000 znaków dzielona na granicy instrukcji ($. kończący wiersz); każdy skompresowany albo normalny dowód '$= ... $.' zastąpiony '$= ? $.' (składnia Metamath dla dowodu niekompletnego), komentarze, $a/$p/$e/$f/$d/$c/$v zostają bez zmian",
+  "duze_pliki": "plik > 1 000 000 bajtów (po regule setmm nie dotyczy set.mm/iset.mm): w stacks dzielony na granicach \\section{ i łączony w fragmenty <= 50 000 znaków; w pozostałych bibliotekach wykluczony (I: tabele i dane generowane), lista z rozmiarem w wyniki/duze_pliki.json i w karcie",
+  "kodowanie": "plik niedekodowalny jako UTF-8 -> wykluczony i wypisany w wyniki/budowa.json"
+ },
+ "pula": {
+  "wybor": "wszystkie pliki spełniające reguły; kolejność wierszy: biblioteka, potem permutacja numpy default_rng(seed) ścieżek w bibliotece",
+  "parquet": "jeden plik na bibliotekę robocze/pula/<biblioteka>.parquet, row_group_size 5000, kolumny text, url, id, license, created, repo, path",
+  "eksport": "wszystkie dokumenty zachowane po regułach z kolejnosc_powodow"
+ },
+ "tokeny": {
+  "tokenizer": "v6 z SlayerLab/slayer-1.07-pretrain tokenizer.json, sha256 0640d3bd3674d7a6e59c540d945a2ad275a12e1bcaeb6007c37a90751f9815dd",
+  "regula": "tokeny tekstu bez znaków specjalnych + 1 (EOT)"
+ },
+ "kolejnosc_powodow": [
+  "walidacja_fabryki",
+  "domena_testow",
+  "ewal_13gram",
+  "pii",
+  "pii_zaciemniony",
+  "pii_at_bez_nawiasow",
+  "min_tresc",
+  "mojibake",
+  "dedup_wewnatrz",
+  "dedup_finemath4",
+  "dedup_infiwebmath4",
+  "dedup_slayer107",
+  "dedup_slayer_8x3b_en",
+  "dedup_english_technical"
+ ],
+ "walidacja_fabryki": "jak infiwebmath4",
+ "domena_testow": "jak infiwebmath4 (url github.com nie trafia; zostaje dla jednolitości kaskady)",
+ "ewal_13gram": {
+  "indeks": "jak infiwebmath4",
+  "testy_scisle": ["T19_mathqa", "T32_mmlu", "T33_gsm8k", "T34_math", "T47_bbh", "X02_humaneval", "X03_mbpp", "T51_gsm_plus", "T52_gsm1k"],
+  "df_min": 5,
+  "regula": "jak infiwebmath4",
+  "uwaga": "miniF2F, ProofNet, PISA nie są w indeksie Fabryki; mathlib4 i AFP mogą zawierać twierdzenia z miniF2F (Archive/Imo, wpisy AFP z zadaniami olimpijskimi) - pomiar osobno w karcie po budowie, nie powód odrzucenia w tej preregistracji"
+ },
+ "pii": {
+  "tryb": "maskuj_email_usun_telefon_ip",
+  "regula": "kod formalny jak Stack-Edu: e-maile autorów w nagłówkach plików (np. 'Author: ... <adres>') maskowane przy eksporcie i nie usuwają pliku; telefon i IPv4 (wspolne.pii) -> plik usuwany; pii_zaciemniony i pii_at_bez_nawiasow liczone, w trybie maskowania e-maili traktowane jak e-mail (maskowane); implementacja trybu w agreguj_mat.py po stronie integratora"
+ },
+ "min_tresc": "jak infiwebmath4 (aneks 24.11b: < 50 słów po rdzen.norm_slowa -> usuwany)",
+ "mojibake": "jak infiwebmath4",
+ "dedup_wewnatrz": "jak infiwebmath4 (identyczny znormalizowany tekst albo MinHash 5-gramów J >= 0,8); łapie kopie plików między bibliotekami (np. AFP i dystrybucja Isabelle, wersje Rocq stdlib w math-comp)",
+ "dedup_finemath4": "jak infiwebmath4 (bez dopasowania url: url github.com/blob nie występują w FineMath-4+)",
+ "dedup_infiwebmath4": "jak dedup_finemath4 wobec dokumentów wybranych do eksportu InfiWebMath-4+ (bazy_mat.py wlasne:infiwebmath4)",
+ "dedup_slayer107": "jak infiwebmath4",
+ "dedup_slayer_8x3b_en": "jak infiwebmath4 -> aneks_2026_11_25b",
+ "dedup_english_technical": "jak infiwebmath4 -> aneks_2026_11_24",
+ "reczna_probka": {
+  "odrzucone_na_powod": 100,
+  "zachowane": 300,
+  "znakow": 3000,
+  "oceniajacy": "dwóch niezależnych agentów, którzy nie budowali zbioru",
+  "progi": "jak infiwebmath4; w zachowanych liczymy przeoczone telefony/IP (cel 0/300) i śmieci (tekst nienadający się do treningu: tabele liczb, dane generowane, sam import) <= 10%; e-maile sprawdzane po maskowaniu w eksporcie",
+  "warstwy": "zachowane losowane proporcjonalnie do tokenów bibliotek, co najmniej 20 na bibliotekę"
+ },
+ "kontrole_dodatnie": "jak infiwebmath4, plus: plik .lean z nagłówkiem 'Author: X <x@example.com>' (ma zostać, e-mail liczony), kopia pliku AFP w innej bibliotece (dedup_wewnatrz), fragment set.mm z dowodem skompresowanym po regule (nie może zawierać ciągu wielkich liter po '$=')",
+ "odstepstwa": [
+  "brak dedup_fineweb_edu_109: dopasowanie url stron WWW, a url tego źródła to github.com/blob",
+  "nowy powód dedup_infiwebmath4 (część 3 dedupowana wobec wszystkich wcześniejszych części)",
+  "pii w trybie maskowania e-maili jak Stack-Edu",
+  "dokument = plik, a nie strona; set.mm/iset.mm dzielone na fragmenty bez dowodów",
+  "pula = całe źródło, bez celu tokenów"
+ ],
+ "aneksy_przejete": {
+  "aneks_2026_11_24": "dane/infiwebmath4/skrypty/preregistracja.json -> aneks_2026_11_24 (dedup_english_technical; pole dedup_fineweb_edu_109 nie dotyczy, patrz odstepstwa)",
+  "aneks_2026_11_24b": "dane/infiwebmath4/skrypty/preregistracja.json -> aneks_2026_11_24b (min_tresc)",
+  "aneks_2026_11_24c": "dane/infiwebmath4/skrypty/preregistracja.json -> aneks_2026_11_24c (pii_zaciemniony; w tym źródle w trybie maskowania)",
+  "aneks_2026_11_25b": "dane/infiwebmath4/skrypty/preregistracja.json -> aneks_2026_11_25b (dedup_slayer_8x3b_en)",
+  "aneks_2026_11_25c": "dane/infiwebmath4/skrypty/preregistracja.json -> aneks_2026_11_25c (pii_at_bez_nawiasow; w tym źródle w trybie maskowania jak stackedu)"
+ },
+ "b6_poza_pula": "Proof-Pile-2 isa_proofsteps i lean_proofsteps (EleutherAI/proof-pile-2@901a9273a770e9d4138c5ddd91802f9c5c6cdc4b) tylko szacowane w karcie; budowa = osobna decyzja i osobna preregistracja",
+ "aneks_2026_11_26": {
+  "zapisano": "2026-11-26 14:29 CET, PO klonowaniu (14:27:32) i odczycie plików licencji, PRZED budową puli i przed pierwszym liczeniem tokenów",
+  "powod": "pliki licencji w klonach doprecyzowują licencję per plik; reguły z 14:23 dawałyby błędną licencję wiersza albo wykluczały pliki z tą samą licencją otwartą",
+  "afp": "V: thys/LICENSE mówi 'files marked with License: LGPL are released under LICENSE.LGPL' (LGPL 2.1, bez 'or later'), 'unmarked or marked License: BSD' -> LICENSE (3 klauzule = BSD-3-Clause). 57 plików z oznaczeniem LGPL leży we wpisach z toml license='bsd'; 2 pliki mają literówkę 'LPGL'. Nowa reguła: oznaczenie 'License: (LGPL|LPGL)' w pierwszych 3000 znakach pliku -> LGPL-2.1-only, 'License: BSD...' -> BSD-3-Clause, brak oznaczenia -> licencja wpisu z toml; wpis bez toml albo z inną wartością -> wykluczony",
+  "hol_light": "V: podkatalogi z własnym plikiem licencji: GL/COPYING i Quaternions/COPYING (BSD 2 klauzule, inni właściciele praw), eval_compile/LICENSE (MIT, same pliki .hl, nie .ml). Reguła 'podkatalog z plikiem licencji o innej treści -> wykluczony' zastąpiona: licencja wiersza z pliku licencji najbliższego podkatalogu, jeśli to BSD 2 klauzule (BSD-2-Clause) albo MIT; inna -> wykluczony. Pliki .hl (94) poza regułą 'pliki **/*.ml' - bez zmian, nie wchodzą",
+  "stacks": "V: introduction.tex 'GNU Free Documentation License, Version 1.2 or any later version ...; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts' -> SPDX GFDL-1.2-no-invariants-or-later"
+ },
+ "aneks_2026_11_26b": {
+  "zapisano": "2026-11-26 ok. 14:36 CET (przed startem budowy 2 o 14:37:18; wcześniej omyłkowo wpisane 14:45), PO pierwszej budowie puli (14:29-14:30, robocze/logi/buduj.log; liczby tokenów i plików były już widoczne) i PRZED przeglądem treści, detektorami i agregacją; pomiar kosztu tej reguły (budowa 2) po jej zapisaniu",
+  "powod": "zasada zespołu: tylko tekst ludzki (zero LLM). V (git log na rewizjach z preregistracji): HOL Light ma katalog Autoformalization/ 'formalized entirely autonomously by AI systems' (commit 9bcbb42, 2026-08-10) oraz biblioteki ANT/, Sieve/, Baker i przebudowę Library/ opisane jako wytworzone przez Claude (commity 2026-10/11 z 'Co-Authored-By: Claude Opus 5.5'); mathlib4 ma ok. 730 commitów (wstępny wzorzec; ostateczny wzorzec: 709) z ujawnionym użyciem Claude Code, Codex, Aristotle (Harmonic), Gemini, GPT; UniMath 1 commit współtworzony przez Claude; set.mm: dowody skracane przez OpenAI/model językowy (dowody i tak usuwamy), sekcja 'Mathbox for OpenAI' i cytowane odpowiedzi Claude w sekcji o Wielkim Twierdzeniu Fermata",
+  "wzorzec": "PCRE na pełnej treści wiadomości commita (git log -P --grep): \\bClaude( Code| code| Opus| Sonnet| Fable| Haiku| [0-9]|\\.|,|:| made| extracted| wrote| helped| generated| was| did| has| had| and| to| for| in)|noreply@anthropic\\.com|ChatGPT|\\bGPT-?[0-9f]\\b|\\bLLMs?\\b|LLM-|Copilot|\\bGemini\\b|AlphaProof|DeepSeek|OpenAI|Anthropic|[Aa]utoformali[sz]|[Ll]anguage [Mm]odels?\\b|AI-generated|AI-assisted|[Gg]enerated (by|with|using) (an )?AI\\b|by an AI\\b|\\bAI systems?\\b|\\bCodex\\b|Kimina|Goedel-Prover|\\bAristotle\\b|aristotle-harmonic|Gauss AI|Math Inc (zapis w skrypty/buduj_pule.py AI_WZORZEC)",
+  "regula": "wszystkie biblioteki poza setmm: plik, którego ścieżka (na rewizji) występuje w zmianach dowolnego commita z historii do rewizji pasującego do wzorca (zmiany wobec pierwszego rodzica, także dla commitów scalających), jest wykluczany w całości, także gdy commit poprawiał tylko literówki albo białe znaki albo wiadomość zaprzecza użyciu (reguła konserwatywna). setmm: wiadomości dotyczą dowodów (usuwane regułą dokument.setmm), więc wykluczany jest fragment zawierający 'Contributed by OpenAI' albo '[Aa]sking Claude' (tekst przypisany modelowi); adnotacje '(Proof shortened by OpenAI, data)' zostają (tekst ludzki o dowodzie)",
+  "ograniczenia": "I: użycie LLM nieujawnione w wiadomości commita jest niewykrywalne; pliki przemianowane po commicie z AI nie są śledzone (bez wykrywania zmian nazw, żeby nie pobierać blobów); wynik per biblioteka w wyniki/ai_wykluczone.json"
+ },
+ "aneks_2026_11_26c": {
+  "zapisano": "2026-11-26 ok. 14:43 CET (po checkout nowych rewizji 14:43:05, przed budową 3 o 14:43:41), decyzja integratora (Main) po pomiarze reguły aneks_2026_11_26b na rewizjach z 14:23 (druga budowa 14:37-14:41: mathlib4 709 commitów z ujawnionym LLM, 6 866 plików wykluczonych, 42,7 -> 4,0 mln tok. v6; HOL Light 40 commitów, 506 plików, 25,9 -> 6,4 mln; UniMath 1 commit, 49 plików)",
+  "powod": "zasada zespołu: zero tekstu z modeli zamkniętych (Claude, Gemini, Codex/GPT są zamknięte); na rewizjach z listopada 2026 mathlib4 i HOL Light są przeplecione wkładem z tych modeli (masowe refaktory 'Generated by Claude Opus, reviewed', całe katalogi HOL Light 'produced by Claude'), więc bierzemy ich rewizje sprzed pierwszego ujawnionego commita z AI",
+  "rewizje": {
+   "mathlib4": "9bed6a56adef68a259c58f72d5dc46ba3a68c176",
+   "hol_light": "b9a430b8fee43cc94babc8e3970cdd2740a994dc"
+  },
+  "wybor_rewizji": "mathlib4: git rev-list -1 --first-parent --before=2025-04-01T00:00:00Z e54979a5 (commit 2025-03-31T22:40:31Z, #21800; pierwsze ujawnione commity AI w 2025-04 poza jednym z 2023-10); hol_light: git rev-list -1 --first-parent --before=2026-01-01T00:00:00Z 096417ca (commit 2025-12-11T20:28:06Z; pierwszy ujawniony commit AI 2026-01)",
+  "regula": "reguła aneks_2026_11_26b bez zmian, liczona na nowych rewizjach (historia do nowej rewizji); UniMath, set.mm i pozostałe biblioteki bez zmiany rewizji, z regułą aneks_2026_11_26b (UniMath: 49 plików z commita 7a4b03cc wykluczone)",
+  "stara_pula": "pula z rewizji z 14:23 z regułą aneks_2026_11_26b (180 297 515 tok. v6, 16 917 wierszy) nie wchodzi; usunięta z robocze/, liczby w karcie"
+ }
+}

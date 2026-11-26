@@ -1,0 +1,98 @@
+[
+ {
+  "biblioteka": "afp",
+  "plik": "thys/Bicategory/BicategoryOfSpans.thy",
+  "bajty": 1111256,
+  "decyzja": "wykluczony"
+ },
+ {
+  "biblioteka": "afp",
+  "plik": "thys/Crypto_Standards/FIPS198_1_Test_Vectors.thy",
+  "bajty": 1017297,
+  "decyzja": "wykluczony"
+ },
+ {
+  "biblioteka": "afp",
+  "plik": "thys/IsaGeoCoq/Tarski_Neutral.thy",
+  "bajty": 1545686,
+  "decyzja": "wykluczony"
+ },
+ {
+  "biblioteka": "afp",
+  "plik": "thys/Crypto_Standards/SEC1v2_0_Test_Vectors.thy",
+  "bajty": 1299279,
+  "decyzja": "wykluczony"
+ },
+ {
+  "biblioteka": "afp",
+  "plik": "thys/Broadcast_Psi/Semantics.thy",
+  "bajty": 1508728,
+  "decyzja": "wykluczony"
+ },
+ {
+  "biblioteka": "hol_light",
+  "plik": "Multivariate/measure.ml",
+  "bajty": 1615738,
+  "decyzja": "wykluczony"
+ },
+ {
+  "biblioteka": "hol_light",
+  "plik": "Multivariate/paths.ml",
+  "bajty": 1489633,
+  "decyzja": "wykluczony"
+ },
+ {
+  "biblioteka": "hol_light",
+  "plik": "Multivariate/cauchy.ml",
+  "bajty": 1226752,
+  "decyzja": "wykluczony"
+ },
+ {
+  "biblioteka": "hol_light",
+  "plik": "Multivariate/metric.ml",
+  "bajty": 1673229,
+  "decyzja": "wykluczony"
+ },
+ {
+  "biblioteka": "hol_light",
+  "plik": "Multivariate/integration.ml",
+  "bajty": 1281319,
+  "decyzja": "wykluczony"
+ },
+ {
+  "biblioteka": "hol_light",
+  "plik": "Multivariate/complex_database.ml",
+  "bajty": 1009133,
+  "decyzja": "wykluczony"
+ },
+ {
+  "biblioteka": "hol_light",
+  "plik": "Multivariate/topology.ml",
+  "bajty": 1728089,
+  "decyzja": "wykluczony"
+ },
+ {
+  "biblioteka": "hol_light",
+  "plik": "Divstep/hull_light.ml",
+  "bajty": 1581757,
+  "decyzja": "wykluczony"
+ },
+ {
+  "biblioteka": "hol_light",
+  "plik": "Jordan/jordan_curve_theorem.ml",
+  "bajty": 1709102,
+  "decyzja": "wykluczony"
+ },
+ {
+  "biblioteka": "stacks",
+  "plik": "algebra.tex",
+  "bajty": 1771230,
+  "decyzja": "podzielony na 44 fragmentów"
+ },
+ {
+  "biblioteka": "stacks",
+  "plik": "more-algebra.tex",
+  "bajty": 1492039,
+  "decyzja": "podzielony na 36 fragmentów"
+ }
+]
