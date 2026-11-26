@@ -1,0 +1,247 @@
+{
+ "zbior": "stackexchange_mat",
+ "dokumenty": 1938345,
+ "tokeny_v6": 1667484804,
+ "dok_z_id0": 0,
+ "kaskada": [
+  {
+   "powod": "walidacja_fabryki",
+   "odrzucone_dok": 72,
+   "odrzucone_tok": 69725,
+   "zostaje_dok": 1938273,
+   "zostaje_tok": 1667415079,
+   "zostaje_tok_proc": 99.996
+  },
+  {
+   "powod": "domena_testow",
+   "odrzucone_dok": 0,
+   "odrzucone_tok": 0,
+   "zostaje_dok": 1938273,
+   "zostaje_tok": 1667415079,
+   "zostaje_tok_proc": 99.996
+  },
+  {
+   "powod": "ewal_13gram",
+   "odrzucone_dok": 5783,
+   "odrzucone_tok": 7783924,
+   "zostaje_dok": 1932490,
+   "zostaje_tok": 1659631155,
+   "zostaje_tok_proc": 99.529
+  },
+  {
+   "powod": "pii",
+   "odrzucone_dok": 2729,
+   "odrzucone_tok": 4777218,
+   "zostaje_dok": 1929761,
+   "zostaje_tok": 1654853937,
+   "zostaje_tok_proc": 99.243
+  },
+  {
+   "powod": "pii_zaciemniony",
+   "odrzucone_dok": 79,
+   "odrzucone_tok": 178577,
+   "zostaje_dok": 1929682,
+   "zostaje_tok": 1654675360,
+   "zostaje_tok_proc": 99.232
+  },
+  {
+   "powod": "pii_at_bez_nawiasow",
+   "odrzucone_dok": 1607,
+   "odrzucone_tok": 2798551,
+   "zostaje_dok": 1928075,
+   "zostaje_tok": 1651876809,
+   "zostaje_tok_proc": 99.064
+  },
+  {
+   "powod": "min_tresc",
+   "odrzucone_dok": 4525,
+   "odrzucone_tok": 311696,
+   "zostaje_dok": 1923550,
+   "zostaje_tok": 1651565113,
+   "zostaje_tok_proc": 99.045
+  },
+  {
+   "powod": "mojibake",
+   "odrzucone_dok": 6,
+   "odrzucone_tok": 8842,
+   "zostaje_dok": 1923544,
+   "zostaje_tok": 1651556271,
+   "zostaje_tok_proc": 99.045
+  },
+  {
+   "powod": "dedup_wewnatrz",
+   "odrzucone_dok": 531,
+   "odrzucone_tok": 456247,
+   "zostaje_dok": 1923013,
+   "zostaje_tok": 1651100024,
+   "zostaje_tok_proc": 99.017
+  },
+  {
+   "powod": "dedup_finemath4",
+   "odrzucone_dok": 170589,
+   "odrzucone_tok": 197320547,
+   "zostaje_dok": 1752424,
+   "zostaje_tok": 1453779477,
+   "zostaje_tok_proc": 87.184
+  },
+  {
+   "powod": "dedup_infiwebmath4",
+   "odrzucone_dok": 13966,
+   "odrzucone_tok": 14500140,
+   "zostaje_dok": 1738458,
+   "zostaje_tok": 1439279337,
+   "zostaje_tok_proc": 86.314
+  },
+  {
+   "powod": "dedup_se_strony",
+   "odrzucone_dok": 108541,
+   "odrzucone_tok": 125253635,
+   "zostaje_dok": 1629917,
+   "zostaje_tok": 1314025702,
+   "zostaje_tok_proc": 78.803
+  },
+  {
+   "powod": "dedup_slayer107",
+   "odrzucone_dok": 14947,
+   "odrzucone_tok": 16731779,
+   "zostaje_dok": 1614970,
+   "zostaje_tok": 1297293923,
+   "zostaje_tok_proc": 77.799
+  },
+  {
+   "powod": "dedup_slayer_8x3b_en",
+   "odrzucone_dok": 13,
+   "odrzucone_tok": 8033,
+   "zostaje_dok": 1614957,
+   "zostaje_tok": 1297285890,
+   "zostaje_tok_proc": 77.799
+  },
+  {
+   "powod": "dedup_english_technical",
+   "odrzucone_dok": 0,
+   "odrzucone_tok": 0,
+   "zostaje_dok": 1614957,
+   "zostaje_tok": 1297285890,
+   "zostaje_tok_proc": 77.799
+  }
+ ],
+ "niezaleznie": {
+  "walidacja_fabryki": {
+   "dok": 72,
+   "tok": 69725,
+   "tok_proc": 0.004
+  },
+  "domena_testow": {
+   "dok": 0,
+   "tok": 0,
+   "tok_proc": 0.0
+  },
+  "ewal_13gram": {
+   "dok": 5783,
+   "tok": 7783924,
+   "tok_proc": 0.467
+  },
+  "pii": {
+   "dok": 2735,
+   "tok": 4789625,
+   "tok_proc": 0.287
+  },
+  "pii_zaciemniony": {
+   "dok": 82,
+   "tok": 193818,
+   "tok_proc": 0.012
+  },
+  "pii_at_bez_nawiasow": {
+   "dok": 1634,
+   "tok": 2868923,
+   "tok_proc": 0.172
+  },
+  "min_tresc": {
+   "dok": 4527,
+   "tok": 311871,
+   "tok_proc": 0.019
+  },
+  "mojibake": {
+   "dok": 6,
+   "tok": 8842,
+   "tok_proc": 0.001
+  },
+  "dedup_wewnatrz": {
+   "dok": 535,
+   "tok": 464280,
+   "tok_proc": 0.028
+  },
+  "dedup_finemath4": {
+   "dok": 170755,
+   "tok": 197711460,
+   "tok_proc": 11.857
+  },
+  "dedup_infiwebmath4": {
+   "dok": 14106,
+   "tok": 14655147,
+   "tok_proc": 0.879
+  },
+  "dedup_se_strony": {
+   "dok": 284638,
+   "tok": 325055106,
+   "tok_proc": 19.494
+  },
+  "dedup_slayer107": {
+   "dok": 15090,
+   "tok": 16961310,
+   "tok_proc": 1.017
+  },
+  "dedup_slayer_8x3b_en": {
+   "dok": 17,
+   "tok": 9674,
+   "tok_proc": 0.001
+  },
+  "dedup_english_technical": {
+   "dok": 0,
+   "tok": 0,
+   "tok_proc": 0.0
+  }
+ },
+ "uzysk": {
+  "dok": 1614957,
+  "tok": 1297285890,
+  "tok_proc": 77.799
+ },
+ "ewal_per_test": {
+  "T34_math": 4768,
+  "T32_mmlu": 710,
+  "T19_mathqa": 164,
+  "T10_boolq": 82,
+  "T38_squad2": 32,
+  "X02_humaneval": 31,
+  "X03_mbpp": 22,
+  "X04_synlogic": 16,
+  "T43_triviaqa": 10,
+  "T45_medmcqa": 8,
+  "T51_gsm_plus": 3,
+  "T13_wic": 3,
+  "T35_truthfulqa": 2,
+  "T47_bbh": 2,
+  "T41_coqa": 1,
+  "T21_sst2": 1,
+  "T48_paws": 1,
+  "X01_arc_easy": 1,
+  "T40_race": 1
+ },
+ "pii_klasy_detektor_dclm": {
+  "email": 1269,
+  "telefon": 34,
+  "ip": 1448
+ },
+ "pii_tryb": "usun",
+ "dedup_wewnatrz_szczegoly": {
+  "identyczny_tekst": 93,
+  "minhash_bez_identycznych": 442
+ },
+ "eksport": {
+  "cel_tok_v6": 1000000000000,
+  "dok": 1614957,
+  "tok_v6": 1297285890,
+  "wystarcza": false
+ }
+}
