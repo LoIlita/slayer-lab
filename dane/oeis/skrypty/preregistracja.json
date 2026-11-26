@@ -133,5 +133,13 @@
   "filtr budowy (filtr_budowy) przed detektorami",
   "dodany dedup_infiwebmath4"
  ],
- "aneksy_przejete": "aneks_2026_11_24, aneks_2026_11_24b, aneks_2026_11_24c, aneks_2026_11_25b, aneks_2026_11_25c, aneks_2026_11_25e: treść w dane/infiwebmath4/skrypty/preregistracja.json, przejęta bez zmian poza odstępstwami powyżej"
+ "aneksy_przejete": "aneks_2026_11_24, aneks_2026_11_24b, aneks_2026_11_24c, aneks_2026_11_25b, aneks_2026_11_25c, aneks_2026_11_25e: treść w dane/infiwebmath4/skrypty/preregistracja.json, przejęta bez zmian poza odstępstwami powyżej",
+ "aneks_2026_11_26_przeglad": {
+  "zapisano": "2026-11-26, PO przeglądzie próbki (wyniki/przeglad_1.json, dwóch recenzentów, 1036 pozycji, pełne teksty; wycinek 03 recenzenta A powtórzony po niepełnej lekturze) i PRZED eksportem",
+  "wynik": "PASS: zachowane — śmieci 0/300, PII 0/300, testy 0/300 u obu; dedup_finemath4, dedup_infiwebmath4, dedup_wewnatrz, dedup_slayer107, min_tresc, walidacja_fabryki trafne",
+  "fail_przyjete": {
+   "ewal_13gram": "fałszywe odrzucenia 100/100 u obu (formułki: pętle Pythona, listy liczb pierwszych, rekurencje); koszt 0,10% tokenów; reguła usuwa dobre teksty, nie przepuszcza złych; jak aneks 24.11b",
+   "pii": "92/100 fałszywych (symbole kafelkowań 3.4.6.4, numery sekcji Knutha jako IPv4); koszt 0,08% tokenów; prywatność ma pierwszeństwo"
+  }
+ }
 }

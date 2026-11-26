@@ -47,8 +47,9 @@ EMAIL_AT = re.compile(r"[A-Za-z0-9._%+-]+\s?[\(\[]\s?(?:AT|at)\s?[\)\]]\s?[A-Za-
 EMAIL_BARE_AT = re.compile(r"[A-Za-z0-9._%+-]+ (?:at|AT) [A-Za-z0-9-]{2,}(?:(?:\.| (?:dot|DOT) )[A-Za-z0-9-]+)*(?:\.| (?:dot|DOT) )(?:com|org|net|edu|gov|mil|info|io|biz|[a-z]{2})\b")
 # name-at-domain.tld (AFP headers, review 26.11): masked together with EMAIL_BARE_AT
 EMAIL_DASH_AT = re.compile(r"[A-Za-z0-9._%+]+-at-[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}\b")
-# name at domain tld with a space instead of the dot ("norbert.schirmer at web de", AFP header, review 26.11)
-EMAIL_SPACE_TLD = re.compile(r"[A-Za-z0-9._%+-]+ (?:at|AT) [A-Za-z0-9-]{2,} (?:com|org|net|edu|de|uk|fr|ch|it|nl|at|au|ca|jp)\b")
+# name at domain tld with a space instead of the dot ("norbert.schirmer at web de", AFP header, review 26.11); the local
+# part must contain '.' or '_' so that prose ("look at this de facto") is left alone
+EMAIL_SPACE_TLD = re.compile(r"[A-Za-z0-9%+-]*[._][A-Za-z0-9._%+-]+ (?:at|AT) [A-Za-z0-9-]{2,} (?:com|org|net|edu|de|uk|fr|ch|it|nl|at|au|ca|jp)\b")
 
 
 def _mask_emails(text: str, bare_at: bool = False) -> tuple[str, int]:

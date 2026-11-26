@@ -192,5 +192,14 @@
   "powod": "trafienia to prawdziwe e-maile autorów w nagłówkach teorii AFP (sprawdzone 25 przykładów `nazwa at uczelnia.tld` i 10 `nazwa (at) domena`); pii.tryb tej preregistracji to maskowanie e-maili, nie usuwanie plików, a reguły zostały w kolejności jako kontrola z oczekiwaniem ~0 trafień, które się nie sprawdziło, bo pula formalna (inaczej niż OEIS) nie maskowała e-maili przy budowie",
   "zmiana": "pii_zaciemniony i pii_at_bez_nawiasow zdjęte z kolejnosc_powodow; e-maile w formach `@`, `(at)`/`[at]` i `nazwa at domena.tld` maskowane do [PII] przy eksporcie przed bramką językową (mat_wybor.premask_emails z wzorcem aneksu 25.11c); telefon i IPv4 nadal usuwają plik (pii)",
   "kontrola": "po eksporcie: 0 trafień trzech wzorców e-maila w każdej części (sprawdzenie skryptem przed wysyłką)"
+ },
+ "aneks_2026_11_26_przeglad": {
+  "zapisano": "2026-11-26, PO przeglądzie próbki (wyniki/przeglad_1.json, dwóch recenzentów, 594 pozycje, pełne teksty) i PRZED eksportem",
+  "wynik": "PASS: zachowane — śmieci 3,0% / 3,7%, testy 0/300; min_tresc, dedup_wewnatrz trafne; dedup_finemath4 0/3 (FAIL tylko z górnej granicy Wilsona przy n=3)",
+  "pii_przeoczone": "17/300 u obu: e-maile autorów w nagłówkach AFP, oceniane na tekście PRZED maskowaniem; maskowanie przy eksporcie (aneks 26.11d) uzupełnione o formy z przeglądu ('nazwa-at-domena', 'nazwa at web de'); kontrola resztki_email.py na całej puli po maskowaniu: 0 dokumentów z resztkami; trafienia wzorców bare_at na całej puli (1 131) przejrzane: wszystkie to adresy",
+  "fail_przyjete": {
+   "ewal_13gram": "5/5 fałszywych (formułki, cytat Goldbacha); koszt 0,18%",
+   "pii": "16/36 fałszywych (numery wersji, przykładowe adresy RFC), 3 trafne publiczne adresy instytucji; koszt 0,57%; jak aneks 24.11b"
+  }
  }
 }
