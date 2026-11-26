@@ -1,0 +1,22 @@
+{
+ "repo": "oeis/oeisdata",
+ "rewizja": "976b0c73e00453b1c1e6f16d83108cb9bb744c3b",
+ "seed": 20261126,
+ "wiersze": 311925,
+ "tokeny_v6": 191127613,
+ "pliki": [
+  {
+   "plik": "seq",
+   "rozmiar": 195137598,
+   "sha256": "9954f12310c42a1ada24387ea245536c1ab2a3eae382c13dd94b9ce57e6e87c2",
+   "wiersze": 311925,
+   "tokeny_v6": 191127613,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/oeis/robocze/pula/oeis_seq.parquet",
+   "zrodlo": {
+    "plikow_seq": 402003,
+    "bajty_seq": 597687151
+   },
+   "uwaga": "rozmiar i sha256 dotyczą lokalnego parquetu puli (źródło to katalog seq/, nie jeden plik)"
+  }
+ ]
+}

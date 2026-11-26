@@ -1,0 +1,50 @@
+{
+ "rewizja": "976b0c73e00453b1c1e6f16d83108cb9bb744c3b",
+ "plikow_seq": 402003,
+ "bajty_seq": 597687151,
+ "zle_utf8": 0,
+ "zachowane": {
+  "dokumenty": 311925,
+  "tokeny_v6": 191127613,
+  "mediana_tok": 533,
+  "p99_tok": 1910,
+  "max_tok": 24682
+ },
+ "odrzucone": {
+  "dokumenty": 90078,
+  "tokeny_v6": 28879398,
+  "odsetek_dokumentow": 0.2241,
+  "odsetek_tokenow": 0.1313,
+  "na_powod": {
+   "bez_tresci": {
+    "dokumenty": 84860,
+    "tokeny_v6": 28010643
+   },
+   "krotka": {
+    "dokumenty": 3130,
+    "tokeny_v6": 599707
+   },
+   "martwa": {
+    "dokumenty": 2088,
+    "tokeny_v6": 269048
+   }
+  }
+ },
+ "emaile_maskowane_dopasowania": {
+  "zaciemniony": 13744,
+  "email": 12,
+  "at_bez_nawiasow": 18
+ },
+ "emaile_po_maskowaniu_w_puli": {
+  "email": 0,
+  "zaciemniony": 0,
+  "at_bez_nawiasow": 0
+ },
+ "pii_detektor_dclm_w_puli_dokumenty": {
+  "ip": 129,
+  "telefon": 7
+ },
+ "licencje_wierszy": {
+  "CC-BY-SA-4.0": 311925
+ }
+}

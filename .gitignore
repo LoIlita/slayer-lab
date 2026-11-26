@@ -24,6 +24,7 @@ dane/cranemath/robocze/
 dane/stackedu/robocze/
 dane/infiwebmath4/robocze/
 dane/finemath3/robocze/
+dane/oeis/robocze/
 # klucze
 *.pem
 vastkey*
@@ -34,3 +35,4 @@ __pycache__/
 .venv*/
 .pytest_cache/
 dane/stackexchange_mat/robocze/
+dane/formalna/robocze/
