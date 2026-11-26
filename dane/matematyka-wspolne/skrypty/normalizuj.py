@@ -119,8 +119,9 @@ if ZR == "stackexchange_mat":  # tylko serwisy z preregistracji (zrodlo.serwisy)
 kolej = np.random.default_rng(SEED).permutation(len(wsz)).tolist()
 os.makedirs(CEL, exist_ok=True)
 gotowe = {}
-if os.path.exists(WYN):
-    gotowe = {x["plik"]: x for x in json.load(open(WYN, encoding="utf-8"))["pliki"]}
+if os.path.exists(WYN):  # puste: pliki bez wiersza po wyborze wierszy (np. stackexchange_mat po dacie); bez lokalnej kopii
+    _w = json.load(open(WYN, encoding="utf-8"))
+    gotowe = {x["plik"]: x for x in _w["pliki"] + _w.get("puste", [])}
 out, suma_tok, suma_w = [], 0, 0
 for i in kolej:
     f = wsz[i]
@@ -137,8 +138,9 @@ for i in kolej:
         tok = 0
         for a in range(0, len(rows), RG):
             tok += tokeny([r["text"] for r in rows[a:a + RG]])
-        zapisz(rows, lok)
-        x = {"plik": f, "rozmiar": os.path.getsize(p), "sha256": sha(p), "wiersze": len(rows), "tokeny_v6": tok, "lokalnie": lok}
+        if rows:
+            zapisz(rows, lok)
+        x = {"plik": f, "rozmiar": os.path.getsize(p), "sha256": sha(p), "wiersze": len(rows), "tokeny_v6": tok, "lokalnie": lok if rows else None}
         if ZR == "cranemath":
             lok_o = lok.replace(".rg5000.parquet", ".oryg.rg5000.parquet")
             zapisz([{"text": o, "url": r["url"], "id": r["id"]} for r, o in zip(rows, oryg)], lok_o)
@@ -148,7 +150,8 @@ for i in kolej:
     suma_tok += x["tokeny_v6"]
     suma_w += x["wiersze"]
     json.dump({"repo": REPO, "rewizja": REW, "plikow_w_repo": len(wsz), "seed": SEED, "wiersze": suma_w, "tokeny_v6": suma_tok,
-               "cel_tokenow_v6": DOCEL, "pliki": out}, open(WYN, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+               "cel_tokenow_v6": DOCEL, "pliki": [x for x in out if x["wiersze"]], "puste": [x for x in out if not x["wiersze"]]},
+              open(WYN, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
     print(f, x["wiersze"], x["tokeny_v6"], suma_tok, flush=True)
     if suma_tok >= DOCEL:
         break
