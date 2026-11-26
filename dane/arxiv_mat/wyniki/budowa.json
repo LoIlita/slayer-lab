@@ -1,0 +1,98 @@
+{
+ "rewizje": {
+  "A1": "963fe980c55b353980653f1a27c1dc0c8a2d7058",
+  "A2": "828e35d1000f94579da8850f5f640c138279bdb5",
+  "metadane": "c428226b689a0e17db2cd55265133b9eca15d97f"
+ },
+ "liczniki": {
+  "A1_wszystkie": 304048,
+  "A1_docelowe": 73320,
+  "A2_wszystkie": 2538935,
+  "A2_docelowe": 652417,
+  "A2_duplikat_id": 8
+ },
+ "zachowane": {
+  "A1": {
+   "dokumenty": 72261,
+   "tokeny_v6": 2410548069,
+   "mediana_tok": 24998,
+   "p99_tok": 155383,
+   "max_tok": 9942746
+  },
+  "A2": {
+   "dokumenty": 580148,
+   "tokeny_v6": 121520903,
+   "mediana_tok": 191,
+   "p99_tok": 527,
+   "max_tok": 1341
+  }
+ },
+ "odrzucone_filtr_budowy": {
+  "dokumenty": 1059,
+  "tokeny_v6": 22759056,
+  "na_powod": {
+   "A1_licencja": {
+    "dokumenty": 563,
+    "tokeny_v6": 22758064
+   },
+   "A1_pusty": {
+    "dokumenty": 496,
+    "tokeny_v6": 992
+   }
+  }
+ },
+ "licencje_wierszy": {
+  "A1": {
+   "CC-PDDC": 470,
+   "CC-BY-SA-4.0": 3807,
+   "CC-BY-3.0": 1747,
+   "CC-BY-4.0": 62163,
+   "CC0-1.0": 4074
+  },
+  "A2": {
+   "CC0-1.0": 580148
+  }
+ },
+ "licencje_A1_pary_cp_spdx_snapshot": {
+  "CC-BY-4.0 | http://creativecommons.org/licenses/by/4.0/": 62497,
+  "CC0-1.0 | http://creativecommons.org/publicdomain/zero/1.0/": 4109,
+  "CC-BY-SA-4.0 | http://creativecommons.org/licenses/by-sa/4.0/": 3750,
+  "CC-BY-3.0 | http://creativecommons.org/licenses/by/3.0/": 1792,
+  "CC-PDDC | http://creativecommons.org/licenses/publicdomain/": 484,
+  "CC-BY-4.0 | http://arxiv.org/licenses/nonexclusive-distrib/1.0/": 337,
+  "CC-BY-4.0 | http://creativecommons.org/licenses/by-nc-nd/4.0/": 118,
+  "CC-BY-4.0 | http://creativecommons.org/licenses/by-sa/4.0/": 47,
+  "CC0-1.0 | http://arxiv.org/licenses/nonexclusive-distrib/1.0/": 40,
+  "CC-BY-4.0 | http://creativecommons.org/licenses/by-nc-sa/4.0/": 40,
+  "CC0-1.0 | http://creativecommons.org/licenses/by/4.0/": 33,
+  "CC-BY-SA-4.0 | http://creativecommons.org/licenses/by/4.0/": 25,
+  "CC-BY-4.0 | http://creativecommons.org/publicdomain/zero/1.0/": 17,
+  "CC-BY-SA-4.0 | http://arxiv.org/licenses/nonexclusive-distrib/1.0/": 8,
+  "CC-BY-SA-4.0 | http://creativecommons.org/licenses/by-nc-nd/4.0/": 8,
+  "CC-BY-SA-4.0 | http://creativecommons.org/licenses/by-nc-sa/4.0/": 5,
+  "CC0-1.0 | http://creativecommons.org/licenses/by-nc-nd/4.0/": 4,
+  "CC0-1.0 | http://creativecommons.org/licenses/by-sa/4.0/": 2,
+  "CC0-1.0 | http://creativecommons.org/licenses/by-nc-sa/4.0/": 2,
+  "CC-BY-3.0 | http://creativecommons.org/licenses/by-nc-sa/4.0/": 1,
+  "CC-BY-3.0 | http://creativecommons.org/licenses/by/4.0/": 1
+ },
+ "artefakty_trafilatury_A1_dokumenty": {
+  "stopka_111": 11495,
+  "tylda_pusta": 13821,
+  "brak_ref": 441
+ },
+ "emaile_maskowane_dopasowania": {
+  "zaciemniony": 114,
+  "email": 117796,
+  "at_bez_nawiasow": 714
+ },
+ "emaile_po_maskowaniu_w_puli": {
+  "email": 0,
+  "zaciemniony": 0,
+  "at_bez_nawiasow": 0
+ },
+ "pii_detektor_dclm_w_puli_dokumenty": {
+  "ip": 1112,
+  "telefon": 184
+ }
+}

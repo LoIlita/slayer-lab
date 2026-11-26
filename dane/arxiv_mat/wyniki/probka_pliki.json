@@ -1,0 +1,39 @@
+{
+ "repo": "common-pile/arxiv_papers + common-pile/arxiv_abstracts",
+ "rewizja": "963fe980c55b353980653f1a27c1dc0c8a2d7058 + 828e35d1000f94579da8850f5f640c138279bdb5 (metadane librarian-bots/arxiv-metadata-snapshot@c428226b689a0e17db2cd55265133b9eca15d97f)",
+ "seed": 20261126,
+ "wiersze": 652409,
+ "tokeny_v6": 2532068972,
+ "pliki": [
+  {
+   "plik": "arxiv_papers",
+   "rozmiar": 2541201412,
+   "sha256": "63e7b2975b03047c5e27063278b6533058a735db13c705994d881d1b06d33280",
+   "wiersze": 72261,
+   "tokeny_v6": 2410548069,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/arxiv_mat/robocze/pula/arxiv_papers.parquet",
+   "zrodlo": "common-pile/arxiv_papers@963fe980c55b353980653f1a27c1dc0c8a2d7058",
+   "licencje": {
+    "CC-PDDC": 470,
+    "CC-BY-SA-4.0": 3807,
+    "CC-BY-3.0": 1747,
+    "CC-BY-4.0": 62163,
+    "CC0-1.0": 4074
+   },
+   "uwaga": "rozmiar i sha256 dotyczą lokalnego parquetu puli (źródło to wiele plików jsonl.gz)"
+  },
+  {
+   "plik": "arxiv_abstracts",
+   "rozmiar": 297186163,
+   "sha256": "22666c445fa582d15c799dfd094f81c88a3790381293cf80b442205b2e11b81a",
+   "wiersze": 580148,
+   "tokeny_v6": 121520903,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/arxiv_mat/robocze/pula/arxiv_abstracts.parquet",
+   "zrodlo": "common-pile/arxiv_abstracts@828e35d1000f94579da8850f5f640c138279bdb5",
+   "licencje": {
+    "CC0-1.0": 580148
+   },
+   "uwaga": "rozmiar i sha256 dotyczą lokalnego parquetu puli (źródło to wiele plików jsonl.gz)"
+  }
+ ]
+}

@@ -1,0 +1,134 @@
+{
+ "zapisano": "2026-11-26, przed pobraniem plików do budowy puli i przed pierwszym liczeniem; reguły detektorów i aneksy (24.11, 24.11b, 24.11c, 25.11b, 25.11c, 25.11e) przejęte z dane/infiwebmath4/skrypty/preregistracja.json bez zmian w treści, odstępstwa w 'odstepstwa_od_infiwebmath4'",
+ "rezerwacja": "https://github.com/slayerlabs/benchmarks-fabryka-ai/issues/357 (część 3)",
+ "cel": "część 3 zbioru matematyki i logiki dla Slayera (#357): prace arXiv z matematyki, statystyki i logiki — A1 pełne teksty na licencji otwartej, A2 abstrakty prac spoza A1 (karta dane/arxiv_mat/KARTA_ZRODLA.md; A3 poza zbiorem)",
+ "seed": 20261126,
+ "jedno_zrodlo_dwie_czesci": {
+  "decyzja": "jedno źródło arxiv_mat z dwoma plikami parquet (arxiv_papers.parquet = A1, arxiv_abstracts.parquet = A2), nie dwa źródła",
+  "uzasadnienie": [
+   "A2 jest zdefiniowane jako dopełnienie A1 (prace z kategorii docelowych, których nie ma w puli A1) — oba pliki muszą powstać w jednym przebiegu z jednym snapshotem metadanych i jednym zbiorem id; osobne źródła rozdzieliłyby tę zależność",
+   "jedna karta źródła, jeden algorytm wyboru kategorii, jedna reguła PII i jedna rezerwacja",
+   "rozróżnienie w danych zachowane: prefiks id ('arXiv:' vs 'arXiv-abs:'), kolumna 'czesc' (A1/A2) i osobny plik w probka_pliki.json, więc agregacja może raportować części osobno",
+   "dedup_wewnatrz między A1 i A2 jest pożądany (abstrakt spoza A1 nie powinien powtarzać pełnego tekstu); przy dwóch źródłach by nie działał"
+  ]
+ },
+ "zrodlo": {
+  "A1": {"repo": "common-pile/arxiv_papers", "rewizja": "963fe980c55b353980653f1a27c1dc0c8a2d7058", "pliki": "22 pliki NNNNN_arxiv-papers.jsonl.gz; sha256 sprawdzane wobec wyniki/przeglad_zrodla.json"},
+  "A2": {"repo": "common-pile/arxiv_abstracts", "rewizja": "828e35d1000f94579da8850f5f640c138279bdb5", "pliki": "4 pliki NNNNN_arxiv-abstracts.jsonl.gz; sha256 jak wyżej"},
+  "metadane": {"repo": "librarian-bots/arxiv-metadata-snapshot", "rewizja": "c428226b689a0e17db2cd55265133b9eca15d97f", "licencja": "CC0", "kolumny": "id, categories, license, title"},
+  "karta": "dane/arxiv_mat/KARTA_ZRODLA.md"
+ },
+ "wybor": {
+  "kategoria_glowna": "pierwszy element categories.split() ze snapshotu metadanych",
+  "regex": "^(math\\.|math-ph$|stat\\.|cs\\.LO$|cs\\.DM$|cs\\.CC$|cs\\.FL$|cs\\.SC$|cs\\.IT$|cs\\.GT$|cs\\.NA$)",
+  "uwaga": "cała lista docelowa z karty, nie wariant ścisły; kategoria główna zapisana w kolumnie 'kategoria' (pozwala później zawęzić bez przebudowy)"
+ },
+ "licencja": {
+  "A1": {
+   "regula": "licencja wiersza = bardziej restrykcyjna z metadata.license (Common Pile) i license (snapshot arXiv); przy remisie rangi — licencja ze snapshotu",
+   "rangi": {"0": "CC0-1.0 (publicdomain/zero/1.0), CC-PDDC ('Public Domain' w Common Pile, licenses/publicdomain w snapshocie)", "1": "CC-BY-3.0, CC-BY-4.0", "2": "CC-BY-SA-4.0"},
+   "odrzucenie": "licencja spoza rang po którejkolwiek stronie: NC, ND, nonexclusive-distrib (domyślna arXiv), brak licencji w snapshocie (prace sprzed 2004) albo nierozpoznany napis -> powód filtra budowy 'licencja'",
+   "spdx": "CC0-1.0, CC-PDDC, CC-BY-3.0, CC-BY-4.0, CC-BY-SA-4.0"
+  },
+  "A2": {"regula": "CC0-1.0 w każdym wierszu (Terms of Use for arXiv APIs: metadane opisowe, w tym abstrakt i tytuł, na CC0); kontrola: metadata.license Common Pile zawiera 'publicdomain/zero', inaczej powód 'licencja'"}
+ },
+ "dokument": {
+  "A1": {
+   "id": "arXiv:<id>",
+   "url": "https://arxiv.org/abs/<id>",
+   "text": "pole text bez zmian poza maskowaniem e-maili (dokument.maskowanie_emaili)",
+   "author": "metadata.authors (napis), 'unknown' gdy pusty",
+   "created": "pole created (data v1)"
+  },
+  "A2": {
+   "id": "arXiv-abs:<id>",
+   "url": "https://arxiv.org/abs/<id>",
+   "text": "tytuł ze snapshotu (białe znaki zwinięte do spacji) + pusta linia + abstrakt z pola text po strip(); zawijanie wierszy abstraktu arXiv zostaje",
+   "author": "metadata.authors, 'unknown' gdy pusty",
+   "created": "pole created"
+  },
+  "kolumny": "text, url, id, license, created, author, kategoria, czesc",
+  "artefakty_trafilatury": "cecha źródła, tekst NIE jest czyszczony: sklejone znaczniki przypisów ('action111As', 15,8% prac), puste grupy LaTeXML '~{}' (19,0%), nierozwiązane odnośniki '[?]'/'??' (0,6%), Markdown z Trafilatury ('#' tytuły, '######' Abstract), wzory w $...$ / $$...$$, zgubione wzory nieprzetworzone przez LaTeXML (urwane zdania); liczone informacyjnie w wyniki/budowa.json",
+  "maskowanie_emaili": {
+   "kiedy": "przy budowie puli, przed liczeniem tokenów",
+   "wzorce": [
+    "wspolne.RX_EMAIL (nazwa@domena.tld)",
+    "aneks_2026_11_24c.pii_zaciemniony (nazwa(AT)domena(DOT)tld i odmiany)",
+    "aneks_2026_11_25c.pii_at_bez_nawiasow (nazwa at domena.tld)"
+   ],
+   "regula": "jak dane/oeis/skrypty/preregistracja.json dokument.maskowanie_emaili (dopasowanie usuwane razem z nawiasem, jeśli stanowi całą jego treść; sprzątanie tylko w zmienionych wierszach)",
+   "poprawka_2026_11_26": "dopisana po pierwszym przebiegu budowy, przed jakimkolwiek eksportem i przeglądem: wzorce dopuszczają \\s, więc e-mail złamany wierszem (np. 'niranj\\n(at) math.iitb.ac.in', 9 dopasowań w 1. przebiegu) nie był maskowany wierszami; jeśli po masce wierszowej dokument nadal ma dopasowanie, maskuj() stosowane raz do całego tekstu (sprzątanie spacji wtedy w całym dokumencie)",
+   "poprawka_2026_11_26_a2_id": "dopisana po drugim przebiegu budowy, przed eksportem: arxiv_abstracts ma powtórzone id (3 id, 8 nadmiarowych wierszy, ten sam abstrakt) -> w A2 zostaje pierwsze wystąpienie id w kolejności plików; liczba pominiętych w wyniki/budowa.json liczniki.A2_duplikat_id",
+   "kontrola": "dopasowania przed i po w wyniki/budowa.json; po maskowaniu oczekiwane 0 dla wszystkich trzech wzorców"
+  }
+ },
+ "filtr_budowy": {
+  "kolejnosc": [
+   "licencja: reguła 'licencja' wyżej",
+   "pusty: text.strip() == '' (błąd konwersji LaTeXML, np. 1304.2314)"
+  ],
+  "regula": "pierwszy pasujący powód; odrzucone nie wchodzą do puli; liczby i tokeny v6 per powód w wyniki/budowa.json; prace A1 odrzucone tu mają abstrakt w A2",
+  "uwaga": "bez progu długości w filtrze budowy — krótkie dokumenty rozstrzyga min_tresc w potoku"
+ },
+ "pula": {
+  "wybor": "A1: wszystkie dokumenty arxiv_papers z kategorii docelowych po filtrze budowy; A2: wszystkie abstrakty arxiv_abstracts z kategorii docelowych, których id nie ma w puli A1, po filtrze budowy; kolejność plików źródła",
+  "pliki": "robocze/pula/arxiv_papers.parquet i robocze/pula/arxiv_abstracts.parquet, row_group_size 5000",
+  "cel_puli_tok_v6": null,
+  "eksport": "wszystkie dokumenty zachowane po regułach z kolejnosc_powodow"
+ },
+ "tokeny": {
+  "tokenizer": "v6, sha256 0640d3bd3674d7a6e59c540d945a2ad275a12e1bcaeb6007c37a90751f9815dd (dane/dclm-en/robocze/pobrania/tokenizer_v6/tokenizer.json)",
+  "regula": "tokeny tekstu bez znaków specjalnych + 1 (EOT)"
+ },
+ "kolejnosc_powodow": [
+  "walidacja_fabryki",
+  "domena_testow",
+  "ewal_13gram",
+  "pii",
+  "min_tresc",
+  "mojibake",
+  "dedup_wewnatrz",
+  "dedup_finemath4",
+  "dedup_infiwebmath4",
+  "dedup_slayer107",
+  "dedup_slayer_8x3b_en",
+  "dedup_english_technical"
+ ],
+ "walidacja_fabryki": "jak DCLM-EN (przejęte z infiwebmath4 bez zmian)",
+ "domena_testow": "jak DCLM-EN; dla arXiv oczekiwane 0",
+ "ewal_13gram": {
+  "indeks": "jak infiwebmath4: testy RPG v2 + T51_gsm_plus i T52_gsm1k",
+  "testy_scisle": ["T19_mathqa", "T32_mmlu", "T33_gsm8k", "T34_math", "T47_bbh", "X02_humaneval", "X03_mbpp", "T51_gsm_plus", "T52_gsm1k"],
+  "df_min": 5,
+  "regula": "jak infiwebmath4"
+ },
+ "pii": {
+  "tryb": "maskuj_email_usun_telefon_ip",
+  "regula": "e-mail nie usuwa dokumentu: e-maile autorów (73,4% prac A1, nagłówki z afiliacjami) maskowane przy budowie puli i ponownie przy eksporcie; telefon albo IPv4 z detektora DCLM-EN -> dokument usuwany",
+  "pii_zaciemniony_i_at_bez_nawiasow": "poza kolejnosc_powodow: formy (AT) i 'at' są maskowane przy budowie i przy eksporcie, nie usuwają dokumentu"
+ },
+ "min_tresc": "jak aneks 24.11b: < 50 słów po rdzen.norm_slowa -> usuwany",
+ "mojibake": "jak DCLM-EN",
+ "dedup_wewnatrz": "jak DCLM-EN: identyczny znormalizowany tekst albo MinHash 5-gramów 128 funkcji, LSH 32x4, J >= 0,8 (obejmuje A1 i A2 razem)",
+ "dedup_finemath4": "jak infiwebmath4 (url, MinHash, identyczny tekst); url https://arxiv.org/abs/<id> zgodny z adresem strony abstraktu, więc strona abstraktu obecna w FineMath-4+ usuwa wiersz (oczekiwane pojedyncze trafienia)",
+ "dedup_infiwebmath4": "jak dedup_finemath4 wobec wybranych InfiWebMath-4+",
+ "dedup_slayer107": "jak DCLM-EN",
+ "dedup_slayer_8x3b_en": "jak aneks 25.11b",
+ "dedup_english_technical": "jak aneks 24.11",
+ "reczna_probka": {
+  "odrzucone_na_powod": 100,
+  "zachowane": 300,
+  "znakow": 3000,
+  "oceniajacy": "dwóch niezależnych agentów, którzy nie budowali zbioru; każdy ocenia całą próbkę",
+  "progi": "jak infiwebmath4 (aneks DCLM-EN 15.11.2026); dodatkowo w zachowanych: e-mail autora po maskowaniu 0/300; artefakty Trafilatury (przypisy '111', '~{}') nie są śmieciem — cecha źródła",
+  "probka_filtra_budowy": "40 odrzuconych na powód filtra budowy (default_rng(seed)), jeden recenzent: czy odrzucenie słuszne"
+ },
+ "kontrole_dodatnie": "jak infiwebmath4; dodatkowo w buduj_pule.py test maskowania (asercje na '@', '(AT)', ' at ') i test reguły licencji (asercje na parach CP/snapshot) przed budową",
+ "odstepstwa_od_infiwebmath4": [
+  "źródło nie jest stroną WWW (pełne teksty prac i abstrakty): bez dedup_fineweb_edu_109",
+  "pii.tryb maskuj_email_usun_telefon_ip zamiast usun; bez pii_zaciemniony i pii_at_bez_nawiasow w kolejności (formy maskowane)",
+  "filtr budowy (licencja, pusty) przed detektorami",
+  "dodany dedup_infiwebmath4"
+ ],
+ "aneksy_przejete": "aneks_2026_11_24, aneks_2026_11_24b, aneks_2026_11_24c, aneks_2026_11_25b, aneks_2026_11_25c, aneks_2026_11_25e: treść w dane/infiwebmath4/skrypty/preregistracja.json, przejęta bez zmian poza odstępstwami powyżej"
+}
