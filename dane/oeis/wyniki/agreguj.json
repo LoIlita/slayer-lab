@@ -1,0 +1,222 @@
+{
+ "zbior": "oeis",
+ "dokumenty": 311925,
+ "tokeny_v6": 191127613,
+ "dok_z_id0": 0,
+ "kaskada": [
+  {
+   "powod": "walidacja_fabryki",
+   "odrzucone_dok": 36,
+   "odrzucone_tok": 14011,
+   "zostaje_dok": 311889,
+   "zostaje_tok": 191113602,
+   "zostaje_tok_proc": 99.993
+  },
+  {
+   "powod": "domena_testow",
+   "odrzucone_dok": 0,
+   "odrzucone_tok": 0,
+   "zostaje_dok": 311889,
+   "zostaje_tok": 191113602,
+   "zostaje_tok_proc": 99.993
+  },
+  {
+   "powod": "ewal_13gram",
+   "odrzucone_dok": 205,
+   "odrzucone_tok": 195012,
+   "zostaje_dok": 311684,
+   "zostaje_tok": 190918590,
+   "zostaje_tok_proc": 99.891
+  },
+  {
+   "powod": "pii",
+   "odrzucone_dok": 136,
+   "odrzucone_tok": 148393,
+   "zostaje_dok": 311548,
+   "zostaje_tok": 190770197,
+   "zostaje_tok_proc": 99.813
+  },
+  {
+   "powod": "pii_zaciemniony",
+   "odrzucone_dok": 0,
+   "odrzucone_tok": 0,
+   "zostaje_dok": 311548,
+   "zostaje_tok": 190770197,
+   "zostaje_tok_proc": 99.813
+  },
+  {
+   "powod": "pii_at_bez_nawiasow",
+   "odrzucone_dok": 0,
+   "odrzucone_tok": 0,
+   "zostaje_dok": 311548,
+   "zostaje_tok": 190770197,
+   "zostaje_tok_proc": 99.813
+  },
+  {
+   "powod": "min_tresc",
+   "odrzucone_dok": 691,
+   "odrzucone_tok": 94809,
+   "zostaje_dok": 310857,
+   "zostaje_tok": 190675388,
+   "zostaje_tok_proc": 99.763
+  },
+  {
+   "powod": "mojibake",
+   "odrzucone_dok": 0,
+   "odrzucone_tok": 0,
+   "zostaje_dok": 310857,
+   "zostaje_tok": 190675388,
+   "zostaje_tok_proc": 99.763
+  },
+  {
+   "powod": "dedup_wewnatrz",
+   "odrzucone_dok": 843,
+   "odrzucone_tok": 698542,
+   "zostaje_dok": 310014,
+   "zostaje_tok": 189976846,
+   "zostaje_tok_proc": 99.398
+  },
+  {
+   "powod": "dedup_finemath4",
+   "odrzucone_dok": 43051,
+   "odrzucone_tok": 32029028,
+   "zostaje_dok": 266963,
+   "zostaje_tok": 157947818,
+   "zostaje_tok_proc": 82.64
+  },
+  {
+   "powod": "dedup_infiwebmath4",
+   "odrzucone_dok": 1487,
+   "odrzucone_tok": 1405761,
+   "zostaje_dok": 265476,
+   "zostaje_tok": 156542057,
+   "zostaje_tok_proc": 81.904
+  },
+  {
+   "powod": "dedup_slayer107",
+   "odrzucone_dok": 4009,
+   "odrzucone_tok": 2265803,
+   "zostaje_dok": 261467,
+   "zostaje_tok": 154276254,
+   "zostaje_tok_proc": 80.719
+  },
+  {
+   "powod": "dedup_slayer_8x3b_en",
+   "odrzucone_dok": 0,
+   "odrzucone_tok": 0,
+   "zostaje_dok": 261467,
+   "zostaje_tok": 154276254,
+   "zostaje_tok_proc": 80.719
+  },
+  {
+   "powod": "dedup_english_technical",
+   "odrzucone_dok": 0,
+   "odrzucone_tok": 0,
+   "zostaje_dok": 261467,
+   "zostaje_tok": 154276254,
+   "zostaje_tok_proc": 80.719
+  }
+ ],
+ "niezaleznie": {
+  "walidacja_fabryki": {
+   "dok": 36,
+   "tok": 14011,
+   "tok_proc": 0.007
+  },
+  "domena_testow": {
+   "dok": 0,
+   "tok": 0,
+   "tok_proc": 0.0
+  },
+  "ewal_13gram": {
+   "dok": 205,
+   "tok": 195012,
+   "tok_proc": 0.102
+  },
+  "pii": {
+   "dok": 136,
+   "tok": 148393,
+   "tok_proc": 0.078
+  },
+  "pii_zaciemniony": {
+   "dok": 0,
+   "tok": 0,
+   "tok_proc": 0.0
+  },
+  "pii_at_bez_nawiasow": {
+   "dok": 0,
+   "tok": 0,
+   "tok_proc": 0.0
+  },
+  "min_tresc": {
+   "dok": 691,
+   "tok": 94809,
+   "tok_proc": 0.05
+  },
+  "mojibake": {
+   "dok": 0,
+   "tok": 0,
+   "tok_proc": 0.0
+  },
+  "dedup_wewnatrz": {
+   "dok": 843,
+   "tok": 698542,
+   "tok_proc": 0.365
+  },
+  "dedup_finemath4": {
+   "dok": 43066,
+   "tok": 32050696,
+   "tok_proc": 16.769
+  },
+  "dedup_infiwebmath4": {
+   "dok": 1488,
+   "tok": 1406654,
+   "tok_proc": 0.736
+  },
+  "dedup_slayer107": {
+   "dok": 4123,
+   "tok": 2328108,
+   "tok_proc": 1.218
+  },
+  "dedup_slayer_8x3b_en": {
+   "dok": 0,
+   "tok": 0,
+   "tok_proc": 0.0
+  },
+  "dedup_english_technical": {
+   "dok": 0,
+   "tok": 0,
+   "tok_proc": 0.0
+  }
+ },
+ "uzysk": {
+  "dok": 261467,
+  "tok": 154276254,
+  "tok_proc": 80.719
+ },
+ "ewal_per_test": {
+  "T34_math": 117,
+  "X03_mbpp": 70,
+  "T19_mathqa": 8,
+  "X04_synlogic": 5,
+  "X02_humaneval": 3,
+  "T32_mmlu": 1,
+  "T38_squad2": 1
+ },
+ "pii_klasy_detektor_dclm": {
+  "email": 0,
+  "telefon": 7,
+  "ip": 129
+ },
+ "pii_tryb": "maskuj_email_usun_telefon_ip",
+ "dedup_wewnatrz_szczegoly": {
+  "identyczny_tekst": 0,
+  "minhash_bez_identycznych": 843
+ },
+ "eksport": {
+  "cel_tok_v6": 1000000000000000,
+  "dok": 261467,
+  "tok_v6": 154276254,
+  "wystarcza": false
+ }
+}
