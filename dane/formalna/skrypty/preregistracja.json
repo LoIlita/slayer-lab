@@ -7,15 +7,69 @@
  "zrodlo": {
   "nazwa": "formalna",
   "biblioteki": {
-   "mathlib4": {"repo": "https://github.com/leanprover-community/mathlib4", "rewizja": "e54979a532247ae4eb9d5578a8fd40a1bc332101", "pliki": "Mathlib/**/*.lean, Archive/**/*.lean, Counterexamples/**/*.lean", "wykluczone": "MathlibTest/ (testy), Mathlib/Tactic/**, Mathlib/Util/**, Mathlib/Lean/** (metaprogramowanie, nie matematyka), pliki-indeksy importów Mathlib.lean, Archive.lean, Counterexamples.lean (generowane przez mk_all)", "licencja": "Apache-2.0 (LICENSE + nagłówek pliku 'Released under Apache 2.0 license')"},
-   "afp": {"repo": "https://github.com/isabelle-prover/mirror-afp-devel", "rewizja": "02fd3c6b5326d1c53704c52c09cabb3fd2a772f5", "pliki": "thys/<wpis>/**/*.thy", "wykluczone": "ROOT, document/*.tex, pliki poza thys/; wpis bez metadata/entries/<wpis>.toml albo z licencją spoza mapowania -> cały wpis wykluczony", "licencja": "per wpis z metadata/entries/<wpis>.toml pole license: 'bsd' -> BSD-3-Clause, 'lgpl' -> LGPL-2.1-only; mapowanie SPDX potwierdzane tekstem LICENSE w repo po klonie, rozbieżność = aneks"},
-   "hol_light": {"repo": "https://github.com/jrh13/hol-light", "rewizja": "096417cac706ff0818f739bbc19f2ed499e43283", "pliki": "**/*.ml", "wykluczone": "plik, którego pierwsze 3000 znaków zawiera własną deklarację licencji inną niż HOL Light (słowa GPL, LGPL, MIT, Apache, 'Creative Commons', 'public domain', 'license'/'licence' bez odwołania do LICENSE HOL Light), albo leży w podkatalogu z własnym plikiem LICENSE/COPYING o innej treści; lista wykluczonych w wyniki/hol_light_licencje.json", "licencja": "BSD-2-Clause (LICENSE: 'Redistribution and use... permitted', 2 warunki)"},
-   "setmm": {"repo": "https://github.com/metamath/set.mm", "rewizja": "ce7f29d6bb49ca66913cc4adae72bb4df5bcb854", "pliki": "set.mm, iset.mm", "wykluczone": "pozostałe bazy .mm (nf, ql, hol, peano, demo, big-unifier itd.), pliki pomocnicze", "licencja": "CC0-1.0 (LICENSE)"},
-   "rocq_stdlib": {"repo": "https://github.com/rocq-prover/stdlib", "rewizja": "9657c7502ceb46ec94131c7500d9e484e1dddf3b", "pliki": "theories/**/*.v", "wykluczone": "test-suite/, doc/, dev/", "licencja": "LGPL-2.1-only (LICENSE + nagłówek 'GNU Lesser General Public License Version 2.1')"},
-   "mathcomp": {"repo": "https://github.com/math-comp/math-comp", "rewizja": "656cdbcf752c1624c8afb245886b05dfd16b227c", "pliki": "**/*.v", "wykluczone": "test-suite/, docs/, doc/, etc/, .nix/, .github/", "licencja": "CECILL-B (plik LICENCE)"},
-   "unimath": {"repo": "https://github.com/UniMath/UniMath", "rewizja": "11e01f098e50285e9ec93fce1f09e57417342eec", "pliki": "UniMath/**/*.v", "wykluczone": "pliki poza UniMath/ (sandbox, testy, narzędzia)", "licencja": "LicenseRef-UniMath (LICENSE.md: tekst MIT z 'UniMath' zamiast 'the Software'; bez NC/ND)"},
-   "agda_stdlib": {"repo": "https://github.com/agda/agda-stdlib", "rewizja": "119d176134c44bcb5aad56bb6ce69bc97851c094", "pliki": "src/**/*.agda, src/**/*.lagda.md", "wykluczone": "tests/, doc/, README/ (przykłady), GenerateEverything", "licencja": "MIT (LICENCE)"},
-   "stacks": {"repo": "https://github.com/stacks/stacks-project", "rewizja": "a04446e57ec1fbc252a871afcec7752fb2807b14", "pliki": "*.tex w katalogu głównym (rozdziały)", "wykluczone": "fdl.tex (tekst licencji), preamble.tex, chapters.tex, book.tex, bibliography.tex, hyperref.cfg, katalogi documentation/, scripts/, tags/", "licencja": "GFDL-1.2 (COPYING; wersja 'only' albo 'or-later' sprawdzana w README/nagłówkach po klonie, wynik w karcie)"}
+   "mathlib4": {
+    "repo": "https://github.com/leanprover-community/mathlib4",
+    "rewizja": "e54979a532247ae4eb9d5578a8fd40a1bc332101",
+    "pliki": "Mathlib/**/*.lean, Archive/**/*.lean, Counterexamples/**/*.lean",
+    "wykluczone": "MathlibTest/ (testy), Mathlib/Tactic/**, Mathlib/Util/**, Mathlib/Lean/** (metaprogramowanie, nie matematyka), pliki-indeksy importów Mathlib.lean, Archive.lean, Counterexamples.lean (generowane przez mk_all)",
+    "licencja": "Apache-2.0 (LICENSE + nagłówek pliku 'Released under Apache 2.0 license')"
+   },
+   "afp": {
+    "repo": "https://github.com/isabelle-prover/mirror-afp-devel",
+    "rewizja": "02fd3c6b5326d1c53704c52c09cabb3fd2a772f5",
+    "pliki": "thys/<wpis>/**/*.thy",
+    "wykluczone": "ROOT, document/*.tex, pliki poza thys/; wpis bez metadata/entries/<wpis>.toml albo z licencją spoza mapowania -> cały wpis wykluczony",
+    "licencja": "per wpis z metadata/entries/<wpis>.toml pole license: 'bsd' -> BSD-3-Clause, 'lgpl' -> LGPL-2.1-only; mapowanie SPDX potwierdzane tekstem LICENSE w repo po klonie, rozbieżność = aneks"
+   },
+   "hol_light": {
+    "repo": "https://github.com/jrh13/hol-light",
+    "rewizja": "096417cac706ff0818f739bbc19f2ed499e43283",
+    "pliki": "**/*.ml",
+    "wykluczone": "plik, którego pierwsze 3000 znaków zawiera własną deklarację licencji inną niż HOL Light (słowa GPL, LGPL, MIT, Apache, 'Creative Commons', 'public domain', 'license'/'licence' bez odwołania do LICENSE HOL Light), albo leży w podkatalogu z własnym plikiem LICENSE/COPYING o innej treści; lista wykluczonych w wyniki/hol_light_licencje.json",
+    "licencja": "BSD-2-Clause (LICENSE: 'Redistribution and use... permitted', 2 warunki)"
+   },
+   "setmm": {
+    "repo": "https://github.com/metamath/set.mm",
+    "rewizja": "ce7f29d6bb49ca66913cc4adae72bb4df5bcb854",
+    "pliki": "set.mm, iset.mm",
+    "wykluczone": "pozostałe bazy .mm (nf, ql, hol, peano, demo, big-unifier itd.), pliki pomocnicze",
+    "licencja": "CC0-1.0 (LICENSE)"
+   },
+   "rocq_stdlib": {
+    "repo": "https://github.com/rocq-prover/stdlib",
+    "rewizja": "9657c7502ceb46ec94131c7500d9e484e1dddf3b",
+    "pliki": "theories/**/*.v",
+    "wykluczone": "test-suite/, doc/, dev/",
+    "licencja": "LGPL-2.1-only (LICENSE + nagłówek 'GNU Lesser General Public License Version 2.1')"
+   },
+   "mathcomp": {
+    "repo": "https://github.com/math-comp/math-comp",
+    "rewizja": "656cdbcf752c1624c8afb245886b05dfd16b227c",
+    "pliki": "**/*.v",
+    "wykluczone": "test-suite/, docs/, doc/, etc/, .nix/, .github/",
+    "licencja": "CECILL-B (plik LICENCE)"
+   },
+   "unimath": {
+    "repo": "https://github.com/UniMath/UniMath",
+    "rewizja": "11e01f098e50285e9ec93fce1f09e57417342eec",
+    "pliki": "UniMath/**/*.v",
+    "wykluczone": "pliki poza UniMath/ (sandbox, testy, narzędzia)",
+    "licencja": "LicenseRef-UniMath (LICENSE.md: tekst MIT z 'UniMath' zamiast 'the Software'; bez NC/ND)"
+   },
+   "agda_stdlib": {
+    "repo": "https://github.com/agda/agda-stdlib",
+    "rewizja": "119d176134c44bcb5aad56bb6ce69bc97851c094",
+    "pliki": "src/**/*.agda, src/**/*.lagda.md",
+    "wykluczone": "tests/, doc/, README/ (przykłady), GenerateEverything",
+    "licencja": "MIT (LICENCE)"
+   },
+   "stacks": {
+    "repo": "https://github.com/stacks/stacks-project",
+    "rewizja": "a04446e57ec1fbc252a871afcec7752fb2807b14",
+    "pliki": "*.tex w katalogu głównym (rozdziały)",
+    "wykluczone": "fdl.tex (tekst licencji), preamble.tex, chapters.tex, book.tex, bibliography.tex, hyperref.cfg, katalogi documentation/, scripts/, tags/",
+    "licencja": "GFDL-1.2 (COPYING; wersja 'only' albo 'or-later' sprawdzana w README/nagłówkach po klonie, wynik w karcie)"
+   }
   },
   "pobranie": "git clone --filter=blob:none --no-checkout <repo> robocze/repo/<biblioteka>; git checkout <rewizja>; git rev-parse HEAD == rewizja, inaczej skrypt przerywa",
   "pole_tekstu": "text = treść pliku UTF-8 (BOM usunięty, końce linii \\n), dla set.mm/iset.mm fragment z regułą 'setmm'",
@@ -44,8 +98,6 @@
   "domena_testow",
   "ewal_13gram",
   "pii",
-  "pii_zaciemniony",
-  "pii_at_bez_nawiasow",
   "min_tresc",
   "mojibake",
   "dedup_wewnatrz",
@@ -59,7 +111,17 @@
  "domena_testow": "jak infiwebmath4 (url github.com nie trafia; zostaje dla jednolitości kaskady)",
  "ewal_13gram": {
   "indeks": "jak infiwebmath4",
-  "testy_scisle": ["T19_mathqa", "T32_mmlu", "T33_gsm8k", "T34_math", "T47_bbh", "X02_humaneval", "X03_mbpp", "T51_gsm_plus", "T52_gsm1k"],
+  "testy_scisle": [
+   "T19_mathqa",
+   "T32_mmlu",
+   "T33_gsm8k",
+   "T34_math",
+   "T47_bbh",
+   "X02_humaneval",
+   "X03_mbpp",
+   "T51_gsm_plus",
+   "T52_gsm1k"
+  ],
   "df_min": 5,
   "regula": "jak infiwebmath4",
   "uwaga": "miniF2F, ProofNet, PISA nie są w indeksie Fabryki; mathlib4 i AFP mogą zawierać twierdzenia z miniF2F (Archive/Imo, wpisy AFP z zadaniami olimpijskimi) - pomiar osobno w karcie po budowie, nie powód odrzucenia w tej preregistracji"
@@ -124,5 +186,11 @@
   "wybor_rewizji": "mathlib4: git rev-list -1 --first-parent --before=2025-04-01T00:00:00Z e54979a5 (commit 2025-03-31T22:40:31Z, #21800; pierwsze ujawnione commity AI w 2025-04 poza jednym z 2023-10); hol_light: git rev-list -1 --first-parent --before=2026-01-01T00:00:00Z 096417ca (commit 2025-12-11T20:28:06Z; pierwszy ujawniony commit AI 2026-01)",
   "regula": "reguła aneks_2026_11_26b bez zmian, liczona na nowych rewizjach (historia do nowej rewizji); UniMath, set.mm i pozostałe biblioteki bez zmiany rewizji, z regułą aneks_2026_11_26b (UniMath: 49 plików z commita 7a4b03cc wykluczone)",
   "stara_pula": "pula z rewizji z 14:23 z regułą aneks_2026_11_26b (180 297 515 tok. v6, 16 917 wierszy) nie wchodzi; usunięta z robocze/, liczby w karcie"
+ },
+ "aneks_2026_11_26d": {
+  "zapisano": "2026-11-26, PO pierwszej agregacji (wyniki/agreguj.json: pii_zaciemniony 40 plików, pii_at_bez_nawiasow 615 plików, 3,7% tokenów) i PRZED przeglądem próbki i eksportem",
+  "powod": "trafienia to prawdziwe e-maile autorów w nagłówkach teorii AFP (sprawdzone 25 przykładów `nazwa at uczelnia.tld` i 10 `nazwa (at) domena`); pii.tryb tej preregistracji to maskowanie e-maili, nie usuwanie plików, a reguły zostały w kolejności jako kontrola z oczekiwaniem ~0 trafień, które się nie sprawdziło, bo pula formalna (inaczej niż OEIS) nie maskowała e-maili przy budowie",
+  "zmiana": "pii_zaciemniony i pii_at_bez_nawiasow zdjęte z kolejnosc_powodow; e-maile w formach `@`, `(at)`/`[at]` i `nazwa at domena.tld` maskowane do [PII] przy eksporcie przed bramką językową (mat_wybor.premask_emails z wzorcem aneksu 25.11c); telefon i IPv4 nadal usuwają plik (pii)",
+  "kontrola": "po eksporcie: 0 trafień trzech wzorców e-maila w każdej części (sprawdzenie skryptem przed wysyłką)"
  }
 }
