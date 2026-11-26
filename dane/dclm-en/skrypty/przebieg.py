@@ -63,9 +63,11 @@ def jednostka(a):
     n = len(tx)
     ntok = np.zeros(n, np.int64)
     id0 = np.zeros(n, bool)
-    for i, e in enumerate(TK.encode_batch(tx, add_special_tokens=False)):
-        ntok[i] = len(e.ids) + 1
-        id0[i] = 0 in e.ids
+    # Po 256 dokumentów: obiekty Encoding całej grupy wierszy z pełnymi tekstami (arXiv: ~170 mln tokenów) zajmowały ~13 GB na proces.
+    for a in range(0, n, 256):
+        for i, e in enumerate(TK.encode_batch(tx[a:a + 256], add_special_tokens=False), a):
+            ntok[i] = len(e.ids) + 1
+            id0[i] = 0 in e.ids
     dom = np.zeros(n, np.int8)
     piim = np.zeros(n, np.int8)
     moj = np.zeros(n, np.int32)
