@@ -1,0 +1,197 @@
+{
+ "repo": "common-pile/stackexchange",
+ "rewizja": "5ec3aa2e65b7c61b7c18f1ff18ccbc4d3279a23c",
+ "plikow_w_repo": 23,
+ "seed": 20261127,
+ "wiersze": 1938345,
+ "tokeny_v6": 1667484804,
+ "cel_tokenow_v6": 1000000000000,
+ "pliki": [
+  {
+   "plik": "math.stackexchange.com/documents/00006_se.jsonl.gz",
+   "rozmiar": 83866559,
+   "sha256": "e12dfcf49db98cfea2d245f27617ae27f13bdcafab3e3375e893f4839bf07c9d",
+   "wiersze": 77048,
+   "tokeny_v6": 68442283,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/stackexchange_mat/robocze/pobrania/lok/math.stackexchange.com__documents__00006.rg5000.parquet"
+  },
+  {
+   "plik": "scicomp.stackexchange.com/documents/00000_se.jsonl.gz",
+   "rozmiar": 16842823,
+   "sha256": "1893b3e111f051fd5abcbe2eb72787ddd163b0185c7fe9e22b2c1c015ba78169",
+   "wiersze": 10282,
+   "tokeny_v6": 11294130,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/stackexchange_mat/robocze/pobrania/lok/scicomp.stackexchange.com__documents__00000.rg5000.parquet"
+  },
+  {
+   "plik": "stats.stackexchange.com/documents/00001_se.jsonl.gz",
+   "rozmiar": 6489883,
+   "sha256": "aef15c078dcf57a89d85b596a7ebb02b9e12761145e295a5e8dacb0c4fbbbbab",
+   "wiersze": 3846,
+   "tokeny_v6": 3427693,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/stackexchange_mat/robocze/pobrania/lok/stats.stackexchange.com__documents__00001.rg5000.parquet"
+  },
+  {
+   "plik": "or.stackexchange.com/documents/00001_se.jsonl.gz",
+   "rozmiar": 65092,
+   "sha256": "ea5b82e613e2afae8816ce6bf6e74d3d7be842ed5aff984ef48fb0a9c27cecc7",
+   "wiersze": 38,
+   "tokeny_v6": 30215,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/stackexchange_mat/robocze/pobrania/lok/or.stackexchange.com__documents__00001.rg5000.parquet"
+  },
+  {
+   "plik": "cstheory.stackexchange.com/documents/00000_se.jsonl.gz",
+   "rozmiar": 18452090,
+   "sha256": "4a36c0e35ff0682e7d0d91f6cf141772338e325d99a40731ecafd160a9125d2a",
+   "wiersze": 11722,
+   "tokeny_v6": 11949293,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/stackexchange_mat/robocze/pobrania/lok/cstheory.stackexchange.com__documents__00000.rg5000.parquet"
+  },
+  {
+   "plik": "cs.stackexchange.com/documents/00000_se.jsonl.gz",
+   "rozmiar": 55210117,
+   "sha256": "a2f1cd0c0e0bebcc48d2eb33a6a6e2cf19d8d44e55f1c96fe3e15834fcc7873f",
+   "wiersze": 43799,
+   "tokeny_v6": 35717250,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/stackexchange_mat/robocze/pobrania/lok/cs.stackexchange.com__documents__00000.rg5000.parquet"
+  },
+  {
+   "plik": "proofassistants.stackexchange.com/documents/00001_se.jsonl.gz",
+   "rozmiar": 18587,
+   "sha256": "cef3e642fdd826e6abf9427dfeb90ce5c1b4cc7cc33fab30a8195f435b8567ea",
+   "wiersze": 2,
+   "tokeny_v6": 1927,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/stackexchange_mat/robocze/pobrania/lok/proofassistants.stackexchange.com__documents__00001.rg5000.parquet"
+  },
+  {
+   "plik": "matheducators.stackexchange.com/documents/00000_se.jsonl.gz",
+   "rozmiar": 11714165,
+   "sha256": "de7d7e02c838b48a249c119904294f448d315acf5f0a922e8bdd6b15d2110c66",
+   "wiersze": 3157,
+   "tokeny_v6": 6363424,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/stackexchange_mat/robocze/pobrania/lok/matheducators.stackexchange.com__documents__00000.rg5000.parquet"
+  },
+  {
+   "plik": "math.stackexchange.com/documents/00001_se.jsonl.gz",
+   "rozmiar": 298411009,
+   "sha256": "dbe3f06f9ac6f401495420f120d4a413d19fc899b4b8e368a0ea753d5a472cfb",
+   "wiersze": 328900,
+   "tokeny_v6": 259783238,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/stackexchange_mat/robocze/pobrania/lok/math.stackexchange.com__documents__00001.rg5000.parquet"
+  },
+  {
+   "plik": "math.stackexchange.com/documents/00002_se.jsonl.gz",
+   "rozmiar": 297781232,
+   "sha256": "58475676af190cb6ed205cd8ec62157287ccf87b14f9de31d6035d865cb67634",
+   "wiersze": 328203,
+   "tokeny_v6": 261898716,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/stackexchange_mat/robocze/pobrania/lok/math.stackexchange.com__documents__00002.rg5000.parquet"
+  },
+  {
+   "plik": "cs.stackexchange.com/documents/00001_se.jsonl.gz",
+   "rozmiar": 1697594,
+   "sha256": "c8f8a8d334d0520392a31f7961a353c7fb7736dcd7c46e37b756bdceeb3e84b4",
+   "wiersze": 1298,
+   "tokeny_v6": 1071889,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/stackexchange_mat/robocze/pobrania/lok/cs.stackexchange.com__documents__00001.rg5000.parquet"
+  },
+  {
+   "plik": "cstheory.stackexchange.com/documents/00001_se.jsonl.gz",
+   "rozmiar": 577212,
+   "sha256": "d1d39b6df85713ca5aa270b9df851063d0c2ca3fa09b485b8462333e31dc9841",
+   "wiersze": 346,
+   "tokeny_v6": 377974,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/stackexchange_mat/robocze/pobrania/lok/cstheory.stackexchange.com__documents__00001.rg5000.parquet"
+  },
+  {
+   "plik": "mathoverflow.net/documents/00001_se.jsonl.gz",
+   "rozmiar": 6636976,
+   "sha256": "655b36493a4ac06dc449129093c83f28ad084f0f5ef5f13411a51edfed79f77d",
+   "wiersze": 4592,
+   "tokeny_v6": 4891386,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/stackexchange_mat/robocze/pobrania/lok/mathoverflow.net__documents__00001.rg5000.parquet"
+  },
+  {
+   "plik": "scicomp.stackexchange.com/documents/00001_se.jsonl.gz",
+   "rozmiar": 368457,
+   "sha256": "fcd0c5fa47b945ebc9089472376c9adfffbb61238fcd1e5e12f22fed45b6744e",
+   "wiersze": 218,
+   "tokeny_v6": 257948,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/stackexchange_mat/robocze/pobrania/lok/scicomp.stackexchange.com__documents__00001.rg5000.parquet"
+  },
+  {
+   "plik": "math.stackexchange.com/documents/00004_se.jsonl.gz",
+   "rozmiar": 299548087,
+   "sha256": "1c9faa415bfd98b10ce965618ece274edbc78c0f16c706517402820fd2df7602",
+   "wiersze": 192208,
+   "tokeny_v6": 167218753,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/stackexchange_mat/robocze/pobrania/lok/math.stackexchange.com__documents__00004.rg5000.parquet"
+  },
+  {
+   "plik": "stats.stackexchange.com/documents/00000_se.jsonl.gz",
+   "rozmiar": 265583733,
+   "sha256": "9204ac238162b2faedc6643ec7364fd78d5332cc17603a3d744a489940bd24ad",
+   "wiersze": 191009,
+   "tokeny_v6": 169435407,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/stackexchange_mat/robocze/pobrania/lok/stats.stackexchange.com__documents__00000.rg5000.parquet"
+  },
+  {
+   "plik": "proofassistants.stackexchange.com/documents/00000_se.jsonl.gz",
+   "rozmiar": 2054525,
+   "sha256": "2d88d5330d03fcd3131ba8be04ffd8305acf11929c193e45657e7fb55da56040",
+   "wiersze": 520,
+   "tokeny_v6": 701265,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/stackexchange_mat/robocze/pobrania/lok/proofassistants.stackexchange.com__documents__00000.rg5000.parquet"
+  },
+  {
+   "plik": "math.stackexchange.com/documents/00003_se.jsonl.gz",
+   "rozmiar": 297741124,
+   "sha256": "313acb5f9d8f1c5453bceea5816be95290bcef89feb25eaf7b3c3754abaa8522",
+   "wiersze": 326370,
+   "tokeny_v6": 264623871,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/stackexchange_mat/robocze/pobrania/lok/math.stackexchange.com__documents__00003.rg5000.parquet"
+  },
+  {
+   "plik": "or.stackexchange.com/documents/00000_se.jsonl.gz",
+   "rozmiar": 5967216,
+   "sha256": "d12be98a19a220955479e43b4719b8807727586b87f4b5486a661baaf8c69cf1",
+   "wiersze": 3047,
+   "tokeny_v6": 3258191,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/stackexchange_mat/robocze/pobrania/lok/or.stackexchange.com__documents__00000.rg5000.parquet"
+  },
+  {
+   "plik": "mathoverflow.net/documents/00000_se.jsonl.gz",
+   "rozmiar": 224548436,
+   "sha256": "3b49c223e55d1c1fe0c558123a453ff1874162263a4a6d37933925824b239d10",
+   "wiersze": 135241,
+   "tokeny_v6": 153855538,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/stackexchange_mat/robocze/pobrania/lok/mathoverflow.net__documents__00000.rg5000.parquet"
+  },
+  {
+   "plik": "matheducators.stackexchange.com/documents/00001_se.jsonl.gz",
+   "rozmiar": 972369,
+   "sha256": "5fcf203dd9c4c65e405c8a4b0d2ce3a7d517500986f31d34b04e45339f15a274",
+   "wiersze": 266,
+   "tokeny_v6": 572060,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/stackexchange_mat/robocze/pobrania/lok/matheducators.stackexchange.com__documents__00001.rg5000.parquet"
+  },
+  {
+   "plik": "math.stackexchange.com/documents/00000_se.jsonl.gz",
+   "rozmiar": 300698655,
+   "sha256": "2192f16e2cc89b0cd0207c74fc7f01baa8c0c8949c912d46c2a962981385eb53",
+   "wiersze": 276233,
+   "tokeny_v6": 242312353,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/stackexchange_mat/robocze/pobrania/lok/math.stackexchange.com__documents__00000.rg5000.parquet"
+  }
+ ],
+ "puste": [
+  {
+   "plik": "math.stackexchange.com/documents/00005_se.jsonl.gz",
+   "rozmiar": 44746372,
+   "sha256": "59d1100b6cc44ff1b287a27335a9a80b22df5a8734ac53f239f0c770757f94aa",
+   "wiersze": 0,
+   "tokeny_v6": 0,
+   "lokalnie": null
+  }
+ ]
+}

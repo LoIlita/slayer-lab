@@ -147,5 +147,15 @@
   "nowy powód dedup_se_strony",
   "bez dedup_fineweb_edu_109",
   "pula = całe serwisy z listy; przegląd jak nowe źródło: 100 odrzuconych na powód + 300 zachowanych, dwóch recenzentów, pełne teksty"
- ]
+ ],
+ "aneks_2026_11_26_przeglad": {
+  "zapisano": "2026-11-26, PO przeglądzie próbki (wyniki/przeglad_1.json, dwóch recenzentów, 1377 pozycji; 5 wycinków powtórzonych po odmowie dostawcy modelu) i PRZED eksportem",
+  "wynik": "PASS: zachowane — śmieci 0/300, PII 0/300, testy 0/300 u obu (wątpliwe 1-2: wzory na obrazkach); trafne: walidacja_fabryki, min_tresc, dedup_wewnatrz (cross-posty MO/math.SE), dedup_finemath4, dedup_infiwebmath4, dedup_se_strony, dedup_slayer107, dedup_slayer_8x3b_en, pii_zaciemniony",
+  "fail_przyjete": {
+   "ewal_13gram": "95% (A) / 85% (B) fałszywych (macierz jednostkowa, tan(a+b), Fibonacci); 5-6 dosłownych zadań MATH/MathQA trafionych; koszt 0,47% tokenów; jak aneks 24.11b",
+   "pii": "45% / 44% fałszywych (numery sekcji twierdzeń jako IPv4); koszt 0,29%; prywatność ma pierwszeństwo",
+   "pii_at_bez_nawiasow": "66% / 67% fałszywych ('at stats.stackexchange.com'); koszt 0,17%; aneks 25.11c",
+   "mojibake": "0/6 fałszywych, 3 wątpliwe poza widocznym tekstem; FAIL tylko z górnej granicy Wilsona przy n=6"
+  }
+ }
 }

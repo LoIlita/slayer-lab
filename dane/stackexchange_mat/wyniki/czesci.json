@@ -1,0 +1,13 @@
+{
+ "wybor": "stackexchange_mat/robocze/wyniki/wybor.json",
+ "cel_tokenow_v6": 1000000000,
+ "czesci": [
+  {
+   "czesc": 1,
+   "dokumenty": 1614957,
+   "tokeny_v6": 1297285890
+  }
+ ],
+ "dokumenty": 1614957,
+ "tokeny_v6": 1297285890
+}

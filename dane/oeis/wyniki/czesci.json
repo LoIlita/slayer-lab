@@ -1,0 +1,13 @@
+{
+ "wybor": "oeis/robocze/wyniki/wybor.json",
+ "cel_tokenow_v6": 1000000000,
+ "czesci": [
+  {
+   "czesc": 1,
+   "dokumenty": 261467,
+   "tokeny_v6": 154276254
+  }
+ ],
+ "dokumenty": 261467,
+ "tokeny_v6": 154276254
+}
