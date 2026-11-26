@@ -286,3 +286,7 @@ Uwaga z pliku: w pozycji 6015718 numery kart to publiczne numery testowe bramek 
 - Repo do wglądu zakładaj z bramką przed uploadem: 24.11 dwa repo (`cranemath_en`, `stack_edu_python`) były przez ok. 3 min bez bramki, bo skrypt zakładający repo przerwał się po pierwszym, a pozostałe założył upload.
 - Przeglądaj całe wyjście `check.py`, nie tylko linie z prefiksem `<key>:`: błędy per wiersz mają postać `<key>/<id>:` (tak przeoczono 8 wierszy bramki językowej).
 - Maskowanie zmieniające tekst (tu e-maile do `[PII]`) musi iść PRZED bramką językową `shard.write`, bo `check.py` bada tekst po maskowaniu.
+
+## Repo po scaleniu (26.11)
+
+`Lolita67/stack_edu_python-robocze` usunięte 26.11. Wszystkie 6 plików parquet (sha256 LFS zgodne) leżą w `Lolita67/matematyka-kod-en-robocze`: `data/stack_edu_python_p01..p05` i `mikroanneal/stack_edu_python`.

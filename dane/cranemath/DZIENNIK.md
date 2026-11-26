@@ -230,3 +230,7 @@ nie zmierzono (repo za bramką zwraca 401 anonimowo).
 - Presidio w eksporcie maskuje liczby w matematyce i kodzie jako telefony (403 trafienia PhoneRecognizer w 300 dok. FineMath): wyłączone świadomie, `check.py` kończy się kodem 1 na dwóch oczekiwanych błędach (krok 10).
 - Repo do wglądu zakładaj z bramką przed uploadem: 24.11 dwa repo (`cranemath_en`, `stack_edu_python`) były przez ok. 3 min bez bramki, bo skrypt zakładający repo przerwał się po pierwszym, a pozostałe założył upload.
 - Url w CraneMath bywa bez schematu (sama domena): `derived_from` trzeba brać z rekordu WARC, a porównanie po url z FineWeb-Edu takich wierszy nie obejmuje.
+
+## Repo po scaleniu (26.11)
+
+`Lolita67/cranemath_en-robocze` usunięte 26.11. Ten sam plik parquet (sha256 LFS zgodny) leży w `Lolita67/matematyka-kod-en-robocze`, katalog `mikroanneal/cranemath_en`.

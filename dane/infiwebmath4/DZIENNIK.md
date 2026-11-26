@@ -194,3 +194,7 @@ Czeka na wysyłkę: nie zmierzono.
   unieważniona.
 - Brak kolumn `warc_filename`/`offset`: takedown i `id` tylko przez `url` i `WARC-Record-ID` z `metadata.WARC_HEADER`; nagłówek
   WARC zawiera IP serwera, więc z metadanych bierzemy tylko `WARC-Record-ID` i `WARC-Date`.
+
+## Repo po scaleniu (26.11)
+
+`Lolita67/infiwebmath_4plus_en-robocze` usunięte 26.11. Ten sam plik parquet (sha256 LFS zgodny) leży w `Lolita67/matematyka-kod-en-robocze`, katalog `data/infiwebmath_4plus_en_p01`.
