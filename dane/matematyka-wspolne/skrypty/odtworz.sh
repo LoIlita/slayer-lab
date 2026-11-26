@@ -101,6 +101,7 @@ agreguj)  # kaskada powodów, uzysk, wybór do eksportu, ręczna próbka (probka
   case "$ZB" in  # dedup wobec źródeł zbioru łącznego zbudowanych wcześniej (preregistracja: dedup_finemath4, dedup_infiwebmath4)
     infiwebmath4) ORYG+=(wlasne="$RW/wyniki/bazy:finemath4") ;;
     finemath3) ORYG+=(wlasne="$RW/wyniki/bazy:finemath4,$RW/wyniki/bazy:infiwebmath4") ;;
+    stackexchange_mat) ORYG+=(wlasne="$RW/wyniki/bazy:finemath4,$RW/wyniki/bazy:infiwebmath4" se_strony="$RW/wyniki/bazy") ;;  # se_strony.py
   esac
   $NICE $PY -I "$W/skrypty/agreguj_mat.py" "$ZB" "$R/wyniki/przebieg" "$R/wyniki/ew13" "$PRE" "$R/wyniki/agreguj.json" \
     "$R/probka_przegladu.jsonl" "$R/wyniki/wybor.json" walidacja="$DCR/wyniki/idx_wal" ${ORYG[@]+"${ORYG[@]}"} \
