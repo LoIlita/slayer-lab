@@ -1,0 +1,151 @@
+{
+ "zapisano": "2026-11-26, przed pobraniem puli i przed pierwszym liczeniem; karta: dane/stackexchange_mat/KARTA_ZRODLA.md (commit 1d3e564)",
+ "rezerwacja": "https://github.com/slayerlabs/benchmarks-fabryka-ai/issues/357",
+ "cel": "część 3 zbioru matematyki i logiki matematycznej (~20 mld tokenów v6): pytania i odpowiedzi z serwisów StackExchange o matematyce i logice",
+ "seed": 20261127,
+ "zrodlo": {
+  "repo": "common-pile/stackexchange",
+  "rewizja": "5ec3aa2e65b7c61b7c18f1ff18ccbc4d3279a23c",
+  "wersja": "raw (filtered psuje liczby maskowaniem PII, karta pole 5)",
+  "serwisy": [
+   "math.stackexchange.com",
+   "mathoverflow.net",
+   "cstheory.stackexchange.com",
+   "matheducators.stackexchange.com",
+   "proofassistants.stackexchange.com",
+   "stats.stackexchange.com",
+   "cs.stackexchange.com",
+   "scicomp.stackexchange.com",
+   "or.stackexchange.com"
+  ],
+  "pliki": "<serwis>/documents/*.jsonl.gz wszystkich serwisów z listy",
+  "pole_tekstu": "text",
+  "id": "<serwis>/<id pytania>",
+  "url": "metadata.url",
+  "licencja_wiersza": "metadata.license"
+ },
+ "wybor_wierszy": {
+  "data": "created < 2022-12-01 (pytanie; od grudnia 2022 odpowiedzi mogą zawierać tekst z ChatGPT, model zamknięty; daty odpowiedzi niedostępne)",
+  "licencja": "metadata.all_licenses bez 'None' (post bez licencji w dokumencie, karta pole 2)",
+  "uzasadnienie": "zasady zespołu: zero tekstu z modeli zamkniętych, licencja per wiersz; koszt w karcie: rdzeń ~0,95-1,1 mld zamiast ~1,2"
+ },
+ "pula": {
+  "wybor": "wszystkie pliki serwisów z listy, kolejność plików default_rng(seed)",
+  "cel_puli_tok_v6": 1000000000000,
+  "cel_eksportu_tok_v6": 1000000000000,
+  "eksport": "wszystkie dokumenty zachowane po regułach"
+ },
+ "tokeny": {
+  "tokenizer": "v6 z SlayerLab/slayer-1.07-pretrain tokenizer.json, sha256 0640d3bd3674d7a6e59c540d945a2ad275a12e1bcaeb6007c37a90751f9815dd",
+  "regula": "tokeny tekstu bez znaków specjalnych + 1 (EOT)"
+ },
+ "kolejnosc_powodow": [
+  "walidacja_fabryki",
+  "domena_testow",
+  "ewal_13gram",
+  "pii",
+  "pii_zaciemniony",
+  "pii_at_bez_nawiasow",
+  "min_tresc",
+  "mojibake",
+  "dedup_wewnatrz",
+  "dedup_finemath4",
+  "dedup_infiwebmath4",
+  "dedup_se_strony",
+  "dedup_slayer107",
+  "dedup_slayer_8x3b_en",
+  "dedup_english_technical"
+ ],
+ "walidacja_fabryki": "jak DCLM-EN: indeks idx_wal z dane/dclm-en (walidacje minimal-en-corpus-5b@bb3aec23 i 2b-v2@ef0ab069, osie Slayer150); szkic 13-gramów >= 0,5 albo MinHash >= 0,8 albo identyczny tekst albo identyczny url",
+ "domena_testow": "jak DCLM-EN (wikihow, instructables, projekty Wikimedia)",
+ "ewal_13gram": {
+  "indeks": "testy RPG v2 (dane/korpus-rpg-v2/skrypty/testy.json, 60 pozycji) + T51_gsm_plus i T52_gsm1k (dane/matematyka-wspolne/skrypty/testy_mat.json); te same funkcje rdzenia co DCLM-EN",
+  "testy_scisle": [
+   "T19_mathqa",
+   "T32_mmlu",
+   "T33_gsm8k",
+   "T34_math",
+   "T47_bbh",
+   "X02_humaneval",
+   "X03_mbpp",
+   "T51_gsm_plus",
+   "T52_gsm1k"
+  ],
+  "df_min": 5,
+  "regula": "dokument odpada, gdy ma trafiający 13-gram nietrywialny (nie każde słowo to liczba lub pojedynczy znak) z testu z listy testy_scisle niezależnie od df, albo z innego testu przy df < df_min w puli (reguła aneksu 1 DCLM-EN)",
+  "uzasadnienie": "testy matematyki i kodu mierzą ten zbiór; zadanie GSM8K skopiowane na wiele stron ma wysokie df i przy regule DCLM by zostało"
+ },
+ "pii": {
+  "tryb": "usun",
+  "regula": "jak DCLM-EN: e-mail, telefon, IPv4 (wspolne.pii) -> dokument usuwany; eksport dodatkowo maskuje Presidio w shard.write"
+ },
+ "mojibake": "jak DCLM-EN: >= 3 dopasowania ścisłego regexu",
+ "dedup_wewnatrz": "jak DCLM-EN: identyczny znormalizowany tekst albo MinHash 5-gramów 128 funkcji, LSH 32x4, J >= 0,8",
+ "dedup_slayer107": "jak DCLM-EN: indeks EN 1.07 (en_mix z FineMath i open-web-math + en_fineweb_edu); szkic 13-gramów >= 0,5 albo MinHash >= 0,8",
+ "reczna_probka": {
+  "odrzucone_na_powod": 100,
+  "zachowane": 300,
+  "znakow": 3000,
+  "oceniajacy": "dwóch niezależnych agentów, którzy nie budowali zbioru; każdy ocenia całą próbkę",
+  "progi": "jak aneks DCLM-EN z 15.11.2026: fałszywe odrzucenia per powód <= 10% ORAZ górna granica Wilsona 95% <= 20%; przeoczenia PII w 300 zachowanych 0/300 (Clopper-Pearson jednostronnie < 1%); śmieci (tekst nienadający się do treningu) w zachowanych <= 10%"
+ },
+ "kontrole_dodatnie": "wstawione dokumenty: e-mail, telefon, IP, url wikihow, 13-gram z GSM8K, MATH, GSM-Plus, GSM1k, MMLU, dokument z EN 1.07, duplikat dokumentu puli; każdy musi dostać właściwy powód",
+ "dedup_finemath4": "identyczny znormalizowany url ALBO MinHash 5-gramów 128 funkcji, LSH 32x4, J >= 0,8 ALBO identyczny znormalizowany tekst wobec dokumentów wybranych do eksportu w części 2 FineMath-4+ (bazy_mat.py wlasne:finemath4 z dane/finemath4/robocze/cz2); karta źródła: ok. 2/3 url wspólnych z FineMath-4+ (szacunek z 4 z 64 plików)",
+ "dedup_infiwebmath4": "jak dedup_finemath4, wobec dokumentów InfiWebMath-4+ (bazy_mat.py wlasne:infiwebmath4)",
+ "dedup_se_strony": "pytanie (serwis, id pytania z url) obecne jako strona w wybranych do eksportu FineMath-4+ części 2 albo InfiWebMath-4+ (url stron mają slug tytułu, więc dopasowanie po znormalizowanym url nie działa; karta pole 6: ~20% znaków math.SE) -> dokument usuwany",
+ "bez_dedup_fineweb_edu_109": "url dokumentów to /questions/<id> bez sluga, więc identyczny url z FineWeb-Edu nie wystąpi; strony SE w FineWeb-Edu łapie dedup_slayer107 tylko w części (ryzyko zapisane, nie mierzone)",
+ "aneks_2026_11_24": {
+  "zapisano": "2026-11-24, po kontroli dodatniej i w trakcie przebiegu detektorów, PRZED pierwszym odczytem agregacji (agreguj.json) któregokolwiek zbioru",
+  "powod": "wymaganie właścicielki projektu (Ania, 24.11.2026): zero duplikatów z danymi już w treningu Slayera i z pracą innych osób; indeks EN 1.07 nie obejmuje danych 1.08 i 1.09",
+  "dedup_english_technical": "SlayerLab/english-technical-1b@3b833d36 (dane 1.08), pliki data/{train,validation,test}.parquet: MinHash 5-gramów 128 funkcji, LSH 32x4, J >= 0,8 ALBO identyczny znormalizowany tekst -> dokument usuwany (bez szkicu 13-gramów: przebieg nie zapisuje szkicu dokumentu; skrypt bazy_mat.py entech)",
+  "dedup_fineweb_edu_109": "identyczny znormalizowany url (wspolne.norm_url) z kolumną url wszystkich plików FineWeb-Edu w components.csv manifestu SlayerLab/Slayer1B-Dataset@2d248a17 (źródło fineweb-edu, c01-c17) -> dokument usuwany (skrypt bazy_mat.py fwe109); dotyczy dokumentów z url strony (FineMath, CraneMath)",
+  "praca_innych": "tablica Dataset team (projekt 11) 24.11.2026: pozostałe pozycje w toku to polskie zbiory dziedzinowe (nauki o Ziemi, technika, finanse, KSSiP, arkusze CKE, generator MCQ) i nasz DCLM-EN; bez angielskiej matematyki i kodu, więc bez osobnego indeksu; manifest proposed.csv pusty",
+  "kolejne_czesci": "kolejne części zbioru (cel łączny ok. 20 mld tokenów v6) dostają dedup wobec wszystkich wcześniej wyeksportowanych części wszystkich trzech zbiorów; FineMath-4+ i CraneMath w zbiorze łącznym biorą rozłączne url (strona albo w oryginale, albo w przepisaniu)",
+  "zrodlo_aneksu": "dane/finemath4 (przejęty bez zmian)"
+ },
+ "aneks_2026_11_24b": {
+  "zapisano": "2026-11-24, PO przeglądzie próbki odrzuconych (wyniki/przeglad_odrzuconych_1.json, dwóch recenzentów) i PRZED doborem próbki zachowanych oraz przed eksportem",
+  "powod": "przegląd odrzuconych pokazał w CraneMath (i pojedynczo w pozostałych) teksty bez treści: same znaki ($$, `, :, BOM), powtórzenia $$, stopki forów phpBB/GMAT Club/The Student Room po przepisaniu i powitania czatbota; dedup usuwa tylko KOPIE takich tekstów, pierwszy egzemplarz zostaje w eksporcie",
+  "min_tresc": {
+   "min_slow": 50,
+   "regula": "liczba słów po rdzen.norm_slowa (te same słowa, co hasz i MinHash) < 50 -> dokument usuwany; dla wszystkich trzech zbiorów"
+  },
+  "precyzja_regul_konserwatywnych": "reguły z FAIL fałszywych odrzuceń usuwają dobre teksty, a nie przepuszczają złych; jak aneks 3 DCLM-EN (15.11.2026) przyjmujemy je bez zmiany, z kosztem w tokenach zapisanym w wyniki/przeglad_odrzuconych_1.json (ewal_13gram: finemath4 3,2%, cranemath 1,3% + 1,6%, stackedu 0,1%; wygenerowany 1,4%; sekrety 0,1%; walidacja_fabryki <= 0,1%; pii finemath4 6,3%, ochrona prywatności ma pierwszeństwo). Zmiana reguły wymagałaby nowej próbki odrzuconych; przy koszcie < 5% tokenów na regułę nie robimy jej w części 1; wraca jako zadanie przed częścią 2 (ewal_13gram: wykluczenie formułek i idiomów kodu; walidacja_fabryki i dedup_slayer107 dla kodu: szkic bez nagłówków licencji)",
+  "probka_zachowanych": "300 zachowanych z wybranych do eksportu po regułach z tym aneksem; progi z pola reczna_probka bez zmian",
+  "zrodlo_aneksu": "dane/finemath4 (przejęty bez zmian)"
+ },
+ "aneks_2026_11_24c": {
+  "zapisano": "2026-11-24, PO przeglądzie 300 zachowanych (wyniki/przeglad_zachowanych_1.json, dwóch recenzentów) i PRZED eksportem",
+  "wynik_przegladu": "śmieci w zachowanych 13,0% [9,7; 17,3] u obu recenzentów: FAIL progu 10%; przeoczone PII: 2 (e-mail autora OEIS zapisany jako nazwa(AT)domena): FAIL progu 0; przeoczony test: 1 zgłoszenie (MATH, web2.0calc nr 135599) NIE potwierdzone: sformułowań nie ma w teście MATH (sprawdzone grep po T34_math 24.11)",
+  "pii_zaciemniony": {
+   "regex": "[A-Za-z0-9._%+-]+\\s?[\\(\\[]\\s?(?:AT|at)\\s?[\\)\\]]\\s?[A-Za-z0-9.-]+\\s?(?:[\\(\\[]\\s?(?:DOT|dot)\\s?[\\)\\]]|\\.)\\s?[A-Za-z]{2,}",
+   "regula": "trafienie -> dokument usuwany; częstość zmierzona przed regułą (wyniki/wzorzec_email_at.json): 230 z 271 467 wybranych (0,085%)"
+  },
+  "smieci_fail": "przyjęty z zapisem: odsetek śmieci (spam SEO, strony bez matematyki, wzory zgubione przy ekstrakcji) to cecha opublikowanego FineMath-4+, który ramię B microannealu ma porównać z przepisaniem (ramię C); dodatkowy filtr jakości zmieniłby ramię. Eksport opisany jako ramię porównawcze z odsetkiem śmieci w datasheet; filtr jakości przed częścią 2, jeśli B wygra",
+  "probka_kontrolna": "po eksportowej agregacji (z dedup_fineweb_edu_109) nowa próbka 200 zachowanych, default_rng(seed+2), dwóch recenzentów, tylko pola pii_przeoczone i test_przeoczony; próg 0/200 dla PII",
+  "zrodlo_aneksu": "dane/finemath4 (przejęty bez zmian)"
+ },
+ "aneks_2026_11_25b": {
+  "zapisano": "2026-11-25, po eksporcie roboczym i PRZED policzeniem nowego powodu na puli",
+  "powod": "przegląd luk dedupu dla właścicielki projektu: angielska część Slayera 1.00-1.06 (SlayerLab/slayer-pl-8x3b@d50df04a shared/en.parquet, FineWeb-Edu, 2 384 000 dok.) nie była w indeksie EN 1.07",
+  "dedup_slayer_8x3b_en": "MinHash 5-gramów 128 funkcji, LSH 32x4, J >= 0,8 ALBO identyczny znormalizowany tekst wobec indeksu bazy_mat.py en8x3b (plik bez kolumny url, więc bez dopasowania po url) -> dokument usuwany; wszystkie trzy zbiory",
+  "probka": "powód tylko usuwa; próbka kontrolna 200 z aneksu 24.11c pozostaje ważna jako podzbiór, przegląd odrzuconych dla tego powodu jak dla dedup_english_technical (do 100 pozycji, jeden recenzent wystarczy przy < 100 trafieniach)",
+  "zrodlo_aneksu": "dane/finemath4 (przejęty bez zmian)"
+ },
+ "aneks_2026_11_25c": {
+  "zapisano": "2026-11-25, PO przeglądzie próbki kontrolnej części 2 FineMath-4+ (robocze/cz2/przeglad, dwóch recenzentów) i PRZED agregacją InfiWebMath-4+ i FineMath-3+ oraz przed eksportem części 2",
+  "wynik_przegladu": "recenzent B: 1 przeoczony e-mail osoby prywatnej zapisany jako 'nazwa at domena.org' w nagłówku archiwum listy mathgroup (pozycja 1196804); próg PII 0/200: FAIL. Reguła pii_zaciemniony łapie tylko formy z nawiasami. Recenzenci czytali głównie początek tekstu (ok. 300-450 znaków), więc próbka kontrolna jest powtarzana po tej regule z poleceniem czytania całych 3000 znaków",
+  "pii_at_bez_nawiasow": {
+   "regex": "[A-Za-z0-9._%+-]+ (?:at|AT) [A-Za-z0-9-]{2,}(?:(?:\\.| (?:dot|DOT) )[A-Za-z0-9-]+)*(?:\\.| (?:dot|DOT) )(?:com|org|net|edu|gov|mil|info|io|biz|[a-z]{2})\\b",
+   "regula": "trafienie -> dokument usuwany; źródła stron WWW części 2 (finemath4 część 2, infiwebmath4, finemath3)",
+   "czestosc": "przed regułą (finemath4/robocze/cz2/wyniki/wzorzec_email_at_bez_nawiasow.json): 29 350 z 4 814 480 wybranych (0,61%); w 80 przykładach ok. 1/3 to prawdziwe adresy osób, reszta to fraza 'available at Amazon.com' itp. Reguła konserwatywna: fałszywe odrzucenia ok. 0,4% dokumentów przyjmujemy, ochrona prywatności ma pierwszeństwo (jak aneks 24.11b)"
+  },
+  "stackedu": "bez tej reguły: w kodzie e-maile są maskowane przed bramką językową (mat_wybor.premask_emails), nie usuwane; próbka kontrolna części 2 Stack-Edu sprawdza pole sekret_przeoczony i PII"
+ },
+ "odstepstwa": [
+  "wybór wierszy po dacie i licencji przed pulą (wybor_wierszy)",
+  "nowy powód dedup_se_strony",
+  "bez dedup_fineweb_edu_109",
+  "pula = całe serwisy z listy; przegląd jak nowe źródło: 100 odrzuconych na powód + 300 zachowanych, dwóch recenzentów, pełne teksty"
+ ]
+}
