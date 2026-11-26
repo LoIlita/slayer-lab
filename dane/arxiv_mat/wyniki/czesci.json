@@ -1,0 +1,48 @@
+{
+ "wybor": "arxiv_mat/robocze/wyniki/wybor.json",
+ "cel_tokenow_v6": 300000000,
+ "czesci": [
+  {
+   "czesc": 1,
+   "dokumenty": 10104,
+   "tokeny_v6": 303377981
+  },
+  {
+   "czesc": 2,
+   "dokumenty": 9070,
+   "tokeny_v6": 303579375
+  },
+  {
+   "czesc": 3,
+   "dokumenty": 9266,
+   "tokeny_v6": 303311720
+  },
+  {
+   "czesc": 4,
+   "dokumenty": 9075,
+   "tokeny_v6": 303717651
+  },
+  {
+   "czesc": 5,
+   "dokumenty": 9109,
+   "tokeny_v6": 303455562
+  },
+  {
+   "czesc": 6,
+   "dokumenty": 9034,
+   "tokeny_v6": 303536528
+  },
+  {
+   "czesc": 7,
+   "dokumenty": 9035,
+   "tokeny_v6": 303499403
+  },
+  {
+   "czesc": 8,
+   "dokumenty": 535098,
+   "tokeny_v6": 303502762
+  }
+ ],
+ "dokumenty": 599791,
+ "tokeny_v6": 2427980982
+}

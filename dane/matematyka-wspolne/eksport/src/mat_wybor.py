@@ -50,9 +50,22 @@ EMAIL_DASH_AT = re.compile(r"[A-Za-z0-9._%+]+-at-[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+
 # name at domain tld with a space instead of the dot ("norbert.schirmer at web de", AFP header, review 26.11); the local
 # part must contain '.' or '_' so that prose ("look at this de facto") is left alone
 EMAIL_SPACE_TLD = re.compile(r"[A-Za-z0-9%+-]*[._][A-Za-z0-9._%+-]+ (?:at|AT) [A-Za-z0-9-]{2,} (?:com|org|net|edu|de|uk|fr|ch|it|nl|at|au|ca|jp)\b")
+# arXiv author headers (aneks 26.11 arxiv_mat, review and pool residue scan 26.11): a list of local parts in braces,
+# brackets or LaTeX braces sharing one domain, also wrapped over up to 3 lines ("{a.b,\nc.d}@uni.edu",
+# "$\{a,b\}$@uni.edu", "<a,b>@uni.edu", "–a,b˝@uni.edu" with braces mangled by the conversion); an address broken by
+# the line wrap at a hyphen, before or after '@' ("name@wias-\nberlin.de", "name\n@uni.edu", "name@\nuni.edu"); spaces
+# around '@' ("name @ uni.edu"); a doubled '@@' (conversion artefact); local parts typeset in LaTeX math right before
+# '@' ("$name$@uni.edu", "$\big{\{}$a, b$\big{\}}$@uni.edu"; from the first '$' within 200 characters, no blank line)
+_DOMAIN = r" ?\n?((?:[A-Za-z0-9-]+-\n)?[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,})"
+EMAIL_BRACED = re.compile(r"[\{\(\[<–][^{}()\[\]<>@\n–˝]{0,300}(?:\n[^{}()\[\]<>@\n–˝]{0,300}){0,2}[\}\)\]>˝] ?\n?(?:\$ ?)?@@?"
+                          + _DOMAIN)
+EMAIL_WRAPPED = re.compile(r"[A-Za-z0-9._%+-]+(?:-\n[A-Za-z0-9._%+-]+)?(?:\$\d+\$)?[\}\)\]>˝]? ?\n?@@?" + _DOMAIN)
+EMAIL_LATEX = re.compile(r"\$(?:[^@\n]|\n(?!\n)){0,200}?\$ ?@@?" + _DOMAIN)
+AT_AFTER_DOLLAR = re.compile(r"\$ ?@")
+AT_AFTER_BRACE = re.compile(r"[\}\)\]>˝] ?\n?(?:\$ ?)?@")
 
 
-def _mask_emails(text: str, bare_at: bool = False) -> tuple[str, int]:
+def _mask_emails(text: str, bare_at: bool = False, wrapped: bool = False) -> tuple[str, int]:
     n = 0
 
     def sub(m):
@@ -61,6 +74,12 @@ def _mask_emails(text: str, bare_at: bool = False) -> tuple[str, int]:
             return m.group(0)
         n += 1
         return "[PII]"
+    if wrapped and "@" in text:
+        if AT_AFTER_DOLLAR.search(text):  # guard: EMAIL_LATEX tries every '$' of a paper
+            text = EMAIL_LATEX.sub(sub, text)
+        if AT_AFTER_BRACE.search(text):
+            text = EMAIL_BRACED.sub(sub, text)
+        text = EMAIL_WRAPPED.sub(sub, text)
     text = EMAIL_AT.sub(sub, EMAIL.sub(sub, text))
     return (EMAIL_SPACE_TLD.sub(sub, EMAIL_DASH_AT.sub(sub, EMAIL_BARE_AT.sub(sub, text))) if bare_at else text), n
 
@@ -68,11 +87,12 @@ def _mask_emails(text: str, bare_at: bool = False) -> tuple[str, int]:
 MASKED = {"pii": 0}  # e-mails masked by premask_emails before shard.write
 
 
-def premask_emails(text: str, bare_at: bool = False) -> str:
+def premask_emails(text: str, bare_at: bool = False, wrapped: bool = False) -> str:
     """Mask e-mails BEFORE shard.write: its language gate then sees the same text check.py rescans. Masking inside
     shard.write ran after the gate, and 8 Python files whose gate vote flipped on the masked text failed check.py
-    (independent check, 2026-11-25). bare_at: also `name at domain.tld` (formalna, aneks 26.11d)."""
-    masked, n = _mask_emails(text, bare_at)
+    (independent check, 2026-11-25). bare_at: also `name at domain.tld` (formalna, aneks 26.11d). wrapped: also brace
+    lists and hyphen-wrapped addresses (arxiv_math_en, aneks 26.11 arxiv_mat)."""
+    masked, n = _mask_emails(text, bare_at, wrapped)
     MASKED["pii"] += n
     return masked
 

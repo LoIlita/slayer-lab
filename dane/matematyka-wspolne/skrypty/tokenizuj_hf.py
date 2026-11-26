@@ -48,8 +48,8 @@ for k in czesci:
     with open(out, "wb") as f:
         for g in range(pf.num_row_groups):
             teksty = pf.read_row_group(g, columns=["text"]).column(0).to_pylist()
-            for a in range(0, len(teksty), 2000):
-                enc = tok.encode_batch(teksty[a:a + 2000], add_special_tokens=False)
+            for a in range(0, len(teksty), 256):  # 256 dok.: pełne prace arXiv to ~33 tys. tokenów na dokument (OOM 26.11)
+                enc = tok.encode_batch(teksty[a:a + 256], add_special_tokens=False)
                 arr = np.concatenate([np.asarray([EOT] + e.ids, dtype=np.uint16) for e in enc])
                 arr.tofile(f)
                 docs += len(enc)

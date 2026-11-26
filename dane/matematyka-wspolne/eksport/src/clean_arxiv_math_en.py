@@ -6,7 +6,8 @@ key: a part of the pool registered as arxiv_math_en_pNN (slayer-lab dane/matemat
 Full texts (id `arXiv:<id>`): common-pile/arxiv_papers, papers whose primary category is math.*, math-ph, stat.*, cs.LO,
 cs.DM, cs.CC, cs.FL, cs.SC, cs.IT, cs.GT or cs.NA and whose licence (the stricter of Common Pile and arXiv metadata) is
 CC BY, CC BY-SA, CC0 or public domain. Abstracts (id `arXiv-abs:<id>`, CC0): the same categories, papers not in the
-full-text part. Author e-mails were masked at pool build and are masked again here before shard.write."""
+full-text part. Author e-mails were masked at pool build and are masked again here before shard.write, including brace
+lists "{a, b}@uni.edu" and hyphen-wrapped addresses (slayer-lab aneks 2026-11-26 arxiv_mat, after the sample review)."""
 import sys
 
 import mat_wybor
@@ -17,7 +18,7 @@ KEY = sys.argv[3] if len(sys.argv) > 3 else "arxiv_math_en"
 
 def build(wybor: str):
     for r in mat_wybor.rows(wybor, ["text", "id", "license", "created", "author"]):
-        yield {"id": r["id"], "text": mat_wybor.premask_emails(r["text"]), "created": r["created"] or "unknown",
+        yield {"id": r["id"], "text": mat_wybor.premask_emails(r["text"], wrapped=True), "created": r["created"] or "unknown",
                "license": r["license"], "author": r["author"] or "unknown", "language": "en", "text_origin": "human",
                "generator": None, "derived_from": None}
 

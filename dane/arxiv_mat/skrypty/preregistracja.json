@@ -130,5 +130,24 @@
   "filtr budowy (licencja, pusty) przed detektorami",
   "dodany dedup_infiwebmath4"
  ],
- "aneksy_przejete": "aneks_2026_11_24, aneks_2026_11_24b, aneks_2026_11_24c, aneks_2026_11_25b, aneks_2026_11_25c, aneks_2026_11_25e: treść w dane/infiwebmath4/skrypty/preregistracja.json, przejęta bez zmian poza odstępstwami powyżej"
+ "aneksy_przejete": "aneks_2026_11_24, aneks_2026_11_24b, aneks_2026_11_24c, aneks_2026_11_25b, aneks_2026_11_25c, aneks_2026_11_25e: treść w dane/infiwebmath4/skrypty/preregistracja.json, przejęta bez zmian poza odstępstwami powyżej",
+ "aneks_2026_11_26_przeglad": {
+  "zapisano": "2026-11-26 wieczorem, PO przeglądzie próbki (wyniki/przeglad_1.json, 841 pozycji, dwóch recenzentów) i PRZED eksportem",
+  "sposob_przegladu": "recenzenci A i B to osobne, bezstanowe wywołania modelu na każdą pozycję (A: model domyślny, B: model 'slow'; pełny tekst pozycji do 3000 znaków, para i trafienia w treści polecenia, instrukcja_przegladu.md + uwagi źródła); odstępstwo od 'dwóch agentów': z 32 uruchomień agentów recenzujących (16 wycinków × 2 próby) 25 zablokował dostawca (Refusal reasoning_extraction), 7 ukończyło, w tym 1 z przyznaną niepełną lekturą par; oceny agentów odłożone w robocze/przeglad/oceny_agenci_A|B (niepełne, nie liczone)",
+  "uzupelnienie_probki": "pozycje pii i mojibake dostały pole trafienia_fragmenty (skrypty/trafienia_probki.py: dopasowania tych samych wzorców w pełnym tekście z kontekstem ±300 znaków), bo trafienie leżało zwykle poza 3000 znakami (pierwsze oceny agentów: 79/96 pii 'watpliwy')",
+  "wynik": "zachowane: śmieci 0/300 u obu (wątpliwe 5 i 2: przedmowy tomów konferencyjnych, abstrakty statystyki stosowanej), testy 0/300, PII 2/300 u obu (FAIL progu 0/300: e-mail w klamrach '{a, b}@domena' i e-mail z domeną złamaną '-\\n'); trafne: min_tresc 100/100, mojibake 33/33, dedup_wewnatrz 100/100, dedup_slayer107 100/100",
+  "fail_przyjete": {
+   "ewal_13gram": "fałszywe odrzucenia 100/100 u obu (wspólne formułki LaTeX: macierze, definicje); koszt 1,14% tokenów; reguła zachowawcza, jak aneks 24.11b",
+   "pii": "89/100 fałszywych u obu (numery podrozdziałów 8.2.3.1 i wersji jako IPv4); 11 prawdziwych telefonów/faksów w nagłówkach; koszt 2,84% tokenów; prywatność ma pierwszeństwo",
+   "walidacja_fabryki, dedup_finemath4, dedup_infiwebmath4, dedup_slayer_8x3b_en": "0/2 fałszywych; FAIL tylko z górnej granicy Wilsona przy n = 2 (dedup_slayer_8x3b_en: 2 wątpliwe, w próbce brak wynik_indeksu)"
+  },
+  "zmiana_maskowania": {
+   "regula": "eksport: premask_emails(text, wrapped=True) — przed dotychczasowymi wzorcami maskowane także: EMAIL_LATEX (nazwa w składni matematycznej '$nazwa$@domena', '$\\big{\\{}$a, b$\\big{\\}}$@domena'; od pierwszego '$' w 200 znakach, bez pustej linii), EMAIL_BRACED (lista nazw w klamrach/nawiasach/<> lub zniekształconych '–…˝' przed '@domena', do 3 wierszy), EMAIL_WRAPPED (adres złamany wierszem po łączniku, przed lub po '@', spacje wokół '@', podwójne '@@', nawias tuż przed '@'); matematyka-wspolne/eksport/src/mat_wybor.py",
+   "dlaczego": "2/300 zachowanych z niezamaskowanym adresem w przeglądzie; próg PII 0/300 nie dopuszcza przyjęcia; skan puli po pierwszej poprawce (tylko klamry w jednym wierszu i łącznik) zostawił 880 dokumentów z '@domena' (resztki_email.py, robocze/przeglad/resztki_email_pula.json), z czego 829 trafień pokazało formy wyżej",
+   "kontrola_probki": "po zmianie 0 adresów w 300 zachowanych; przed zmianą 2",
+   "kontrola_puli": "cała pula (652 409 dok.) po premask_emails(wrapped=True): 0 dokumentów z nazwą lokalną przed '@domena.tld' (wzorzec '[A-Za-z0-9}˝>\\])$]\\s?@ ?domena', robocze/tmp/kontekst_at2.py, 26.11 wieczorem); zostają same domeny bez nazwy ('mailto:@uni.edu', 'Corresponding author: @uni.edu' — źródło usunęło nazwę), to nie są dane osobowe; nadmiarowe maskowanie: do jednego słowa przed '\\n@domena' i fragment do 200 znaków w '$…$@domena'"
+  },
+  "filtr_budowy": "próbka 40 na powód (robocze/przeglad/oceny_filtra_budowy.json, jeden recenzent): A1_licencja 40/40 trafne (licencja pusta = domyślna arXiv / brak), A1_pusty 40/40",
+  "dedup_fineweb_edu_109": "poza kaskadą zgodnie z odstepstwa_od_infiwebmath4 (źródło nie jest stroną WWW); url https://arxiv.org/abs/<id> sprawdzany wobec FineMath-4+ i InfiWebMath-4+ (2 + 2 trafienia)"
+ }
 }
