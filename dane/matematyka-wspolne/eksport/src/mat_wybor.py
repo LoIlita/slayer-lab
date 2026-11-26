@@ -45,6 +45,10 @@ EMAIL_AT = re.compile(r"[A-Za-z0-9._%+-]+\s?[\(\[]\s?(?:AT|at)\s?[\)\]]\s?[A-Za-
 # e-mail written as name at domain.tld: slayer-lab pattern pii_at_bez_nawiasow (aneks 25.11c); masked only where the
 # preregistration says so (formalna, aneks 26.11d): in web text the pattern also hits phrases like "available at Amazon.com"
 EMAIL_BARE_AT = re.compile(r"[A-Za-z0-9._%+-]+ (?:at|AT) [A-Za-z0-9-]{2,}(?:(?:\.| (?:dot|DOT) )[A-Za-z0-9-]+)*(?:\.| (?:dot|DOT) )(?:com|org|net|edu|gov|mil|info|io|biz|[a-z]{2})\b")
+# name-at-domain.tld (AFP headers, review 26.11): masked together with EMAIL_BARE_AT
+EMAIL_DASH_AT = re.compile(r"[A-Za-z0-9._%+]+-at-[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}\b")
+# name at domain tld with a space instead of the dot ("norbert.schirmer at web de", AFP header, review 26.11)
+EMAIL_SPACE_TLD = re.compile(r"[A-Za-z0-9._%+-]+ (?:at|AT) [A-Za-z0-9-]{2,} (?:com|org|net|edu|de|uk|fr|ch|it|nl|at|au|ca|jp)\b")
 
 
 def _mask_emails(text: str, bare_at: bool = False) -> tuple[str, int]:
@@ -57,7 +61,7 @@ def _mask_emails(text: str, bare_at: bool = False) -> tuple[str, int]:
         n += 1
         return "[PII]"
     text = EMAIL_AT.sub(sub, EMAIL.sub(sub, text))
-    return (EMAIL_BARE_AT.sub(sub, text) if bare_at else text), n
+    return (EMAIL_SPACE_TLD.sub(sub, EMAIL_DASH_AT.sub(sub, EMAIL_BARE_AT.sub(sub, text))) if bare_at else text), n
 
 
 MASKED = {"pii": 0}  # e-mails masked by premask_emails before shard.write
