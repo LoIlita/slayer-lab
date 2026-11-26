@@ -42,9 +42,12 @@ EMAIL = re.compile(r"[A-Za-z0-9._%+-]+@([A-Za-z0-9.-]+\.[A-Za-z]{2,})")
 EXAMPLE_DOMAINS = {"example.com", "example.org", "example.net", "domain.com", "email.com", "yourdomain.com", "test.com"}
 # e-mail written as name(AT)domain(DOT)tld / name [at] domain.tld: slayer-lab pattern pii_zaciemniony (aneks 24.11c)
 EMAIL_AT = re.compile(r"[A-Za-z0-9._%+-]+\s?[\(\[]\s?(?:AT|at)\s?[\)\]]\s?[A-Za-z0-9.-]+\s?(?:[\(\[]\s?(?:DOT|dot)\s?[\)\]]|\.)\s?[A-Za-z]{2,}")
+# e-mail written as name at domain.tld: slayer-lab pattern pii_at_bez_nawiasow (aneks 25.11c); masked only where the
+# preregistration says so (formalna, aneks 26.11d): in web text the pattern also hits phrases like "available at Amazon.com"
+EMAIL_BARE_AT = re.compile(r"[A-Za-z0-9._%+-]+ (?:at|AT) [A-Za-z0-9-]{2,}(?:(?:\.| (?:dot|DOT) )[A-Za-z0-9-]+)*(?:\.| (?:dot|DOT) )(?:com|org|net|edu|gov|mil|info|io|biz|[a-z]{2})\b")
 
 
-def _mask_emails(text: str) -> tuple[str, int]:
+def _mask_emails(text: str, bare_at: bool = False) -> tuple[str, int]:
     n = 0
 
     def sub(m):
@@ -53,18 +56,18 @@ def _mask_emails(text: str) -> tuple[str, int]:
             return m.group(0)
         n += 1
         return "[PII]"
-    text = EMAIL.sub(sub, text)
-    return EMAIL_AT.sub(sub, text), n
+    text = EMAIL_AT.sub(sub, EMAIL.sub(sub, text))
+    return (EMAIL_BARE_AT.sub(sub, text) if bare_at else text), n
 
 
 MASKED = {"pii": 0}  # e-mails masked by premask_emails before shard.write
 
 
-def premask_emails(text: str) -> str:
+def premask_emails(text: str, bare_at: bool = False) -> str:
     """Mask e-mails BEFORE shard.write: its language gate then sees the same text check.py rescans. Masking inside
     shard.write ran after the gate, and 8 Python files whose gate vote flipped on the masked text failed check.py
-    (independent check, 2026-11-25)."""
-    masked, n = _mask_emails(text)
+    (independent check, 2026-11-25). bare_at: also `name at domain.tld` (formalna, aneks 26.11d)."""
+    masked, n = _mask_emails(text, bare_at)
     MASKED["pii"] += n
     return masked
 
