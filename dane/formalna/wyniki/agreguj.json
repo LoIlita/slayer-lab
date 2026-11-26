@@ -1,0 +1,193 @@
+{
+ "zbior": "formalna",
+ "dokumenty": 21385,
+ "tokeny_v6": 213219274,
+ "dok_z_id0": 0,
+ "kaskada": [
+  {
+   "powod": "walidacja_fabryki",
+   "odrzucone_dok": 0,
+   "odrzucone_tok": 0,
+   "zostaje_dok": 21385,
+   "zostaje_tok": 213219274,
+   "zostaje_tok_proc": 100.0
+  },
+  {
+   "powod": "domena_testow",
+   "odrzucone_dok": 0,
+   "odrzucone_tok": 0,
+   "zostaje_dok": 21385,
+   "zostaje_tok": 213219274,
+   "zostaje_tok_proc": 100.0
+  },
+  {
+   "powod": "ewal_13gram",
+   "odrzucone_dok": 5,
+   "odrzucone_tok": 374277,
+   "zostaje_dok": 21380,
+   "zostaje_tok": 212844997,
+   "zostaje_tok_proc": 99.824
+  },
+  {
+   "powod": "pii",
+   "odrzucone_dok": 37,
+   "odrzucone_tok": 1211156,
+   "zostaje_dok": 21343,
+   "zostaje_tok": 211633841,
+   "zostaje_tok_proc": 99.256
+  },
+  {
+   "powod": "min_tresc",
+   "odrzucone_dok": 576,
+   "odrzucone_tok": 49683,
+   "zostaje_dok": 20767,
+   "zostaje_tok": 211584158,
+   "zostaje_tok_proc": 99.233
+  },
+  {
+   "powod": "mojibake",
+   "odrzucone_dok": 0,
+   "odrzucone_tok": 0,
+   "zostaje_dok": 20767,
+   "zostaje_tok": 211584158,
+   "zostaje_tok_proc": 99.233
+  },
+  {
+   "powod": "dedup_wewnatrz",
+   "odrzucone_dok": 253,
+   "odrzucone_tok": 2715768,
+   "zostaje_dok": 20514,
+   "zostaje_tok": 208868390,
+   "zostaje_tok_proc": 97.959
+  },
+  {
+   "powod": "dedup_finemath4",
+   "odrzucone_dok": 3,
+   "odrzucone_tok": 58434,
+   "zostaje_dok": 20511,
+   "zostaje_tok": 208809956,
+   "zostaje_tok_proc": 97.932
+  },
+  {
+   "powod": "dedup_infiwebmath4",
+   "odrzucone_dok": 0,
+   "odrzucone_tok": 0,
+   "zostaje_dok": 20511,
+   "zostaje_tok": 208809956,
+   "zostaje_tok_proc": 97.932
+  },
+  {
+   "powod": "dedup_slayer107",
+   "odrzucone_dok": 32,
+   "odrzucone_tok": 74635,
+   "zostaje_dok": 20479,
+   "zostaje_tok": 208735321,
+   "zostaje_tok_proc": 97.897
+  },
+  {
+   "powod": "dedup_slayer_8x3b_en",
+   "odrzucone_dok": 0,
+   "odrzucone_tok": 0,
+   "zostaje_dok": 20479,
+   "zostaje_tok": 208735321,
+   "zostaje_tok_proc": 97.897
+  },
+  {
+   "powod": "dedup_english_technical",
+   "odrzucone_dok": 0,
+   "odrzucone_tok": 0,
+   "zostaje_dok": 20479,
+   "zostaje_tok": 208735321,
+   "zostaje_tok_proc": 97.897
+  }
+ ],
+ "niezaleznie": {
+  "walidacja_fabryki": {
+   "dok": 0,
+   "tok": 0,
+   "tok_proc": 0.0
+  },
+  "domena_testow": {
+   "dok": 0,
+   "tok": 0,
+   "tok_proc": 0.0
+  },
+  "ewal_13gram": {
+   "dok": 5,
+   "tok": 374277,
+   "tok_proc": 0.176
+  },
+  "pii": {
+   "dok": 37,
+   "tok": 1211156,
+   "tok_proc": 0.568
+  },
+  "min_tresc": {
+   "dok": 576,
+   "tok": 49683,
+   "tok_proc": 0.023
+  },
+  "mojibake": {
+   "dok": 0,
+   "tok": 0,
+   "tok_proc": 0.0
+  },
+  "dedup_wewnatrz": {
+   "dok": 257,
+   "tok": 2747631,
+   "tok_proc": 1.289
+  },
+  "dedup_finemath4": {
+   "dok": 3,
+   "tok": 58434,
+   "tok_proc": 0.027
+  },
+  "dedup_infiwebmath4": {
+   "dok": 0,
+   "tok": 0,
+   "tok_proc": 0.0
+  },
+  "dedup_slayer107": {
+   "dok": 49,
+   "tok": 86394,
+   "tok_proc": 0.041
+  },
+  "dedup_slayer_8x3b_en": {
+   "dok": 0,
+   "tok": 0,
+   "tok_proc": 0.0
+  },
+  "dedup_english_technical": {
+   "dok": 0,
+   "tok": 0,
+   "tok_proc": 0.0
+  }
+ },
+ "uzysk": {
+  "dok": 20479,
+  "tok": 208735321,
+  "tok_proc": 97.897
+ },
+ "ewal_per_test": {
+  "T34_math": 2,
+  "X04_synlogic": 1,
+  "X03_mbpp": 1,
+  "T38_squad2": 1
+ },
+ "pii_klasy_detektor_dclm": {
+  "email": 761,
+  "telefon": 0,
+  "ip": 37
+ },
+ "pii_tryb": "maskuj_email_usun_telefon_ip",
+ "dedup_wewnatrz_szczegoly": {
+  "identyczny_tekst": 36,
+  "minhash_bez_identycznych": 221
+ },
+ "eksport": {
+  "cel_tok_v6": 1000000000000000,
+  "dok": 20479,
+  "tok_v6": 208735321,
+  "wystarcza": false
+ }
+}
