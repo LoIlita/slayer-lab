@@ -1,0 +1,18 @@
+{
+ "repo": "common-pile/libretexts + common-pile/pressbooks",
+ "rewizja": "C1@d4ce4b1edf95888b24992db3bbb2ae8e2bf6c22f, C2@29fa162fc78277b160a7010f18086b5189ffb761",
+ "seed": 20261126,
+ "wiersze": 6819,
+ "tokeny_v6": 26422540,
+ "pliki": [
+  {
+   "plik": "podreczniki_mat",
+   "rozmiar": 34961380,
+   "sha256": "a7a6c77fc4f3bda066394475a0ff3515251116d3672fe8f734aed0009f30b01a",
+   "wiersze": 6819,
+   "tokeny_v6": 26422540,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/podreczniki_mat/robocze/pula/podreczniki_mat.parquet",
+   "uwaga": "rozmiar i sha256 lokalnego parquetu puli; sha256 plików źródła w preregistracja.json (sprawdzane)"
+  }
+ ]
+}

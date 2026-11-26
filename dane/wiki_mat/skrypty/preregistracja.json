@@ -1,0 +1,114 @@
+{
+ "zapisano": "2026-11-26, przed pobraniem źródła do budowy puli i przed pierwszym liczeniem puli; reguły detektorów i aneksy (24.11, 24.11b, 24.11c, 25.11b, 25.11c, 25.11e) przejęte z dane/infiwebmath4/skrypty/preregistracja.json bez zmian w treści, odstępstwa w 'odstepstwa_od_infiwebmath4'",
+ "rezerwacja": "https://github.com/slayerlabs/benchmarks-fabryka-ai/issues/357 (część 3); karta: https://github.com/slayerlabs/benchmarks-fabryka-ai/issues/346",
+ "cel": "część 3 zbioru matematyki i logiki dla Slayera (#357): artykuły matematyczne Wikipedii EN i Wikibooks (D1, D2 w dane/matematyka-wspolne/kandydaci_czyste.md)",
+ "seed": 20261126,
+ "zrodlo": {
+  "repo": "huggingface.co/datasets/common-pile/wikimedia",
+  "rewizja": "781b263a6546515543bec3968ad4743fbc152b72",
+  "pliki": "NNNNN_wikipedia.com.jsonl.gz (187) i NNNNN_wikibooks.com.jsonl.gz (2); sha256 w wyniki/przeglad_zrodla.json, sprawdzane przy pobraniu",
+  "licencja": "metadata.license per dokument; oczekiwane wyłącznie CC BY-SA 4.0 (karta §2); dokument z inną licencją -> odrzucony w filtrze budowy (licencja)",
+  "karta": "dane/wiki_mat/KARTA_ZRODLA.md"
+ },
+ "wybor": {
+  "regula": "reguła 1 z karty (precyzja ręczna 52/60 = 86,7%, Wilson 95% 76–93%): metadata.namespace == '0' ORAZ reguła 0 (>=10 segmentów $..$ z \\ ^ _ = i >=5 komend LaTeX; dane/wiki_mat/skrypty/wsp.py math_feats) ORAZ dziedzina z leadu: m >= 1 i m > 2*o (dane/wiki_mat/skrypty/wiki_rules.py MATH, OTHER na pierwszych 700 znakach)",
+  "liczone_na": "surowym text ze źródła (jak w karcie), przed normalizacją",
+  "oczekiwane": "8 521 dok. Wikipedii (26,80 mln tok.) i 1 469 Wikibooks (4,06 mln) wg karty §4; rozjazd > 1% -> zgłoszenie przed budową"
+ },
+ "dokument": {
+  "id": "'<wiki>:<id źródła>' (wiki = wikipedia albo wikibooks; id źródła '0-<page_id>' nie jest unikalne między wiki)",
+  "url": "https://en.wikipedia.org/wiki/<Tytuł> albo https://en.wikibooks.org/wiki/<Tytuł> (host z metadata.url wikipedia.com/wikibooks.com zamieniony na adres kanoniczny, żeby dedup url wobec FineMath-4+/InfiWebMath-4+/FineWeb-Edu działał na tych samych adresach)",
+  "license": "CC-BY-SA-4.0 (SPDX, z metadata.license)",
+  "created": "pole created źródła",
+  "author": "loginy z metadata.authors oddzielone ', ' (atrybucja CC BY-SA); pusta lista -> 'unknown'",
+  "normalizacja_text": "html.unescape (encje &minus;, &thinsp; itd.); wycięcie bloków {{Infobox ...}} z dopasowaniem zagnieżdżonych nawiasów {{ }}; zwinięcie >2 pustych wierszy; nic więcej",
+  "skrypt": "dane/wiki_mat/skrypty/buduj_pule.py (zero modeli)"
+ },
+ "filtr_budowy": {
+  "kolejnosc": [
+   "licencja: metadata.license nie jest CC BY-SA 4.0",
+   "dedup_dokladny: identyczny md5 tekstu po normalizacji (zostaje pierwszy w kolejności plik, wiersz)"
+  ],
+  "regula": "liczby i tokeny v6 odrzuconych per powód w wyniki/budowa.json"
+ },
+ "pula": {
+  "wybor": "wszystkie dokumenty reguły 1 po filtrze budowy, w kolejności plik, wiersz",
+  "plik": "robocze/pula/wiki_mat.parquet, row_group_size 5000, kolumny text, url, id, license, created, author, wiki, title",
+  "cel_puli_tok_v6": null,
+  "eksport": "wszystkie dokumenty zachowane po regułach z kolejnosc_powodow"
+ },
+ "tokeny": {
+  "tokenizer": "v6, sha256 0640d3bd3674d7a6e59c540d945a2ad275a12e1bcaeb6007c37a90751f9815dd (dane/dclm-en/robocze/pobrania/tokenizer_v6/tokenizer.json)",
+  "regula": "len(ids)+1 na tekście po normalizacji, encode_batch(add_special_tokens=False)"
+ },
+ "kolejnosc_powodow": [
+  "walidacja_fabryki",
+  "domena_testow",
+  "ewal_13gram",
+  "pii",
+  "pii_zaciemniony",
+  "pii_at_bez_nawiasow",
+  "min_tresc",
+  "mojibake",
+  "dedup_wewnatrz",
+  "dedup_finemath4",
+  "dedup_infiwebmath4",
+  "dedup_slayer107",
+  "dedup_slayer_8x3b_en",
+  "dedup_english_technical",
+  "dedup_fineweb_edu_109"
+ ],
+ "walidacja_fabryki": "jak DCLM-EN (przejęte z infiwebmath4 bez zmian)",
+ "domena_testow": "jak DCLM-EN, ALE bez reguły 'projekty Wikimedia' (całe źródło to Wikimedia; reguła usunęłaby 100%); pozostałe domeny (wikihow, instructables) bez zmian, oczekiwane 0",
+ "ewal_13gram": {
+  "indeks": "jak infiwebmath4: testy RPG v2 + T51_gsm_plus i T52_gsm1k",
+  "testy_scisle": [
+   "T19_mathqa",
+   "T32_mmlu",
+   "T33_gsm8k",
+   "T34_math",
+   "T47_bbh",
+   "X02_humaneval",
+   "X03_mbpp",
+   "T51_gsm_plus",
+   "T52_gsm1k"
+  ],
+  "df_min": 5,
+  "regula": "jak infiwebmath4 (karta §5: hasła Wikipedii cytowane w MMLU)"
+ },
+ "pii": {
+  "tryb": "usun",
+  "regula": "jak strony WWW (infiwebmath4): dokument z trafieniem detektora PII usuwany, bez maskowania"
+ },
+ "min_tresc": "jak aneks 24.11b: < 50 słów po rdzen.norm_slowa -> usuwany",
+ "mojibake": "jak DCLM-EN",
+ "dedup_wewnatrz": "jak DCLM-EN: identyczny znormalizowany tekst albo MinHash 5-gramów 128 funkcji, LSH 32x4, J >= 0,8",
+ "dedup_finemath4": "jak infiwebmath4 (identyczny znormalizowany url ALBO MinHash J >= 0,8 ALBO identyczny tekst wobec wybranych FineMath-4+); strona Wikipedii obecna w FineMath-4+ usuwa artykuł z tej puli",
+ "dedup_infiwebmath4": "jak dedup_finemath4 wobec wybranych InfiWebMath-4+ (karta §6: 41% tokenów Wikipedii i 31% Wikibooks reguły 1 ma ten sam url w InfiWebMath-4+)",
+ "dedup_slayer107": "jak DCLM-EN",
+ "dedup_slayer_8x3b_en": "jak aneks 25.11b",
+ "dedup_english_technical": "jak aneks 24.11",
+ "dedup_fineweb_edu_109": "jak w pulach stron WWW: url dokumentu to adres strony en.wikipedia.org / en.wikibooks.org, więc reguła stosowana",
+ "reczna_probka": {
+  "odrzucone_na_powod": 100,
+  "zachowane": 300,
+  "znakow": 3000,
+  "oceniajacy": "dwóch niezależnych agentów, którzy nie budowali zbioru; każdy ocenia całą próbkę",
+  "progi": "jak infiwebmath4 (aneks DCLM-EN 15.11.2026); dodatkowo w zachowanych ocena dziedziny (matematyka/logika vs inna nauka): oczekiwane >= 76% (dolna granica Wilsona z karty); niżej -> datowany aneks z decyzją"
+ },
+ "kontrole_dodatnie": "jak infiwebmath4; dodatkowo w buduj_pule.py asercje reguły 1 i normalizacji na przykładach syntetycznych przed budową",
+ "odstepstwa_od_infiwebmath4": [
+  "źródło to zrzut Wikimedia (Common Pile), nie Common Crawl; wybór reguła 1 z karty zamiast klasyfikatora jakości",
+  "domena_testow bez reguły 'projekty Wikimedia'",
+  "dodany dedup_infiwebmath4 i dedup_fineweb_edu_109",
+  "filtr budowy (licencja, dedup dokładny) przed detektorami"
+ ],
+ "aneksy_przejete": "aneks_2026_11_24, aneks_2026_11_24b, aneks_2026_11_24c, aneks_2026_11_25b, aneks_2026_11_25c, aneks_2026_11_25e: treść w dane/infiwebmath4/skrypty/preregistracja.json, przejęta bez zmian poza odstępstwami powyżej",
+ "domena_testow_wylaczone": [
+  "wikipedia.org",
+  "wikinews.org",
+  "wikivoyage.org",
+  "wikibooks.org"
+ ],
+ "domena_testow_wylaczone_uwaga": "zapis maszynowy reguły z pola domena_testow (dopisany 26.11 przez integratora przed przebiegiem; treść reguły bez zmian); przeciek testów z Wikipedii (np. WikiText-2, BoolQ) łapie ewal_13gram"
+}

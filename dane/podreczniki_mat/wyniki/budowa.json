@@ -1,0 +1,95 @@
+{
+ "zrodla": {
+  "C1": {
+   "repo": "huggingface.co/datasets/common-pile/libretexts",
+   "rewizja": "d4ce4b1edf95888b24992db3bbb2ae8e2bf6c22f",
+   "pliki": {
+    "00000_libretext.json.gz": "eee45504dab26b692653943a8528ead0d0361bce3b5255ed07b69da3fbd3c984"
+   }
+  },
+  "C2": {
+   "repo": "huggingface.co/datasets/common-pile/pressbooks",
+   "rewizja": "29fa162fc78277b160a7010f18086b5189ffb761",
+   "pliki": {
+    "00000_pressbooks.json.gz": "67d1135ad65d3c1f2f4d88d44ad35d37a4e381cb518c1bd878e4d2c350c9ff21",
+    "00001_pressbooks.json.gz": "cd3a484605b52654a3a1b022bd125091fa15739b243d8b9967c97454e1227c41"
+   }
+  }
+ },
+ "wybrane_przed_filtrem": {
+  "C1": {
+   "dokumenty": 9733,
+   "tokeny_v6": 31638141
+  },
+  "C2": {
+   "dokumenty": 2415,
+   "tokeny_v6": 14373361
+  }
+ },
+ "zachowane": {
+  "dokumenty": 6819,
+  "tokeny_v6": 26422540,
+  "na_czesc": {
+   "C1": {
+    "dokumenty": 5937,
+    "tokeny_v6": 22859995
+   },
+   "C2": {
+    "dokumenty": 882,
+    "tokeny_v6": 3562545
+   }
+  }
+ },
+ "odrzucone_filtr_budowy": {
+  "dedup_dokladny/C1": {
+   "dokumenty": 515,
+   "tokeny_v6": 1654348
+  },
+  "dedup_dokladny/C2": {
+   "dokumenty": 1293,
+   "tokeny_v6": 8937721
+  },
+  "krotki/C1": {
+   "dokumenty": 2053,
+   "tokeny_v6": 552348
+  },
+  "krotki/C2": {
+   "dokumenty": 34,
+   "tokeny_v6": 14703
+  },
+  "openstax/C1": {
+   "dokumenty": 1228,
+   "tokeny_v6": 6571450
+  },
+  "openstax/C2": {
+   "dokumenty": 206,
+   "tokeny_v6": 1858392
+  }
+ },
+ "openstax_wsrod_wybranych_przed_filtrem": {
+  "C1": {
+   "dokumenty": 1640,
+   "tokeny_v6": 6759374
+  },
+  "C2": {
+   "dokumenty": 559,
+   "tokeny_v6": 5482649
+  }
+ },
+ "licencje_wierszy": {
+  "CC-BY-4.0": 4240,
+  "CC-BY-SA-4.0": 1611,
+  "GFDL-1.3-or-later": 384,
+  "CC-BY-3.0": 288,
+  "CC-BY-SA-3.0": 152,
+  "LicenseRef-PD": 144
+ },
+ "licencje_wierszy_tokeny_v6": {
+  "CC-BY-4.0": 17950232,
+  "CC-BY-SA-4.0": 5496494,
+  "CC-BY-3.0": 1185921,
+  "GFDL-1.3-or-later": 1003229,
+  "LicenseRef-PD": 464826,
+  "CC-BY-SA-3.0": 321838
+ }
+}

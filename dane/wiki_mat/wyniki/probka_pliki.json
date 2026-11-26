@@ -1,0 +1,18 @@
+{
+ "repo": "common-pile/wikimedia",
+ "rewizja": "781b263a6546515543bec3968ad4743fbc152b72",
+ "seed": 20261126,
+ "wiersze": 9990,
+ "tokeny_v6": 30824027,
+ "pliki": [
+  {
+   "plik": "wiki_mat",
+   "rozmiar": 49703585,
+   "sha256": "9ca35011e4d95dab346f1486a75a575c415840f25e79b826532b4362af5a61f6",
+   "wiersze": 9990,
+   "tokeny_v6": 30824027,
+   "lokalnie": "/Users/lolita/Documents/GitHub/slayer-lab/dane/wiki_mat/robocze/pula/wiki_mat.parquet",
+   "uwaga": "rozmiar i sha256 lokalnego parquetu puli; źródło: 189 plików jsonl.gz (sha256 w wyniki/budowa.json)"
+  }
+ ]
+}

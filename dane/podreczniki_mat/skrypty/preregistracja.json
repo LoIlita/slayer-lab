@@ -1,0 +1,107 @@
+{
+ "zapisano": "2026-11-26, przed budową puli i przed pierwszym liczeniem puli; reguły detektorów i aneksy (24.11, 24.11b, 24.11c, 25.11b, 25.11c, 25.11e) przejęte z dane/infiwebmath4/skrypty/preregistracja.json bez zmian w treści, odstępstwa w 'odstepstwa_od_infiwebmath4'",
+ "rezerwacja": "https://github.com/slayerlabs/benchmarks-fabryka-ai/issues/357 (część 3); karta: https://github.com/slayerlabs/benchmarks-fabryka-ai/issues/346",
+ "cel": "część 3 zbioru matematyki i logiki dla Slayera (#357): otwarte podręczniki matematyki i statystyki (C1 LibreTexts, C2 PressBooks w dane/matematyka-wspolne/kandydaci_czyste.md)",
+ "seed": 20261126,
+ "zrodlo": {
+  "C1": {"repo": "huggingface.co/datasets/common-pile/libretexts", "rewizja": "d4ce4b1edf95888b24992db3bbb2ae8e2bf6c22f",
+         "pliki": {"00000_libretext.json.gz": "eee45504dab26b692653943a8528ead0d0361bce3b5255ed07b69da3fbd3c984"}},
+  "C2": {"repo": "huggingface.co/datasets/common-pile/pressbooks", "rewizja": "29fa162fc78277b160a7010f18086b5189ffb761",
+         "pliki": {"00000_pressbooks.json.gz": "67d1135ad65d3c1f2f4d88d44ad35d37a4e381cb518c1bd878e4d2c350c9ff21",
+                   "00001_pressbooks.json.gz": "cd3a484605b52654a3a1b022bd125091fa15739b243d8b9967c97454e1227c41"}},
+  "C3": "common-pile/oercommons ODRZUCONE w całości (karta §3: precyzja 11/20 i 8/20, pula 63 dok.)",
+  "licencja": "metadata.license per dokument, mapowane na SPDX (CC-BY-4.0, CC-BY-SA-4.0, CC-BY-3.0, CC-BY-SA-3.0, CC-BY-SA-2.5, CC0-1.0, LicenseRef-PD, GFDL-1.3-or-later); dokument z licencją spoza mapy albo z NC/ND -> odrzucony (licencja)",
+  "karta": "dane/podreczniki_mat/KARTA_ZRODLA.md"
+ },
+ "wybor": {
+  "C1": "metadata.url (gdy brak: id) pasuje do ^https?://(math|stats)\\.libretexts\\.org (karta §1 p.1; precyzja 20/20)",
+  "C2": "KW (dane/podreczniki_mat/skrypty/podr_pass.py) w metadata.book_url + ' ' + metadata.title ORAZ >= 3 trafienia LATEX w tekście (karta §1 p.2; precyzja 20/20)",
+  "liczone_na": "surowym text ze źródła, jak w karcie"
+ },
+ "dokument": {
+  "id": "id źródła (URL sekcji, z fragmentem #, jeśli jest) — unikalny",
+  "url": "id źródła bez fragmentu '#...' (adres strony, do dedupu url)",
+  "license": "SPDX z mapy wyżej, per wiersz",
+  "created": "pole created źródła jako tekst (formaty różne); brak -> 'unknown'",
+  "author": "metadata.author; pusty -> 'unknown'",
+  "normalizacja_text": "C1: wycięcie nawigacji 'Last updated Save as PDF Page ID <n>' (sama fraza, tytuł zostaje); C2: '[latex]x[/latex]' -> '\\(x\\)'; obie: zwinięcie >2 pustych wierszy, strip",
+  "skrypt": "dane/podreczniki_mat/skrypty/buduj_pule.py (zero modeli)"
+ },
+ "filtr_budowy": {
+  "kolejnosc": [
+   "licencja: spoza mapy SPDX albo NC/ND (oczekiwane 0, karta §2)",
+   "dedup_dokladny: identyczny md5 tekstu po normalizacji, w kolejności C1, C2, a w części wg id rosnąco — zostaje pierwszy (C2: ten sam rozdział pod różnymi '#chapter-...-section-N' zostaje raz, karta §4: 1 293 kopie)",
+   "krotki: < 600 tokenów v6 (karta §1 p.3: spisy treści rozdziałów)",
+   "openstax: url albo pierwsze/ostatnie 3000 znaków tekstu zawierają 'openstax' (bez wielkości liter; ta sama reguła co w karcie, skrypty/podr_pass.py)"
+  ],
+  "regula": "liczby i tokeny v6 odrzuconych per powód i część w wyniki/budowa.json; openstax liczony na dokumentach, które przeszły pozostałe powody, czyli tokeny = ubytek puli",
+  "decyzja_openstax": "KONSERWATYWNA: dokumenty, których url/atrybucja wskazuje OpenStax, wykluczone. Kopie w Common Pile (03.2025) pochodzą z wersji na CC BY 4.0, sprzed zmiany wydawcy na CC BY-NC-SA dla nowych i aktualizowanych wersji (ogłoszenie 22.04.2026, https://openstax.org/blog/openstax-licensing); licencja CC na udostępnione wersje jest nieodwołalna, więc prawnie użycie jest dozwolone, ale wydawca wprost wskazuje AI jako powód zmiany (wpis 18.03.2026) — ryzyko reputacyjne. Karta §2: wycinek przed dedupem 1 229 dok. C1 (6,57 mln tok.) i 205 dok. C2 (2,09 mln tok.); liczba po dedupie i progu w wyniki/budowa.json. Zmiana decyzji tylko datowanym aneksem."
+ },
+ "pula": {
+  "wybor": "wszystkie dokumenty C1 i C2 po filtrze budowy, kolejność C1, C2, id rosnąco",
+  "plik": "robocze/pula/podreczniki_mat.parquet, row_group_size 5000, kolumny text, url, id, license, created, author, czesc (C1/C2), title",
+  "cel_puli_tok_v6": null,
+  "eksport": "wszystkie dokumenty zachowane po regułach z kolejnosc_powodow"
+ },
+ "tokeny": {
+  "tokenizer": "v6, sha256 0640d3bd3674d7a6e59c540d945a2ad275a12e1bcaeb6007c37a90751f9815dd (dane/dclm-en/robocze/pobrania/tokenizer_v6/tokenizer.json)",
+  "regula": "len(ids)+1 na tekście po normalizacji, encode_batch(add_special_tokens=False)"
+ },
+ "kolejnosc_powodow": [
+  "walidacja_fabryki",
+  "domena_testow",
+  "ewal_13gram",
+  "pii",
+  "pii_zaciemniony",
+  "pii_at_bez_nawiasow",
+  "min_tresc",
+  "mojibake",
+  "dedup_wewnatrz",
+  "dedup_finemath4",
+  "dedup_infiwebmath4",
+  "dedup_slayer107",
+  "dedup_slayer_8x3b_en",
+  "dedup_english_technical",
+  "dedup_fineweb_edu_109"
+ ],
+ "walidacja_fabryki": "jak DCLM-EN (przejęte z infiwebmath4 bez zmian)",
+ "domena_testow": "jak DCLM-EN; oczekiwane 0",
+ "ewal_13gram": {
+  "indeks": "jak infiwebmath4: testy RPG v2 + T51_gsm_plus i T52_gsm1k",
+  "testy_scisle": ["T19_mathqa", "T32_mmlu", "T33_gsm8k", "T34_math", "T47_bbh", "X02_humaneval", "X03_mbpp", "T51_gsm_plus", "T52_gsm1k"],
+  "df_min": 5,
+  "regula": "jak infiwebmath4 (karta §5: ćwiczenia podręcznikowe krążą jako zadania testów)"
+ },
+ "pii": {
+  "tryb": "usun",
+  "regula": "jak strony WWW (infiwebmath4): dokument z trafieniem detektora PII usuwany, bez maskowania (karta §5: e-mail w 11 dok. C1 i 1 dok. C2)"
+ },
+ "min_tresc": "jak aneks 24.11b: < 50 słów po rdzen.norm_slowa -> usuwany",
+ "mojibake": "jak DCLM-EN",
+ "dedup_wewnatrz": "jak DCLM-EN: identyczny znormalizowany tekst albo MinHash 5-gramów 128 funkcji, LSH 32x4, J >= 0,8 (karta §5: bliskie kopie C1<->C2)",
+ "dedup_finemath4": "jak infiwebmath4 (identyczny znormalizowany url ALBO MinHash J >= 0,8 ALBO identyczny tekst wobec wybranych FineMath-4+)",
+ "dedup_infiwebmath4": "jak dedup_finemath4 wobec wybranych InfiWebMath-4+ (karta §6a: 944 dok. C1 i 254 dok. C2 z tym samym url)",
+ "dedup_slayer107": "jak DCLM-EN",
+ "dedup_slayer_8x3b_en": "jak aneks 25.11b",
+ "dedup_english_technical": "jak aneks 24.11",
+ "dedup_fineweb_edu_109": "jak w pulach stron WWW: url to adres strony libretexts.org / pressbooks, więc reguła stosowana",
+ "reczna_probka": {
+  "odrzucone_na_powod": 100,
+  "zachowane": 300,
+  "znakow": 3000,
+  "oceniajacy": "dwóch niezależnych agentów, którzy nie budowali zbioru; każdy ocenia całą próbkę",
+  "progi": "jak infiwebmath4 (aneks DCLM-EN 15.11.2026); dodatkowo w zachowanych: treść OpenStax 0/300"
+ },
+ "kontrole_dodatnie": "jak infiwebmath4; dodatkowo w buduj_pule.py asercje normalizacji, mapy licencji i reguły openstax przed budową",
+ "odstepstwa_od_infiwebmath4": [
+  "źródło to zrzut Common Pile (HTML stron podręczników), nie Common Crawl; wybór regułą z karty zamiast klasyfikatora jakości",
+  "filtr budowy (licencja, dedup dokładny, próg 600 tok., openstax) przed detektorami",
+  "dodany dedup_infiwebmath4 i dedup_fineweb_edu_109"
+ ],
+ "aneksy_przejete": "aneks_2026_11_24, aneks_2026_11_24b, aneks_2026_11_24c, aneks_2026_11_25b, aneks_2026_11_25c, aneks_2026_11_25e: treść w dane/infiwebmath4/skrypty/preregistracja.json, przejęta bez zmian poza odstępstwami powyżej",
+ "aneks_2026_11_26_openstax_okno": {
+  "zapisano": "2026-11-26, PO pierwszym przebiegu budowy (liczby filtra budowy widziane, treści puli nie oglądane), PRZED eksportem",
+  "zmiana": "reguła openstax sprawdzana na metadata.url/id + oknach 3000 znaków surowego tekstu ORAZ na id + oknach tekstu po normalizacji; trafienie w którymkolwiek -> wykluczony",
+  "powod": "kontrola puli (sprawdz) znalazła dokumenty ze słowem OpenStax w oknie 3000 znaków po normalizacji ('[latex]' -> '\\(' i wycięcie nawigacji przesuwają granicę okna), których surowe okno nie obejmowało; decyzja konserwatywna wymaga ich wykluczenia; zmiana tylko zaostrza wykluczenie"
+ }
+}

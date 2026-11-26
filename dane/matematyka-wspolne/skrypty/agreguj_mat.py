@@ -190,7 +190,8 @@ if "suma40" in P["kolejnosc_powodow"]:  # aneks 24.11c, warunek na oryginał z a
                                  for t, o in zip(kolumna("text"), kolumna("text", jed_s))])
 
 if "domena_testow" in P["kolejnosc_powodow"]:
-    powody["domena_testow"] = X["dom"] > 0
+    _wyl = [1 + w.DOMENY_TESTOW.index(d) for d in P.get("domena_testow_wylaczone", [])]  # dom = 1 + indeks domeny
+    powody["domena_testow"] = (X["dom"] > 0) & ~np.isin(X["dom"], _wyl)
 if P["pii"]["tryb"] == "usun":
     powody["pii"] = X["pii"] > 0
 elif P["pii"]["tryb"] == "maskuj_email_usun_telefon_ip":  # e-maile maskowane przy eksporcie (mat_wybor.premask_emails)
