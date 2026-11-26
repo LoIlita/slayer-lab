@@ -55,5 +55,11 @@
    "dokumenty": 568489,
    "tokeny_v6": 1037446371
   }
- ]
+ ],
+ "decyzja_2026_11_26": {
+  "zapisano": "2026-11-26, po przeglądzie próbki FineMath-3+ (wyniki/przeglad_1.json) i po eksporcie p01-p07, przed wysyłką",
+  "wynik_przegladu": "śmieci w 300 zachowanych: A 22,7% [18,3; 27,7], B 19,3% [15,3; 24,2] (próg 10%); wątpliwe 24-26%; PII i testy 0/300 u obu; FineMath-4+ dla porównania ok. 10%",
+  "decyzja_wlascicielki": "FineMath-3+ NIE wchodzi do zbioru 20 mld; dopełnienie ok. 7 mld z innego zbioru dobrej jakości, wybranego na podstawie notatek zespołu i dodanego na tablicę Dataset jako osobna pozycja",
+  "eksport": "eksport p01-p07 (sha256 w robocze/eksport) nie jest wysyłany; pliki do usunięcia przy potrzebie miejsca"
+ }
 }
