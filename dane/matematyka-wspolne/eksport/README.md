@@ -11,6 +11,10 @@ configs:
   data_files:
   - split: train
     path: data/*/*.parquet
+- config_name: arxiv_math_en
+  data_files:
+  - split: train
+    path: data/arxiv_math_en/arxiv_math_en.parquet
 - config_name: wikipedia_math_en
   data_files:
   - split: train

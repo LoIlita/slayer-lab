@@ -23,6 +23,21 @@ Optional:
 """
 
 SOURCES: dict[str, dict] = {
+    "arxiv_math_en": {
+        "pretty": "arXiv mathematics, statistics and theoretical CS: openly licensed papers and abstracts (Common Pile)",
+        "upstream": ["https://huggingface.co/datasets/common-pile/arxiv_papers", "https://huggingface.co/datasets/common-pile/arxiv_abstracts"],
+        "license": "per paper: CC BY 3.0/4.0, CC BY-SA 4.0, CC0, public domain (stricter of Common Pile and arXiv metadata); abstracts CC0",
+        "license_spdx": "LicenseRef-per-row",
+        "domain": "mathematics",
+        "added": "2026-11-26",
+        "created": "1991-2024 (arXiv submission dates)",
+        "provenance": "common-pile/arxiv_papers@963fe980 and common-pile/arxiv_abstracts@828e35d1, primary category from librarian-bots/arxiv-metadata-snapshot@c428226b (math.*, math-ph, stat.*, cs.LO, cs.DM, cs.CC, cs.FL, cs.SC, cs.IT, cs.GT, cs.NA); papers under the default arXiv licence or NC/ND excluded; built and filtered by slayer-lab dane/arxiv_mat (13-gram decontamination, PII, dedup vs Slayer 1.07 EN, finemath_4plus_en and infiwebmath_4plus_en)",
+        "traceable": True,
+        "is_ocr": False,
+        "language": ["en"],
+        "text_origin": "human",
+        "legal_note": "Licence per paper from the authors' arXiv licence choice; papers under arXiv's default non-exclusive licence are excluded (the arXiv bulk-data terms limit them to personal and research use). Author e-mails masked to [PII]. Takedown by arXiv id.",
+    },
     "wikipedia_math_en": {
         "pretty": "English Wikipedia and Wikibooks: mathematics articles",
         "upstream": "https://huggingface.co/datasets/common-pile/wikimedia",
