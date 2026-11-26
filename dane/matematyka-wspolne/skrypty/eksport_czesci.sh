@@ -21,6 +21,9 @@ case "$ZB" in
   stackedu) KEY=stack_edu_python ;;
   infiwebmath4) KEY=infiwebmath_4plus_en ;;
   finemath3) KEY=finemath_3_en ;;
+  oeis) KEY=oeis_en ;;
+  formalna) KEY=formal_math ;;
+  stackexchange_mat) KEY=stackexchange_math ;;
   *) echo "nieznany zbiór $ZB" >&2; exit 2 ;;
 esac
 D=$REPO/dane/$ZB

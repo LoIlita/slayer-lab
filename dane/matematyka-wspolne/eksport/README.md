@@ -11,6 +11,18 @@ configs:
   data_files:
   - split: train
     path: data/*/*.parquet
+- config_name: oeis_en
+  data_files:
+  - split: train
+    path: data/oeis_en/oeis_en.parquet
+- config_name: formal_math
+  data_files:
+  - split: train
+    path: data/formal_math/formal_math.parquet
+- config_name: stackexchange_math
+  data_files:
+  - split: train
+    path: data/stackexchange_math/stackexchange_math.parquet
 - config_name: finemath_3_en
   data_files:
   - split: train
