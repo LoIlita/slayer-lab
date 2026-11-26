@@ -155,6 +155,8 @@ if "fwe109" in OPC:  # aneks 24.11: identyczny znormalizowany url z plikami Fine
 for kat_n in filter(None, OPC.get("wlasne", "").split(",")):  # część 2: dokumenty wyeksportowane z wcześniej zbudowanego źródła
     kat, nazwa = kat_n.split(":")
     powody[f"dedup_{nazwa}"] = baza_minhash(kat, nazwa) | np.isin(X["hu"], np.load(f"{kat}/idx_{nazwa}_hu.npy"))
+if "se_strony" in OPC:  # stackexchange_mat: pytanie obecne jako strona w FineMath-4+/InfiWebMath-4+ (se_strony.py)
+    powody["dedup_se_strony"] = np.isin(X["hu"], np.load(f"{OPC['se_strony']}/idx_se_strony_hu.npy"))
 if "min_tresc" in P["kolejnosc_powodow"]:  # aneks 24.11b: < min_slow słów po norm_slowa; cranemath także szablon_forum
     MIN = P["aneks_2026_11_24b"]["min_tresc"]["min_slow"] if isinstance(P["aneks_2026_11_24b"]["min_tresc"], dict) else 50
     slow = np.array([len(r.norm_slowa(t or "")) for t in kolumna("text")])
@@ -187,6 +189,8 @@ if "domena_testow" in P["kolejnosc_powodow"]:
     powody["domena_testow"] = X["dom"] > 0
 if P["pii"]["tryb"] == "usun":
     powody["pii"] = X["pii"] > 0
+elif P["pii"]["tryb"] == "maskuj_email_usun_telefon_ip":  # e-maile maskowane przy eksporcie (mat_wybor.premask_emails)
+    powody["pii"] = (X["pii"] & 6) > 0
 dodatkowe = {}
 if ZB == "cranemath":
     powody["think"] = np.array(["<think>" in t or "</think>" in t for t in kolumna("text")])
