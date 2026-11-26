@@ -251,10 +251,11 @@ g = np.random.default_rng(SEED)
 zach = np.flatnonzero(zostaje)
 kol = g.permutation(zach)
 cum = np.cumsum(tok[kol])
-ile = int(np.searchsorted(cum, P["pula"]["cel_eksportu_tok_v6"]) + 1)
+CEL_EKSP = P["pula"].get("cel_eksportu_tok_v6") or 10**15  # brak celu = „wszystkie zachowane” (oeis, formalna)
+ile = int(np.searchsorted(cum, CEL_EKSP) + 1)
 wybrane = np.sort(kol[:ile])
-wyn["eksport"] = {"cel_tok_v6": P["pula"]["cel_eksportu_tok_v6"], "dok": int(len(wybrane)), "tok_v6": int(tok[wybrane].sum()),
-                  "wystarcza": bool(cum[-1] >= P["pula"]["cel_eksportu_tok_v6"]) if len(cum) else False}
+wyn["eksport"] = {"cel_tok_v6": CEL_EKSP, "dok": int(len(wybrane)), "tok_v6": int(tok[wybrane].sum()),
+                  "wystarcza": bool(cum[-1] >= CEL_EKSP) if len(cum) else False}
 json.dump({"zbior": ZB, "dokumenty_globalne": wybrane.tolist(), "jednostki": jed, "poczatki": pocz.tolist()},
           open(WYBOR, "w", encoding="utf-8"))
 np.savez(os.path.join(os.path.dirname(OUT), "powody.npz"), nazwy=np.array(kolej),
