@@ -1,0 +1,424 @@
+{
+ "skala": "T = matematyka/logika (z prawdopodobienstwem, statystyka, TCS), N = inna dziedzina, W = watpliwe (liczone jak N)",
+ "proba1_regula0": {
+  "opis": "regula0, seed 101, shardy 0,1,4,8",
+  "oceny": {
+   "0-44790": [
+    "Luminosity",
+    "N"
+   ],
+   "0-302944": [
+    "Gaussian process",
+    "T"
+   ],
+   "0-923556": [
+    "Classifying space",
+    "T"
+   ],
+   "0-9710": [
+    "Elementary algebra",
+    "T"
+   ],
+   "0-49295": [
+    "Fine-structure constant",
+    "N"
+   ],
+   "0-51399": [
+    "Buckingham π theorem",
+    "W"
+   ],
+   "0-85816": [
+    "Complete graph",
+    "T"
+   ],
+   "0-979374": [
+    "Orbital inclination change",
+    "N"
+   ],
+   "0-48636": [
+    "Partition of unity",
+    "T"
+   ],
+   "0-277184": [
+    "Mathematical notation",
+    "T"
+   ],
+   "0-864438": [
+    "Arrangement of hyperplanes",
+    "T"
+   ],
+   "0-14052": [
+    "Hyperbola",
+    "T"
+   ],
+   "0-60459": [
+    "Abductive reasoning",
+    "T"
+   ],
+   "0-44688": [
+    "Almost everywhere",
+    "T"
+   ],
+   "0-38838": [
+    "Cyclic redundancy check",
+    "N"
+   ],
+   "0-18862": [
+    "Minimum wage",
+    "N"
+   ],
+   "0-879681": [
+    "Trigonometric interpolation",
+    "T"
+   ],
+   "0-309304": [
+    "Propellant mass fraction",
+    "N"
+   ],
+   "0-44363": [
+    "Wien's displacement law",
+    "N"
+   ],
+   "0-938663": [
+    "Multi-task learning",
+    "N"
+   ],
+   "0-276524": [
+    "Vector bundle",
+    "T"
+   ],
+   "0-55345": [
+    "Net present value",
+    "N"
+   ],
+   "0-341407": [
+    "Damköhler numbers",
+    "N"
+   ],
+   "0-830776": [
+    "Discrete valuation",
+    "T"
+   ],
+   "0-47949": [
+    "Union (set theory)",
+    "T"
+   ],
+   "0-12395": [
+    "Greenhouse effect",
+    "N"
+   ],
+   "0-849779": [
+    "Bond convexity",
+    "N"
+   ],
+   "0-927236": [
+    "Convergence of Fourier series",
+    "T"
+   ],
+   "0-252250": [
+    "Orbit (dynamics)",
+    "T"
+   ],
+   "0-48631": [
+    "Paracompact space",
+    "T"
+   ],
+   "0-23601": [
+    "Pi",
+    "T"
+   ],
+   "0-277109": [
+    "Dynkin diagram",
+    "T"
+   ],
+   "0-65907": [
+    "Elastic collision",
+    "N"
+   ],
+   "0-333170": [
+    "Fluctuation theorem",
+    "N"
+   ],
+   "0-318577": [
+    "Cavendish experiment",
+    "N"
+   ],
+   "0-52387": [
+    "Axiom schema of replacement",
+    "T"
+   ],
+   "0-832212": [
+    "Multilinear form",
+    "T"
+   ],
+   "0-15491": [
+    "Integer factorization",
+    "T"
+   ],
+   "0-341436": [
+    "State function",
+    "N"
+   ],
+   "0-351908": [
+    "Almost surely",
+    "T"
+   ]
+  },
+  "T": 23,
+  "n": 40
+ },
+ "proba2_regula1": {
+  "opis": "regula1, seed 202, nowe dokumenty, shardy 0,1,4,8",
+  "oceny": {
+   "0-294408": [
+    "Penrose–Hawking singularity theorems",
+    "N"
+   ],
+   "0-345807": [
+    "Group extension",
+    "T"
+   ],
+   "0-310886": [
+    "Coalgebra",
+    "T"
+   ],
+   "0-43325": [
+    "Probability space",
+    "T"
+   ],
+   "0-42309": [
+    "Closure (topology)",
+    "T"
+   ],
+   "0-303274": [
+    "Gudermannian function",
+    "T"
+   ],
+   "0-9966": [
+    "Elliptic-curve cryptography",
+    "W"
+   ],
+   "0-320578": [
+    "Tarski's theorem about choice",
+    "T"
+   ],
+   "0-330320": [
+    "Exponential decay",
+    "T"
+   ],
+   "0-333996": [
+    "Ultrametric space",
+    "T"
+   ],
+   "0-6867": [
+    "Context-free language",
+    "T"
+   ],
+   "0-904940": [
+    "First-countable space",
+    "T"
+   ],
+   "0-250265": [
+    "Rhumb line",
+    "W"
+   ],
+   "0-44055": [
+    "Measurable function",
+    "T"
+   ],
+   "0-50905": [
+    "Haar wavelet",
+    "T"
+   ],
+   "0-848633": [
+    "Discrete valuation ring",
+    "T"
+   ],
+   "0-898316": [
+    "Conchoid of de Sluze",
+    "T"
+   ],
+   "0-40866": [
+    "Characteristic impedance",
+    "N"
+   ],
+   "0-305223": [
+    "QR decomposition",
+    "T"
+   ],
+   "0-250424": [
+    "Ring theory",
+    "T"
+   ],
+   "0-349014": [
+    "Linearly ordered group",
+    "T"
+   ],
+   "0-23975": [
+    "Parallelepiped",
+    "T"
+   ],
+   "0-318742": [
+    "Hyperbolic space",
+    "T"
+   ],
+   "0-343663": [
+    "Set-theoretic limit",
+    "T"
+   ],
+   "0-7125": [
+    "Center (group theory)",
+    "T"
+   ],
+   "0-897724": [
+    "Schreier's lemma",
+    "T"
+   ],
+   "0-52327": [
+    "Cyclic group",
+    "T"
+   ],
+   "0-53452": [
+    "Euler's totient function",
+    "T"
+   ],
+   "0-331826": [
+    "Prime-counting function",
+    "T"
+   ],
+   "0-348004": [
+    "Arg max",
+    "T"
+   ],
+   "0-844783": [
+    "Forgetful functor",
+    "T"
+   ],
+   "0-58527": [
+    "Finitely generated abelian group",
+    "T"
+   ],
+   "0-8625": [
+    "Differential geometry",
+    "T"
+   ],
+   "0-36782": [
+    "Benford's law",
+    "T"
+   ],
+   "0-18881": [
+    "Mathematical induction",
+    "T"
+   ],
+   "0-7519": [
+    "Convolution",
+    "T"
+   ],
+   "0-293450": [
+    "Involution (mathematics)",
+    "T"
+   ],
+   "0-55227": [
+    "Baire category theorem",
+    "T"
+   ],
+   "0-3170": [
+    "Arithmetic function",
+    "T"
+   ],
+   "0-45600": [
+    "Reed–Solomon error correction",
+    "W"
+   ]
+  },
+  "T": 35,
+  "n": 40
+ },
+ "proba3_regula1_pozne": {
+  "opis": "regula1, seed 303, shardy >=50",
+  "oceny": {
+   "0-18729342": [
+    "Multidimensional Chebyshev's inequality",
+    "T"
+   ],
+   "0-23635821": [
+    "Dinic's algorithm",
+    "T"
+   ],
+   "0-22424754": [
+    "Clifford analysis",
+    "T"
+   ],
+   "0-19985542": [
+    "Catastrophic cancellation",
+    "T"
+   ],
+   "0-41040671": [
+    "Fiber functor",
+    "T"
+   ],
+   "0-66810834": [
+    "Extended natural numbers",
+    "T"
+   ],
+   "0-24153642": [
+    "Jucys–Murphy element",
+    "T"
+   ],
+   "0-41074252": [
+    "Two-dimensional filter",
+    "N"
+   ],
+   "0-34471935": [
+    "Arithmetic zeta function",
+    "T"
+   ],
+   "0-28628021": [
+    "Siacci's theorem",
+    "N"
+   ],
+   "0-21682838": [
+    "Forbidden subgraph problem",
+    "T"
+   ],
+   "0-29184958": [
+    "Komlós–Major–Tusnády approximation",
+    "T"
+   ],
+   "0-31797677": [
+    "Central limit theorem for directional statistics",
+    "T"
+   ],
+   "0-45456706": [
+    "Smooth maximum",
+    "T"
+   ],
+   "0-19884227": [
+    "Final value theorem",
+    "T"
+   ],
+   "0-24107159": [
+    "Popoviciu's inequality on variances",
+    "T"
+   ],
+   "0-36237581": [
+    "Conway group Co3",
+    "T"
+   ],
+   "0-36765013": [
+    "Non-expanding horizon",
+    "N"
+   ],
+   "0-18731525": [
+    "Brun sieve",
+    "T"
+   ],
+   "0-54334617": [
+    "Indian buffet process",
+    "T"
+   ]
+  },
+  "T": 17,
+  "n": 20
+ }
+}

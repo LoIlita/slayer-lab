@@ -1,0 +1,238 @@
+{
+ "data": "2026-11-26",
+ "wyniki": [
+  {
+   "name": "libretexts",
+   "repo": "common-pile/libretexts",
+   "rev": "d4ce4b1edf95888b24992db3bbb2ae8e2bf6c22f",
+   "sha256": {
+    "00000_libretext.json.gz": "eee45504dab26b692653943a8528ead0d0361bce3b5255ed07b69da3fbd3c984"
+   },
+   "docs": 62269,
+   "nc_nd_all": 0,
+   "licenses_all": [
+    [
+     "Creative Commons - Attribution - https://creativecommons.org/licenses/by/4.0/",
+     39339
+    ],
+    [
+     "Creative Commons - Attribution Share-Alike - https://creativecommons.org/licenses/by-sa/4.0/",
+     18065
+    ],
+    [
+     "Public Domain",
+     1593
+    ],
+    [
+     "Creative Commons - Attribution - https://creativecommons.org/licenses/by/3.0/",
+     1292
+    ],
+    [
+     "Creative Commons - Attribution Share-Alike - https://creativecommons.org/licenses/by-sa/3.0/",
+     1010
+    ],
+    [
+     "GNU Free Documentation License",
+     967
+    ],
+    [
+     "Creative Commons - Attribution Share-Alike - https://creativecommons.org/licenses/by-sa/2.5/",
+     3
+    ]
+   ],
+   "sel": 9733,
+   "sel_tok": 31643020,
+   "sel_bytes": 95213592,
+   "sel_licenses": [
+    [
+     "Creative Commons - Attribution - https://creativecommons.org/licenses/by/4.0/",
+     6684
+    ],
+    [
+     "Creative Commons - Attribution Share-Alike - https://creativecommons.org/licenses/by-sa/4.0/",
+     1671
+    ],
+    [
+     "GNU Free Documentation License",
+     564
+    ],
+    [
+     "Creative Commons - Attribution - https://creativecommons.org/licenses/by/3.0/",
+     396
+    ],
+    [
+     "Public Domain",
+     213
+    ],
+    [
+     "Creative Commons - Attribution Share-Alike - https://creativecommons.org/licenses/by-sa/3.0/",
+     205
+    ]
+   ],
+   "sel_openstax": 1640,
+   "sel_openstax_tok": 6760477,
+   "sel_email": 13,
+   "hosts": [
+    [
+     "math.libretexts.org",
+     7600
+    ],
+    [
+     "stats.libretexts.org",
+     2133
+    ]
+   ]
+  },
+  {
+   "name": "pressbooks",
+   "repo": "common-pile/pressbooks",
+   "rev": "29fa162fc78277b160a7010f18086b5189ffb761",
+   "sha256": {
+    "00000_pressbooks.json.gz": "67d1135ad65d3c1f2f4d88d44ad35d37a4e381cb518c1bd878e4d2c350c9ff21",
+    "00001_pressbooks.json.gz": "cd3a484605b52654a3a1b022bd125091fa15739b243d8b9967c97454e1227c41"
+   },
+   "docs": 106881,
+   "nc_nd_all": 0,
+   "licenses_all": [
+    [
+     "Creative Commons - Attribution - https://creativecommons.org/licenses/by/4.0/",
+     82843
+    ],
+    [
+     "Creative Commons - Attribution Share-Alike - https://creativecommons.org/licenses/by-sa/4.0/",
+     16410
+    ],
+    [
+     "Public Domain",
+     4287
+    ],
+    [
+     "Creative Commons Zero - Public Domain - https://creativecommons.org/publicdomain/zero/1.0/",
+     3341
+    ]
+   ],
+   "sel": 2415,
+   "sel_tok": 16057943,
+   "sel_bytes": 48830115,
+   "sel_licenses": [
+    [
+     "Creative Commons - Attribution - https://creativecommons.org/licenses/by/4.0/",
+     1262
+    ],
+    [
+     "Creative Commons - Attribution Share-Alike - https://creativecommons.org/licenses/by-sa/4.0/",
+     1153
+    ]
+   ],
+   "sel_openstax": 554,
+   "sel_openstax_tok": 6274348,
+   "sel_email": 1,
+   "hosts": [
+    [
+     "louis.pressbooks.pub",
+     1258
+    ],
+    [
+     "opentextbc.ca",
+     226
+    ],
+    [
+     "pressbooks.nscc.ca",
+     208
+    ],
+    [
+     "library.achievingthedream.org",
+     165
+    ],
+    [
+     "pressbooks.bccampus.ca",
+     121
+    ],
+    [
+     "sheffield.pressbooks.pub",
+     86
+    ],
+    [
+     "oer.pressbooks.pub",
+     58
+    ],
+    [
+     "pressbooks.cuny.edu",
+     50
+    ],
+    [
+     "pressbooks.lib.vt.edu",
+     48
+    ],
+    [
+     "ecampusontario.pressbooks.pub",
+     43
+    ],
+    [
+     "spscc.pressbooks.pub",
+     36
+    ],
+    [
+     "pressbooks.pub",
+     35
+    ]
+   ]
+  },
+  {
+   "name": "oercommons",
+   "repo": "common-pile/oercommons",
+   "rev": "9b3305165b01bec541b6a6baaba2b5b8566dfe29",
+   "sha256": {
+    "00000_oercommons.json.gz": "6582d00a93ffcddad76beace4866e42ff9f1c5bc1f3985cc8f117d51271027b8"
+   },
+   "docs": 9339,
+   "nc_nd_all": 0,
+   "licenses_all": [
+    [
+     "Creative Commons - Attribution - https://creativecommons.org/licenses/by/4.0/",
+     8118
+    ],
+    [
+     "Creative Commons - Attribution Share-Alike - https://creativecommons.org/licenses/by-sa/4.0/",
+     873
+    ],
+    [
+     "Public Domain",
+     348
+    ]
+   ],
+   "sel": 356,
+   "sel_tok": 1586709,
+   "sel_bytes": 6471760,
+   "sel_licenses": [
+    [
+     "Creative Commons - Attribution - https://creativecommons.org/licenses/by/4.0/",
+     333
+    ],
+    [
+     "Creative Commons - Attribution Share-Alike - https://creativecommons.org/licenses/by-sa/4.0/",
+     20
+    ],
+    [
+     "Public Domain",
+     3
+    ]
+   ],
+   "sel_openstax": 28,
+   "sel_openstax_tok": 202315,
+   "sel_email": 16,
+   "hosts": [
+    [
+     "oercommons.org",
+     356
+    ]
+   ]
+  }
+ ],
+ "precyzja": {
+  "libretexts_regula0": "20/20 (seed 31)",
+  "pressbooks_regula0": "20/20 (seed 32)",
+  "oercommons_regula0": "11/20 (seed 33)",
+  "oercommons_regula1": "8/20 (seed 34) -> odrzucone"
+ }
+}

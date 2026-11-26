@@ -1,0 +1,150 @@
+{
+ "A1": {
+  "rev": "963fe980c55b353980653f1a27c1dc0c8a2d7058",
+  "files": 22,
+  "sha256": {
+   "00000_arxiv-papers.jsonl.gz": "0bac07f4441c5bd38bdb1c5c246a030355e466b1e00c4c707ed98eeca03bc365",
+   "00001_arxiv-papers.jsonl.gz": "db1a144d0a86ff3415810b611670680fcc69889595c340955edcbf01d2c5b56d",
+   "00002_arxiv-papers.jsonl.gz": "e2f12073e35e1c31daff1eac2c12e2a7267185d81f843bab15702f10713cff74",
+   "00003_arxiv-papers.jsonl.gz": "914d7ac1b23ab72d22e1c6e0770f1968742438d06f5422cdb0a3bca57c4f3cdc",
+   "00004_arxiv-papers.jsonl.gz": "89f4f3168c0cfe89aa29b46b1e2d75ad142a036a0b4418cae7ded2b23ab906a1",
+   "00005_arxiv-papers.jsonl.gz": "075877bbcadca28a0e616ae00aa4fa0d17cc7a0d61c5a41773e2f548e7abd4ee",
+   "00006_arxiv-papers.jsonl.gz": "108ff0592943f76bdcea2a8557b783a6cb6680c89449e5bb75052705870378c5",
+   "00007_arxiv-papers.jsonl.gz": "a8f58ce4805fd118bb5681848a8f89f6a27e2e93fff47349e8b1af34f2430e76",
+   "00008_arxiv-papers.jsonl.gz": "3c084dbf8b4edc9f6d421882a1787d405e2570e0c95e6e22429d60378bed9e24",
+   "00009_arxiv-papers.jsonl.gz": "cf168b2447608d3757fc6b8d4ebfed7fe77e69e09ec4820bc9214532d757b8a8",
+   "00010_arxiv-papers.jsonl.gz": "d78ad608d31072c81d284418eb42b35848dd0feae6f20254b176c8bca9e331ff",
+   "00011_arxiv-papers.jsonl.gz": "99f3e8617289cbdafd7c3e087ad5538bf1ca3590e03e4d687ce881399eae5a1c",
+   "00012_arxiv-papers.jsonl.gz": "35934b94e6929f8869cfd9b0cad97d46b20a36fa056d61d87b628a5a8f739aa4",
+   "00013_arxiv-papers.jsonl.gz": "5ad6031842c170696b38fcf5c7e5cb965d75c94b20a594bef25d2a3fb04d1ee9",
+   "00014_arxiv-papers.jsonl.gz": "8da68743d8ad233cabf6c8eeee9bb7cd604cbd8e5d9693a8c9725a163d223ac0",
+   "00015_arxiv-papers.jsonl.gz": "33bc305311ee104996b7b94eae3df57a6a60e1e52c3230eca63696e4705622cf",
+   "00016_arxiv-papers.jsonl.gz": "426c70a49a0500e97b92ba5672f744f8abf8bcbd39f6c7abf7ed87d7901e8a0a",
+   "00017_arxiv-papers.jsonl.gz": "4508aeab59fe89efd38f41169590d142174313130187ac55fb0c071721bbc183",
+   "00018_arxiv-papers.jsonl.gz": "d09a97db9fce3db873b0a15223cd371c77e9577be1d0ef2b4bd6d4cdd68e18f1",
+   "00019_arxiv-papers.jsonl.gz": "50beb3fef229e6d05f7476b60e6ab30b233b4a14f9f30fb10c8863136361c233",
+   "00020_arxiv-papers.jsonl.gz": "90e3783dfab5a551f790039984854c196298d7a3b903a257684d49e411d1d421",
+   "00021_arxiv-papers.jsonl.gz": "5e69b04ab7bb86a4cace92e9c522b1fb5cb798c7863633203a2c5e7dd91ca7b5"
+  },
+  "C": {
+   "docs": 304048,
+   "url_zgodny": 304048,
+   "polaczone": 304048,
+   "a1": 73320,
+   "art_stopka_111": 11602,
+   "art_pusty_wzor": 67030,
+   "email": 53792,
+   "art_tylda_pusta": 13913,
+   "art_brak_ref": 444,
+   "krotkie_lt5kB": 843,
+   "mojibake": 162,
+   "art_znaczniki_html": 10
+  },
+  "bytes_a1": 6110534698,
+  "B_per_tok": 2.540811270822447,
+  "tok_sample_docs": 1498,
+  "tok_a1_est": 2404954184.582963,
+  "id_format": {
+   "nowy": 303936,
+   "stary": 112
+  },
+  "meta_keys": {
+   "license": 304048,
+   "authors": 304048,
+   "submitter": 304048,
+   "url": 304048
+  },
+  "cp_license": [
+   [
+    "Creative Commons - Attribution - https://creativecommons.org/licenses/by/4.0/",
+    63056
+   ],
+   [
+    "Creative Commons Zero - Public Domain - https://creativecommons.org/publicdomain/zero/1.0/",
+    4190
+   ],
+   [
+    "Creative Commons - Attribution Share-Alike - https://creativecommons.org/licenses/by-sa/4.0/",
+    3796
+   ],
+   [
+    "Creative Commons - Attribution - https://creativecommons.org/licenses/by/3.0/",
+    1794
+   ],
+   [
+    "Public Domain",
+    484
+   ]
+  ],
+  "lic_vs_meta": [
+   [
+    "zgodna",
+    72632
+   ],
+   [
+    "meta=nonexclusive-distrib/1.0/|cp=mons.org/licenses/by/4.0/",
+    337
+   ],
+   [
+    "meta=rg/licenses/by-nc-nd/4.0/|cp=mons.org/licenses/by/4.0/",
+    118
+   ],
+   [
+    "meta=s.org/licenses/by-sa/4.0/|cp=mons.org/licenses/by/4.0/",
+    47
+   ],
+   [
+    "meta=nonexclusive-distrib/1.0/|cp=rg/publicdomain/zero/1.0/",
+    40
+   ],
+   [
+    "meta=rg/licenses/by-nc-sa/4.0/|cp=mons.org/licenses/by/4.0/",
+    40
+   ],
+   [
+    "meta=mons.org/licenses/by/4.0/|cp=rg/publicdomain/zero/1.0/",
+    33
+   ],
+   [
+    "meta=mons.org/licenses/by/4.0/|cp=s.org/licenses/by-sa/4.0/",
+    25
+   ],
+   [
+    "meta=rg/publicdomain/zero/1.0/|cp=mons.org/licenses/by/4.0/",
+    17
+   ],
+   [
+    "meta=nonexclusive-distrib/1.0/|cp=s.org/licenses/by-sa/4.0/",
+    8
+   ]
+  ]
+ },
+ "A2": {
+  "rev": "828e35d1000f94579da8850f5f640c138279bdb5",
+  "sha256": {
+   "00000_arxiv-abstracts.jsonl.gz": "1a6c475ff4af00e9abaf57919d01c3f27ec04670370f79585db2debb2d3abdb8",
+   "00001_arxiv-abstracts.jsonl.gz": "3c2cb003e31064e0b729e21210090f66c9086bff9326c797c17f72050e4a5c04",
+   "00002_arxiv-abstracts.jsonl.gz": "e710720242378179824293bcb5d7dde959e5f27c9e7c09cc5809f60873dc899d",
+   "00003_arxiv-abstracts.jsonl.gz": "3d781bf7617fd9a6840211227c6c8831280dba457a6d9c79a2a5a357e025a8b7"
+  },
+  "C": {
+   "docs": 2538935,
+   "docelowe": 652417,
+   "a2": 579097,
+   "w_A1": 73320,
+   "email": 23
+  },
+  "bytes": 431442492,
+  "B_per_tok": 3.877801790109757,
+  "tok_est": 111259552.53834376,
+  "mean_tok": 192.20499170353983,
+  "lic": [
+   [
+    "Creative Commons Zero - Public Domain - ",
+    579097
+   ]
+  ]
+ },
+ "data": "2026-11-26",
+ "uwaga": "art_pusty_wzor: bledna miara (regex lapie $$ otwierajace wzor), nie uzywac"
+}
