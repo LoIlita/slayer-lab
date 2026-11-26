@@ -1,0 +1,59 @@
+{
+ "zapisano": "2026-11-26, PRZED eksportem FineMath-3+ (preregistracja finemath3: pula.eksport, aneks 25.11d)",
+ "cel_tok_v6": 20000000000,
+ "po_regulach_tok_v6": {
+  "finemath4_cz2": 7027100774,
+  "stackedu_cz2": 4956561831,
+  "infiwebmath4": 1141984853,
+  "finemath3": 9337001925
+ },
+ "eksport_szacunek_tok_v6": "eksport shard.write odrzuca jeszcze część dokumentów (bramka językowa, min_chars): stackedu 3,1% dokumentów, finemath4 0,46%, infiwebmath4 0,15%; szacunek tokenów v6 po eksporcie proporcjonalnie do dokumentów: stackedu ok. 4,80 mld, finemath4 ok. 6,99 mld, infiwebmath4 ok. 1,14 mld = ok. 12,94 mld",
+ "decyzja": "FineMath-3+ eksportowany w częściach p01-p07 (7 x 1,037 mld v6 = 7,26 mld przed eksportem); łącznie ok. 20,2 mld v6. Części p08-p09 (2,07 mld v6) odcięte z końca kolejności puli (pula.eksport), nie eksportowane; zostają jako rezerwa (wybor_p08/p09.json w robocze/czesci)",
+ "czesci_finemath3": [
+  {
+   "czesc": 1,
+   "dokumenty": 565421,
+   "tokeny_v6": 1037444134
+  },
+  {
+   "czesc": 2,
+   "dokumenty": 557936,
+   "tokeny_v6": 1037443223
+  },
+  {
+   "czesc": 3,
+   "dokumenty": 563027,
+   "tokeny_v6": 1037446598
+  },
+  {
+   "czesc": 4,
+   "dokumenty": 561799,
+   "tokeny_v6": 1037444374
+  },
+  {
+   "czesc": 5,
+   "dokumenty": 568300,
+   "tokeny_v6": 1037441350
+  },
+  {
+   "czesc": 6,
+   "dokumenty": 568151,
+   "tokeny_v6": 1037442718
+  },
+  {
+   "czesc": 7,
+   "dokumenty": 568093,
+   "tokeny_v6": 1037449737
+  },
+  {
+   "czesc": 8,
+   "dokumenty": 574033,
+   "tokeny_v6": 1037443420
+  },
+  {
+   "czesc": 9,
+   "dokumenty": 568489,
+   "tokeny_v6": 1037446371
+  }
+ ]
+}
