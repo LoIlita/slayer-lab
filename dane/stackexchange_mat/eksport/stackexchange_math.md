@@ -119,6 +119,13 @@ junk **0/300** for both reviewers (1–2 doubtful: formulas in images), PASS.
 
 ## Personal data
 
+- Masking of obfuscated e-mails (re-export of 2026-11-27, annex `zaciemnione_proza` in the source preregistration):
+  obfuscated addresses left in the text of kept documents (`name_at_domain.edu`, `name <at> domain`, `name{at}domain`,
+  `name at domain dot com`, `name AT domain.tld`, `name at domain.tld` in mailing-list headers, signatures and after
+  labels such as `Email:`) are replaced with `[PII]` by `premask_emails(prose_obf=True)` in `src/mat_wybor.py`, followed
+  by a second pass over a reviewed list of exact person addresses (`EMAIL_PERSON_EXACT`) that the patterns leave.
+  Documents are kept; ids, order and all other columns are unchanged, `token_count` changes only where the text did.
+  Phrases such as `more at site.com` and addresses of mailing lists and roles (e.g. `R-help at r-project.org`) remain.
 - Documents with an e-mail address, phone number or IPv4 address (`pii`), an obfuscated e-mail (`pii_zaciemniony`) or
   `name at domain.tld` (`pii_at_bez_nawiasow`) are dropped whole. Detector classes in the pool: e-mail 1 269, phone 34,
   IP 1 448.

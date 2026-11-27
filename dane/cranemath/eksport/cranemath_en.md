@@ -122,6 +122,13 @@ if arm C wins. One missed-test flag (AMC 10B 2015, not in our MATH test by grep)
 
 ## Personal data
 
+- Masking of obfuscated e-mails (re-export of 2026-11-27, annex `zaciemnione_proza` in the source preregistration):
+  obfuscated addresses left in the text of kept documents (`name_at_domain.edu`, `name <at> domain`, `name{at}domain`,
+  `name at domain dot com`, `name AT domain.tld`, `name at domain.tld` in mailing-list headers, signatures and after
+  labels such as `Email:`) are replaced with `[PII]` by `premask_emails(prose_obf=True)` in `src/mat_wybor.py`, followed
+  by a second pass over a reviewed list of exact person addresses (`EMAIL_PERSON_EXACT`) that the patterns leave.
+  Documents are kept; ids, order and all other columns are unchanged, `token_count` changes only where the text did.
+  Phrases such as `more at site.com` and addresses of mailing lists and roles (e.g. `R-help at r-project.org`) remain.
 - Our filters drop the whole document when `text` contains an e-mail address, phone number or IPv4 address (`pii`),
   or an obfuscated e-mail such as `name(AT)domain` (`pii_zaciemniony`). This is the only PII protection. Rewriting
   removes most headers and signatures; author names may remain. `original_text` is not exported.

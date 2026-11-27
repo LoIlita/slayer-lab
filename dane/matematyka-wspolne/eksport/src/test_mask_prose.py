@@ -80,3 +80,25 @@ def test_masked(before, after):
 def test_left_alone(text):
     expected = mat_wybor._mask_emails(text)[0]  # only the rules that were on before
     assert mask(text) == expected
+
+
+@pytest.mark.parametrize("before, after", [
+    ("15 REM MICHAEL DOORNBOS - MIKE AT IMAPENGUIN.COM - 2021", "15 REM MICHAEL DOORNBOS - [PII] - 2021"),
+    ("Saint Michael's College jhefferon at smcvt.edu\n", "Saint Michael's College [PII]\n"),
+    ("-- Eric Gindrup ! gindrup at okway.okstate.edu\n", "-- Eric Gindrup ! [PII]\n"),
+    ("report the error to Dr. Jessica Kuang at jkuangATvcccd.edu.", "report the error to Dr. Jessica Kuang at [PII]."),
+    ("> cking at lyon.k12.nv.us <mailto:[PII]>", "> [PII] <mailto:[PII]>"),
+    ("at 7:52 AM hongy... at gmail.com <[PII]> wrote:", "at 7:52 AM [PII] <[PII]> wrote:"),
+    ("for details or lap at mantr.com\nvic", "for details or [PII]\nvic"),
+    ("Send them to Kim at mathisFigureOutAble.com", "Send them to [PII]"),
+])
+def test_person_exact(before, after):
+    """Second, targeted pass: the reviewed person addresses left by the generic patterns (EMAIL_PERSON_EXACT); the real
+    strings, since the list is exact. Every entry is covered."""
+    assert mask(before) == after
+    assert mat_wybor._mask_emails(before)[0] == before  # only with prose_obf
+
+
+def test_person_exact_all_covered():
+    covered = "".join(b for b, _ in test_person_exact.pytestmark[0].args[1])
+    assert all(s in covered for s in mat_wybor.EMAIL_PERSON_EXACT)

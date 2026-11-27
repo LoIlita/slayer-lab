@@ -148,6 +148,12 @@ _PROSE_GUARDS = [re.compile(g) for g in (r"_at_", r"[\{<] ?(?:at|AT) ?[\}>]", r"
                                          r" (?:at|AT) " + _PROSE_MAIL_HOSTS + r"\.",
                                          r"\n" + _DAYS, r"\n(?:> ?)*" + _DAYS, r"(?::|to) ?[A-Za-z0-9._%+-]+ (?:at|AT) [A-Za-z0-9-]+\.",
                                          r" (?:at|AT) [A-Za-z0-9-]+\.", r" (?:wrote|writes|said)\b")]
+# second, targeted pass of prose_obf (aneks 2026-11-27 zaciemnione_proza, field `resztki_maskowane`): person addresses the
+# generic patterns leave on purpose (all-caps name, no label, '!' before the login), found by the broad 'x at domain' scan
+# of the text AFTER the mask and reviewed by hand; exact strings, so the generic patterns stay narrow
+EMAIL_PERSON_EXACT = ("MIKE AT IMAPENGUIN.COM", "jhefferon at smcvt.edu", "gindrup at okway.okstate.edu",
+                      "jkuangATvcccd.edu", "cking at lyon.k12.nv.us", "hongy... at gmail.com", "lap at mantr.com",
+                      "Kim at mathisFigureOutAble.com")
 # EMAIL and EMAIL_AT tried from every position are quadratic on such runs (first met in FineMath-4+ text, 27.11): the same
 # patterns anchored at the start of a run find a match exactly when the originals find one (the leftmost match of the
 # originals always starts there), so they decide cheaply whether the original has to run at all
@@ -184,6 +190,10 @@ def _mask_emails(text: str, bare_at: bool = False, wrapped: bool = False, code_o
         for guard, rx in zip(_PROSE_GUARDS, EMAIL_PROSE_OBF):
             if guard.search(text):
                 text = rx.sub(sub, text)
+        for s in EMAIL_PERSON_EXACT:
+            if s in text:
+                n += text.count(s)
+                text = text.replace(s, "[PII]")
     return (EMAIL_SPACE_TLD.sub(sub, EMAIL_DASH_AT.sub(sub, EMAIL_BARE_AT.sub(sub, text))) if bare_at else text), n
 
 
