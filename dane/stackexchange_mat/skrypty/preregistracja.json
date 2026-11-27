@@ -157,5 +157,10 @@
    "pii_at_bez_nawiasow": "66% / 67% fałszywych ('at stats.stackexchange.com'); koszt 0,17%; aneks 25.11c",
    "mojibake": "0/6 fałszywych, 3 wątpliwe poza widocznym tekstem; FAIL tylko z górnej granicy Wilsona przy n=6"
   }
+ },
+ "aneks_2026_11_27_zaciemnione_proza": {
+  "zapisano": "2026-11-27, PO skanie wysłanej części data/stackexchange_math_p01 i PRZED ponownym eksportem; reguła, test i metoda jak dane/finemath4/skrypty/preregistracja.json -> aneks_2026_11_27_zaciemnione_proza",
+  "skan_przed": "skan_zaciemnione.py: pliki '_at_' 1, '{at}/<at>' 1, 'at … dot' 1 ('connecting at a dot in', nie adres), reszta 0",
+  "porownanie": "porownaj_maske.py prose_obf przed ostatnim zawężeniem: 3 dok., 3 zastąpienia: 'n.s.hekster_at_nl.ibm.com', 'some1.new4u{at}yahoo{dot}com' (adresy w komentarzach) i fałszywe '(and at math.SE)', usunięte zawężeniem; oczekiwane po eksporcie 2 dok./2 zastąpienia"
  }
 }

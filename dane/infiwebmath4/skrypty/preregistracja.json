@@ -140,5 +140,10 @@
    "dedup_english_technical": "0/10 u obu; FAIL tylko z górnej granicy Wilsona przy n = 10 (populacja trafień tej reguły jest mała)",
    "smieci": "B 10,3% [7,4; 14,3] (próg 10%), A 8,7%; cecha źródła jak FineMath-4+ (aneks 24.11c), filtr jakości odroczony, opisany w datasheet"
   }
+ },
+ "aneks_2026_11_27_zaciemnione_proza": {
+  "zapisano": "2026-11-27, PO skanie wysłanej części data/infiwebmath_4plus_en_p01 i PRZED ponownym eksportem; reguła, test i metoda jak dane/finemath4/skrypty/preregistracja.json -> aneks_2026_11_27_zaciemnione_proza",
+  "skan_przed": "skan_zaciemnione.py (matematyka-wspolne/robocze/maska27/skan_przed.json), pliki: '_at_' 5, '{at}/<at>' 2, reszta 0; adresy z archiwów list (R-help, meteorite-list) i stopek",
+  "porownanie": "porownaj_maske.py prose_obf: 9 dok., 25 zastąpień (17 różnych napisów), EMAIL/EMAIL_AT 0; wszystkie zastąpienia to adresy (osób, list IMPROVEDX, identyfikatory wiadomości); resztki po masce: frazy stron i adresy list"
  }
 }

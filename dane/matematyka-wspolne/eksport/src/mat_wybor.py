@@ -87,9 +87,76 @@ EMAIL_CODE_OBF = [
     re.compile(r"[A-Za-z0-9._%+-]+ AT ([A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\." + _CODE_TLD + r")\b"),
     re.compile(r"[A-Za-z0-9._%+-]*[._][A-Za-z0-9._%+-]+ at ([A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\." + _CODE_TLD + r")\b(?![/\w.])"),
 ]
+# the same forms in web text (finemath_4plus_en, infiwebmath_4plus_en, stackexchange_math, cranemath_en; aneks 2026-11-27
+# zaciemnione_proza in dane/<set>/skrypty/preregistracja.json): mailing-list archives ("From: Name <login_at_uni.edu>",
+# pipermail headers "Name login at uni.edu" over the date line, "<login at uni.edu> wrote:"), letter headers and page
+# footers. Narrower than EMAIL_CODE_OBF where prose would trip it, wider where the archives write addresses differently:
+# - `_at_`: '_' allowed in the name ("R_dot_Lyons_at_ieee_dot_org"), a second-level ccTLD is taken along ("uni.ac.th");
+# - `at … dot`: the first domain label has 2+ characters and is not a determiner ("arrive at a dot in", "at the dot in"),
+#   a leading "first dot last" is taken along;
+# - `AT domain.tld`: the name has a lowercase letter or digit ("FIND ME AT dansmath.com" is a site, not an address);
+# - `x.y at domain.tld`: a valid name (no trailing '.', so "e.g. at amazon.com" is left alone);
+# - `<login at domain.tld>` filling a whole <…>, (…) or […], `login at <mail provider>.tld` and a pipermail header line
+#   (also "login at domain login at domain" when the poster gave no name): the name may lack '.' there; a common word as the
+#   name ("(available at amazon.com)", "account at gmail.com", any case) is left alone;
+# - `login at domain.tld` right after an address label ("Email:", "mailto:", "To: ", "From: ", "Reply-to: ", "e-mail to "),
+#   in a signature line (alone on its line or at its end after a gap) and in a quote header ("login at uni.edu wrote:");
+#   in <…>, signatures and quote headers the TLD may be upper case ("<name at RELAY.CS.NET>").
+_PROSE_TLD = r"(?:" + _CODE_TLD[3:-1] + r")(?:\.[a-z]{2})?"
+_PROSE_DOMAIN = r"[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\." + _PROSE_TLD
+_PROSE_DOMAIN_CI = r"[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.(?i:" + _PROSE_TLD + r")"  # "<name%host at RELAY.CS.NET>", "[name at UGA.EDU]"
+_PROSE_WORDS = (r"(?!(?i:and|or|nor|but|also|as|even|only|both|not|just|either|neither|then|to|"
+                r"available|found|located|look|looking|see|here|there|online|posted|published|sold|buy|bought|"
+                r"purchased|hosted|open|now|it|me|us|you|him|her|them|this|that|which|one|account|accounts|address|mail|"
+                r"email|e-mail|inbox|sign|signed|registered|login|log|user|users|someone|people|everyone|anyone|"
+                r"free|cheaper|cheap|price|prices|sale|deals|info|information|details|more|less|work|works|job|jobs|"
+                r"page|site|website|blog|link|links|copy|copies|book|books|download|downloads|order|orders|store|shop)"
+                r" (?:at|AT) )")
+_DAYS = r"(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)(?:,? \d{1,2})? (?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) "
+_LABELS = [lab + sp for lab in ("mailto:", "email:", "Email:", "EMAIL:", "e-mail:", "E-mail:", "E-Mail:", "E-MAIL:")
+           for sp in ("", " ")] + ["To: ", "From: ", "Cc: ", "CC: ", "Sender: ", "Reply-To: ", "Reply-to: ", "email : ",
+                                   "e-mail : ", "email to ", "e-mail to ", "Email to ", "E-mail to "]
+_PROSE_MAIL_HOSTS = _MAIL_HOSTS[:-1] + r"|comcast|verizon|att|earthlink|btinternet|cox|sbcglobal|netscape|mindspring|bigfoot|alltel|juno|bellsouth|netcom)"
+EMAIL_PROSE_OBF = [
+    re.compile(r"(?<![A-Za-z0-9._+-])[A-Za-z0-9._+-]+_at_([A-Za-z0-9-]+(?:" + _CODE_SEPD + r"[A-Za-z0-9-]+)*" + _CODE_SEPD + _PROSE_TLD + r")\b"),
+    re.compile(r"(?<![A-Za-z0-9._%+-])[A-Za-z0-9._%+-]+ ?[\{<] ?(?:at|AT) ?[\}>] ?([A-Za-z0-9-]+(?:" + _CODE_SEPD + r"[A-Za-z0-9-]+)*" + _CODE_SEPD + _PROSE_TLD + r")\b"),
+    re.compile(r"(?<![A-Za-z0-9._%+-])(?:[A-Za-z0-9._%+-]+ (?:dot|DOT) )*[A-Za-z0-9._%+-]+ (?:at|AT) (?!(?:the|a|an|this|that|each|every|one|any|its|his|her|our|their|my|your)\b)"
+               r"([A-Za-z0-9-]{2,}(?: (?:dot|DOT) [A-Za-z0-9-]+)* (?:dot|DOT) " + _CODE_TLD + r")\b"),
+    re.compile(r"(?<![A-Za-z0-9._%+-])(?=[A-Za-z0-9._%+-]*[a-z0-9])[A-Za-z0-9._%+-]+ AT (" + _PROSE_DOMAIN + r")\b"),
+    re.compile(r"(?<![A-Za-z0-9._%+-])[A-Za-z0-9%+-]+(?:[._][A-Za-z0-9%+-]+)+ at (" + _PROSE_DOMAIN + r")\b(?!\.?[/\w])"),
+    re.compile(r"(?<=[<(\[])" + _PROSE_WORDS + r"[A-Za-z0-9._%+-]+ (?:at|AT) (" + _PROSE_DOMAIN_CI + r")(?= ?[>)\]]| ?<mailto)"),
+    re.compile(r"(?<=>)" + _PROSE_WORDS + r"[A-Za-z0-9._%+-]+ (?:at|AT) (" + _PROSE_DOMAIN_CI + r")(?=<mailto)"),
+    re.compile(r"(?<![\w.@-])" + _PROSE_WORDS + r"[A-Za-z0-9_%+-]+ (?:at|AT) (" + _PROSE_MAIL_HOSTS + r"\.(?:com|net|org|de|fr|it|es|ru|cn|ca|nl|pl)(?:\.[a-z]{2})?)\b(?!\.?[/\w])"),
+    re.compile(r"(?m)^[A-Za-z0-9._%+-]+ at ([A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,})(?= [A-Za-z0-9._%+-]+ at [A-Za-z0-9.-]+\n" + _DAYS + r")"),
+    re.compile(r"(?m)(?<=[^\n] )[A-Za-z0-9._%+-]+ at ([A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,})(?=\n(?:> ?)*" + _DAYS + r")"),
+    re.compile(r"(?:" + "|".join(f"(?<={re.escape(lab)})" for lab in _LABELS) + r")[A-Za-z0-9._%+-]+ (?:at|AT) "
+               r"([A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,})\b(?!\.?[/\w])"),
+    # signature lines: the address alone on a line (also quoted "> "), or at the end of a line after a tab, 2+ spaces or
+    # ": ", followed by nothing, a "(note)", a link or a wide gap ("Jon Perry\nperry at uni.co.uk\nhttp://…"); a capitalised
+    # word as the name is a site phrase, not a login ("Created at edHelper.Com", "Crossposted at Math.SE")
+    re.compile(r"(?m)(?:^|(?<=^> )|(?<=^>> )|(?<=^> > )|(?<=  )|(?<=\t)|(?<=\xa0)|(?<=: ))(?![A-Z][a-z])" + _PROSE_WORDS + r"[A-Za-z0-9._%+-]+ (?:at|AT) ("
+               + _PROSE_DOMAIN_CI + r")(?=[ \t]*(?:$|\(|https?://|www\.)|[ \t]{2,})"),
+    # quote headers: "login at uni.edu wrote:", "login at uni.edu (Jan\n> Kowal) writes:"
+    re.compile(r"(?<![A-Za-z0-9._%+-])" + _PROSE_WORDS + r"[A-Za-z0-9._%+-]+ (?:at|AT) (" + _PROSE_DOMAIN_CI
+               + r")(?=[\s>]+(?:\([^()\n]{1,40}(?:\n[> ]*[^()\n]{0,40})?\)\s+)?(?:wrote|writes|said)\b)"),
+]
+# cheap necessary condition of each EMAIL_PROSE_OBF pattern (same result, the full pattern runs only where it can match:
+# almost every web page has " at "). Every pattern starts at the beginning of a run of name characters (look-behind), so
+# a page with a long run of letters or digits (digits of pi, base64) costs linear, not quadratic time.
+_PROSE_GUARDS = [re.compile(g) for g in (r"_at_", r"[\{<] ?(?:at|AT) ?[\}>]", r" (?:dot|DOT) ", r" AT ", r"[._][A-Za-z0-9%+-]+ at ",
+                                         r" (?:at|AT) [A-Za-z0-9.-]+ ?[<>)\]]", r" (?:at|AT) [A-Za-z0-9.-]+<mailto",
+                                         r" (?:at|AT) " + _PROSE_MAIL_HOSTS + r"\.",
+                                         r"\n" + _DAYS, r"\n(?:> ?)*" + _DAYS, r"(?::|to) ?[A-Za-z0-9._%+-]+ (?:at|AT) [A-Za-z0-9-]+\.",
+                                         r" (?:at|AT) [A-Za-z0-9-]+\.", r" (?:wrote|writes|said)\b")]
+# EMAIL and EMAIL_AT tried from every position are quadratic on such runs (first met in FineMath-4+ text, 27.11): the same
+# patterns anchored at the start of a run find a match exactly when the originals find one (the leftmost match of the
+# originals always starts there), so they decide cheaply whether the original has to run at all
+_EMAIL_FIND = re.compile(r"(?<![A-Za-z0-9._%+-])" + EMAIL.pattern)
+_EMAIL_AT_FIND = re.compile(r"(?<![A-Za-z0-9._%+-])" + EMAIL_AT.pattern)
 
 
-def _mask_emails(text: str, bare_at: bool = False, wrapped: bool = False, code_obf: bool = False) -> tuple[str, int]:
+def _mask_emails(text: str, bare_at: bool = False, wrapped: bool = False, code_obf: bool = False,
+                 prose_obf: bool = False) -> tuple[str, int]:
     n = 0
 
     def sub(m):
@@ -106,24 +173,33 @@ def _mask_emails(text: str, bare_at: bool = False, wrapped: bool = False, code_o
         text = EMAIL_WRAPPED.sub(sub, text)
     if wrapped:
         text = EMAIL_AT_NL_MAIL.sub(sub, EMAIL_AT_NL.sub(sub, EMAIL_OBF.sub(sub, text)))
-    text = EMAIL_AT.sub(sub, EMAIL.sub(sub, text))
+    if _EMAIL_FIND.search(text):
+        text = EMAIL.sub(sub, text)
+    if _EMAIL_AT_FIND.search(text):
+        text = EMAIL_AT.sub(sub, text)
     if code_obf:
         for rx in EMAIL_CODE_OBF:
             text = rx.sub(sub, text)
+    if prose_obf:
+        for guard, rx in zip(_PROSE_GUARDS, EMAIL_PROSE_OBF):
+            if guard.search(text):
+                text = rx.sub(sub, text)
     return (EMAIL_SPACE_TLD.sub(sub, EMAIL_DASH_AT.sub(sub, EMAIL_BARE_AT.sub(sub, text))) if bare_at else text), n
 
 
 MASKED = {"pii": 0}  # e-mails masked by premask_emails before shard.write
 
 
-def premask_emails(text: str, bare_at: bool = False, wrapped: bool = False, code_obf: bool = False) -> str:
+def premask_emails(text: str, bare_at: bool = False, wrapped: bool = False, code_obf: bool = False,
+                   prose_obf: bool = False) -> str:
     """Mask e-mails BEFORE shard.write: its language gate then sees the same text check.py rescans. Masking inside
     shard.write ran after the gate, and 8 Python files whose gate vote flipped on the masked text failed check.py
     (independent check, 2026-11-25). bare_at: also `name at domain.tld` (formalna, aneks 26.11d). wrapped: also brace
     lists and hyphen-wrapped addresses (arxiv_math_en, aneks 26.11 arxiv_mat). code_obf: obfuscated forms in code
     headers, `name_at_domain.tld`, `name <at> domain`, `name at domain dot tld`, `name AT domain.tld` (stack_edu_python,
-    aneks 2026-11-27 dane/stackedu)."""
-    masked, n = _mask_emails(text, bare_at, wrapped, code_obf)
+    aneks 2026-11-27 dane/stackedu). prose_obf: the same forms in web text and mailing-list archives (EMAIL_PROSE_OBF,
+    aneks 2026-11-27 zaciemnione_proza)."""
+    masked, n = _mask_emails(text, bare_at, wrapped, code_obf, prose_obf)
     MASKED["pii"] += n
     return masked
 

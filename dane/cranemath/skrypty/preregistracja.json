@@ -64,5 +64,10 @@
   "suma40": {"regex_oryginal_zadanie": "(?i)(1\\s*(to|through|-|–|\\.\\.\\.?|…)\\s*40\\b|1\\s*\\+\\s*2\\s*\\+.{0,20}\\+\\s*40\\b|first\\s+40\\s+(natural|positive|counting)?\\s*(numbers|integers))",
    "regula": "zastępuje warunek na oryginał z aneksu 24.11c: tekst pasuje do regex_tekst ORAZ oryginał NIE zawiera zadania o sumie do 40 (regex_oryginal_zadanie) -> usuwany; pomiar przed zmianą (wyniki/suma40_reszta.json): 6 136 wybranych pasuje do regex_tekst, z tego 58 ma zadanie w oryginale, 6 078 do usunięcia"}
  },
- "aneks_2026_11_25b": "jak dane/finemath4/skrypty/preregistracja.json -> aneks_2026_11_25b"
+ "aneks_2026_11_25b": "jak dane/finemath4/skrypty/preregistracja.json -> aneks_2026_11_25b",
+ "aneks_2026_11_27_zaciemnione_proza": {
+  "zapisano": "2026-11-27, PO skanie ramienia mikroanneal/cranemath_en i PRZED ponownym eksportem ramienia; reguła, test i metoda jak dane/finemath4/skrypty/preregistracja.json -> aneks_2026_11_27_zaciemnione_proza",
+  "skan_przed": "skan_zaciemnione.py: 5 wzorców Stack-Edu 0; informacyjnie 'login at poczta' 2 pliki",
+  "porownanie": "porownaj_maske.py prose_obf: 2 dok., 3 zastąpienia, jeden napis 'ianstewartgmat at gmail.com' (stopka autora na forum GMAT Club, adres osoby)"
+ }
 }
