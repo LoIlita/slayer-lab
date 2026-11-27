@@ -63,6 +63,12 @@ EMAIL_WRAPPED = re.compile(r"[A-Za-z0-9._%+-]+(?:-\n[A-Za-z0-9._%+-]+)?(?:\$\d+\
 EMAIL_LATEX = re.compile(r"\$(?:[^@\n]|\n(?!\n)){0,200}?\$ ?@@?" + _DOMAIN)
 AT_AFTER_DOLLAR = re.compile(r"\$ ?@")
 AT_AFTER_BRACE = re.compile(r"[\}\)\]>˝] ?\n?(?:\$ ?)?@")
+# residue scan of the exported parts (27.11): "name{at}gmail.com", "name [at] amazon dot com", "name{at}gmail{dot}com",
+# "first.last AT\nuni.fr" (local part with '.' or '_' so that prose is left alone)
+_OBF_TLD = r"(?:com|org|net|edu|gov|info|io|de|uk|fr|ch|it|ac|au|nz|ca|jp|nl|be|at|cz|pl|dk|se|fi|no|es|pt|us|cn|in|br|ru|il|kr|tw|sg|hk|ie)\b"
+EMAIL_OBF = re.compile(r"[A-Za-z0-9._%+-]+ ?[\{\[\(] ?(?:at|AT) ?[\}\]\)] ?([A-Za-z0-9-]+(?:(?: ?[\{\[\(] ?(?:dot|DOT) ?[\}\]\)] ?|\.| dot | DOT )[A-Za-z0-9-]+)*(?: ?[\{\[\(] ?(?:dot|DOT) ?[\}\]\)] ?|\.| dot | DOT )"
+                       + _OBF_TLD + ")")
+EMAIL_AT_NL = re.compile(r"[A-Za-z0-9%+-]*[._][A-Za-z0-9._%+-]+ (?:at|AT)\n([A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\." + _OBF_TLD + r")(?![/\w.])")
 
 
 def _mask_emails(text: str, bare_at: bool = False, wrapped: bool = False) -> tuple[str, int]:
@@ -80,6 +86,8 @@ def _mask_emails(text: str, bare_at: bool = False, wrapped: bool = False) -> tup
         if AT_AFTER_BRACE.search(text):
             text = EMAIL_BRACED.sub(sub, text)
         text = EMAIL_WRAPPED.sub(sub, text)
+    if wrapped:
+        text = EMAIL_AT_NL.sub(sub, EMAIL_OBF.sub(sub, text))
     text = EMAIL_AT.sub(sub, EMAIL.sub(sub, text))
     return (EMAIL_SPACE_TLD.sub(sub, EMAIL_DASH_AT.sub(sub, EMAIL_BARE_AT.sub(sub, text))) if bare_at else text), n
 

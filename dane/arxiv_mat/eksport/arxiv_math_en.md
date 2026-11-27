@@ -86,6 +86,11 @@ tokens (95.89%)**: full texts 70 226 / 2 310 331 144, abstracts 529 565 / 117 64
 abstracts); smaller than the ~1 bn parts of other sources because `shard.write` and `check.py` count tokens of a whole
 part in memory and full papers are long.
 
+Export (`shard.write`, 8 parts; p03, p06, p07, p08 re-exported after annex 2026-11-27 that masks `name{at}domain`, `name [at] domain dot com`, `first.last AT\ndomain`): **599 703 docs**, 2 231 710 744 `token_count` (the submissions repo's counter, not v6);
+`dropped`: wrong_language 88. E-mail addresses masked again at export: 3 719. Tokenized (`tokenized/slayer-v6/`): 599 703 docs, 2 425 618 977 v6 tokens. Parquet sha256 per part in
+`DZIENNIK.md` §9 (p01 `6b274a3e…`, p08 `b6941ee4…`). Contract test: 1 passed in every part. `src/check.py`: 5–140
+lines per part, only the two expected causes (Presidio rescan finds numbers as `[PHONE]`, no presidio record).
+
 Review (`wyniki/przeglad_1.json`; 841 positions: up to 100 dropped per reason and 300 kept; two independent reviewers
 A and B; false-drop thresholds ≤ 10% and Wilson 95% upper bound ≤ 20%; for `pii` and `mojibake` the reviewers also
 saw every detector match with ±300 characters of the full text, `skrypty/trafienia_probki.py`):

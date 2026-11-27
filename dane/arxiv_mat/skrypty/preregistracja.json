@@ -149,5 +149,11 @@
   },
   "filtr_budowy": "próbka 40 na powód (robocze/przeglad/oceny_filtra_budowy.json, jeden recenzent): A1_licencja 40/40 trafne (licencja pusta = domyślna arXiv / brak), A1_pusty 40/40",
   "dedup_fineweb_edu_109": "poza kaskadą zgodnie z odstepstwa_od_infiwebmath4 (źródło nie jest stroną WWW); url https://arxiv.org/abs/<id> sprawdzany wobec FineMath-4+ i InfiWebMath-4+ (2 + 2 trafienia)"
+ },
+ "aneks_2026_11_27_resztki": {
+  "zapisano": "2026-11-27 ok. 00:30, PO pierwszym eksporcie i wysyłce 8 części, PRZED ich udostępnieniem komukolwiek (repo gated, dostęp tylko właścicielki); części z resztkami wyeksportowane i wysłane ponownie",
+  "powod": "resztki_email.py na 8 wyeksportowanych plikach (robocze/logi/resztki_email_eksport.json): 232 dok. z trafieniem szerokiego wzorca, z czego 7 adresów osób (7 dok.) w formach bez '@': 'nazwa [at] domena dot com', 'nazwa{at}gmail.com', 'nazwa{at}gmail{dot}com', 'imie.nazwisko AT\\ndomena.fr', 'imie.nazwisko at\\nsns.it'; reszta: 'available at\\ngithub.com', same domeny '@uni.edu' bez nazwy, dekoratory '@numba.jit'",
+  "regula": "premask_emails(wrapped=True) dodatkowo: EMAIL_OBF (nazwa + '{at}'/'[at]'/'(at)' + domena z kropką, '{dot}' albo ' dot ' i końcówką z listy TLD) i EMAIL_AT_NL (nazwa z '.' lub '_' + ' at'/' AT' + nowy wiersz + domena z TLD, nie adres URL z '/')",
+  "skutek": "zmienione części: p03 (2 adresy), p06 (1), p07 (2), p08 (2); p01, p02, p04, p05 bez zmian (sprawdzone porównaniem tekstu przed i po masce, robocze/tmp/zmiany_maski.py)"
  }
 }
