@@ -69,6 +69,12 @@ _OBF_TLD = r"(?:com|org|net|edu|gov|info|io|de|uk|fr|ch|it|ac|au|nz|ca|jp|nl|be|
 EMAIL_OBF = re.compile(r"[A-Za-z0-9._%+-]+ ?[\{\[\(] ?(?:at|AT) ?[\}\]\)] ?([A-Za-z0-9-]+(?:(?: ?[\{\[\(] ?(?:dot|DOT) ?[\}\]\)] ?|\.| dot | DOT )[A-Za-z0-9-]+)*(?: ?[\{\[\(] ?(?:dot|DOT) ?[\}\]\)] ?|\.| dot | DOT )"
                        + _OBF_TLD + ")")
 EMAIL_AT_NL = re.compile(r"[A-Za-z0-9%+-]*[._][A-Za-z0-9._%+-]+ (?:at|AT)\n([A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\." + _OBF_TLD + r")(?![/\w.])")
+# full residue scan after the 27.11 re-export (27.11, second annex): logins without '.' wrapped after a lowercase "at":
+# "login at\ngmail dot com", "login at\ngmail.com"; narrow on purpose: the domain is a mail provider, or is spelled with
+# " dot " (prose like "available at\ngithub.com" or "contributors at\nmathoverflow.net" is left alone)
+_MAIL_HOSTS = r"(?:gmail|googlemail|yahoo|ymail|hotmail|outlook|live|msn|icloud|aol|gmx|protonmail|proton|yandex|mail|qq|163|126|sina|web|t-online|orange|free|libero|naver|hanmail|rediffmail|zoho)"
+EMAIL_AT_NL_MAIL = re.compile(r"(?:[A-Za-z0-9._%+-]+ dot )*[A-Za-z0-9._%+-]+ at\n(" + _MAIL_HOSTS + r"(?:\.| dot )[a-z]{2,3}(?:(?:\.| dot )[a-z]{2})?\b(?![/\w])"
+                              r"|[A-Za-z0-9-]+(?: dot [A-Za-z0-9-]+)* dot " + _OBF_TLD + ")")
 
 
 def _mask_emails(text: str, bare_at: bool = False, wrapped: bool = False) -> tuple[str, int]:
@@ -87,7 +93,7 @@ def _mask_emails(text: str, bare_at: bool = False, wrapped: bool = False) -> tup
             text = EMAIL_BRACED.sub(sub, text)
         text = EMAIL_WRAPPED.sub(sub, text)
     if wrapped:
-        text = EMAIL_AT_NL.sub(sub, EMAIL_OBF.sub(sub, text))
+        text = EMAIL_AT_NL_MAIL.sub(sub, EMAIL_AT_NL.sub(sub, EMAIL_OBF.sub(sub, text)))
     text = EMAIL_AT.sub(sub, EMAIL.sub(sub, text))
     return (EMAIL_SPACE_TLD.sub(sub, EMAIL_DASH_AT.sub(sub, EMAIL_BARE_AT.sub(sub, text))) if bare_at else text), n
 

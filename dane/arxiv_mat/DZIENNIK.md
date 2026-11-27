@@ -171,36 +171,37 @@ wiersza przed, po i w domenie, spacje wokół `@`, `@@`. Kontrole:
 |---|---|
 | Podział | [`wyniki/czesci.json`](wyniki/czesci.json) (`czesci.py`, cel 300 mln tok. v6): 8 części po ~303 mln tok. v6; p01–p07 pełne teksty (9 034–10 104 dok.), p08 reszta prac i wszystkie abstrakty (535 098 dok.). Mniejsze niż ~1 mld w innych źródłach: `shard.write` i `check.py` liczą tokeny całej części w pamięci (proces eksportu p08: ~12 GB RSS) |
 | Key | `arxiv_math_en`; datasheet [`eksport/arxiv_math_en.md`](eksport/arxiv_math_en.md); wpis w `../matematyka-wspolne/eksport/src/sources.py` (licencja per wiersz); skrypt `../matematyka-wspolne/eksport/src/clean_arxiv_math_en.py` (commity `14f44f4`, `5b2d407`): `premask_emails(..., wrapped=True)` przed `shard.write`, Presidio wyłączone (`no_masking(emails=True)`) |
-| Eksport | `../matematyka-wspolne/skrypty/eksport_czesci.sh arxiv_mat robocze/czesci robocze/eksport` (`robocze/logi/eksport.log`, `KONIEC 8`, 26.11 22:36–23:55; p03, p06, p07, p08 ponownie po aneksie 27.11, `robocze/logi/eksport2.log`, 27.11 00:30–01:20): **599 703 dok.**, 2 231 710 744 `token_count` (licznik repo zgłoszeń, nie v6); `dropped`: wrong_language 88 (z 599 791); zamaskowane przy eksporcie: 3 719 adresów (`stats.json` `pii.counts.pii`) |
+| Eksport | `../matematyka-wspolne/skrypty/eksport_czesci.sh arxiv_mat robocze/czesci robocze/eksport` (`robocze/logi/eksport.log`, `KONIEC 8`, 26.11 22:36–23:55; p03, p06, p07, p08 ponownie po aneksie 27.11, `eksport2.log`, 00:30–01:20; p02, p03, p04, p06, p08 ponownie po aneksie 27.11 nr 2, `eksport3.log`): **599 703 dok.**, 2 231 710 716 `token_count` (licznik repo zgłoszeń, nie v6); `dropped`: wrong_language 88 (z 599 791); zamaskowane przy eksporcie: 3 724 adresy (`stats.json` `pii.counts.pii`) |
 
 | część | dok. | `token_count` | wrong_language | sha256 | linie `check.py` |
 |---|---|---|---|---|---|
 | `arxiv_math_en_p01` | 10 094 | 278 854 233 | 10 | `6b274a3e0c8be034e97fad7d200178c65841dfda924816044ad9fd85a6752adb` | 115 |
-| `arxiv_math_en_p02` | 9 063 | 279 289 780 | 7 | `861b048dc5906e0692c401ee5d2acb344e458d9ec237299316a6691290030828` | 116 |
-| `arxiv_math_en_p03` | 9 257 | 279 490 721 | 9 | `d9932714055c10abe89c35cdada0dbd395a7029020a86689d0ff757156a6fc76` | 137 |
-| `arxiv_math_en_p04` | 9 068 | 279 496 126 | 7 | `c2970a26076b8506436c1762226b8732b994a470866b928cf3e3581f9719ad84` | 127 |
+| `arxiv_math_en_p02` | 9 063 | 279 289 772 | 7 | `24cb9b143c32e3108a863cd9f1d42491e8c08de880fe845894c9d7ed9332f655` | 116 |
+| `arxiv_math_en_p03` | 9 257 | 279 490 716 | 9 | `81640d0ad5fcd752559e5d4096586c43d4474401335abbf92f080d9cb8be29da` | 137 |
+| `arxiv_math_en_p04` | 9 068 | 279 496 121 | 7 | `84d47945618db4753dd6f6c8338ceec1d2eeede9e84c5c115bedfedb9d008073` | 127 |
 | `arxiv_math_en_p05` | 9 100 | 279 251 299 | 9 | `930c71a692699f0356c03c69e1fa4a4db0c2b3e369bbe9b7783065d9aebd70a3` | 135 |
-| `arxiv_math_en_p06` | 9 028 | 279 871 478 | 6 | `98cdff554f494ca0ad8bf91be586339535a9087b3ac2fd20237ff19a92fb4797` | 139 |
+| `arxiv_math_en_p06` | 9 028 | 279 871 473 | 6 | `e9addecb892ffc7b3fc3ae1babdbac9929bd74d8a2981381d47afe5ddca67ab9` | 139 |
 | `arxiv_math_en_p07` | 9 025 | 279 489 431 | 10 | `1db60e067882e5fc1870a6eaa1e56459cf07d5abce041caf398164bf9c77d8d4` | 140 |
-| `arxiv_math_en_p08` | 535 068 | 275 967 676 | 30 | `b6941ee4cb4c4235cb26f59cc37d5943b4c64bc5d97a97517f163b00551fdc96` | 5 |
+| `arxiv_math_en_p08` | 535 068 | 275 967 671 | 30 | `6246ac2a8212cfea30cbbf5d57690765e3ad7f349d9b11280f018777ccbb1f3a` | 5 |
 
 ## 10. Kontrola końcowa
 
 | | |
 |---|---|
 | Test kontraktowy, `check.py` | test kontraktowy 1 passed w każdej z 8 części; `check.py` 5–140 linii na część, wyłącznie oczekiwane („PII left after masking: second pass adds ['[PHONE]']” — numery w matematyce, Presidio wyłączone; „stats.json pii has no presidio record”); `eksport_czesci.sh` przerywa przy każdej innej linii |
-| Resztki e-maili po eksporcie | `resztki_email.py robocze/eksport/pliki_eksportu.json 0 300 1` na 8 plikach parquet: 232 dok. z trafieniem szerokiego wzorca (`robocze/logi/resztki_email_eksport.json`), w tym 7 adresów osób w formach bez `@` (`[at] … dot com`, `{at}`, `AT\n`) → aneks 27.11, ponowny eksport p03, p06, p07, p08 (zmiana tylko tych 7 adresów, porównanie tekstu przed i po masce); reszta: „available at\ngithub.com”, same domeny `@uni.edu` bez nazwy, `@numba.jit`. Pełny `resztki_email.py` po ponownym eksporcie: nie uruchomiony (sprawdzone tylko 7 znanych adresów i brak innych zmian) |
+| Resztki e-maili po eksporcie (pierwszy eksport) | `resztki_email.py robocze/eksport/pliki_eksportu.json 0 300 1` na 8 plikach parquet: 232 dok. z trafieniem szerokiego wzorca (`robocze/logi/resztki_email_eksport.json`), w tym 7 adresów osób w formach bez `@` (`[at] … dot com`, `{at}`, `AT\n`) → aneks 27.11, ponowny eksport p03, p06, p07, p08 (zmiana tylko tych 7 adresów, porównanie tekstu przed i po masce); reszta: „available at\ngithub.com”, same domeny `@uni.edu` bez nazwy, `@numba.jit`. Pełny `resztki_email.py` po ponownym eksporcie: nie uruchomiony (sprawdzone tylko 7 znanych adresów i brak innych zmian) |
+| Resztki e-maili po aneksach 27.11 (pełny `resztki_email.py` na 8 częściach) | po aneksie nr 1: 225 dok. z trafieniem (`robocze/logi/resztki_email_eksport_po_aneksie.log`), w tym 5 adresów `login at\ngmail dot com` → aneks nr 2; po aneksie nr 2: **220 dok.** (`robocze/logi/resztki_email_eksport_po_aneksie2.json`; p01 26, p02 25, p03 32, p04 30, p05 29, p06 21, p07 19, p08 38), wszystkie przejrzane przykłady bez nazwy osoby: proza „available at\ngithub.com”, „tz at\nwww.uhasselt.be” (adres strony), same domeny `@uni.edu`, `@numba.jit`; skan puli: 0 dok. z nazwą lokalną przed `@domena` |
 | Niezależny agent na pliku o tym samym sha256 | nie zmierzono (kontrola skryptem: 26 części `data/` = 26 bliźniaków `tokenized/slayer-v6/`, `dokumenty` = wiersze parquetu, `zrodlo_sha256` = sha256 LFS, 27.11) |
 
 ## 11. Wysyłka
 
 Repo `Lolita67/matematyka-kod-en-robocze` (gated manual), `data/arxiv_math_en_p01..p08/` (parquet, datasheet części, `stats.json`),
-commity HF `712be5ab` (p01–p04), `7eed66e6` (p05–p07), `8a16f958` (p08), po aneksie 27.11 `1fecb954` (p03, p06, p07, p08 zastąpione; sha256 `d9932714…`, `98cdff55…`, `1db60e06…`, `b6941ee4…`); sha256 LFS zgodne z `robocze/eksport/<k>/<k>.sha256` w 8/8
+commity HF `712be5ab` (p01–p04), `7eed66e6` (p05–p07), `8a16f958` (p08), po aneksie 27.11 `1fecb954` (p03, p06, p07, p08 zastąpione), po aneksie 27.11 nr 2 `cd727d60` (p02, p03, p04, p06, p08 zastąpione, stare `tokenized` usunięte w tym samym commicie; sha256 w tabeli §9); sha256 LFS zgodne z `robocze/eksport/<k>/<k>.sha256` w 8/8
 (API HF); anonimowe pobranie: 401. Dostęp dla `Maggio33`: czeka na właścicielkę (Settings → Gated user access).
 
 ## 12. Dane treningowe
 
-Wersja stokenizowana `tokenized/slayer-v6/arxiv_math_en_p01..p08` (`tokenizuj_hf.py`, po 256 dok.): **599 703 dok. (= wiersze parquetów), 2 425 618 977 tokenów v6** (z EOT; o 2,36 mln mniej niż `uzysk` 2 427 980 982 przez 88 dok. odrzuconych bramką języka i maskowanie e-maili). p01, p02, p04, p05 z 27.11 ~00:00 (`robocze/logi/tokenizacja.log`); p03, p06, p07, p08 usunięte (`8763e5d7`) i stokenizowane ponownie z nowych parquetów (`tokenizacja2.log`). `zrodlo_sha256` w każdym `.json` = sha256 LFS parquetu.
+Wersja stokenizowana `tokenized/slayer-v6/arxiv_math_en_p01..p08` (`tokenizuj_hf.py`, po 256 dok.): **599 703 dok. (= wiersze parquetów), 2 425 618 929 tokenów v6** (z EOT; o 2,36 mln mniej niż `uzysk` 2 427 980 982 przez 88 dok. odrzuconych bramką języka i maskowanie e-maili). p01, p02, p04, p05 z 27.11 ~00:00 (`robocze/logi/tokenizacja.log`); p03, p06, p07, p08 usunięte (`8763e5d7`) i stokenizowane ponownie z nowych parquetów (`tokenizacja2.log`). `zrodlo_sha256` w każdym `.json` = sha256 LFS parquetu.
 
 ## Historia odtworzeń
 
@@ -215,6 +216,7 @@ Wersja stokenizowana `tokenized/slayer-v6/arxiv_math_en_p01..p08` (`tokenizuj_hf
   `7eed66e6`, `8a16f958`, sha256 zgodne, anonimowo 401.
 - 27.11.2026 00:00–00:30: tokenizacja v6 8 części; `resztki_email.py` na eksporcie: 7 adresów bez `@` → `aneks_2026_11_27_resztki`.
 - 27.11.2026 00:30–01:50: ponowny eksport p03, p06, p07, p08, wysyłka `1fecb954`, ponowna tokenizacja; kontrola 26/26 części z bliźniakiem, README HF.
+- 27.11.2026 rano: pełny `resztki_email.py` (225 dok.), `aneks_2026_11_27_resztki_2`, ponowny eksport p02, p03, p04, p06, p08 (`eksport3.log`), wysyłka `cd727d60`, tokenizacja (`tokenizacja3.log`), pełny `resztki_email.py` (220 dok., 0 adresów osób), kontrola końcowa (`../matematyka-wspolne/DZIENNIK.md`).
 
 ## Pułapki tego przebiegu
 

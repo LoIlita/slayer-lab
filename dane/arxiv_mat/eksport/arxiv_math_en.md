@@ -86,9 +86,9 @@ tokens (95.89%)**: full texts 70 226 / 2 310 331 144, abstracts 529 565 / 117 64
 abstracts); smaller than the ~1 bn parts of other sources because `shard.write` and `check.py` count tokens of a whole
 part in memory and full papers are long.
 
-Export (`shard.write`, 8 parts; p03, p06, p07, p08 re-exported after annex 2026-11-27 that masks `name{at}domain`, `name [at] domain dot com`, `first.last AT\ndomain`): **599 703 docs**, 2 231 710 744 `token_count` (the submissions repo's counter, not v6);
-`dropped`: wrong_language 88. E-mail addresses masked again at export: 3 719. Tokenized (`tokenized/slayer-v6/`): 599 703 docs, 2 425 618 977 v6 tokens. Parquet sha256 per part in
-`DZIENNIK.md` §9 (p01 `6b274a3e…`, p08 `b6941ee4…`). Contract test: 1 passed in every part. `src/check.py`: 5–140
+Export (`shard.write`, 8 parts; p02, p03, p04, p06, p08 re-exported after the two annexes of 2026-11-27 that mask `name{at}domain`, `name [at] domain dot com`, `first.last AT\ndomain`, `login at\ngmail dot com`): **599 703 docs**, 2 231 710 716 `token_count` (the submissions repo's counter, not v6);
+`dropped`: wrong_language 88. E-mail addresses masked again at export: 3 724. Tokenized (`tokenized/slayer-v6/`): 599 703 docs, 2 425 618 929 v6 tokens. Parquet sha256 per part in
+`DZIENNIK.md` §9 (p01 `6b274a3e…`, p08 `6246ac2a…`). Contract test: 1 passed in every part. `src/check.py`: 5–140
 lines per part, only the two expected causes (Presidio rescan finds numbers as `[PHONE]`, no presidio record).
 
 Review (`wyniki/przeglad_1.json`; 841 positions: up to 100 dropped per reason and 300 kept; two independent reviewers
@@ -126,7 +126,7 @@ for both reviewers (5 and 2 doubtful: proceedings prefaces and applied-statistic
   `aneks_2026_11_26_przeglad` widens the export masking (`EMAIL_LATEX`, `EMAIL_BRACED`, `EMAIL_WRAPPED`): local parts
   in LaTeX math (`$name$@uni.edu`), brace or bracket lists over up to 3 lines, addresses broken by a line wrap before,
   after or inside the domain, spaces around `@`, doubled `@@`. After it: 0 addresses in the 300 kept documents and 0
-  documents in the whole pool with a local part before `@domain.tld`. What remains are bare domains whose name the
+  documents in the whole pool with a local part before `@domain.tld`; after export a full residue scan of the 8 parts leaves 220 documents with matches of the broad pattern, none of them a person's address (prose like `available at github.com`, bare domains). What remains are bare domains whose name the
   source already lost (`mailto:@uni.edu`), not personal data. The wider patterns may also mask one word before
   `\n@domain` or up to 200 characters of a `$…$` group right before `@domain`.
 - Documents with a phone number or IPv4 address (DCLM-EN detector) are dropped (`pii`): IP 1 112, phone 184 documents

@@ -155,5 +155,11 @@
   "powod": "resztki_email.py na 8 wyeksportowanych plikach (robocze/logi/resztki_email_eksport.json): 232 dok. z trafieniem szerokiego wzorca, z czego 7 adresów osób (7 dok.) w formach bez '@': 'nazwa [at] domena dot com', 'nazwa{at}gmail.com', 'nazwa{at}gmail{dot}com', 'imie.nazwisko AT\\ndomena.fr', 'imie.nazwisko at\\nsns.it'; reszta: 'available at\\ngithub.com', same domeny '@uni.edu' bez nazwy, dekoratory '@numba.jit'",
   "regula": "premask_emails(wrapped=True) dodatkowo: EMAIL_OBF (nazwa + '{at}'/'[at]'/'(at)' + domena z kropką, '{dot}' albo ' dot ' i końcówką z listy TLD) i EMAIL_AT_NL (nazwa z '.' lub '_' + ' at'/' AT' + nowy wiersz + domena z TLD, nie adres URL z '/')",
   "skutek": "zmienione części: p03 (2 adresy), p06 (1), p07 (2), p08 (2); p01, p02, p04, p05 bez zmian (sprawdzone porównaniem tekstu przed i po masce, robocze/tmp/zmiany_maski.py)"
+ },
+ "aneks_2026_11_27_resztki_2": {
+  "zapisano": "2026-11-27 rano, PO pełnym resztki_email.py na 8 częściach po aneksie 27.11 (robocze/logi/resztki_email_eksport_po_aneksie.log: 225 dok. z trafieniem), PRZED udostępnieniem (repo gated)",
+  "powod": "5 adresów osób w formie '<login> at\\n<dostawca> dot com' / '<login> at\\ngmail.com' (login bez '.' albo z ' dot '), których EMAIL_AT_NL nie łapał; reszta trafień to proza ('available at\\ngithub.com', 'contributors at\\nmathoverflow.net', 'tz at\\nwww.uhasselt.be' = adres strony), same domeny i dekoratory",
+  "regula": "EMAIL_AT_NL_MAIL: (nazwa' dot ')* nazwa + ' at' małymi literami + nowy wiersz + domena dostawcy poczty (gmail, yahoo, hotmail, outlook, … z kropką albo ' dot ') albo domena zapisana z ' dot ' i końcówką TLD; wąsko, żeby nie maskować 'available at github.com'",
+  "skutek": "porównanie tekstu przed i po masce na 8 częściach (robocze/tmp/zmiany_maski.py): zmienia się po 1 adresie w p02, p03, p04, p06, p08; p01, p05, p07 bez zmian; te 5 części wyeksportowane ponownie"
  }
 }

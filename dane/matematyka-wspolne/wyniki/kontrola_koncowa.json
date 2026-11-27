@@ -1,0 +1,300 @@
+{
+ "data": "2026-11-27",
+ "repo": "Lolita67/matematyka-kod-en-robocze",
+ "seed": 20261127,
+ "probka": "50 losowych dokumentów na źródło z gotowych plików data/ (arXiv z lokalnych plików o sha256 równym LFS), jedno niezależne wywołanie modelu 'slow' na dokument (do 6000 znaków)",
+ "ocena": {
+  "finemath_4plus_en": {
+   "n": 50,
+   "jakosc": {
+    "watpliwy": 15,
+    "tak": 32,
+    "nie": 3
+   },
+   "pii": {
+    "nie": 50
+   },
+   "uwagi_nie_tak_pii": [
+    {
+     "id": "crawl-data/CC-MAIN-2022-33/segments/1659882571536.89/warc/CC-MAIN-20220811224716-20220812014716-00311.warc.gz:443258652",
+     "jakosc": "nie",
+     "pii": "nie",
+     "uwaga": "To strona spamowa nastawiona na SEO: urywki wzorów na naprężenie przewodu powtarzają się i przeplatają z przypadkowymi nagłówkami i frazami kluczowymi bez związku z tematem, więc nie nadaje się do nauki."
+    },
+    {
+     "id": "crawl-data/CC-MAIN-2021-39/segments/1631780057496.18/warc/CC-MAIN-20210924020020-20210924050020-00302.warc.gz:950060510",
+     "jakosc": "nie",
+     "pii": "nie",
+     "uwaga": "Dokument to powtarzalna lista zapowiedzi wpisów blogowych o łamigłówkach Anti-King Sudoku, bez samych diagramów i rozwiązań, a jedyną treścią merytoryczną jest wielokrotnie skopiowany opis zasad."
+    },
+    {
+     "id": "crawl-data/CC-MAIN-2022-27/segments/1656103341778.23/warc/CC-MAIN-20220627195131-20220627225131-00737.warc.gz:575633888",
+     "jakosc": "nie",
+     "pii": "nie",
+     "uwaga": "To strona reklamowa StudySoup z treścią zadania, ale bez rozwiązania (krok rozwiązania jest niezwiązany z zadaniem), z dużą ilością szablonowego spamu i nawigacji."
+    }
+   ]
+  },
+  "formal_math": {
+   "n": 50,
+   "jakosc": {
+    "tak": 50
+   },
+   "pii": {
+    "nie": 50
+   },
+   "uwagi_nie_tak_pii": []
+  },
+  "infiwebmath_4plus_en": {
+   "n": 50,
+   "jakosc": {
+    "tak": 34,
+    "nie": 2,
+    "watpliwy": 14
+   },
+   "pii": {
+    "nie": 50
+   },
+   "uwagi_nie_tak_pii": [
+    {
+     "id": "<urn:uuid:097b1cc2-1719-4dda-9508-7f5e387808bb>",
+     "jakosc": "nie",
+     "pii": "nie",
+     "uwaga": "To przemielony tekst SEO, który reklamuje pobieranie podręczników w PDF i ma wstawione losowe słowa („pdf”, „agrawal”, „download”), elementy nawigacji i błędy merytoryczne, a do tego nie zawiera żadnych zadań ani rozwiązań, a adres e-mail jest już ukryty jako „[email protected]”."
+    },
+    {
+     "id": "<urn:uuid:5b1dcba7-1974-4c16-9b3d-0f13b56494f6>",
+     "jakosc": "nie",
+     "pii": "nie",
+     "uwaga": "Tekst to chaotyczna, nafaszerowana słowami kluczowymi zbitka urwanych fragmentów o obliczaniu przepływu pomp tłokowych, z uciętymi liczbami i zdaniami, mimo że pojawia się kilka wzorów."
+    }
+   ]
+  },
+  "oeis_en": {
+   "n": 50,
+   "jakosc": {
+    "tak": 50
+   },
+   "pii": {
+    "nie": 50
+   },
+   "uwagi_nie_tak_pii": []
+  },
+  "open_textbooks_math_en": {
+   "n": 50,
+   "jakosc": {
+    "tak": 41,
+    "watpliwy": 8,
+    "nie": 1
+   },
+   "pii": {
+    "nie": 50
+   },
+   "uwagi_nie_tak_pii": [
+    {
+     "id": "https://math.libretexts.org/Bookshelves/Arithmetic_and_Basic_Math/Basic_Math_(Grade_6)/03%3A_Unit_Rates_and_Percentages/17%3A_Rates",
+     "jakosc": "nie",
+     "pii": "nie",
+     "uwaga": "Dokument to wyłącznie nawigacja strony LibreTexts, metadane i artefakty szablonu MindTouch, bez żadnej treści matematycznej o stawkach jednostkowych."
+    }
+   ]
+  },
+  "stack_edu_python": {
+   "n": 50,
+   "jakosc": {
+    "tak": 48,
+    "watpliwy": 1,
+    "nie": 1
+   },
+   "pii": {
+    "nie": 49,
+    "tak": 1
+   },
+   "uwagi_nie_tak_pii": [
+    {
+     "id": "60ade30e59f4c6fbd67a4cd1d75491ddfeb46ca8",
+     "jakosc": "tak",
+     "pii": "tak",
+     "uwaga": "Sensowny kod narzędziowy w Pythonie 2 do generowania danych symulowanych i obsługi konfiguracji, ale w nagłówku licencji widać zaciemniony adres e-mail konkretnej osoby zapisany z użyciem '_at_'."
+    },
+    {
+     "id": "d141ad8b02fe9a0a726da750820b72f15260c63a",
+     "jakosc": "nie",
+     "pii": "nie",
+     "uwaga": "Rozwiązanie zadania o odtwarzaniu adresów IP ma usunięte cudzysłowy, przez co wyrażenie `..join` jest błędem składni, a porównania z 0 i 255 dają błędne wyniki, więc kod się nie uruchamia i nie ma w nim danych osobowych."
+    }
+   ]
+  },
+  "stackexchange_math": {
+   "n": 50,
+   "jakosc": {
+    "tak": 49,
+    "watpliwy": 1
+   },
+   "pii": {
+    "nie": 50
+   },
+   "uwagi_nie_tak_pii": []
+  },
+  "wikipedia_math_en": {
+   "n": 50,
+   "jakosc": {
+    "tak": 50
+   },
+   "pii": {
+    "nie": 50
+   },
+   "uwagi_nie_tak_pii": []
+  },
+  "arxiv_math_en": {
+   "n": 50,
+   "jakosc": {
+    "tak": 49,
+    "watpliwy": 1
+   },
+   "pii": {
+    "nie": 50
+   },
+   "uwagi_nie_tak_pii": []
+  }
+ },
+ "licencje_w_kolumnie_license": {
+  "finemath_4plus_en": {
+   "ODC-By-1.0 (FineMath compilation); page text: rights of the page owner, used under the TDM exception": 4763307
+  },
+  "formal_math": {
+   "Apache-2.0": 5878,
+   "BSD-3-Clause": 9584,
+   "LGPL-2.1-only": 814,
+   "BSD-2-Clause": 500,
+   "CC0-1.0": 618,
+   "CECILL-B": 132,
+   "LicenseRef-UniMath": 1612,
+   "MIT": 1063,
+   "GFDL-1.2-no-invariants-or-later": 189
+  },
+  "infiwebmath_4plus_en": {
+   "ODC-By-1.0 (FineMath/InfiMM-WebMath compilation); page text: rights of the page owner, used under the TDM exception": 1025440
+  },
+  "oeis_en": {
+   "CC-BY-SA-4.0": 260277
+  },
+  "open_textbooks_math_en": {
+   "GFDL-1.3-or-later": 243,
+   "CC-BY-SA-4.0": 743,
+   "CC-BY-4.0": 1686,
+   "CC-BY-3.0": 166,
+   "CC-BY-SA-3.0": 48,
+   "LicenseRef-PD": 100
+  },
+  "stack_edu_python": {
+   "wartosci": 841,
+   "atomy_spdx": [
+    "0BSD",
+    "ADSL",
+    "AFL-1.1",
+    "AFL-2.0",
+    "AFL-2.1",
+    "AFL-3.0",
+    "Apache-1.0",
+    "Apache-1.1",
+    "Apache-2.0",
+    "Artistic-2.0",
+    "BSD-1-Clause",
+    "BSD-2-Clause",
+    "BSD-2-Clause-Patent",
+    "BSD-2-Clause-Views",
+    "BSD-3-Clause",
+    "BSD-3-Clause-Clear",
+    "BSD-3-Clause-LBNL",
+    "BSD-3-Clause-Modification",
+    "BSD-3-Clause-Open-MPI",
+    "BSD-4-Clause",
+    "BSD-4-Clause-UC",
+    "BSD-Source-Code",
+    "BSL-1.0",
+    "BlueOak-1.0.0",
+    "CC0-1.0",
+    "CNRI-Python",
+    "Cube",
+    "ECL-2.0",
+    "FTL",
+    "ICU",
+    "ISC",
+    "ImageMagick",
+    "Intel",
+    "JasPer-2.0",
+    "LPPL-1.3c",
+    "Libpng",
+    "Linux-OpenIB",
+    "MIT",
+    "MIT-0",
+    "MIT-CMU",
+    "MIT-Modern-Variant",
+    "MIT-Wu",
+    "MIT-advertising",
+    "MIT-feh",
+    "MIT-open-group",
+    "MITNFA",
+    "MS-PL",
+    "MTLL",
+    "MulanPSL-1.0",
+    "Multics",
+    "NCSA",
+    "NICTA-1.0",
+    "NIST-Software",
+    "NTP",
+    "Net-SNMP",
+    "NetCDF",
+    "OGL-Canada-2.0",
+    "OLDAP-2.8",
+    "OML",
+    "OpenSSL",
+    "PHP-3.01",
+    "PSF-2.0",
+    "Plexus",
+    "PostgreSQL",
+    "Python-2.0",
+    "Ruby",
+    "SGI-B-2.0",
+    "SMLNJ",
+    "SWL",
+    "SunPro",
+    "TCL",
+    "UPL-1.0",
+    "Unicode-DFS-2016",
+    "Unlicense",
+    "VSL-1.0",
+    "W3C",
+    "X11",
+    "XFree86-1.1",
+    "Xnet",
+    "ZPL-2.0",
+    "ZPL-2.1",
+    "Zlib",
+    "bzip2-1.0.6",
+    "curl",
+    "eGenix",
+    "xlock",
+    "xpp",
+    "zlib-acknowledgement"
+   ]
+  },
+  "stackexchange_math": {
+   "CC-BY-SA-2.5": 17914,
+   "CC-BY-SA-3.0": 875250,
+   "CC-BY-SA-4.0": 721741
+  },
+  "wikipedia_math_en": {
+   "CC-BY-SA-4.0": 6762
+  },
+  "arxiv_math_en": {
+   "CC-PDDC": 459,
+   "CC-BY-SA-4.0": 3690,
+   "CC-BY-3.0": 1702,
+   "CC-BY-4.0": 60348,
+   "CC0-1.0": 533504
+  }
+ },
+ "nc_nd": 0
+}
