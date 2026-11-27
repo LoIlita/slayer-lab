@@ -8,7 +8,7 @@ Dzienniki źródeł: [FineMath-4+](../finemath4/DZIENNIK.md), [Stack-Edu](../sta
 ## Stan końcowy (27.11.2026)
 
 Repo HF `Lolita67/math-code-en` (gated manual, anonimowo 401; do 27.11 `Lolita67/matematyka-kod-en-robocze`, stary adres
-przekierowuje 307): **11 810 524 dok., 17 018 594 648 tokenów v6** w 26 częściach `data/<klucz>_pNN/` (parquet) i 26 bliźniakach
+przekierowuje 307): **11 810 524 dok., 17 018 594 621 tokenów v6** w 26 częściach `data/<klucz>_pNN/` (parquet) i 26 bliźniakach
 `tokenized/slayer-v6/<klucz>_pNN.{bin,json}`. Decyzja Ani (26–27.11): zbiór zostaje przy ~17 mld. README na HF po angielsku
 (kopia: [`eksport/README_hf_math-code-en.md`](eksport/README_hf_math-code-en.md)).
 
@@ -17,13 +17,32 @@ przekierowuje 307): **11 810 524 dok., 17 018 594 648 tokenów v6** w 26 częśc
 | FineMath-4+ | 7 | 4 763 307 | 6 950 748 498 |
 | Stack-Edu Python | 5 | 3 516 754 | 4 815 014 562 |
 | arXiv | 8 | 599 703 | 2 425 618 929 |
-| StackExchange | 1 | 1 614 905 | 1 297 166 546 |
+| StackExchange | 1 | 1 614 905 | 1 297 166 519 |
 | InfiWebMath-4+ | 1 | 1 025 440 | 1 138 599 522 |
 | formalna | 1 | 20 390 | 208 104 938 |
 | OEIS | 1 | 260 277 | 153 731 738 |
 | Wikipedia | 1 | 6 762 | 19 734 493 |
 | podręczniki | 1 | 2 986 | 9 875 422 |
-| **razem** | 26 | 11 810 524 | 17 018 594 648 |
+| **razem** | 26 | 11 810 524 | 17 018 594 621 |
+
+## Maska zaciemnionych e-maili w prozie (aneks 27.11 `zaciemnione_proza`): przerwana 27.11 ok. 14:50
+
+Ponowny eksport 11 części z maską `prose_obf` + `EMAIL_PERSON_EXACT` (`skrypty/remaskuj_czesc.sh`, robocze `robocze/maska27/`)
+zajmował do 36 GB RAM na część; przy kilku naraz zabrakło pamięci (swap 17,2/18,4 GB). Decyzja Ani 27.11: zbiór zostaje jak jest,
+reszta eksportu zatrzymana.
+
+| część | stan na HF | dok. zmienione maską |
+|---|---|---|
+| `data/stackexchange_math_p01` | wysłana, commit `77563ee8`, sha256 `65981af8…`; bliźniak v6 `0d23269c`: 1 297 166 519 tokenów (było 546) | 2 |
+| `mikroanneal/finemath_4plus_en` | wysłana, commit `1fbb1770`, sha256 `55fd652e…` | 352 (w tym 11 adresów osób z listy) |
+| `data/finemath_4plus_en_p01`–`p07` | stara wersja (bez tej maski) | zostaje 194 |
+| `data/infiwebmath_4plus_en_p01` | stara wersja | zostaje 9 |
+| `mikroanneal/cranemath_en` | stara wersja | zostaje 2 |
+
+Zostaje 205 z 6 298 876 dokumentów tych części (0,003%), w tym jeden adres osoby z listy `EMAIL_PERSON_EXACT` (p06); id bez
+adresów: [`wyniki/maska27_niewyslane.json`](wyniki/maska27_niewyslane.json). README HF (akapit pod „Known properties”) i datasheety
+FineMath-4+/InfiWebMath-4+/CraneMath w gicie podają ten stan. Skan po wysyłce: SE i ramię FineMath 0 adresów osób
+(`robocze/maska27/r/po_*.json`). Robocze eksporty i pobrania `robocze/maska27/` oraz `robocze/zgloszenia_maska_*` usunięte.
 
 ## Kontrola końcowa (krok 5), 27.11.2026
 

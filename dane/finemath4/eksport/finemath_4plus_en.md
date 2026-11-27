@@ -134,6 +134,10 @@ not combine them in training.
   by a second pass over a reviewed list of exact person addresses (`EMAIL_PERSON_EXACT`) that the patterns leave.
   Documents are kept; ids, order and all other columns are unchanged, `token_count` changes only where the text did.
   Phrases such as `more at site.com` and addresses of mailing lists and roles (e.g. `R-help at r-project.org`) remain.
+  Published status in `Lolita67/math-code-en`: applied to `mikroanneal/finemath_4plus_en` (part 1, 352 documents
+  changed, HF commit `1fbb1770`). **Not applied** to the published part 2 (`data/finemath_4plus_en_p01`–`p07`): the
+  re-export was stopped on 2026-11-27 (out of memory); 194 of its 4 763 307 documents keep such an address, ids in
+  `dane/matematyka-wspolne/wyniki/maska27_niewyslane.json`.
 - Our filters drop the whole document when it contains an e-mail address, phone number or IPv4 address (`pii`), an
   obfuscated e-mail such as `name(AT)domain` (`pii_zaciemniony`) or `name at domain.tld` (`pii_at_bez_nawiasow`).
   This is the only PII protection. Detector classes in the part 2 pool: e-mail 116 352, phone 20 396, IP 16 956.

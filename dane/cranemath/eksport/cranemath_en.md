@@ -129,6 +129,9 @@ if arm C wins. One missed-test flag (AMC 10B 2015, not in our MATH test by grep)
   by a second pass over a reviewed list of exact person addresses (`EMAIL_PERSON_EXACT`) that the patterns leave.
   Documents are kept; ids, order and all other columns are unchanged, `token_count` changes only where the text did.
   Phrases such as `more at site.com` and addresses of mailing lists and roles (e.g. `R-help at r-project.org`) remain.
+  Published status in `Lolita67/math-code-en`: **not applied** to `mikroanneal/cranemath_en` (re-export stopped on
+  2026-11-27, out of memory); 2 of its 510 129 documents keep such an address, ids in
+  `dane/matematyka-wspolne/wyniki/maska27_niewyslane.json`.
 - Our filters drop the whole document when `text` contains an e-mail address, phone number or IPv4 address (`pii`),
   or an obfuscated e-mail such as `name(AT)domain` (`pii_zaciemniony`). This is the only PII protection. Rewriting
   removes most headers and signatures; author names may remain. `original_text` is not exported.

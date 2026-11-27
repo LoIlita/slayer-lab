@@ -118,6 +118,9 @@ threshold). Accepted (annex 2026-11-25e): junk (SEO spam, pages without mathemat
   by a second pass over a reviewed list of exact person addresses (`EMAIL_PERSON_EXACT`) that the patterns leave.
   Documents are kept; ids, order and all other columns are unchanged, `token_count` changes only where the text did.
   Phrases such as `more at site.com` and addresses of mailing lists and roles (e.g. `R-help at r-project.org`) remain.
+  Published status in `Lolita67/math-code-en`: **not applied** to `data/infiwebmath_4plus_en_p01` (re-export stopped
+  on 2026-11-27, out of memory); 9 of its 1 025 440 documents keep such an address, ids in
+  `dane/matematyka-wspolne/wyniki/maska27_niewyslane.json`.
 - Our filters drop the whole document when it contains an e-mail address, phone number or IPv4 address (`pii`), an
   obfuscated e-mail such as `name(AT)domain` (`pii_zaciemniony`) or `name at domain.tld` (`pii_at_bez_nawiasow`).
   This is the only PII protection. Detector classes in the pool: e-mail 83 361, phone 14 053, IP 15 457.

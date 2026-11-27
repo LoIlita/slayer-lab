@@ -20,7 +20,7 @@ W=$REPO/dane/matematyka-wspolne
 RW=$W/robocze
 PY=$RW/venv/bin/python
 EXPY=${EXPY:-$REPO/dane/pr-zgloszenia/venv/bin/python}
-Z=$RW/zgloszenia_maska_$BASE
+Z=$RW/zgloszenia_maska_$K
 mkdir -p "$Z" "$OUT"
 rsync -a --delete --exclude data --exclude .git "$RW/zgloszenia/" "$Z/"
 cp -R "$W/eksport/." "$Z/"
@@ -30,6 +30,8 @@ fi
 find "$Z/data" -mindepth 1 -maxdepth 1 -type d -exec rm -rf {} +
 mkdir -p "$Z/data/$K"
 cp "$SHEET" "$Z/data/$K/$K.md"
+# synthetic sources (CraneMath): check.py needs the generation prompts next to the part (unchanged, not re-sent)
+if [ -d "$W/eksport/data/$K/prompts" ]; then cp -R "$W/eksport/data/$K/prompts" "$Z/data/$K/"; fi
 (cd "$Z" && /usr/bin/nice -n 10 "$EXPY" src/reexport_masked.py "$OLD" "$OLDS" "$K")
 (cd "$Z" && MAT_KEY=$K "$EXPY" -m pytest "src/test_${BASE}_contract.py" src/test_mask_prose.py -q)
 (cd "$Z" && "$EXPY" src/check.py --source "$K" > "$Z/data/$K/$K.check.txt") || true

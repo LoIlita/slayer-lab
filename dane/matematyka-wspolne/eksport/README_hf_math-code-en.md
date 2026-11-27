@@ -55,7 +55,7 @@ configs:
 # Math & Code (English)
 
 English mathematics, mathematical logic and Python code for (continued) pre-training of language models:
-**11 810 524 documents, 17 018 594 648 tokens** (Slayer v6 tokenizer). Every document is available as text
+**11 810 524 documents, 17 018 594 621 tokens** (Slayer v6 tokenizer). Every document is available as text
 (`data/`, for any model and tokenizer) and pre-tokenized for the Slayer trainer (`tokenized/slayer-v6/`).
 Built by SlayerLab (issues [#346](https://github.com/slayerlabs/benchmarks-fabryka-ai/issues/346),
 [#357](https://github.com/slayerlabs/benchmarks-fabryka-ai/issues/357)); source cards, preregistered filtering rules,
@@ -71,13 +71,13 @@ Access is gated (manual approval).
 | FineMath-4+ web pages with mathematics (`finemath_4plus_en`; `HuggingFaceTB/finemath@e92b25a6`) | 7 | 4 763 307 | 6 950 748 498 | ODC-By (compilation); page text used under the EU text-and-data-mining exception (Art. 4 DSM Directive) |
 | Stack-Edu Python files (`stack_edu_python`; `common-pile/stackv2_edu_filtered@c354dbe8`, files 0073–0084) | 5 | 3 516 754 | 4 815 014 562 | per file, permissive licences only (Blue Oak list: MIT, Apache-2.0, BSD, …) |
 | arXiv mathematics, statistics, logic, theoretical CS: openly licensed full texts + abstracts (`arxiv_math_en`; `common-pile/arxiv_papers@963fe980`, `common-pile/arxiv_abstracts@828e35d1`) | 8 | 599 703 | 2 425 618 929 | full texts CC BY 4.0 / 3.0, CC BY-SA 4.0, CC0, public domain (arXiv default licence excluded); abstracts CC0 |
-| StackExchange math, MathOverflow, cstheory, stats, cs, scicomp, … (`stackexchange_math`; `common-pile/stackexchange@5ec3aa2e`, questions before 2022-12-01) | 1 | 1 614 905 | 1 297 166 546 | CC BY-SA (per post) |
+| StackExchange math, MathOverflow, cstheory, stats, cs, scicomp, … (`stackexchange_math`; `common-pile/stackexchange@5ec3aa2e`, questions before 2022-12-01) | 1 | 1 614 905 | 1 297 166 519 | CC BY-SA (per post) |
 | InfiWebMath-4+ web pages not in FineMath-4+ (`infiwebmath_4plus_en`; `HuggingFaceTB/finemath@e92b25a6`) | 1 | 1 025 440 | 1 138 599 522 | ODC-By (compilation); page text under the TDM exception |
 | Formal mathematics: Lean mathlib4, Isabelle AFP, HOL Light, Metamath, Rocq, math-comp, UniMath, Agda, Stacks (`formal_math`; revisions before AI-assisted commits) | 1 | 20 390 | 208 104 938 | per file: Apache-2.0, BSD, MIT, LGPL, CC0, GFDL, CeCILL-B |
 | OEIS sequences as text (`oeis_en`; `oeis/oeisdata@976b0c73`) | 1 | 260 277 | 153 731 738 | CC BY-SA 4.0 |
 | Wikipedia and Wikibooks mathematics articles (`wikipedia_math_en`; `common-pile/wikimedia@781b263a`) | 1 | 6 762 | 19 734 493 | CC BY-SA 4.0 |
 | Open mathematics and statistics textbooks: LibreTexts, PressBooks (`open_textbooks_math_en`; OpenStax-derived chapters excluded) | 1 | 2 986 | 9 875 422 | per row: CC BY 4.0 / 3.0, CC BY-SA 4.0 / 3.0, GFDL-1.3, public domain |
-| **total** | 26 | **11 810 524** | **17 018 594 648** | |
+| **total** | 26 | **11 810 524** | **17 018 594 621** | |
 
 Tokens (v6) = tokens of the text plus one `<|endoftext|>` per document, exactly as stored in `tokenized/slayer-v6/`.
 Parts `pNN` are disjoint slices of one filtered pool per source, in pool order. Every part directory has a datasheet
@@ -148,6 +148,12 @@ Final check of the published files (`dane/matematyka-wspolne/wyniki/kontrola_kon
 Known properties: FineMath-4+ and InfiWebMath-4+ contain ~5–10% junk (SEO pages, pages without formulas); no extra
 quality classifier was applied. arXiv texts keep LaTeXML/Trafilatura conversion artefacts (glued footnote marks,
 `~{}`, `[?]`); formulas are LaTeX in `$…$`.
+
+Obfuscated e-mails in prose (`name at domain dot com`, `name_at_domain.edu`, `name{at}domain`) are masked as `[PII]`
+in arXiv, Stack-Edu, StackExchange and `mikroanneal/finemath_4plus_en` (re-export of 2026-11-27). The parts
+`data/finemath_4plus_en_p01`–`p07`, `data/infiwebmath_4plus_en_p01` and `mikroanneal/cranemath_en` were published
+before that mask: 205 of their 6 298 876 documents (0.003%) still contain such an address. Their ids are listed in
+`dane/matematyka-wspolne/wyniki/maska27_niewyslane.json`; drop those documents if this matters for your use.
 
 ## Licences and commercial use
 
