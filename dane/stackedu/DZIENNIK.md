@@ -294,8 +294,45 @@ Skan po eksporcie: 4 trafienia, żadne nie jest adresem do zamaskowania — dome
 testów i dokumentacji oraz zagadka „bram.dejong at domain.com where domain in gmail” (publiczny autor biblioteki). **Stack-Edu po
 aneksie: 3 516 754 pliki, 4 815 014 562 tokeny v6.**
 
-Nienaprawione: ramię `mikroanneal/stack_edu_python` (część 1, 180 275 plików, podzbiór `data/`): skan pokazuje te same formy
-(pliki: `_at_` 7, `<at>` 4, `at … dot` 65, `AT` 6, `x.y at` 9) — do decyzji (ponowny eksport ramienia albo usunięcie z repo).
+### Ramię `mikroanneal/stack_edu_python` po aneksie (27.11)
+
+Skan ramienia (część 1, 180 275 plików, podzbiór `data/`) przed naprawą pokazał te same formy (pliki: `_at_` 7, `<at>` 4,
+`at … dot` 65, `AT` 6, `x.y at` 9). Decyzja (delegowana przez Anię): ramię przebudowane z już zamaskowanych części `data/` po tych
+samych id, żeby ramię i `data/` były spójne. Wszystkie 180 275 id ramienia są w `stack_edu_python_p01` (0 w p02–p05).
+
+- Przebudowa: [`../matematyka-wspolne/skrypty/przebuduj_ramie.py`](../matematyka-wspolne/skrypty/przebuduj_ramie.py), wynik
+  [`wyniki/mikroanneal_aneks.json`](wyniki/mikroanneal_aneks.json) (bez przykładów; z przykładami sprzed maski
+  `robocze/mikroanneal_aneks.json`, poza gitem). Wejścia: ramię z HF (sha256 `4ccfbb8c…`), `p01` sprzed aneksu
+  (`8e0a40ab…`) i po aneksie (`a856aaf1…`, = LFS na HF). Kolumna `source` zostaje `stack_edu_python` (w częściach
+  `stack_edu_python_p01`).
+- Dowód: stare ramię = wiersze starego `p01` po id we wszystkich kolumnach poza `source`; nowe ramię: te same id w tej samej
+  kolejności, 180 275 wierszy; tekst nowy = stary po wzorcach `EMAIL_CODE_OBF` w 180 275/180 275 wierszach (0 niezgodności);
+  tekst zmieniony w **91 plikach, 109 zastąpień** (przejrzane przykłady: adresy autorów w nagłówkach copyright i polu
+  `__email__` w formie `nazwa at domena dot tld` → `[PII]`); `token_count` zmieniony tylko w tych wierszach; pozostałe kolumny
+  identyczne. Bliźniaka stokenizowanego ramię nie ma (`tokenized/` zawiera tylko części `data/`), więc bez tokenizacji.
+- Test kontraktowy 1 passed; `check.py --source stack_edu_python`: 12 linii, tylko oczekiwane (11 „PII left after masking” jak
+  przed przebudową, 1 „no presidio record”).
+- Skan po przebudowie (`robocze/skan_mikroanneal_po.json`): 0 trafień we wszystkich wzorcach
+  (także `x.y at`; brak też trafień-szablonów typu `example.com`).
+
+| ramię `stack_edu_python` | przed | po |
+|---|---|---|
+| pliki | 180 275 | 180 275 |
+| `token_count` (cl100k, `stats.json` `tokens`) | 188 819 386 | 188 818 786 |
+| znaki | 763 432 617 | 763 430 156 |
+| zamaskowane e-maile (`stats.json` pii) | 9 484 | 9 593 |
+| skan (`_at_` / `<at>` / `at … dot` / `AT` / `x.y at`, pliki) | 7 / 4 / 65 / 6 / 9 (trafienia razem 109) | 0 / 0 / 0 / 0 / 0 |
+| sha256 parquetu | `4ccfbb8c…` | `c928eaec8101cdb6d69808a2280ff613ccd4b3e2cf956568227a8e0200d2f901` |
+
+Wysyłka jednym commitem HF `872b24af` (parquet, `stats.json`, datasheet ramienia z akapitem o przebudowie, README): sha256 LFS =
+lokalny, `gated: manual`, anonimowe pobranie parquetu 401, liczba plików w repo bez zmian (149). Datasheet źródła
+[`eksport/stack_edu_python.md`](eksport/stack_edu_python.md) (akapit „Part 1”) zaktualizowany.
+
+Pozostałe ramiona tym samym skanem (`robocze/skan_mikroanneal_przed.json`): `cranemath_en`
+0 we wszystkich wzorcach; `finemath_4plus_en` (pliki): `_at_` 2, `{at}/<at>` 4, `at … dot` 28, `AT` 3, `x.y at` 54 — adresy
+osób w archiwach list dyskusyjnych, nagłówkach listów i stopkach stron (przejrzane przykłady z każdego wzorca), reguła FineMath
+`pii_zaciemniony` łapała tylko formy z nawiasami. Ramię FineMath-4+ jest podzbiorem `data/finemath_4plus_en_*`, więc te formy
+są też w `data/` [wniosek, części `data/` FineMath nie skanowane]. Bez zmian, do decyzji (dziennik wspólny).
 
 ## Historia odtworzeń
 
@@ -312,6 +349,7 @@ Nienaprawione: ramię `mikroanneal/stack_edu_python` (część 1, 180 275 plikó
 - 25.11.2026 13:11–14:40: część 2, `przebieg` 1452/1452 (`KONIEC 11818s`), `ew13`, `agreguj`: 3 629 796 / 4 956 561 831; podział na 5 części i próbka kontrolna 200 (commit `b54d108`, 14:43).
 - 25.11.2026 17:20: część 2, eksport 5 części (`KONIEC 5`): 3 516 755 plików, test kontraktowy 1 passed w każdej, `check.py` tylko oczekiwane linie (15/13/16/9/17); wysyłka w toku.
 - 25.11.2026 ok. 18:30: część 2 wysłana (commit HF `eab38143`), datasheet z nagłówkiem części, `check.py` na p04 z nowym datasheetem tylko oczekiwane linie; sha256 na HF zgodne, anonimowo 401.
+- 27.11.2026: ramię `mikroanneal/stack_edu_python` przebudowane z `p01` po aneksie (`przebuduj_ramie.py`): 91 plików zmienionych, sha256 `c928eaec…`, test kontraktowy 1 passed, `check.py` tylko oczekiwane linie (12); commit HF `872b24af`, sha256 LFS zgodne, anonimowo 401.
 
 ## Pułapki tego przebiegu
 

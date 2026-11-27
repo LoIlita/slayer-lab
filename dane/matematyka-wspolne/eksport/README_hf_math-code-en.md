@@ -137,7 +137,7 @@ Final check of the published files (`dane/matematyka-wspolne/wyniki/kontrola_kon
 |---|---|---|---|
 | FineMath-4+ | 3/50 | 15 | 0/50 |
 | InfiWebMath-4+ | 2/50 | 14 | 0/50 |
-| Stack-Edu Python | 1/50 | 1 | 1/50 before the 2026-11-27 fix (obfuscated e-mails in code headers, now masked in all 5 parts) |
+| Stack-Edu Python | 1/50 | 1 | 1/50 before the 2026-11-27 fix (obfuscated e-mails in code headers, now masked in all 5 parts and in `mikroanneal/stack_edu_python`) |
 | arXiv | 0/50 | 1 | 0/50 |
 | StackExchange | 0/50 | 1 | 0/50 |
 | formal mathematics | 0/50 | 0 | 0/50 |

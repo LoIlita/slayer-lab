@@ -1,0 +1,41 @@
+{
+ "ramie": "stack_edu_python.parquet",
+ "wiersze": 180275,
+ "trafienia_stare": {
+  "stack_edu_python_p01.parquet": 180275
+ },
+ "trafienia_nowe": {
+  "stack_edu_python_p01.parquet": 180275
+ },
+ "ramie_rowne_starym_czesciom": true,
+ "te_same_id_kolejnosc": true,
+ "kolumny_rowne": {
+  "id": true,
+  "text": false,
+  "source": true,
+  "added": true,
+  "created": true,
+  "token_count": false,
+  "license": true,
+  "author": true,
+  "language": true,
+  "text_origin": true,
+  "generator": true,
+  "derived_from": true
+ },
+ "tekst_zmieniony": 91,
+ "zastapien": 109,
+ "niezgodne_z_maska": 0,
+ "przyklady_niezgodne": [],
+ "token_count_zmieniony_poza_zmienionym_tekstem": 0,
+ "stary": {
+  "chars": 763432617,
+  "tokens": 188819386,
+  "pii_w_tekscie": 9216
+ },
+ "nowy": {
+  "chars": 763430156,
+  "tokens": 188818786,
+  "pii_w_tekscie": 9325
+ }
+}

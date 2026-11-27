@@ -41,8 +41,16 @@ Agenci recenzujący byli wcześniej masowo blokowani przez dostawcę, więc kont
 Wnioski: śmieci w FineMath-4+/InfiWebMath-4+ (6%, 4%) zgodne z przeglądami źródeł (~9–10%, cecha źródła, filtr jakości nie
 nałożony). Stack-Edu: forma `_at_` i pokrewne w nagłówkach plików nie były maskowane — naprawione aneksem 27.11 w 5 częściach `data/`
 (1 988 plików, 2 258 adresów; [`../stackedu/DZIENNIK.md`](../stackedu/DZIENNIK.md), „Aneks 27.11”); po eksporcie skan: 0 adresów do
-maskowania. Formalna matematyka: 0 tych form. Otwarte: ramię `mikroanneal/stack_edu_python` (część 1) ma te same formy (~90 plików).
-Liczby w tabeli wyżej są po aneksie (twin check 26/26 powtórzony po wysyłce Stack-Edu).
+maskowania. Formalna matematyka: 0 tych form. Liczby w tabeli wyżej są po aneksie (twin check 26/26 powtórzony po wysyłce
+Stack-Edu).
+
+Ramiona `mikroanneal/` (27.11, skan `skan_zaciemnione.py`, pliki z trafieniem `_at_` / `<at>` / `at … dot` / `AT` / `x.y at`):
+
+| ramię | przed | po | zmiana |
+|---|---|---|---|
+| `stack_edu_python` (180 275 plików) | 7 / 4 / 65 / 6 / 9 | 0 / 0 / 0 / 0 / 0 | przebudowane z `data/stack_edu_python_p01` po aneksie, te same id i kolejność; 91 plików, 109 adresów → `[PII]`; commit HF `872b24af` ([`../stackedu/DZIENNIK.md`](../stackedu/DZIENNIK.md), „Ramię `mikroanneal/stack_edu_python` po aneksie”) |
+| `cranemath_en` | 0 / 0 / 0 / 0 / 0 | — | bez zmian |
+| `finemath_4plus_en` | 2 / 4 / 28 / 3 / 54 | — | bez zmian, **otwarte**: adresy osób w archiwach list i stopkach stron (reguła `pii_zaciemniony` łapała tylko formy z nawiasami); ramię jest podzbiorem `data/finemath_4plus_en_*`, więc te formy są też w `data/` [wniosek, `data/` FineMath nie skanowane] — do decyzji (maska w eksporcie FineMath-4+ jak w Stack-Edu albo usunięcie dokumentów) |
 
 ## Sprzątanie dysku (27.11.2026)
 

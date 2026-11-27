@@ -122,10 +122,15 @@ a `connect` call), FAIL of the 0 threshold → rule `haslo_w_kodzie` (annex 2026
 
 **Part 1 (historical, microanneal arm D).** Pool `stack-edu-0080.json.gz` only (639 779 rows, 988 588 081 v6
 tokens), same rules; kept 321 688 docs / 439 111 541 v6 tokens (44.418%); export target 250M v6 tokens: 186 072
-docs selected, exported **180 275 docs, 188 819 386 tokens (cl100k)**, `wrong_language` 5797, 9 484 e-mails masked;
+docs selected, exported 180 275 docs, 188 819 386 tokens (cl100k), `wrong_language` 5797, 9 484 e-mails masked;
 key `stack_edu_python`, parquet sha256 `4ccfbb8c3e483192545a2264cb813c88d21bfd5e4f9abd5b525884fdeadd2d83`; positive
 control 22/22 (`wyniki/kontrola.json`). File 0080 is also in part 2's pool and `dedup_wewnatrz` runs over the whole
-pool, so part 1 is a subset of part 2: do not train on both.
+pool, so part 1 is a subset of part 2: do not train on both. Rebuilt 2026-11-27 after annex
+`aneks_2026_11_27_zaciemnione`: the same ids in the same order taken from the re-exported `stack_edu_python_p01`
+(`source` kept as `stack_edu_python`; `matematyka-wspolne/skrypty/przebuduj_ramie.py`, `wyniki/mikroanneal_aneks.json`):
+91 files changed (109 obfuscated addresses → `[PII]`), other columns identical except `token_count` in those rows;
+**180 275 docs, 188 818 786 tokens (cl100k)**, 9 593 e-mails masked, parquet sha256
+`c928eaec8101cdb6d69808a2280ff613ccd4b3e2cf956568227a8e0200d2f901`.
 
 ## Personal data
 
