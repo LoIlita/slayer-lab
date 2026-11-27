@@ -233,4 +233,4 @@ nie zmierzono (repo za bramką zwraca 401 anonimowo).
 
 ## Repo po scaleniu (26.11)
 
-`Lolita67/cranemath_en-robocze` usunięte 26.11. Ten sam plik parquet (sha256 LFS zgodny) leży w `Lolita67/matematyka-kod-en-robocze`, katalog `mikroanneal/cranemath_en`.
+`Lolita67/cranemath_en-robocze` usunięte 26.11. Ten sam plik parquet (sha256 LFS zgodny) leży w `Lolita67/math-code-en` (do 27.11 `Lolita67/matematyka-kod-en-robocze`), katalog `mikroanneal/cranemath_en`.

@@ -154,7 +154,7 @@ FAIL-e przyjęte przed eksportem (reguły usuwają dobre teksty, nie przepuszcza
 
 ## 11. Wysyłka
 
-Repo `Lolita67/matematyka-kod-en-robocze` (gated manual), `data/open_textbooks_math_en_p01/`, commit HF `3d695f2c`; sha256 LFS zgodne z `robocze/eksport/open_textbooks_math_en_p01/open_textbooks_math_en_p01.sha256` (API HF); anonimowe pobranie: 401. Dostęp dla `Maggio33`: czeka na właścicielkę (Settings → Gated user access).
+Repo `Lolita67/math-code-en` (do 27.11 `Lolita67/matematyka-kod-en-robocze`; gated manual), `data/open_textbooks_math_en_p01/`, commit HF `3d695f2c`; sha256 LFS zgodne z `robocze/eksport/open_textbooks_math_en_p01/open_textbooks_math_en_p01.sha256` (API HF); anonimowe pobranie: 401. Dostęp dla `Maggio33`: czeka na właścicielkę (Settings → Gated user access).
 
 ## 12. Dane treningowe
 

@@ -260,6 +260,43 @@ Próbka kontrolna 200 zachowanych (`default_rng(seed+3)`, dwóch recenzentów, o
 
 Uwaga z pliku: w pozycji 6015718 numery kart to publiczne numery testowe bramek płatniczych (komentarz „test card numbers”), sprawdzone 25.11.
 
+## Aneks 27.11: zaciemnione e-maile w kodzie, ponowny eksport 5 części
+
+Kontrola końcowa zbioru (`../matematyka-wspolne/wyniki/kontrola_koncowa.json`) znalazła w 1/50 losowych plików Stack-Edu e-mail
+w formie `nazwa_at_domena`. Aneks `aneks_2026_11_27_zaciemnione` w [`skrypty/preregistracja.json`](skrypty/preregistracja.json) (commit
+`f760728`, przed ponownym eksportem): `premask_emails(..., code_obf=True)`, wzorce `EMAIL_CODE_OBF` w
+`../matematyka-wspolne/eksport/src/mat_wybor.py` (`nazwa_at_domena.tld`, `nazwa <at>/{at} domena`, `nazwa at domena dot tld`,
+`nazwa AT domena.tld`, `x.y at domena.tld`; domena musi kończyć się TLD z listy, żeby nie łapać kodu typu `obj_at_index`).
+
+- Skan przed (`../matematyka-wspolne/skrypty/skan_zaciemnione.py`, `robocze/skan_zaciemnione_przed.json`): trafienia we wszystkich 5
+  częściach; przykłady przejrzane ręcznie — adresy autorów w nagłówkach plików. Formalna matematyka (`formal_math_p01`): 0 we wszystkich
+  wzorcach, bez ponownego eksportu.
+- Porównanie tekstu przed/po masce (`../matematyka-wspolne/skrypty/porownaj_maske.py`, `robocze/porownanie_maski.json`): dotychczasowa
+  maska zmienia 0 plików; nowa zmienia 1 988 plików, 2 258 zastąpień, 596 różnych napisów — wszystkie w postaci adresu e-mail.
+- Pula części 2 odtworzona z `common-pile/stackv2_edu_filtered@c354dbe8` (`CZESC=2 odtworz.sh pula stackedu`, 27.11): 12 plików,
+  sha256, wiersze i tokeny v6 identyczne z [`wyniki/cz2/probka_pliki.json`](wyniki/cz2/probka_pliki.json).
+- Ponowny eksport 5 części (`eksport_czesci.sh`, `robocze/cz2/logi/eksport_aneks.log`, `KONIEC 5`): test kontraktowy 1 passed w każdej,
+  `check.py` tylko oczekiwane linie. Porównanie z poprzednim eksportem (`../matematyka-wspolne/skrypty/porownaj_eksporty.py`): te same id
+  w tej samej kolejności, tekst nowy = stary po nowej masce, 0 niezgodności; w p03 1 plik (`fb4abb84…`, z adresem) po masce odrzucony
+  przez bramkę języka `shard.write` (`wrong_language` 22 920 → 22 921).
+- Wysyłka (commit HF w tabeli; w tym samym commicie usunięte stare `tokenized/slayer-v6/<k>.*`), sha256 LFS = pliki `.sha256` 5/5,
+  ponowna tokenizacja (`tokenizuj_hf.py` po 256 dok., `robocze/cz2/logi/tokenizacja_aneks*.log`): dokumenty = wiersze parquetu.
+
+| część | dok. | `token_count` | zamaskowane (`stats.json` pii) | trafienia skanu przed → po (suma po wzorcach) | sha256 | linie `check.py` | commit HF | tokeny v6 |
+|---|---|---|---|---|---|---|---|---|
+| `stack_edu_python_p01` | 700 228 → 700 228 | 747 536 204 → 747 533 735 | 36 713 → 37 160 | 386 → 2 | `a856aaf142ac…` | 15 | `2d1fba91` | 961 866 960 |
+| `stack_edu_python_p02` | 707 083 → 707 083 | 749 821 054 → 749 818 615 | 37 606 → 38 054 | 397 → 1 | `b1acc412182b…` | 13 | `48636272` | 964 366 205 |
+| `stack_edu_python_p03` | 705 261 → 705 260 | 747 401 455 → 747 398 832 | 37 369 → 37 817 | 396 → 1 | `635d02c8b4ee…` | 9 | `733f2f86` | 961 652 452 |
+| `stack_edu_python_p04` | 703 578 → 703 578 | 749 900 173 → 749 897 496 | 36 888 → 37 362 | 411 → 0 | `6a4b263f6220…` | 9 | `11dba899` | 963 727 259 |
+| `stack_edu_python_p05` | 700 605 → 700 605 | 749 763 920 → 749 761 464 | 36 836 → 37 289 | 401 → 0 | `5bff3fb0a214…` | 17 | `e1e22e31` | 963 401 686 |
+
+Skan po eksporcie: 4 trafienia, żadne nie jest adresem do zamaskowania — domeny-szablony `example.com` / `EMAIL.com` w kodzie
+testów i dokumentacji oraz zagadka „bram.dejong at domain.com where domain in gmail” (publiczny autor biblioteki). **Stack-Edu po
+aneksie: 3 516 754 pliki, 4 815 014 562 tokeny v6.**
+
+Nienaprawione: ramię `mikroanneal/stack_edu_python` (część 1, 180 275 plików, podzbiór `data/`): skan pokazuje te same formy
+(pliki: `_at_` 7, `<at>` 4, `at … dot` 65, `AT` 6, `x.y at` 9) — do decyzji (ponowny eksport ramienia albo usunięcie z repo).
+
 ## Historia odtworzeń
 
 - 24.11.2026 19:38: karta i preregistracja (`6988094`); 19:47 `pula` (kod 2 po `KONIEC`).
@@ -289,4 +326,4 @@ Uwaga z pliku: w pozycji 6015718 numery kart to publiczne numery testowe bramek 
 
 ## Repo po scaleniu (26.11)
 
-`Lolita67/stack_edu_python-robocze` usunięte 26.11. Wszystkie 6 plików parquet (sha256 LFS zgodne) leżą w `Lolita67/matematyka-kod-en-robocze`: `data/stack_edu_python_p01..p05` i `mikroanneal/stack_edu_python`.
+`Lolita67/stack_edu_python-robocze` usunięte 26.11. Wszystkie 6 plików parquet (sha256 LFS zgodne) leżą w `Lolita67/math-code-en` (do 27.11 `Lolita67/matematyka-kod-en-robocze`): `data/stack_edu_python_p01..p05` i `mikroanneal/stack_edu_python`.

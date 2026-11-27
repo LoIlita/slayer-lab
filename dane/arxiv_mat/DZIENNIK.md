@@ -195,7 +195,7 @@ wiersza przed, po i w domenie, spacje wokół `@`, `@@`. Kontrole:
 
 ## 11. Wysyłka
 
-Repo `Lolita67/matematyka-kod-en-robocze` (gated manual), `data/arxiv_math_en_p01..p08/` (parquet, datasheet części, `stats.json`),
+Repo `Lolita67/math-code-en` (do 27.11 `Lolita67/matematyka-kod-en-robocze`; gated manual), `data/arxiv_math_en_p01..p08/` (parquet, datasheet części, `stats.json`),
 commity HF `712be5ab` (p01–p04), `7eed66e6` (p05–p07), `8a16f958` (p08), po aneksie 27.11 `1fecb954` (p03, p06, p07, p08 zastąpione), po aneksie 27.11 nr 2 `cd727d60` (p02, p03, p04, p06, p08 zastąpione, stare `tokenized` usunięte w tym samym commicie; sha256 w tabeli §9); sha256 LFS zgodne z `robocze/eksport/<k>/<k>.sha256` w 8/8
 (API HF); anonimowe pobranie: 401. Dostęp dla `Maggio33`: czeka na właścicielkę (Settings → Gated user access).
 

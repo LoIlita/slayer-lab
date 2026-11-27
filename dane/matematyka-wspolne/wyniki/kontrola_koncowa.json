@@ -1,6 +1,6 @@
 {
  "data": "2026-11-27",
- "repo": "Lolita67/matematyka-kod-en-robocze",
+ "repo": "Lolita67/math-code-en",
  "seed": 20261127,
  "probka": "50 losowych dokumentów na źródło z gotowych plików data/ (arXiv z lokalnych plików o sha256 równym LFS), jedno niezależne wywołanie modelu 'slow' na dokument (do 6000 znaków)",
  "ocena": {

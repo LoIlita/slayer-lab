@@ -1,4 +1,4 @@
-# Dziennik wspólny: zbiór matematyki i kodu EN dla Slayera (`Lolita67/matematyka-kod-en-robocze`)
+# Dziennik wspólny: zbiór matematyki i kodu EN dla Slayera (`Lolita67/math-code-en`, „Math & Code (English)”)
 
 Dzienniki źródeł: [FineMath-4+](../finemath4/DZIENNIK.md), [Stack-Edu](../stackedu/DZIENNIK.md),
 [InfiWebMath-4+](../infiwebmath4/DZIENNIK.md), [arXiv](../arxiv_mat/DZIENNIK.md), [StackExchange](../stackexchange_mat/DZIENNIK.md),
@@ -7,14 +7,15 @@ Dzienniki źródeł: [FineMath-4+](../finemath4/DZIENNIK.md), [Stack-Edu](../sta
 
 ## Stan końcowy (27.11.2026)
 
-Repo HF `Lolita67/matematyka-kod-en-robocze` (gated manual, anonimowo 401): **11 810 525 dok., 17 018 612 820 tokenów v6**
-w 26 częściach `data/<klucz>_pNN/` (parquet) i 26 bliźniakach `tokenized/slayer-v6/<klucz>_pNN.{bin,json}`. Decyzja Ani
-(26–27.11): zbiór zostaje przy ~17 mld.
+Repo HF `Lolita67/math-code-en` (gated manual, anonimowo 401; do 27.11 `Lolita67/matematyka-kod-en-robocze`, stary adres
+przekierowuje 307): **11 810 524 dok., 17 018 594 648 tokenów v6** w 26 częściach `data/<klucz>_pNN/` (parquet) i 26 bliźniakach
+`tokenized/slayer-v6/<klucz>_pNN.{bin,json}`. Decyzja Ani (26–27.11): zbiór zostaje przy ~17 mld. README na HF po angielsku
+(kopia: [`eksport/README_hf_math-code-en.md`](eksport/README_hf_math-code-en.md)).
 
 | źródło | części | dok. | tokeny v6 |
 |---|---|---|---|
 | FineMath-4+ | 7 | 4 763 307 | 6 950 748 498 |
-| Stack-Edu Python | 5 | 3 516 755 | 4 815 032 734 |
+| Stack-Edu Python | 5 | 3 516 754 | 4 815 014 562 |
 | arXiv | 8 | 599 703 | 2 425 618 929 |
 | StackExchange | 1 | 1 614 905 | 1 297 166 546 |
 | InfiWebMath-4+ | 1 | 1 025 440 | 1 138 599 522 |
@@ -22,7 +23,7 @@ w 26 częściach `data/<klucz>_pNN/` (parquet) i 26 bliźniakach `tokenized/slay
 | OEIS | 1 | 260 277 | 153 731 738 |
 | Wikipedia | 1 | 6 762 | 19 734 493 |
 | podręczniki | 1 | 2 986 | 9 875 422 |
-| **razem** | 26 | 11 810 525 | 17 018 612 820 |
+| **razem** | 26 | 11 810 524 | 17 018 594 648 |
 
 ## Kontrola końcowa (krok 5), 27.11.2026
 
@@ -38,8 +39,10 @@ Agenci recenzujący byli wcześniej masowo blokowani przez dostawcę, więc kont
 | 50 losowych dok. na źródło (seed 20261127), model „slow”, do 6000 znaków | śmieci (`nie`): FineMath-4+ 3/50, InfiWebMath-4+ 2/50, podręczniki 1/50, Stack-Edu 1/50, pozostałe 0/50; wątpliwe: FineMath-4+ 15, InfiWebMath-4+ 14, podręczniki 8, arXiv 1, Stack-Edu 1, StackExchange 1; PII: 0/50 we wszystkich poza Stack-Edu **1/50** (zaciemniony e-mail `nazwa_at_domena` w nagłówku licencji pliku) |
 
 Wnioski: śmieci w FineMath-4+/InfiWebMath-4+ (6%, 4%) zgodne z przeglądami źródeł (~9–10%, cecha źródła, filtr jakości nie
-nałożony). Stack-Edu: forma `_at_` w nagłówkach plików nie była maskowana w części 1–2 (#346) — znalezisko otwarte, do decyzji
-(ponowny eksport Stack-Edu z dodatkowym wzorcem).
+nałożony). Stack-Edu: forma `_at_` i pokrewne w nagłówkach plików nie były maskowane — naprawione aneksem 27.11 w 5 częściach `data/`
+(1 988 plików, 2 258 adresów; [`../stackedu/DZIENNIK.md`](../stackedu/DZIENNIK.md), „Aneks 27.11”); po eksporcie skan: 0 adresów do
+maskowania. Formalna matematyka: 0 tych form. Otwarte: ramię `mikroanneal/stack_edu_python` (część 1) ma te same formy (~90 plików).
+Liczby w tabeli wyżej są po aneksie (twin check 26/26 powtórzony po wysyłce Stack-Edu).
 
 ## Sprzątanie dysku (27.11.2026)
 

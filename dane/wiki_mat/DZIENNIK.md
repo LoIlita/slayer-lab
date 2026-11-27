@@ -151,7 +151,7 @@ FAIL-e przyjęte przed eksportem:
 
 ## 11. Wysyłka
 
-Repo `Lolita67/matematyka-kod-en-robocze` (gated manual), `data/wikipedia_math_en_p01/`, commit HF `3d695f2c`; sha256 LFS zgodne z `robocze/eksport/wikipedia_math_en_p01/wikipedia_math_en_p01.sha256` (API HF); anonimowe pobranie: 401. Dostęp dla `Maggio33`: czeka na właścicielkę (Settings → Gated user access).
+Repo `Lolita67/math-code-en` (do 27.11 `Lolita67/matematyka-kod-en-robocze`; gated manual), `data/wikipedia_math_en_p01/`, commit HF `3d695f2c`; sha256 LFS zgodne z `robocze/eksport/wikipedia_math_en_p01/wikipedia_math_en_p01.sha256` (API HF); anonimowe pobranie: 401. Dostęp dla `Maggio33`: czeka na właścicielkę (Settings → Gated user access).
 
 ## 12. Dane treningowe
 

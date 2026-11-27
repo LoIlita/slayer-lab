@@ -168,7 +168,7 @@ FAIL-e przyjęte przed eksportem (reguły usuwają dobre teksty, nie przepuszcza
 
 ## 11. Wysyłka
 
-Repo `Lolita67/matematyka-kod-en-robocze` (do wglądu, gated manual), `data/stackexchange_math_p01/`, commit HF `73eb3c08`; sha256 LFS zgodne z sha256 z logu eksportu (API HF); anonimowe pobranie: 401. Status datasheetu nadal `held_for_review`: przed zgłoszeniem do repo zespołu przegląd praw (opt-out platformy). Dostęp dla `Maggio33`: czeka na właścicielkę (Settings → Gated user access).
+Repo `Lolita67/math-code-en` (do 27.11 `Lolita67/matematyka-kod-en-robocze`; do wglądu, gated manual), `data/stackexchange_math_p01/`, commit HF `73eb3c08`; sha256 LFS zgodne z sha256 z logu eksportu (API HF); anonimowe pobranie: 401. Status datasheetu nadal `held_for_review`: przed zgłoszeniem do repo zespołu przegląd praw (opt-out platformy). Dostęp dla `Maggio33`: czeka na właścicielkę (Settings → Gated user access).
 
 ## 12. Dane treningowe
 
