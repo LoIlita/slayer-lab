@@ -75,9 +75,21 @@ EMAIL_AT_NL = re.compile(r"[A-Za-z0-9%+-]*[._][A-Za-z0-9._%+-]+ (?:at|AT)\n([A-Z
 _MAIL_HOSTS = r"(?:gmail|googlemail|yahoo|ymail|hotmail|outlook|live|msn|icloud|aol|gmx|protonmail|proton|yandex|mail|qq|163|126|sina|web|t-online|orange|free|libero|naver|hanmail|rediffmail|zoho)"
 EMAIL_AT_NL_MAIL = re.compile(r"(?:[A-Za-z0-9._%+-]+ dot )*[A-Za-z0-9._%+-]+ at\n(" + _MAIL_HOSTS + r"(?:\.| dot )[a-z]{2,3}(?:(?:\.| dot )[a-z]{2})?\b(?![/\w])"
                               r"|[A-Za-z0-9-]+(?: dot [A-Za-z0-9-]+)* dot " + _OBF_TLD + ")")
+# obfuscated author e-mails in source-code headers (stack_edu_python, aneks 2026-11-27 in dane/stackedu; final check found
+# 'name_at_domain.tld'): forms without '@' that EMAIL_AT does not cover; the domain must end in a listed TLD, so that code
+# like `obj_at_index` or prose "look at self.x" is left alone (scan dane/matematyka-wspolne/skrypty/skan_zaciemnione.py)
+_CODE_TLD = r"(?:com|org|net|edu|gov|mil|info|io|biz|de|uk|fr|ch|it|ac|au|nz|ca|jp|nl|be|at|cz|pl|dk|se|fi|no|es|pt|us|cn|in|br|ru|il|kr|tw|sg|hk|ie|hu|gr|ro|sk|si|lt|lv|ee|mx|ar|cl|za|tr|ir)"
+_CODE_SEPD = r"(?:\.|_dot_|\(dot\)|\[dot\]|\{dot\}|<dot>| dot | DOT )"
+EMAIL_CODE_OBF = [
+    re.compile(r"[A-Za-z0-9.+-]+_at_([A-Za-z0-9-]+(?:" + _CODE_SEPD + r"[A-Za-z0-9-]+)*" + _CODE_SEPD + _CODE_TLD + r")\b"),
+    re.compile(r"[A-Za-z0-9._%+-]+ ?[\{<] ?(?:at|AT) ?[\}>] ?([A-Za-z0-9-]+(?:" + _CODE_SEPD + r"[A-Za-z0-9-]+)*" + _CODE_SEPD + _CODE_TLD + r")\b"),
+    re.compile(r"[A-Za-z0-9._%+-]+ (?:at|AT) ([A-Za-z0-9-]+(?: (?:dot|DOT) [A-Za-z0-9-]+)* (?:dot|DOT) " + _CODE_TLD + r")\b"),
+    re.compile(r"[A-Za-z0-9._%+-]+ AT ([A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\." + _CODE_TLD + r")\b"),
+    re.compile(r"[A-Za-z0-9._%+-]*[._][A-Za-z0-9._%+-]+ at ([A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\." + _CODE_TLD + r")\b(?![/\w.])"),
+]
 
 
-def _mask_emails(text: str, bare_at: bool = False, wrapped: bool = False) -> tuple[str, int]:
+def _mask_emails(text: str, bare_at: bool = False, wrapped: bool = False, code_obf: bool = False) -> tuple[str, int]:
     n = 0
 
     def sub(m):
@@ -95,18 +107,23 @@ def _mask_emails(text: str, bare_at: bool = False, wrapped: bool = False) -> tup
     if wrapped:
         text = EMAIL_AT_NL_MAIL.sub(sub, EMAIL_AT_NL.sub(sub, EMAIL_OBF.sub(sub, text)))
     text = EMAIL_AT.sub(sub, EMAIL.sub(sub, text))
+    if code_obf:
+        for rx in EMAIL_CODE_OBF:
+            text = rx.sub(sub, text)
     return (EMAIL_SPACE_TLD.sub(sub, EMAIL_DASH_AT.sub(sub, EMAIL_BARE_AT.sub(sub, text))) if bare_at else text), n
 
 
 MASKED = {"pii": 0}  # e-mails masked by premask_emails before shard.write
 
 
-def premask_emails(text: str, bare_at: bool = False, wrapped: bool = False) -> str:
+def premask_emails(text: str, bare_at: bool = False, wrapped: bool = False, code_obf: bool = False) -> str:
     """Mask e-mails BEFORE shard.write: its language gate then sees the same text check.py rescans. Masking inside
     shard.write ran after the gate, and 8 Python files whose gate vote flipped on the masked text failed check.py
     (independent check, 2026-11-25). bare_at: also `name at domain.tld` (formalna, aneks 26.11d). wrapped: also brace
-    lists and hyphen-wrapped addresses (arxiv_math_en, aneks 26.11 arxiv_mat)."""
-    masked, n = _mask_emails(text, bare_at, wrapped)
+    lists and hyphen-wrapped addresses (arxiv_math_en, aneks 26.11 arxiv_mat). code_obf: obfuscated forms in code
+    headers, `name_at_domain.tld`, `name <at> domain`, `name at domain dot tld`, `name AT domain.tld` (stack_edu_python,
+    aneks 2026-11-27 dane/stackedu)."""
+    masked, n = _mask_emails(text, bare_at, wrapped, code_obf)
     MASKED["pii"] += n
     return masked
 

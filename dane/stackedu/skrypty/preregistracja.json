@@ -67,5 +67,11 @@
   "eksport": "wszystkie pliki zachowane po regułach z kolejnosc_powodow",
   "reguly": "bez zmian względem części 1",
   "probka": "próbka kontrolna 200 zachowanych default_rng(seed+3), dwóch recenzentów, pola jakosc, sekret_przeoczony, test_przeoczony; progi jak w aneksie 24.11c"
+ },
+ "aneks_2026_11_27_zaciemnione": {
+  "zapisano": "2026-11-27, PO kontroli końcowej zbioru (matematyka-wspolne/wyniki/kontrola_koncowa.json: 1/50 losowych plików Stack-Edu z e-mailem 'nazwa_at_domena') i PRZED ponownym eksportem; repo HF gated przez cały czas",
+  "skan_przed": "matematyka-wspolne/skrypty/skan_zaciemnione.py na 5 wysłanych częściach (stackedu/robocze/skan_zaciemnione_przed.json, pliki z trafieniem na część p01..p05): '_at_' 32/18/19/29/18, '{at}/<at>' 28/36/42/39/35, 'at … dot' 250/270/262/269/274, 'AT domena.tld' 41/32/21/28/29, 'x.y at domena.tld' 35/41/52/46/45; przykłady przejrzane ręcznie: same adresy autorów w nagłówkach plików",
+  "regula": "premask_emails(text, code_obf=True) w clean_stack_edu_python.py: po dotychczasowych wzorcach (EMAIL, EMAIL_AT) maskowane EMAIL_CODE_OBF (mat_wybor.py): 'nazwa_at_domena(.|_dot_)tld', 'nazwa <at>/{at} domena', 'nazwa at/AT domena dot tld', 'nazwa AT domena.tld', 'x.y at domena.tld' (nazwa z '.' lub '_'); domena musi kończyć się TLD z listy, żeby nie łapać kodu typu obj_at_index; reszta reguł bez zmian",
+  "porownanie": "matematyka-wspolne/skrypty/porownaj_maske.py na 5 częściach (stackedu/robocze/porownanie_maski.json): dotychczasowa maska zmienia 0 plików (idempotentna); nowa zmienia p01 385 plików / 444 adresy, p02 396 / 446, p03 395 / 447, p04 411 / 471, p05 401 / 450 — razem 1 988 plików, 2 258 zastąpień, 596 różnych napisów, wszystkie w postaci adresu e-mail (przegląd listy); wszystkie 5 części do ponownego eksportu"
  }
 }
